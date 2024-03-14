@@ -1,0 +1,46 @@
+/*
+    footer
+*/
+
+.footer {
+    background: #fdfdfd;
+    color: black;
+    position: relative;
+}
+.footer .footer-section {
+    padding: 20px;
+}
+.footer h4, .footer h3 {
+    color: black;
+}
+.footer .about .contact span {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+.footer .about .socials a {
+    border: 1px solid gray;
+    width: 45px;
+    height: 45px;
+    padding-top: 5px;
+    margin-right: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.3em;
+    border-radius: 5px;
+    transition: add 0.7s;
+    color: black;
+}
+.footer .yourMail {
+    border-radius: 4px;
+    border: 1px solid #797979;
+}
+.footer .yourMess {
+    padding-right: 132px;
+    border-radius: 4px;
+    border: 1px solid #797979;
+}
+
+/*
+    /footer
+*/

@@ -1,0 +1,15 @@
+.containerEvent{
+    margin-top: 100px;
+    display: grid;
+    gap: 20px;
+    min-width: 1200px;
+
+    /* ! */
+    grid-template-columns: 200px 1000px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.FindEvent {
+    margin-top: 20px;
+}

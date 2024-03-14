@@ -1,0 +1,56 @@
+.containerAuthorization {
+    margin-top: 100px;
+    display: grid;
+    gap: 20px;
+
+    /* ! */
+    grid-template-columns: 300px;
+    background: #b9b9b9;
+    width: 30%;
+    max-width: 500px;
+    min-width: 400px;
+    margin-left: 35%;
+    margin-right: 35%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    border-radius: 3px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+.label_login {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+}
+
+.input_login {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+}
+
+.label_pass {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+}
+
+.input_pass {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+}
+
+.button_auth {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+}
+
+.button_reg {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+}

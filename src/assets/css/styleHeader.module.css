@@ -1,0 +1,54 @@
+/*
+    header
+ */
+.container {
+    margin-left: 200px;
+    margin-right: 200px;
+    min-width: 900px;
+}
+.nameS{
+    width: 1600px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+.nameCon {
+    margin-left: 60px;
+}
+header {
+    background: #fdfdfd;
+    height: 70px;
+}
+
+.H1Name {
+    position: absolute;
+    margin-top: 10px;
+}
+.nameMySite {
+    color: black;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    float: right;
+}
+li {
+    float: left;
+    position: relative;
+}
+.item {
+    display: block;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 20px;
+    color: black;
+}
+.item:hover {
+    background: #dcdcdc;
+    transition: 1s;
+    color: black;
+}
+/*
+    /header
+*/
