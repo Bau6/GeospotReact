@@ -1,4 +1,4 @@
-const profileReducer = (state, action) =>{
+const eventsInfoReducer = (state, action) =>{
 
     return state;
 }

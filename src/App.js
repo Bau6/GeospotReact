@@ -18,10 +18,10 @@ const App = (props) => {
             <div>
                 <Header/>
                 <Routes>
-                    <Route path={'/pages/events/events.js'} element={<Events sportNameFromBD={props.state.sportNameFromBD}/>}/>
-                    <Route path={'/pages/event/event.js'} element={<Event eventStatsFromBD={props.state.eventStatsFromBD}/>}/>
+                    <Route path={'/pages/events/events.js'} element={<Events sportNameFromBD={props.state.eventsInfo.sportNameFromBD}/>}/>
+                    <Route path={'/pages/event/event.js'} element={<Event eventStatsFromBD={props.state.eventsInfo.eventStatsFromBD}/>}/>
                     <Route path={'/pages/registration/Registration.js'}
-                           element={<Registration sportNameFromBD={props.state.sportNameFromBD}
+                           element={<Registration sportNameFromBD={props.state.eventsInfo.sportNameFromBD}
                                                   stateFromBD={props.state}
                                                   dispatch={props.dispatch}/>}/>
                     <Route path={'/pages/authorization/Authorization.js'} element={<Authorization/>}/>
@@ -30,7 +30,7 @@ const App = (props) => {
                                stateFromBD={props.state}
                            />}/>
                     <Route path={'/pages/first_page/first_page.js'} element={<FirstPage/>}/>
-                    <Route path={'/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js'} element={<CheckingPlayersOnTourney participantsFromBD={props.state.participantsFromBD}/>}/>
+                    <Route path={'/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js'} element={<CheckingPlayersOnTourney participantsFromBD={props.state.users.participantsFromBD}/>}/>
                     <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsTourney />}/>
                 </Routes>
             </div>

@@ -5,6 +5,16 @@ import {NavLink} from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ShowPasswordButton from "./passwordButton";
+import {
+    changeRegDataActionCreator,
+    onEmailChangeActionCreator,
+    onNameChangeActionCreator,
+    onPassChangeActionCreator,
+    onPatronymicChangeActionCreator,
+    onRepassChangeActionCreator,
+    onSurnameChangeActionCreator
+} from "../../database/statejs/state";
+
 
 
 const Registration = (props) => {
@@ -67,6 +77,7 @@ const Registration = (props) => {
                 selected={selectedDate}
                 onChange={date => setSelectedDate(date)}
                 className={RegistrationCss.nameLabelInputButtonReg}
+                dateFormat="dd.MM.yyyy" // Указываем желаемый формат даты
             />
 
         </div>
@@ -127,7 +138,8 @@ const Registration = (props) => {
                 };
             }
             //props.infoForRegUser(test1);
-            props.dispatch({ type: 'INFO-FOR-REG-USER', test1 });
+            //props.dispatch({ type: 'INFO-FOR-REG-USER', test1 });
+            props.dispatch(changeRegDataActionCreator(test1));
             // Дополнительные действия при корректных данных
         } else {
             alert(errorMessage);
@@ -151,37 +163,43 @@ const Registration = (props) => {
     let onEmailChange = () => {
         let newText = refs[0].current.value;
         //props.updateNewEmailText(text);
-        props.dispatch({ type: 'EMAIL' , newText});
+        //props.dispatch({ type: 'EMAIL' , newText});
+        props.dispatch(onEmailChangeActionCreator(newText));
     }
 
     let onPassChange = () => {
         let newText = refs[1].current.value;
         //props.updateNewPassText(text);
-        props.dispatch({ type: 'PASSWORD', newText });
+        //props.dispatch({ type: 'PASSWORD', newText });
+        props.dispatch(onPassChangeActionCreator(newText));
     }
 
     let onRepassChange = () => {
         let newText = refs[2].current.value;
         //props.updateNewRepassText(text);
-        props.dispatch({ type: 'REPASS', newText });
+        //props.dispatch({ type: 'REPASS', newText });
+        props.dispatch(onRepassChangeActionCreator(newText));
     }
 
     let onNameChange = () => {
         let newText = refs[3].current.value;
         //props.updateNewNameText(text);
-        props.dispatch({ type: 'NAME-USER', newText });
+        //props.dispatch({ type: 'NAME-USER', newText });
+        props.dispatch(onNameChangeActionCreator(newText));
     }
 
     let onSurnameChange = () => {
         let newText = refs[4].current.value;
         //props.updateNewSurnameText(text);
-        props.dispatch({ type: 'SURNAME-USER', newText });
+        //props.dispatch({ type: 'SURNAME-USER', newText });
+        props.dispatch(onSurnameChangeActionCreator(newText));
     }
 
     let onPatronymicChange = () => {
         let newText = refs[5].current.value;
         //props.updateNewPatronymicText(text);
-        props.dispatch({ type: 'PATRONYMIC-USER', newText });
+        //props.dispatch({ type: 'PATRONYMIC-USER', newText });
+        props.dispatch(onPatronymicChangeActionCreator( newText ));
     }
 
     return (<div>
