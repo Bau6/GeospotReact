@@ -10,9 +10,13 @@ import FirstPage from "./pages/first_page/first_page";
 import Profile from "./pages/profile/Profile";
 import CheckingPlayersOnTourney from "./pages/checkingPlayersOnTourney/checkingPlayersOnTourney";
 import ResultsTourney from "./pages/resultsTourney/resultsTourney";
+// import { useSelector } from 'react-redux';
 import News from "./app/include/news";
 import Footer from './app/include/footer';
 const App = (props) => {
+    // debugger;
+    // const eventStatsFromBD = useSelector(state => props.state.eventsInfo.eventStatsFromBD);
+    // const sportNameFromBD = useSelector(state => props.state.eventsInfo.sportNameFromBD);
     return (
         <BrowserRouter>
             <div>

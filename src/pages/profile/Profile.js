@@ -6,6 +6,11 @@ import React from "react";
 const Profile = (props) => {
     const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество"];
     const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
+
+    const outputInfo = () => {
+
+    }
+    console.log(props.stateFromBD)
     return (
         <div>
             <div>
@@ -15,7 +20,10 @@ const Profile = (props) => {
                 <input
                     ref={refs[0]}
                     className={RegistrationCss.nameLabelInputButtonReg}
-                    // value={props.stateFromBD.userExampleInfo.email}
+                    onChange={outputInfo}
+                    value={props.stateFromBD.infoUsers.usersNewInfo[0].email &&
+                    props.stateFromBD.infoUsers.usersNewInfo[0].email ?
+                        props.stateFromBD.infoUsers.usersNewInfo[0].email : ''}
                 ></input>
                 {/*<ShowPasswordButton getRef={() => refs[0]}/>*/}
             </div>

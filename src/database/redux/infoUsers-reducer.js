@@ -5,32 +5,146 @@ const REPASS = 'REPASS';
 const NAME_USER = 'NAME-USER';
 const SURNAME_USER = 'SURNAME-USER';
 const PATRONYMIC_USER = 'PATRONYMIC-USER';
-const eventsInfoReducer = (state, action) => {
+const DATE_BIRTHDAY = 'DATE-BIRTHDAY';
+
+let initialState = {
+
+    userExampleInfo: {
+        id: 1,
+        email: "example@mail.ru",
+        password: "MyPass1",
+        replayPassword: "MyPass1",
+        nameUser: "name",
+        surnameUser: "surName",
+        patronymicUser: "patronymic",
+        dateOfBirth: "",
+        checkedTypeSport: [
+            {event: "Баскетбол", status: 'on'},
+            {event: "Воллейбол", status: 'on'},
+            {event: "Хоккей", status: 'on'},
+            {event: "Футбол", status: "Опытный"}
+        ]
+    },
+    usersNewInfo: []
+}
+
+const infoUsersReducer = (state = initialState, action) => {
     switch (action.type) {
         case INFO_FOR_REG_USER:
-            state.usersNewInfo.push(action.test1);
-            console.log(state.usersNewInfo);
-            return state;
+            return {
+                ...state,
+                usersNewInfo: state.usersNewInfo.concat(action.value),
+            };
         case EMAIL:
-            state.userExampleInfo.email = action.newText;
-            return state;
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    email: action.newText
+                }
+            };
         case PASSWORD:
-            state.userExampleInfo.password = action.newText;
-            return state;
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    password: action.newText
+                }
+            };
         case REPASS:
-            state.userExampleInfo.replayPassword = action.newText;
-            return state;
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    replayPassword: action.newText
+                }
+            };
         case NAME_USER:
-            state.userExampleInfo.nameUser = action.newText;
-            return state;
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    nameUser: action.newText
+                }
+            };
         case SURNAME_USER:
-            state.userExampleInfo.surnameUser = action.newText;
-            return state;
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    surnameUser: action.newText
+                }
+            };
         case PATRONYMIC_USER:
-            state.userExampleInfo.patronymicUser = action.newText;
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    patronymicUser: action.newText
+                }
+            };
+        case DATE_BIRTHDAY:
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    dateOfBirth: action.newText
+                }
+            };
+        default:
             return state;
-        default :
-            return state;
+
     }
 }
-export default eventsInfoReducer;
+
+export const changeRegDataActionCreator = (value) => (
+    {
+        type: INFO_FOR_REG_USER,
+        value: value
+    }
+)
+export const onEmailChangeActionCreator = (value) => (
+    {
+        type: EMAIL,
+        newText: value
+    }
+)
+export const onPassChangeActionCreator = (value) => (
+    {
+        type: PASSWORD,
+        newText: value
+    }
+)
+export const onRepassChangeActionCreator = (value) => (
+    {
+        type: REPASS,
+        newText: value
+    }
+)
+export const onNameChangeActionCreator = (value) => (
+    {
+        type: NAME_USER,
+        newText: value
+    }
+)
+export const onSurnameChangeActionCreator = (value) => (
+    {
+        type: SURNAME_USER,
+        newText: value
+    }
+)
+export const onPatronymicChangeActionCreator = (value) => (
+    {
+        type: PATRONYMIC_USER,
+        newText: value
+    }
+)
+
+export const onDateChangeActionCreator = (value) => (
+    {
+        type: DATE_BIRTHDAY,
+        newText: value
+    }
+)
+
+export default infoUsersReducer;

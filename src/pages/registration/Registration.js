@@ -5,7 +5,9 @@ import {NavLink} from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ShowPasswordButton from "./passwordButton";
+import moment from 'moment';
 import {
+    onDateChangeActionCreator,
     changeRegDataActionCreator,
     onEmailChangeActionCreator,
     onNameChangeActionCreator,
@@ -13,12 +15,13 @@ import {
     onPatronymicChangeActionCreator,
     onRepassChangeActionCreator,
     onSurnameChangeActionCreator
-} from "../../database/statejs/state";
+} from "../../database/redux/infoUsers-reducer";
 
 
 
 const Registration = (props) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
+    // debugger;
     const numberOfElements = props.sportNameFromBD.length;
     const initialCheckedState = [];
     const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество"];
@@ -33,6 +36,13 @@ const Registration = (props) => {
     const refs = [addDataElement1, addDataElement2, addDataElement3, addDataElement4, addDataElement5, addDataElement6, addDataElement7];
     const [checked, setChecked] = useState(initialCheckedState);
     const [refsArray, setRefsArray] = useState(props.sportNameFromBD.map(() => React.createRef()));
+
+    let onDateChange = () => {
+        let newText = refs[6].current.value;
+        //props.updateNewPatronymicText(text);
+        //props.dispatch({ type: 'PATRONYMIC-USER', newText });
+        props.dispatch(onDateChangeActionCreator( newText ));
+    }
 
     useEffect(() => {
         if (refs[1].current) {
@@ -75,7 +85,9 @@ const Registration = (props) => {
             <DatePicker
                 ref={refs[6]}
                 selected={selectedDate}
-                onChange={date => setSelectedDate(date)}
+                onChange={(date) => {
+                    setSelectedDate(date);
+                    onDateChange(date);}}
                 className={RegistrationCss.nameLabelInputButtonReg}
                 dateFormat="dd.MM.yyyy" // Указываем желаемый формат даты
             />
@@ -94,11 +106,7 @@ const Registration = (props) => {
         setRefsArray(newRefsArray);
     };
 
-
     let addData = (event) => {
-        let test1 = {
-            checkedTypeSport: []
-        };
         let errorMessage = "";
 
         if (!validateEmail(addDataElement1.current.value)) {
@@ -123,23 +131,38 @@ const Registration = (props) => {
             errorMessage += "Укажите дату рождения\n";
         }
         if (errorMessage === "") {
-            test1.email = addDataElement1.current.value;
-            test1.password = addDataElement2.current.value;
-            test1.replayPassword = addDataElement3.current.value;
-            test1.nameUser = addDataElement4.current.value;
-            test1.surnameUser = addDataElement5.current.value;
-            test1.patronymicUser = addDataElement6.current.value;
-            test1.dateOfBirth = addDataElement7.current.props.selected;
-            test1.checkedTypeSport = {};
+            let test1 = {
+                // email: addDataElement1.current.value,
+                // password: addDataElement2.current.value,
+                // replayPassword: addDataElement3.current.value,
+                // nameUser: addDataElement4.current.value,
+                // surnameUser: addDataElement5.current.value,
+                // patronymicUser: addDataElement6.current.value,
+                // dateOfBirth: moment(addDataElement7.current.props.selected.toString()).format('DD.MM.YYYY'),
+                email: props.stateFromBD.infoUsers.userExampleInfo.email,
+                password: props.stateFromBD.infoUsers.userExampleInfo.password,
+                replayPassword: props.stateFromBD.infoUsers.userExampleInfo.replayPassword,
+                nameUser: props.stateFromBD.infoUsers.userExampleInfo.nameUser,
+                surnameUser: props.stateFromBD.infoUsers.userExampleInfo.surnameUser,
+                patronymicUser: props.stateFromBD.infoUsers.userExampleInfo.patronymicUser,
+                dateOfBirth: moment(addDataElement7.current.props.selected.toString()).format('DD.MM.YYYY'),
+                // dateOfBirth: moment(props.stateFromBD.infoUsers.userExampleInfo.dateOfBirth.toString()).format('DD.MM.YYYY'),
+
+                checkedTypeSport: {}
+            };
+
             for (let i = 0; i < numberOfElements; i++) {
                 test1.checkedTypeSport[i] = {
                     id: i + 1,
                     status: refsArray[i].current.value
                 };
             }
+            console.log(test1);
+            // debugger
             //props.infoForRegUser(test1);
             //props.dispatch({ type: 'INFO-FOR-REG-USER', test1 });
             props.dispatch(changeRegDataActionCreator(test1));
+            // console.log(props.stateFromBD.infoUsers);
             // Дополнительные действия при корректных данных
         } else {
             alert(errorMessage);
@@ -162,6 +185,7 @@ const Registration = (props) => {
 
     let onEmailChange = () => {
         let newText = refs[0].current.value;
+        // console.log(props.stateFromBD);
         //props.updateNewEmailText(text);
         //props.dispatch({ type: 'EMAIL' , newText});
         props.dispatch(onEmailChangeActionCreator(newText));
@@ -201,6 +225,8 @@ const Registration = (props) => {
         //props.dispatch({ type: 'PATRONYMIC-USER', newText });
         props.dispatch(onPatronymicChangeActionCreator( newText ));
     }
+
+
 
     return (<div>
         <div>
