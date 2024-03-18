@@ -2,10 +2,8 @@ import React, {useState, useEffect} from "react";
 import RegistrationCss from "./RegistrationCss.module.css"
 import DropDownMenuReg from "./DropDownMenuReg";
 import {NavLink} from "react-router-dom";
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ShowPasswordButton from "./passwordButton";
-import moment from 'moment';
 import {
     onDateChangeActionCreator,
     changeRegDataActionCreator,
@@ -20,7 +18,7 @@ import {
 
 
 const Registration = (props) => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [date, setDate] = useState('');
     // debugger;
     const numberOfElements = props.sportNameFromBD.length;
     const initialCheckedState = [];
@@ -37,13 +35,6 @@ const Registration = (props) => {
     const [checked, setChecked] = useState(initialCheckedState);
     const [refsArray, setRefsArray] = useState(props.sportNameFromBD.map(() => React.createRef()));
 
-    let onDateChange = () => {
-        let newText = refs[6].current.value;
-        //props.updateNewPatronymicText(text);
-        //props.dispatch({ type: 'PATRONYMIC-USER', newText });
-        props.dispatch(onDateChangeActionCreator( newText ));
-    }
-
     useEffect(() => {
         if (refs[1].current) {
             refs[1].current.type = 'password';
@@ -51,7 +42,7 @@ const Registration = (props) => {
         if (refs[2].current) {
             refs[2].current.type = 'password';
         }
-    }, []);
+    }, [refs]);
 
     const validateEmail = (email) => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -76,20 +67,52 @@ const Registration = (props) => {
         return true; // Если отчество не введено, то считаем его валидным
     }
 
+    const validateDate = (date) => {
+        if (date) {
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear();
+            const minYear = 1900;
+
+            const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(19\d{2}|20\d{2})$/;
+            const isValidFormat = dateRegex.test(date);
+
+            if (isValidFormat) {
+                const enteredYear = parseInt(date.split('.')[2]);
+                if (enteredYear >= minYear && enteredYear <= currentYear) {
+                    props.dispatch(onDateChangeActionCreator( date ));
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        return false; // Если дата не введена, считаем ее невалидной
+    }
+
+    const handleChange = (e) => {
+        const inputDate = e.target.value;
+        const formattedDate = inputDate
+            .replace(/\D/g, '') // Удаляем все нецифровые символы
+            .replace(/(\d{2})(\d{2})(\d{4})/, '$1.$2.$3'); // Добавляем разделители между днями, месяцами и годом
+
+        setDate(formattedDate);
+    }
+
     const inputElementData = labelData.map((labelData, index) => (
         <div key={index}>
 
             <label className={RegistrationCss.nameLabelInputButtonReg}>
                 {labelData}
             </label>
-            <DatePicker
+            <input
                 ref={refs[6]}
-                selected={selectedDate}
-                onChange={(date) => {
-                    setSelectedDate(date);
-                    onDateChange(date);}}
                 className={RegistrationCss.nameLabelInputButtonReg}
-                dateFormat="dd.MM.yyyy" // Указываем желаемый формат даты
+                type="text"
+                value={date}
+                onChange={handleChange}
+                placeholder="dd.mm.yyyy"
+
             />
 
         </div>
@@ -105,6 +128,7 @@ const Registration = (props) => {
         newRefsArray[index].current.value = eventKey;
         setRefsArray(newRefsArray);
     };
+
 
     let addData = (event) => {
         let errorMessage = "";
@@ -127,8 +151,8 @@ const Registration = (props) => {
         if (!validatePatronymic(addDataElement6.current.value)) {
             errorMessage += "Отчество должно содержать от 3 до 50 символов и состоять из русских или английских букв, или может отсутствовать.\n";
         }
-        if (!addDataElement7.current.props.selected) {
-            errorMessage += "Укажите дату рождения\n";
+        if (!validateDate(addDataElement7.current.value)) {
+            errorMessage += "Укажите реальную дату рождения от 1900 года до текущего дня\n";
         }
         if (errorMessage === "") {
             let test1 = {
@@ -145,7 +169,7 @@ const Registration = (props) => {
                 nameUser: props.stateFromBD.infoUsers.userExampleInfo.nameUser,
                 surnameUser: props.stateFromBD.infoUsers.userExampleInfo.surnameUser,
                 patronymicUser: props.stateFromBD.infoUsers.userExampleInfo.patronymicUser,
-                dateOfBirth: moment(addDataElement7.current.props.selected.toString()).format('DD.MM.YYYY'),
+                dateOfBirth: props.stateFromBD.infoUsers.userExampleInfo.dateOfBirth,
                 // dateOfBirth: moment(props.stateFromBD.infoUsers.userExampleInfo.dateOfBirth.toString()).format('DD.MM.YYYY'),
 
                 checkedTypeSport: {}
@@ -157,7 +181,7 @@ const Registration = (props) => {
                     status: refsArray[i].current.value
                 };
             }
-            console.log(test1);
+            // console.log(test1);
             // debugger
             //props.infoForRegUser(test1);
             //props.dispatch({ type: 'INFO-FOR-REG-USER', test1 });

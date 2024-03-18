@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/database/redux/redux-store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/eventsInfo-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/eventsInfo-reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/users-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/users-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/statejs/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/statejs/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
     </list>
@@ -109,7 +101,7 @@
       <workItem from="1708430368666" duration="14616000" />
       <workItem from="1710328134629" duration="104000" />
       <workItem from="1710328268487" duration="45151000" />
-      <workItem from="1710775391626" duration="5714000" />
+      <workItem from="1710775391626" duration="16922000" />
     </task>
     <servers />
   </component>

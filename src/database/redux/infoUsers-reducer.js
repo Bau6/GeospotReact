@@ -17,7 +17,7 @@ let initialState = {
         nameUser: "name",
         surnameUser: "surName",
         patronymicUser: "patronymic",
-        dateOfBirth: "",
+        dateOfBirth: null,
         checkedTypeSport: [
             {event: "Баскетбол", status: 'on'},
             {event: "Воллейбол", status: 'on'},
@@ -29,6 +29,7 @@ let initialState = {
 }
 
 const infoUsersReducer = (state = initialState, action) => {
+    // debugger
     switch (action.type) {
         case INFO_FOR_REG_USER:
             return {

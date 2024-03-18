@@ -21,7 +21,7 @@ const Profile = (props) => {
                     ref={refs[0]}
                     className={RegistrationCss.nameLabelInputButtonReg}
                     onChange={outputInfo}
-                    value={props.stateFromBD.infoUsers.usersNewInfo[0].email &&
+                    value={props.stateFromBD.infoUsers.usersNewInfo[0] &&
                     props.stateFromBD.infoUsers.usersNewInfo[0].email ?
                         props.stateFromBD.infoUsers.usersNewInfo[0].email : ''}
                 ></input>
