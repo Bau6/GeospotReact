@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/include/htmlNewInfUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/include/validations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/profile/ChangeInfProfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/profile/ChangeInfProfileContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/profile/ProfileContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/profile/changeInfProfile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
     </list>
@@ -21,6 +29,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -45,22 +54,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Ampps/www/learning_react/src/database/statejs&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/src/pages/profile",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\profile" />
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\registration" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\database\statejs" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\database\redux" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src" />
@@ -101,7 +113,7 @@
       <workItem from="1708430368666" duration="14616000" />
       <workItem from="1710328134629" duration="104000" />
       <workItem from="1710328268487" duration="45151000" />
-      <workItem from="1710775391626" duration="16922000" />
+      <workItem from="1710775391626" duration="33938000" />
     </task>
     <servers />
   </component>

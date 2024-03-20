@@ -4,18 +4,7 @@ import DropDownMenuReg from "./DropDownMenuReg";
 import {NavLink} from "react-router-dom";
 import 'react-datepicker/dist/react-datepicker.css';
 import ShowPasswordButton from "./passwordButton";
-import {
-    onDateChangeActionCreator,
-    changeRegDataActionCreator,
-    onEmailChangeActionCreator,
-    onNameChangeActionCreator,
-    onPassChangeActionCreator,
-    onPatronymicChangeActionCreator,
-    onRepassChangeActionCreator,
-    onSurnameChangeActionCreator
-} from "../../database/redux/infoUsers-reducer";
-
-
+import {validationsReg} from "../../app/include/validations";
 
 const Registration = (props) => {
     const [date, setDate] = useState('');
@@ -44,58 +33,14 @@ const Registration = (props) => {
         }
     }, [refs]);
 
-    const validateEmail = (email) => {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailRegex.test(email);
-    }
-
-    const validatePassword = (password) => {
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/;
-        return passwordRegex.test(password);
-    }
-
-    const validateName = (name) => {
-        const nameRegex = /^[a-zA-Zа-яА-Я]{3,50}$/;
-        return nameRegex.test(name);
-    }
-
-    const validatePatronymic = (patronymic) => {
-        if (patronymic) {
-            const patronymicRegex = /^[a-zA-Zа-яА-Я]{3,50}$/;
-            return patronymicRegex.test(patronymic);
-        }
-        return true; // Если отчество не введено, то считаем его валидным
-    }
-
-    const validateDate = (date) => {
-        if (date) {
-            const currentDate = new Date();
-            const currentYear = currentDate.getFullYear();
-            const minYear = 1900;
-
-            const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(19\d{2}|20\d{2})$/;
-            const isValidFormat = dateRegex.test(date);
-
-            if (isValidFormat) {
-                const enteredYear = parseInt(date.split('.')[2]);
-                if (enteredYear >= minYear && enteredYear <= currentYear) {
-                    props.dispatch(onDateChangeActionCreator( date ));
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        return false; // Если дата не введена, считаем ее невалидной
-    }
 
     const handleChange = (e) => {
         const inputDate = e.target.value;
         const formattedDate = inputDate
             .replace(/\D/g, '') // Удаляем все нецифровые символы
             .replace(/(\d{2})(\d{2})(\d{4})/, '$1.$2.$3'); // Добавляем разделители между днями, месяцами и годом
-
+        props.updateText(formattedDate);
+        // props.dispatch(onDateChangeActionCreator( formattedDate ));
         setDate(formattedDate);
     }
 
@@ -130,48 +75,17 @@ const Registration = (props) => {
     };
 
 
-    let addData = (event) => {
-        let errorMessage = "";
-
-        if (!validateEmail(addDataElement1.current.value)) {
-            errorMessage += "Пожалуйста, введите корректный Email.\n";
-        }
-        if (!validatePassword(addDataElement2.current.value)) {
-            errorMessage += "Пароль должен содержать от 6 до 20 символов, включать латинские буквы нижнего и верхнего регистров, а также цифры.\n";
-        }
-        if (addDataElement2.current.value !== addDataElement3.current.value) {
-            errorMessage += "Пароли не совпадают.\n";
-        }
-        if (!validateName(addDataElement4.current.value)) {
-            errorMessage += "Имя должно содержать от 3 до 50 символов и состоять из русских или английских букв.\n";
-        }
-        if (!validateName(addDataElement5.current.value)) {
-            errorMessage += "Фамилия должна содержать от 3 до 50 символов и состоять из русских или английских букв.\n";
-        }
-        if (!validatePatronymic(addDataElement6.current.value)) {
-            errorMessage += "Отчество должно содержать от 3 до 50 символов и состоять из русских или английских букв, или может отсутствовать.\n";
-        }
-        if (!validateDate(addDataElement7.current.value)) {
-            errorMessage += "Укажите реальную дату рождения от 1900 года до текущего дня\n";
-        }
-        if (errorMessage === "") {
+    let onAddData = (event) => {
+        let errorMessage = validationsReg(refs);
+        if (errorMessage === '') {
             let test1 = {
-                // email: addDataElement1.current.value,
-                // password: addDataElement2.current.value,
-                // replayPassword: addDataElement3.current.value,
-                // nameUser: addDataElement4.current.value,
-                // surnameUser: addDataElement5.current.value,
-                // patronymicUser: addDataElement6.current.value,
-                // dateOfBirth: moment(addDataElement7.current.props.selected.toString()).format('DD.MM.YYYY'),
-                email: props.stateFromBD.infoUsers.userExampleInfo.email,
-                password: props.stateFromBD.infoUsers.userExampleInfo.password,
-                replayPassword: props.stateFromBD.infoUsers.userExampleInfo.replayPassword,
-                nameUser: props.stateFromBD.infoUsers.userExampleInfo.nameUser,
-                surnameUser: props.stateFromBD.infoUsers.userExampleInfo.surnameUser,
-                patronymicUser: props.stateFromBD.infoUsers.userExampleInfo.patronymicUser,
-                dateOfBirth: props.stateFromBD.infoUsers.userExampleInfo.dateOfBirth,
-                // dateOfBirth: moment(props.stateFromBD.infoUsers.userExampleInfo.dateOfBirth.toString()).format('DD.MM.YYYY'),
-
+                email: props.userExampleInfo.email,
+                password: props.userExampleInfo.password,
+                replayPassword: props.userExampleInfo.replayPassword,
+                nameUser: props.userExampleInfo.nameUser,
+                surnameUser: props.userExampleInfo.surnameUser,
+                patronymicUser: props.userExampleInfo.patronymicUser,
+                dateOfBirth: props.userExampleInfo.dateOfBirth,
                 checkedTypeSport: {}
             };
 
@@ -181,13 +95,8 @@ const Registration = (props) => {
                     status: refsArray[i].current.value
                 };
             }
-            // console.log(test1);
-            // debugger
-            //props.infoForRegUser(test1);
-            //props.dispatch({ type: 'INFO-FOR-REG-USER', test1 });
-            props.dispatch(changeRegDataActionCreator(test1));
-            // console.log(props.stateFromBD.infoUsers);
-            // Дополнительные действия при корректных данных
+            props.addData(test1);
+            // props.dispatch(changeRegDataActionCreator(test1));
         } else {
             alert(errorMessage);
             event.preventDefault();
@@ -207,141 +116,122 @@ const Registration = (props) => {
         });
     }
 
-    let onEmailChange = () => {
+    let emailChange = () => {
         let newText = refs[0].current.value;
-        // console.log(props.stateFromBD);
-        //props.updateNewEmailText(text);
-        //props.dispatch({ type: 'EMAIL' , newText});
-        props.dispatch(onEmailChangeActionCreator(newText));
+        props.onEmailChange(newText);
     }
 
-    let onPassChange = () => {
+    let passChange = () => {
         let newText = refs[1].current.value;
-        //props.updateNewPassText(text);
-        //props.dispatch({ type: 'PASSWORD', newText });
-        props.dispatch(onPassChangeActionCreator(newText));
+        props.onPassChange(newText);
     }
 
-    let onRepassChange = () => {
+    let repassChange = () => {
         let newText = refs[2].current.value;
-        //props.updateNewRepassText(text);
-        //props.dispatch({ type: 'REPASS', newText });
-        props.dispatch(onRepassChangeActionCreator(newText));
+        props.onRepassChange(newText);
     }
 
-    let onNameChange = () => {
+    let nameChange = () => {
         let newText = refs[3].current.value;
-        //props.updateNewNameText(text);
-        //props.dispatch({ type: 'NAME-USER', newText });
-        props.dispatch(onNameChangeActionCreator(newText));
+        props.onNameChange(newText);
     }
 
-    let onSurnameChange = () => {
+    let surnameChange = () => {
         let newText = refs[4].current.value;
-        //props.updateNewSurnameText(text);
-        //props.dispatch({ type: 'SURNAME-USER', newText });
-        props.dispatch(onSurnameChangeActionCreator(newText));
+        props.onSurnameChange(newText);
     }
 
-    let onPatronymicChange = () => {
+    let patronymicChange = () => {
         let newText = refs[5].current.value;
-        //props.updateNewPatronymicText(text);
-        //props.dispatch({ type: 'PATRONYMIC-USER', newText });
-        props.dispatch(onPatronymicChangeActionCreator( newText ));
+        props.onPatronymicChange(newText);
     }
 
-
-
-    return (<div>
+    return (
         <div>
-            <div className={RegistrationCss.RegistrationName}>
-                Регистрация
-            </div>
-            <div className={RegistrationCss.containerReg}>
-                <div>
-                    <label className={RegistrationCss.nameLabelInputButtonReg}>
-                        {labels[0]}
-                    </label>
-                    <input
-                        onChange={onEmailChange}
-                        ref={refs[0]}
-                        className={RegistrationCss.nameLabelInputButtonReg}
-                        // value={props.stateFromBD.userExampleInfo.email}
+            <div>
+                <div className={RegistrationCss.RegistrationName}>
+                    Регистрация
+                </div>
+                <div className={RegistrationCss.containerReg}>
+                    <div>
+                        <label className={RegistrationCss.nameLabelInputButtonReg}>
+                            {labels[0]}
+                        </label>
+                        <input
+                            onChange={emailChange}
+                            ref={refs[0]}
+                            className={RegistrationCss.nameLabelInputButtonReg}
                         >
-                    </input>
+                        </input>
+                    </div>
+                    <div>
+                        <label className={RegistrationCss.nameLabelInputButtonReg}>
+                            {labels[1]}
+                        </label>
+                        <input ref={refs[1]}
+                               className={RegistrationCss.nameLabelInputButtonReg}
+                               onChange={passChange}></input>
+                        <ShowPasswordButton getRef={() => refs[1]}/>
+                    </div>
+                    <div>
+                        <label className={RegistrationCss.nameLabelInputButtonReg}>
+                            {labels[2]}
+                        </label>
+                        <input ref={refs[2]}
+                               className={RegistrationCss.nameLabelInputButtonReg}
+                               onChange={repassChange}></input>
+                        <ShowPasswordButton getRef={() => refs[2]}/>
+                    </div>
+                    <div>
+                        <label className={RegistrationCss.nameLabelInputButtonReg}>
+                            {labels[3]}
+                        </label>
+                        <input ref={refs[3]}
+                               className={RegistrationCss.nameLabelInputButtonReg}
+                               onChange={nameChange}></input>
+                    </div>
+                    <div>
+                        <label className={RegistrationCss.nameLabelInputButtonReg}>
+                            {labels[4]}
+                        </label>
+                        <input ref={refs[4]}
+                               className={RegistrationCss.nameLabelInputButtonReg}
+                               onChange={surnameChange}></input>
+                    </div>
+                    <div>
+                        <label className={RegistrationCss.nameLabelInputButtonReg}>
+                            {labels[5]}
+                        </label>
+                        <input ref={refs[5]}
+                               className={RegistrationCss.nameLabelInputButtonReg}
+                               onChange={patronymicChange}></input>
+                    </div>
+                    {inputElementData}
                 </div>
-                <div>
-                    <label className={RegistrationCss.nameLabelInputButtonReg}>
-                        {labels[1]}
-                    </label>
-                    <input ref={refs[1]}
-                           className={RegistrationCss.nameLabelInputButtonReg}
-                           // value={props.stateFromBD.userExampleInfo.password}>
-                           onChange={onPassChange}></input>
-                    <ShowPasswordButton getRef={() => refs[1]}/>
-                </div>
-                <div>
-                    <label className={RegistrationCss.nameLabelInputButtonReg}>
-                        {labels[2]}
-                    </label>
-                    <input ref={refs[2]}
-                           className={RegistrationCss.nameLabelInputButtonReg}
-                           // value={props.stateFromBD.userExampleInfo.replayPassword}>
-                           onChange={onRepassChange}></input>
-                    <ShowPasswordButton getRef={() => refs[2]}/>
-                </div>
-                <div>
-                    <label className={RegistrationCss.nameLabelInputButtonReg}>
-                        {labels[3]}
-                    </label>
-                    <input ref={refs[3]}
-                           className={RegistrationCss.nameLabelInputButtonReg}
-                           // value={props.stateFromBD.userExampleInfo.nameUser}>
-                           onChange={onNameChange}></input>
-                </div>
-                <div>
-                    <label className={RegistrationCss.nameLabelInputButtonReg}>
-                        {labels[4]}
-                    </label>
-                    <input ref={refs[4]}
-                           className={RegistrationCss.nameLabelInputButtonReg}
-                           // value={props.stateFromBD.userExampleInfo.surnameUser}>
-                           onChange={onSurnameChange}></input>
-                </div>
-                <div>
-                    <label className={RegistrationCss.nameLabelInputButtonReg}>
-                        {labels[5]}
-                    </label>
-                    <input ref={refs[5]}
-                           className={RegistrationCss.nameLabelInputButtonReg}
-                           // value={props.stateFromBD.userExampleInfo.patronymicUser}>
-                           onChange={onPatronymicChange}></input>
-                </div>
-                {inputElementData}
             </div>
-        </div>
-        <div>
-            {props.sportNameFromBD && props.sportNameFromBD.map((item, index) => (
-                <div key={index} className={RegistrationCss.checkboxReg}>
-                    <label className={RegistrationCss.nameLabelInputButtonReg}>
-                        {item.name}
-                    </label>
-                    <input
-                        ref={refsArray[index]}
-                        type="checkbox"
-                        checked={checked[index]}
-                        onChange={() => changeChecked(index)}
-                    />
-                    {checked[index] ?
-                        <DropDownMenuReg index={index} onDropdownSelect={(eventKey) => handleDropdownSelect(eventKey, index)}/> :
-                        <div> {""} </div>}
-                </div>
-            ))}
-        </div>
-        <NavLink onClick={addData} className={RegistrationCss.nameButtonReg}
-                 to="/../../pages/profile/profile.js">Сохранить изменения</NavLink>
-        <button className={RegistrationCss.nameButtonReg}>Изменить аватар</button>
-    </div>)
+            <div>
+                {props.sportNameFromBD && props.sportNameFromBD.map((item, index) => (
+                    <div key={index} className={RegistrationCss.checkboxReg}>
+                        <label className={RegistrationCss.nameLabelInputButtonReg}>
+                            {item.name}
+                        </label>
+                        <input
+                            ref={refsArray[index]}
+                            type="checkbox"
+                            checked={checked[index]}
+                            onChange={() => changeChecked(index)}
+                        />
+                        {checked[index] ?
+                            <DropDownMenuReg index={index}
+                                             onDropdownSelect={(eventKey) => handleDropdownSelect(eventKey, index)}/> :
+                            <div> {""} </div>}
+                    </div>
+                ))}
+            </div>
+            <NavLink onClick={onAddData} className={RegistrationCss.nameButtonReg}
+                     to="/../../pages/profile/profile.js">Сохранить изменения</NavLink>
+            <button className={RegistrationCss.nameButtonReg}>Изменить аватар</button>
+        </div>);
 }
 
 export default Registration;
