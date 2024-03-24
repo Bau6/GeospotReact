@@ -1,10 +1,18 @@
 import React from "react";
 import Profile from "./Profile";
+import {connect} from "react-redux";
 
-const ProfileContainer = (props) => {
-    debugger
-    let state = props.store.getState();
-    return (<Profile userInf={state.infoUsers.usersNewInfo}/>)
+const mapStateToProps = (state) => {
+    return {
+        userInf: state.infoUsers.usersNewInfo
+    }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
 export default ProfileContainer;

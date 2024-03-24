@@ -11,6 +11,7 @@ import ResultsTourney from "./pages/resultsTourney/resultsTourney";
 import RegistrationContainer from "./pages/registration/RegistrationContainer";
 import ProfileContainer from "./pages/profile/ProfileContainer";
 import ProfilePageContainer from "./pages/profile/ChangeInfProfileContainer";
+import UsersContainer from "./pages/users/usersContainer";
 const App = (props) => {
     // const eventStatsFromBD = useSelector(state => props.state.eventsInfo.eventStatsFromBD);
     // const sportNameFromBD = useSelector(state => props.state.eventsInfo.sportNameFromBD);
@@ -19,8 +20,8 @@ const App = (props) => {
             <div>
                 <Header/>
                 <Routes>
-                    <Route path={'/pages/events/events.js'} element={<Events sportNameFromBD={props.state.eventsInfo.sportNameFromBD}/>}/>
-                    <Route path={'/pages/event/event.js'} element={<Event eventStatsFromBD={props.state.eventsInfo.eventStatsFromBD}/>}/>
+                    <Route path={'/pages/events/events.js'} element={<Events store={props.store}/>}/>
+                    <Route path={'/pages/event/event.js'} element={<Event store={props.store}/>}/>
                     <Route path={'/pages/registration/Registration.js'}
                            element={<RegistrationContainer store={props.store}
                            />}/>
@@ -30,11 +31,12 @@ const App = (props) => {
                                store={props.store}
                            />}/>
                     <Route path={'/pages/first_page/first_page.js'} element={<FirstPage/>}/>
-                    <Route path={'/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js'} element={<CheckingPlayersOnTourney participantsFromBD={props.state.users.participantsFromBD}/>}/>
+                    <Route path={'/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js'} element={<CheckingPlayersOnTourney store={props.store}/>}/>
                     <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsTourney />}/>
                     <Route path={'/pages/profile/changeInfProfile.js'}
                            element={<ProfilePageContainer
                                store={props.store}/>}/>
+                    <Route path={'/pages/users/users.js'} element={<UsersContainer />}/>
                 </Routes>
             </div>
         </BrowserRouter>

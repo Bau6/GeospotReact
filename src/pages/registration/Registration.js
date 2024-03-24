@@ -46,7 +46,6 @@ const Registration = (props) => {
 
     const inputElementData = labelData.map((labelData, index) => (
         <div key={index}>
-
             <label className={RegistrationCss.nameLabelInputButtonReg}>
                 {labelData}
             </label>
@@ -57,9 +56,7 @@ const Registration = (props) => {
                 value={date}
                 onChange={handleChange}
                 placeholder="dd.mm.yyyy"
-
             />
-
         </div>
     ));
 
@@ -76,7 +73,8 @@ const Registration = (props) => {
 
 
     let onAddData = (event) => {
-        let errorMessage = validationsReg(refs);
+        let errorMessage = '';
+        // errorMessage = validationsReg(refs);
         if (errorMessage === '') {
             let test1 = {
                 email: props.userExampleInfo.email,

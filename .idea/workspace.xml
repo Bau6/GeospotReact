@@ -5,18 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/include/htmlNewInfUser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/include/validations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/profile/ChangeInfProfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/profile/ChangeInfProfileContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/profile/ProfileContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/profile/changeInfProfile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/back.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/redux/users-page-reducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/users/users.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/users/users.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/users/usersContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/redux-store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfileContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfileContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +66,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/src/pages/profile",
+    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/back/NodeJS",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -83,7 +90,10 @@
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\events" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start">
+    <configuration name="back.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="back.js" working-dir="$PROJECT_DIR$/back/NodeJS">
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -94,6 +104,10 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Node.js.back.js" />
+      <item itemvalue="npm.start" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
@@ -113,7 +127,7 @@
       <workItem from="1708430368666" duration="14616000" />
       <workItem from="1710328134629" duration="104000" />
       <workItem from="1710328268487" duration="45151000" />
-      <workItem from="1710775391626" duration="33938000" />
+      <workItem from="1710775391626" duration="60737000" />
     </task>
     <servers />
   </component>

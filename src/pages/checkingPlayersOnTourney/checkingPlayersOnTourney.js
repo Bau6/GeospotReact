@@ -47,24 +47,24 @@ class PlayersInTourney extends React.Component {
         return (
             <div>
                 <div className="players">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Имя</th>
-                            <th>Возраст</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {participants.map((participant) => (
-                            <tr key={participant.id} onClick={() => this.handleClick(participant)}>
-                                <td>{participant.id}</td>
-                                <td>{participant.name}</td>
-                                <td>{participant.age}</td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
+                    {/*<table>*/}
+                    {/*    <thead>*/}
+                    {/*    <tr>*/}
+                    {/*        <th>ID</th>*/}
+                    {/*        <th>Имя</th>*/}
+                    {/*        <th>Возраст</th>*/}
+                    {/*    </tr>*/}
+                    {/*    </thead>*/}
+                    {/*    <tbody>*/}
+                    {/*    {participants.map((participant) => (*/}
+                    {/*        <tr key={participant.id} onClick={() => this.handleClick(participant)}>*/}
+                    {/*            <td>{participant.id}</td>*/}
+                    {/*            <td>{participant.name}</td>*/}
+                    {/*            <td>{participant.age}</td>*/}
+                    {/*        </tr>*/}
+                    {/*    ))}*/}
+                    {/*    </tbody>*/}
+                    {/*</table>*/}
                 </div>
                 <br/>
                 <NavLink to="/../../pages/resultsTourney/resultsTourney.js">Результаты</NavLink>

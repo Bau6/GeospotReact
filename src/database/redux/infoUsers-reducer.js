@@ -7,6 +7,7 @@ const SURNAME_USER = 'SURNAME-USER';
 const PATRONYMIC_USER = 'PATRONYMIC-USER';
 const DATE_BIRTHDAY = 'DATE-BIRTHDAY';
 
+
 let initialState = {
 
     userExampleInfo: {
@@ -18,6 +19,11 @@ let initialState = {
         surnameUser: "surName",
         patronymicUser: "patronymic",
         dateOfBirth: null,
+        location: [
+            {country: 'Россия'},
+            {city: 'Москва'}
+        ],
+        photoUrl: '',
         checkedTypeSport: [
             {event: "Баскетбол", status: 'on'},
             {event: "Воллейбол", status: 'on'},
@@ -94,9 +100,10 @@ const infoUsersReducer = (state = initialState, action) => {
             };
         default:
             return state;
-
     }
 }
+
+
 
 export const changeRegDataActionCreator = (value) => (
     {
