@@ -2,36 +2,41 @@ import './App.css';
 import React from "react";
 import Header from './app/include/header';
 import Authorization from "./pages/authorization/Authorization";
-import Registration from "./pages/registration/Registration";
 import Events from "./pages/events/events";
 import Event from "./pages/event/event";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import FirstPage from "./pages/first_page/first_page";
-import Profile from "./pages/profile/Profile";
 import CheckingPlayersOnTourney from "./pages/checkingPlayersOnTourney/checkingPlayersOnTourney";
 import ResultsTourney from "./pages/resultsTourney/resultsTourney";
-import News from "./app/include/news";
-import Footer from './app/include/footer';
+import RegistrationContainer from "./pages/registration/RegistrationContainer";
+import ProfileContainer from "./pages/profile/ProfileContainer";
+import ProfilePageContainer from "./pages/profile/ChangeInfProfileContainer";
+import UsersContainer from "./pages/users/usersContainer";
 const App = (props) => {
+    // const eventStatsFromBD = useSelector(state => props.state.eventsInfo.eventStatsFromBD);
+    // const sportNameFromBD = useSelector(state => props.state.eventsInfo.sportNameFromBD);
     return (
         <BrowserRouter>
             <div>
                 <Header/>
                 <Routes>
-                    <Route path={'/pages/events/events.js'} element={<Events sportNameFromBD={props.state.sportNameFromBD}/>}/>
-                    <Route path={'/pages/event/event.js'} element={<Event eventStatsFromBD={props.state.eventStatsFromBD}/>}/>
+                    <Route path={'/pages/events/events.js'} element={<Events store={props.store}/>}/>
+                    <Route path={'/pages/event/event.js'} element={<Event store={props.store}/>}/>
                     <Route path={'/pages/registration/Registration.js'}
-                           element={<Registration sportNameFromBD={props.state.sportNameFromBD}
-                                                  stateFromBD={props.state}
-                                                  dispatch={props.dispatch}/>}/>
+                           element={<RegistrationContainer store={props.store}
+                           />}/>
                     <Route path={'/pages/authorization/Authorization.js'} element={<Authorization/>}/>
                     <Route path={'/pages/profile/Profile.js'}
-                           element={<Profile
-                               stateFromBD={props.state}
+                           element={<ProfileContainer
+                               store={props.store}
                            />}/>
                     <Route path={'/pages/first_page/first_page.js'} element={<FirstPage/>}/>
-                    <Route path={'/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js'} element={<CheckingPlayersOnTourney participantsFromBD={props.state.participantsFromBD}/>}/>
+                    <Route path={'/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js'} element={<CheckingPlayersOnTourney store={props.store}/>}/>
                     <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsTourney />}/>
+                    <Route path={'/pages/profile/changeInfProfile.js'}
+                           element={<ProfilePageContainer
+                               store={props.store}/>}/>
+                    <Route path={'/pages/users/users.js'} element={<UsersContainer />}/>
                 </Routes>
             </div>
         </BrowserRouter>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/back.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/redux/users-page-reducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/users/users.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/users/users.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/users/usersContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/redux-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfileContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfileContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\Users\hp240\php\php.exe" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2cPhsUUP4skBlnXe8xKBHVXdGPi" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/back/NodeJS",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\profile" />
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\registration" />
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\database\statejs" />
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\database\redux" />
+      <recent name="C:\Program Files\Ampps\www\learning_react\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\database\redux" />
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\registration" />
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\events" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="back.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="back.js" working-dir="$PROJECT_DIR$/back/NodeJS">
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.back.js" />
+      <item itemvalue="npm.start" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="" />
+      <created>1708019327253</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708019327253</updated>
+      <workItem from="1708019328623" duration="13998000" />
+      <workItem from="1708167408216" duration="36376000" />
+      <workItem from="1708430368666" duration="14616000" />
+      <workItem from="1710328134629" duration="104000" />
+      <workItem from="1710328268487" duration="45151000" />
+      <workItem from="1710775391626" duration="60737000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="test" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
