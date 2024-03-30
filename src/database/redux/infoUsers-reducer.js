@@ -12,24 +12,21 @@ let initialState = {
 
     userExampleInfo: {
         id: 1,
-        email: "example@mail.ru",
-        password: "MyPass1",
-        replayPassword: "MyPass1",
-        nameUser: "name",
-        surnameUser: "surName",
-        patronymicUser: "patronymic",
+        email: "",
+        password: "",
+        replayPassword: "",
+        nameUser: "",
+        surnameUser: "",
+        patronymicUser: "",
         dateOfBirth: null,
-        location: [
-            {country: 'Россия'},
-            {city: 'Москва'}
-        ],
-        photoUrl: '',
-        checkedTypeSport: [
-            {event: "Баскетбол", status: 'on'},
-            {event: "Воллейбол", status: 'on'},
-            {event: "Хоккей", status: 'on'},
-            {event: "Футбол", status: "Опытный"}
-        ]
+        city: "",
+        photoUrl: ''
+        // checkedTypeSport: [
+        //     {event: "Баскетбол", status: 'on'},
+        //     {event: "Воллейбол", status: 'on'},
+        //     {event: "Хоккей", status: 'on'},
+        //     {event: "Футбол", status: "Опытный"}
+        // ]
     },
     usersNewInfo: []
 }

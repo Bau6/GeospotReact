@@ -10,7 +10,7 @@ import CheckingPlayersOnTourney from "./pages/checkingPlayersOnTourney/checkingP
 import ResultsTourney from "./pages/resultsTourney/resultsTourney";
 import RegistrationContainer from "./pages/registration/RegistrationContainer";
 import ProfileContainer from "./pages/profile/ProfileContainer";
-import ProfilePageContainer from "./pages/profile/ChangeInfProfileContainer";
+import ProfilePageContainer from "./pages/profile/ProfilePageContainer";
 import UsersContainer from "./pages/users/usersContainer";
 const App = (props) => {
     // const eventStatsFromBD = useSelector(state => props.state.eventsInfo.eventStatsFromBD);
@@ -33,7 +33,7 @@ const App = (props) => {
                     <Route path={'/pages/first_page/first_page.js'} element={<FirstPage/>}/>
                     <Route path={'/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js'} element={<CheckingPlayersOnTourney store={props.store}/>}/>
                     <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsTourney />}/>
-                    <Route path={'/pages/profile/changeInfProfile.js'}
+                    <Route path={'/pages/profile/ProfilePage.js'}
                            element={<ProfilePageContainer
                                store={props.store}/>}/>
                     <Route path={'/pages/users/users.js'} element={<UsersContainer />}/>

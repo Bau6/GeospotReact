@@ -29,7 +29,7 @@ const Profile = (props) => {
                 {/*<ShowPasswordButton getRef={() => refs[0]}/>*/}
             </div>
             <NavLink onClick={()=>{}} className={RegistrationCss.nameButtonReg}
-                     to="/../../pages/profile/changeInfProfile.js">Сохранить изменения</NavLink>
+                     to="/../../pages/profile/ProfilePage.js">Сохранить изменения</NavLink>
         </div>
     )
 }
