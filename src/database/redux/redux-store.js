@@ -4,12 +4,14 @@ import eventsInfoReducer from "./eventsInfo-reducer";
 import infoUsersReducer from "./infoUsers-reducer";
 import usersReducer from "./users-reducer";
 import UsersPageReducer from "./users-page-reducer";
+import AuthReducer from "./authActions";
 
 let reducers = combineReducers({
     infoUsers: infoUsersReducer,
     eventsInfo: eventsInfoReducer,
     users: usersReducer,
-    usersPage: UsersPageReducer
+    usersPage: UsersPageReducer,
+    auth: AuthReducer
 });
 
 let store = configureStore({reducer: reducers});

@@ -6,6 +6,8 @@ const NAME_USER = 'NAME-USER';
 const SURNAME_USER = 'SURNAME-USER';
 const PATRONYMIC_USER = 'PATRONYMIC-USER';
 const DATE_BIRTHDAY = 'DATE-BIRTHDAY';
+const CITY = 'CITY';
+const COUNTRY = 'COUNTRY';
 
 
 let initialState = {
@@ -20,6 +22,7 @@ let initialState = {
         patronymicUser: "",
         dateOfBirth: null,
         city: "",
+        country: "",
         photoUrl: ''
         // checkedTypeSport: [
         //     {event: "Баскетбол", status: 'on'},
@@ -95,6 +98,22 @@ const infoUsersReducer = (state = initialState, action) => {
                     dateOfBirth: action.newText
                 }
             };
+        case CITY:
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    city: action.newText
+                }
+            };
+        case COUNTRY:
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    country: action.newText
+                }
+            };
         default:
             return state;
     }
@@ -148,6 +167,20 @@ export const onPatronymicChangeActionCreator = (value) => (
 export const onDateChangeActionCreator = (value) => (
     {
         type: DATE_BIRTHDAY,
+        newText: value
+    }
+)
+
+export const onCityChangeActionCreator = (value) => (
+    {
+        type: CITY,
+        newText: value
+    }
+)
+
+export const onCountryChangeActionCreator = (value) => (
+    {
+        type: COUNTRY,
         newText: value
     }
 )

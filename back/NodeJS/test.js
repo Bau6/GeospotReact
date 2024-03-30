@@ -5,10 +5,28 @@ const {selectAll} = require("./selectAll");
 const {addRecord} = require("./add");
 const express = require("express");
 const app = require('express')();
+const multer = require('multer');
 
 app.use(cors());
 const port = 3003;
 
+
+function addPicture() {
+
+// Папка для сохранения загруженных файлов
+    const uploadFolder = 'uploads';
+
+// Настройка multer для обработки загруженных файлов
+    const upload = multer({ dest: uploadFolder });
+    app.post('/upload-avatar', upload.single('avatar'), (req, res) => {
+        if (req.file) {
+            const avatarPath = req.file.path;
+            res.json({ avatarPath });
+        } else {
+            res.status(400).json({ error: 'File upload failed' });
+        }
+    });
+}
 
 function updateData() {
     app.get('/update-record', (req, res) => {
@@ -33,6 +51,7 @@ function selectAllDataTable() {
         selectAll(nameTable, params, res);
     });
 }
+addPicture();
 addData();
 selectAllDataTable();
 deleteData();

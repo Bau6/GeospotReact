@@ -2,7 +2,12 @@ import AuthorizationCss from "./AuthorizationCss.module.css"
 import {NavLink} from "react-router-dom";
 import React from "react";
 const Authorization = (props) => {
+    console.log(props.isLoggedIn);
+    const handleLogin = () => {
+        props.loginUser();
+    };
 
+    // props.logoutUser();
     return (
         <div>
             <div className={AuthorizationCss.containerAuthorization}>
@@ -14,7 +19,7 @@ const Authorization = (props) => {
                     Введите пароль
                 </label>
                 <input className={AuthorizationCss.input_pass}></input>
-                <NavLink className={AuthorizationCss.button_auth} to="/../../pages/profile/Profile.js">Авторизация</NavLink>
+                <NavLink onClick={handleLogin} className={AuthorizationCss.button_auth} to="/../../pages/profile/Profile.js">Авторизация</NavLink>
                 <NavLink className={AuthorizationCss.button_reg} to="/../../pages/registration/Registration.js">Регистрация</NavLink>
             </div>
         </div>

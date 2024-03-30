@@ -3,8 +3,10 @@ import RegistrationCss from "./RegistrationCss.module.css"
 import DropDownMenuReg from "./DropDownMenuReg";
 import {NavLink} from "react-router-dom";
 import 'react-datepicker/dist/react-datepicker.css';
-import ShowPasswordButton from "./passwordButton";
-import {validationsReg} from "../../app/include/validations";
+// import ShowPasswordButton from "./passwordButton";
+// import {validationsReg} from "../../app/include/validations";
+import FormFields from "../profile/test";
+import AvatarUpload from "../avatar/avatar";
 
 const Registration = (props) => {
     const [date, setDate] = useState('');
@@ -114,35 +116,35 @@ const Registration = (props) => {
         });
     }
 
-    let emailChange = () => {
-        let newText = refs[0].current.value;
-        props.onEmailChange(newText);
-    }
-
-    let passChange = () => {
-        let newText = refs[1].current.value;
-        props.onPassChange(newText);
-    }
-
-    let repassChange = () => {
-        let newText = refs[2].current.value;
-        props.onRepassChange(newText);
-    }
-
-    let nameChange = () => {
-        let newText = refs[3].current.value;
-        props.onNameChange(newText);
-    }
-
-    let surnameChange = () => {
-        let newText = refs[4].current.value;
-        props.onSurnameChange(newText);
-    }
-
-    let patronymicChange = () => {
-        let newText = refs[5].current.value;
-        props.onPatronymicChange(newText);
-    }
+    // let emailChange = () => {
+    //     let newText = refs[0].current.value;
+    //     props.onEmailChange(newText);
+    // }
+    //
+    // let passChange = () => {
+    //     let newText = refs[1].current.value;
+    //     props.onPassChange(newText);
+    // }
+    //
+    // let repassChange = () => {
+    //     let newText = refs[2].current.value;
+    //     props.onRepassChange(newText);
+    // }
+    //
+    // let nameChange = () => {
+    //     let newText = refs[3].current.value;
+    //     props.onNameChange(newText);
+    // }
+    //
+    // let surnameChange = () => {
+    //     let newText = refs[4].current.value;
+    //     props.onSurnameChange(newText);
+    // }
+    //
+    // let patronymicChange = () => {
+    //     let newText = refs[5].current.value;
+    //     props.onPatronymicChange(newText);
+    // }
 
     return (
         <div>
@@ -151,59 +153,70 @@ const Registration = (props) => {
                     Регистрация
                 </div>
                 <div className={RegistrationCss.containerReg}>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[0]}
-                        </label>
-                        <input
-                            onChange={emailChange}
-                            ref={refs[0]}
-                            className={RegistrationCss.nameLabelInputButtonReg}
-                        >
-                        </input>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[1]}
-                        </label>
-                        <input ref={refs[1]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={passChange}></input>
-                        <ShowPasswordButton getRef={() => refs[1]}/>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[2]}
-                        </label>
-                        <input ref={refs[2]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={repassChange}></input>
-                        <ShowPasswordButton getRef={() => refs[2]}/>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[3]}
-                        </label>
-                        <input ref={refs[3]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={nameChange}></input>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[4]}
-                        </label>
-                        <input ref={refs[4]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={surnameChange}></input>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[5]}
-                        </label>
-                        <input ref={refs[5]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={patronymicChange}></input>
-                    </div>
+                    <FormFields
+                        myInf={props.myInf}
+                        refs={refs}
+                        // users={users}
+                        onEmailChange={props.onEmailChange}
+                        onPassChange={props.onPassChange}
+                        onRepassChange={props.onRepassChange}
+                        onNameChange={props.onNameChange}
+                        onSurnameChange={props.onSurnameChange}
+                        onPatronymicChange={props.onPatronymicChange}
+                    />
+                    {/*<div>*/}
+                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
+                    {/*        {labels[0]}*/}
+                    {/*    </label>*/}
+                    {/*    <input*/}
+                    {/*        onChange={emailChange}*/}
+                    {/*        ref={refs[0]}*/}
+                    {/*        className={RegistrationCss.nameLabelInputButtonReg}*/}
+                    {/*    >*/}
+                    {/*    </input>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
+                    {/*        {labels[1]}*/}
+                    {/*    </label>*/}
+                    {/*    <input ref={refs[1]}*/}
+                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
+                    {/*           onChange={passChange}></input>*/}
+                    {/*    <ShowPasswordButton getRef={() => refs[1]}/>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
+                    {/*        {labels[2]}*/}
+                    {/*    </label>*/}
+                    {/*    <input ref={refs[2]}*/}
+                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
+                    {/*           onChange={repassChange}></input>*/}
+                    {/*    <ShowPasswordButton getRef={() => refs[2]}/>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
+                    {/*        {labels[3]}*/}
+                    {/*    </label>*/}
+                    {/*    <input ref={refs[3]}*/}
+                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
+                    {/*           onChange={nameChange}></input>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
+                    {/*        {labels[4]}*/}
+                    {/*    </label>*/}
+                    {/*    <input ref={refs[4]}*/}
+                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
+                    {/*           onChange={surnameChange}></input>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
+                    {/*        {labels[5]}*/}
+                    {/*    </label>*/}
+                    {/*    <input ref={refs[5]}*/}
+                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
+                    {/*           onChange={patronymicChange}></input>*/}
+                    {/*</div>*/}
                     {inputElementData}
                 </div>
             </div>
@@ -226,9 +239,10 @@ const Registration = (props) => {
                     </div>
                 ))}
             </div>
+            <div><AvatarUpload/></div>
             <NavLink onClick={onAddData} className={RegistrationCss.nameButtonReg}
                      to="/../../pages/profile/profile.js">Сохранить изменения</NavLink>
-            <button className={RegistrationCss.nameButtonReg}>Изменить аватар</button>
+
         </div>);
 }
 

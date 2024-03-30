@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import 'react-datepicker/dist/react-datepicker.css';
 import {
     onDateChangeActionCreator,
@@ -18,7 +18,8 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
     return {
         sportNameFromBD: state.eventsInfo.sportNameFromBD,
-        userExampleInfo: state.infoUsers.userExampleInfo
+        userExampleInfo: state.infoUsers.userExampleInfo,
+        myInf: state.infoUsers.userExampleInfo
     }
 }
 

@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import Header from './app/include/header';
-import Authorization from "./pages/authorization/Authorization";
+// import AuthorizationContainer from "./pages/authorization/Authorization";
 import Events from "./pages/events/events";
 import Event from "./pages/event/event";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
@@ -12,20 +12,25 @@ import RegistrationContainer from "./pages/registration/RegistrationContainer";
 import ProfileContainer from "./pages/profile/ProfileContainer";
 import ProfilePageContainer from "./pages/profile/ProfilePageContainer";
 import UsersContainer from "./pages/users/usersContainer";
+import AuthorizationContainer from "./pages/authorization/AuthorizationContainer";
+import HeaderContainer from "./app/include/headerContainer";
 const App = (props) => {
-    // const eventStatsFromBD = useSelector(state => props.state.eventsInfo.eventStatsFromBD);
-    // const sportNameFromBD = useSelector(state => props.state.eventsInfo.sportNameFromBD);
     return (
         <BrowserRouter>
             <div>
-                <Header/>
+                <HeaderContainer
+                    store={props.store}
+                />
                 <Routes>
                     <Route path={'/pages/events/events.js'} element={<Events store={props.store}/>}/>
                     <Route path={'/pages/event/event.js'} element={<Event store={props.store}/>}/>
                     <Route path={'/pages/registration/Registration.js'}
                            element={<RegistrationContainer store={props.store}
                            />}/>
-                    <Route path={'/pages/authorization/Authorization.js'} element={<Authorization/>}/>
+                    <Route path={'/pages/authorization/Authorization.js'}
+                           element={<AuthorizationContainer
+                               store={props.store}
+                           />}/>
                     <Route path={'/pages/profile/Profile.js'}
                            element={<ProfileContainer
                                store={props.store}

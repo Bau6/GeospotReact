@@ -1,7 +1,13 @@
 import HeaderCss from '../../assets/css/styleHeader.module.css';
 import {NavLink} from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+    const isLoggedIn = props.isLoggedIn;
+
+    const handleLogout = () => {
+        props.logoutUser();
+        console.log(isLoggedIn);
+    };
     return (
         <header className={HeaderCss.container}>
             <div className={HeaderCss.nameS}>
@@ -13,7 +19,16 @@ const Header = () => {
                 <ul>
                     <li><NavLink className={HeaderCss.item} to="/../../pages/first_page/first_page.js">Новости</NavLink></li>
                     <li><NavLink className={HeaderCss.item} to="/../../pages/events/events.js">Мероприятия</NavLink></li>
-                    <li><NavLink className={HeaderCss.item} to="/../../pages/authorization/Authorization.js">Вход</NavLink></li>
+                    {isLoggedIn ? (
+                        <li>
+                            <button className={HeaderCss.item} onClick={handleLogout}>Выход</button>
+                        </li>
+                    ) : (
+                        <li>
+                            <NavLink className={HeaderCss.item}
+                                     to="/../../pages/authorization/Authorization.js">Вход</NavLink>
+                        </li>
+            )}
                 </ul>
             </nav>
         </header>

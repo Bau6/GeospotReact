@@ -1,12 +1,13 @@
-import React from 'react';
+// import React from 'react';
 import "./changeInfProfile.css";
 import ProfilePage from "./ProfilePage";
 import {connect} from "react-redux";
-import Profile from "./Profile";
+// import Profile from "./Profile";
 import {
     changeRegDataActionCreator,
     onDateChangeActionCreator, onEmailChangeActionCreator, onNameChangeActionCreator, onPassChangeActionCreator,
-    onPatronymicChangeActionCreator, onRepassChangeActionCreator, onSurnameChangeActionCreator
+    onPatronymicChangeActionCreator, onRepassChangeActionCreator, onSurnameChangeActionCreator, onCityChangeActionCreator,
+    onCountryChangeActionCreator
 } from "../../database/redux/infoUsers-reducer";
 // const ProfilePageContainer = (props) => {
 //     debugger
@@ -45,6 +46,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         onEmailChange: (text) => {
             dispatch(onEmailChangeActionCreator( text ));
+        },
+        onCityChange: (text) => {
+            dispatch(onCityChangeActionCreator( text ));
+        },
+        onCountryChange: (text) => {
+            dispatch(onCountryChangeActionCreator( text ));
         }
     }
 }
