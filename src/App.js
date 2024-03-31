@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
-import Header from './app/include/header';
-// import AuthorizationContainer from "./pages/authorization/Authorization";
+// import Header from './app/include/header';
+// import AuthorizationContainer from "./pages/authorization/AuthorizationDelete";
 import Events from "./pages/events/events";
 import Event from "./pages/event/event";
 import {BrowserRouter, Route, Routes} from "react-router-dom";

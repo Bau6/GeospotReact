@@ -6,6 +6,7 @@ const Header = (props) => {
 
     const handleLogout = () => {
         props.logoutUser();
+        props.clearSession();
     };
     return (
         <header className={HeaderCss.container}>

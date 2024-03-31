@@ -8,11 +8,12 @@ import {
     onPassChangeActionCreator,
     onPatronymicChangeActionCreator,
     onRepassChangeActionCreator,
-    onSurnameChangeActionCreator, addDataActionCreator
+    onSurnameChangeActionCreator
 } from "../../database/redux/infoUsers-reducer";
 import Registration from "./Registration";
 import {connect} from "react-redux";
 import {login, logout} from "../../database/redux/authActions";
+import {setSessionActionCreator} from "../../database/redux/sessionUser";
 
 
 
@@ -21,7 +22,8 @@ let mapStateToProps = (state) => {
         sportNameFromBD: state.eventsInfo.sportNameFromBD,
         userExampleInfo: state.infoUsers.userExampleInfo,
         myInf: state.infoUsers.userExampleInfo,
-        isLoggedIn: state.auth.isLoggedIn
+        isLoggedIn: state.auth.isLoggedIn,
+        isAuthenticated: state.sessionUser.isAuthenticated
     }
 }
 
@@ -51,14 +53,14 @@ let mapDispatchToProps = (dispatch) => {
         onEmailChange: (text) => {
             dispatch(onEmailChangeActionCreator( text ));
         },
+        setSession: (userData) => {
+            dispatch(setSessionActionCreator(userData));
+        },
         loginUser: () => {
             dispatch(login());
         },
         logoutUser: () => {
             dispatch(logout());
-        },
-        addDataDb: (nameTable, params) => {
-            dispatch(addDataActionCreator(nameTable, params));
         }
     }
 }

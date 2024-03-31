@@ -1,9 +1,11 @@
 import {connect} from "react-redux";
 import {login, logout} from "../../database/redux/authActions";
 import header from "./header";
+import {clearSessionActionCreator, setSessionActionCreator} from "../../database/redux/sessionUser";
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.auth.isLoggedIn
+        isLoggedIn: state.auth.isLoggedIn,
+        isAuthenticated: state.isAuthenticated
     }
 }
 
@@ -14,6 +16,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         logoutUser: () => {
             dispatch(logout());
+        },
+        setSession: (userData) => {
+            dispatch(setSessionActionCreator(userData));
+        },
+        clearSession: () => {
+            dispatch(clearSessionActionCreator());
         }
     }
 }

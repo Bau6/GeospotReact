@@ -14,7 +14,6 @@ const mapStateToProps = (state) => {
         isAuthenticated: state.isAuthenticated
     }
 }
-
 const mapDispatchToProps = (dispatch) => {
     return {
         onPassLoginChange: (text) => {
