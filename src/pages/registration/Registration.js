@@ -3,17 +3,16 @@ import RegistrationCss from "./RegistrationCss.module.css"
 import DropDownMenuReg from "./DropDownMenuReg";
 import {NavLink} from "react-router-dom";
 import 'react-datepicker/dist/react-datepicker.css';
-// import ShowPasswordButton from "./passwordButton";
-// import {validationsReg} from "../../app/include/validations";
 import FormFields from "../profile/test";
 import AvatarUpload from "../avatar/avatar";
-
+import {validationsReg} from "../../app/include/validations";
+const USERS = "users";
 const Registration = (props) => {
     const [date, setDate] = useState('');
     // debugger;
     const numberOfElements = props.sportNameFromBD.length;
     const initialCheckedState = [];
-    const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество"];
+    // const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество"];
     const labelData = ["Дата рождения"];
     let addDataElement1 = React.createRef();
     let addDataElement2 = React.createRef();
@@ -26,14 +25,7 @@ const Registration = (props) => {
     const [checked, setChecked] = useState(initialCheckedState);
     const [refsArray, setRefsArray] = useState(props.sportNameFromBD.map(() => React.createRef()));
 
-    useEffect(() => {
-        if (refs[1].current) {
-            refs[1].current.type = 'password';
-        }
-        if (refs[2].current) {
-            refs[2].current.type = 'password';
-        }
-    }, [refs]);
+
 
 
     const handleChange = (e) => {
@@ -42,7 +34,6 @@ const Registration = (props) => {
             .replace(/\D/g, '') // Удаляем все нецифровые символы
             .replace(/(\d{2})(\d{2})(\d{4})/, '$1.$2.$3'); // Добавляем разделители между днями, месяцами и годом
         props.updateText(formattedDate);
-        // props.dispatch(onDateChangeActionCreator( formattedDate ));
         setDate(formattedDate);
     }
 
@@ -76,7 +67,7 @@ const Registration = (props) => {
 
     let onAddData = (event) => {
         let errorMessage = '';
-        // errorMessage = validationsReg(refs);
+        errorMessage = validationsReg(refs);
         if (errorMessage === '') {
             let test1 = {
                 email: props.userExampleInfo.email,
@@ -88,6 +79,14 @@ const Registration = (props) => {
                 dateOfBirth: props.userExampleInfo.dateOfBirth,
                 checkedTypeSport: {}
             };
+            let addDataToDB = {
+                email: props.userExampleInfo.email,
+                password: props.userExampleInfo.password,
+                name: props.userExampleInfo.nameUser,
+                surname: props.userExampleInfo.surnameUser,
+                patronymic: props.userExampleInfo.patronymicUser,
+                birthday: props.userExampleInfo.dateOfBirth
+            };
 
             for (let i = 0; i < numberOfElements; i++) {
                 test1.checkedTypeSport[i] = {
@@ -96,7 +95,10 @@ const Registration = (props) => {
                 };
             }
             props.addData(test1);
-            // props.dispatch(changeRegDataActionCreator(test1));
+            props.loginUser();
+            const nameTable = USERS;
+            const params = addDataToDB; // данные для добавления
+            props.addDataDb(nameTable, params);
         } else {
             alert(errorMessage);
             event.preventDefault();
@@ -116,36 +118,6 @@ const Registration = (props) => {
         });
     }
 
-    // let emailChange = () => {
-    //     let newText = refs[0].current.value;
-    //     props.onEmailChange(newText);
-    // }
-    //
-    // let passChange = () => {
-    //     let newText = refs[1].current.value;
-    //     props.onPassChange(newText);
-    // }
-    //
-    // let repassChange = () => {
-    //     let newText = refs[2].current.value;
-    //     props.onRepassChange(newText);
-    // }
-    //
-    // let nameChange = () => {
-    //     let newText = refs[3].current.value;
-    //     props.onNameChange(newText);
-    // }
-    //
-    // let surnameChange = () => {
-    //     let newText = refs[4].current.value;
-    //     props.onSurnameChange(newText);
-    // }
-    //
-    // let patronymicChange = () => {
-    //     let newText = refs[5].current.value;
-    //     props.onPatronymicChange(newText);
-    // }
-
     return (
         <div>
             <div>
@@ -156,7 +128,6 @@ const Registration = (props) => {
                     <FormFields
                         myInf={props.myInf}
                         refs={refs}
-                        // users={users}
                         onEmailChange={props.onEmailChange}
                         onPassChange={props.onPassChange}
                         onRepassChange={props.onRepassChange}
@@ -164,59 +135,6 @@ const Registration = (props) => {
                         onSurnameChange={props.onSurnameChange}
                         onPatronymicChange={props.onPatronymicChange}
                     />
-                    {/*<div>*/}
-                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
-                    {/*        {labels[0]}*/}
-                    {/*    </label>*/}
-                    {/*    <input*/}
-                    {/*        onChange={emailChange}*/}
-                    {/*        ref={refs[0]}*/}
-                    {/*        className={RegistrationCss.nameLabelInputButtonReg}*/}
-                    {/*    >*/}
-                    {/*    </input>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
-                    {/*        {labels[1]}*/}
-                    {/*    </label>*/}
-                    {/*    <input ref={refs[1]}*/}
-                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
-                    {/*           onChange={passChange}></input>*/}
-                    {/*    <ShowPasswordButton getRef={() => refs[1]}/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
-                    {/*        {labels[2]}*/}
-                    {/*    </label>*/}
-                    {/*    <input ref={refs[2]}*/}
-                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
-                    {/*           onChange={repassChange}></input>*/}
-                    {/*    <ShowPasswordButton getRef={() => refs[2]}/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
-                    {/*        {labels[3]}*/}
-                    {/*    </label>*/}
-                    {/*    <input ref={refs[3]}*/}
-                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
-                    {/*           onChange={nameChange}></input>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
-                    {/*        {labels[4]}*/}
-                    {/*    </label>*/}
-                    {/*    <input ref={refs[4]}*/}
-                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
-                    {/*           onChange={surnameChange}></input>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <label className={RegistrationCss.nameLabelInputButtonReg}>*/}
-                    {/*        {labels[5]}*/}
-                    {/*    </label>*/}
-                    {/*    <input ref={refs[5]}*/}
-                    {/*           className={RegistrationCss.nameLabelInputButtonReg}*/}
-                    {/*           onChange={patronymicChange}></input>*/}
-                    {/*</div>*/}
                     {inputElementData}
                 </div>
             </div>

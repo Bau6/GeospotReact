@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const INFO_FOR_REG_USER = 'INFO-FOR-REG-USER';
 const EMAIL = 'EMAIL';
 const PASSWORD = 'PASSWORD';
@@ -8,7 +10,7 @@ const PATRONYMIC_USER = 'PATRONYMIC-USER';
 const DATE_BIRTHDAY = 'DATE-BIRTHDAY';
 const CITY = 'CITY';
 const COUNTRY = 'COUNTRY';
-
+const ADD_DATA = 'ADD_DATA';
 
 let initialState = {
 
@@ -31,7 +33,8 @@ let initialState = {
         //     {event: "Футбол", status: "Опытный"}
         // ]
     },
-    usersNewInfo: []
+    usersNewInfo: [],
+    data: []
 }
 
 const infoUsersReducer = (state = initialState, action) => {
@@ -114,11 +117,15 @@ const infoUsersReducer = (state = initialState, action) => {
                     country: action.newText
                 }
             };
+        case ADD_DATA:
+            return {
+                ...state,
+                data: [...state.data, action.payload]
+            };
         default:
             return state;
     }
 }
-
 
 
 export const changeRegDataActionCreator = (value) => (
@@ -184,5 +191,22 @@ export const onCountryChangeActionCreator = (value) => (
         newText: value
     }
 )
+
+export const addDataActionCreator = (nameTable, params) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post("http://localhost:3003/add-record", {
+                nameTable: nameTable,
+                params: params
+            });
+            const data = await response.data;
+            // Можно добавить дополнительную обработку ответа от сервера здесь
+            dispatch({ type: ADD_DATA, payload: data });
+        } catch (error) {
+            console.error('Ошибка при отправке данных на сервер:', error);
+            // Можно добавить обработку ошибки здесь
+        }
+    };
+};
 
 export default infoUsersReducer;

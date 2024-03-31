@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import RegistrationCss from "../registration/RegistrationCss.module.css";
 // import ShowPasswordButton from "../registration/passwordButton";
 
@@ -42,7 +42,14 @@ const FormFields = ({
         onPatronymicChange(newText);
     }
 
-
+    useEffect(() => {
+        if (refs[1].current) {
+            refs[1].current.type = 'password';
+        }
+        if (refs[2].current) {
+            refs[2].current.type = 'password';
+        }
+    }, [refs]);
 
     return (
         <div>

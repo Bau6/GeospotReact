@@ -6,6 +6,9 @@ const {addRecord} = require("./add");
 const express = require("express");
 const app = require('express')();
 const multer = require('multer');
+const {selectOne} = require("./selectOne");
+const {selectById} = require("./selectById");
+const {checkLoginPass} = require("./checkLoginPass");
 
 app.use(cors());
 const port = 3003;
@@ -51,6 +54,33 @@ function selectAllDataTable() {
         selectAll(nameTable, params, res);
     });
 }
+function selectOneDataTable() {
+    app.get('/output-one-record', (req, res) => {
+        const { nameTable, params } = req.query;
+        // const nameTable = 'users';
+        // const params = 27;
+        selectOne(nameTable, params, res);
+    });
+}
+function selectByIdDataTable() {
+    app.get('/output-one-and-more-record', (req, res) => {
+        const { nameTable, params } = req.query;
+        // const nameTable = 'users';
+        // const params = [27, 26, 25];
+        selectById(nameTable, params, res);
+    });
+}
+function checkLoginPassReturnID() {
+    app.get('/check-login-pass', (req, res) => {
+        const { nameTable, params } = req.query;
+        // const nameTable = 'users';
+        // const params = {email: "u@u.ullll", password: "default"};
+        checkLoginPass(nameTable, params, res);
+    });
+}
+checkLoginPassReturnID();
+selectByIdDataTable();
+selectOneDataTable();
 addPicture();
 addData();
 selectAllDataTable();

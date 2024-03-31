@@ -2,7 +2,6 @@ import AuthorizationCss from "./AuthorizationCss.module.css"
 import {NavLink} from "react-router-dom";
 import React from "react";
 const Authorization = (props) => {
-    console.log(props.isLoggedIn);
     const handleLogin = () => {
         props.loginUser();
     };

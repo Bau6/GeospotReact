@@ -5,26 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/include/headerContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/redux/authActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/redux/authReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/authorization/AuthorizationContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/avatar/avatar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/checkLoginPass.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/selectById.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/selectOne.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/NodeJS/add.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/add.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/NodeJS/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/NodeJS/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/update.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/include/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/include/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/redux-store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/authorization/Authorization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/authorization/Authorization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfilePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfilePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfilePageContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfilePageContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/registration/passwordButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/passwordButton.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +96,7 @@
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\events" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="Node.js.test.js">
     <configuration name="test.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="test.js" working-dir="$PROJECT_DIR$/back/NodeJS">
       <method v="2" />
     </configuration>
@@ -145,7 +140,7 @@
       <workItem from="1711550533177" duration="20000" />
       <workItem from="1711619843235" duration="12451000" />
       <workItem from="1711724951334" duration="18275000" />
-      <workItem from="1711791841038" duration="29255000" />
+      <workItem from="1711791841038" duration="39123000" />
     </task>
     <servers />
   </component>
