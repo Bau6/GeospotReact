@@ -25,7 +25,14 @@ const Registration = (props) => {
     const [checked, setChecked] = useState(initialCheckedState);
     const [refsArray, setRefsArray] = useState(props.sportNameFromBD.map(() => React.createRef()));
 
-
+    useEffect(() => {
+        if (refs[1].current) {
+            refs[1].current.type = 'password';
+        }
+        if (refs[2].current) {
+            refs[2].current.type = 'password';
+        }
+    }, [refs]);
 
 
     const handleChange = (e) => {

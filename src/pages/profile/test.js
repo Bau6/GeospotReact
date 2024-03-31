@@ -19,7 +19,6 @@ const FormFields = ({
         let newText = refs[0].current.value;
         onEmailChange(newText);
     }
-    console.log(myInf);
     const passChange = () => {
         let newText = refs[1].current.value;
         onPassChange(newText);
@@ -41,15 +40,6 @@ const FormFields = ({
         let newText = refs[5].current.value;
         onPatronymicChange(newText);
     }
-
-    useEffect(() => {
-        if (refs[1].current) {
-            refs[1].current.type = 'password';
-        }
-        if (refs[2].current) {
-            refs[2].current.type = 'password';
-        }
-    }, [refs]);
 
     return (
         <div>
