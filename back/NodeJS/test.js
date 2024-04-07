@@ -9,6 +9,7 @@ const multer = require('multer');
 const {selectOne} = require("./selectOne");
 const {selectById} = require("./selectById");
 const {checkLoginPass} = require("./checkLoginPass");
+const {myRole} = require("./roleUser");
 
 app.use(cors());
 const port = 3003;
@@ -50,7 +51,7 @@ function deleteData() {
 function selectAllDataTable() {
     app.get('/output-table', (req, res) => {
         const { nameTable, params } = req.query;
-        // console.log(nameTable, params);
+        console.log(nameTable, params);
         selectAll(nameTable, params, res);
     });
 }
@@ -62,6 +63,14 @@ function selectOneDataTable() {
         selectOne(nameTable, params, res);
     });
 }
+function usersRolesTable() {
+    app.get('/role', (req, res) => {
+        const { nameTable, params } = req.query;
+        myRole(nameTable, params, res);
+    });
+}
+
+
 function selectByIdDataTable() {
     app.get('/output-one-and-more-record', (req, res) => {
         const { nameTable, params } = req.query;
@@ -73,13 +82,12 @@ function selectByIdDataTable() {
 function checkLoginPassReturnData() {
     app.get('/check-login-pass', (req, res) => {
         const { nameTable, params } = req.query;
-        console.log(nameTable);
-        console.log(params);
         // const nameTable = 'users';
         // const params = {email: "u@u.ullll", password: "default"};
         checkLoginPass(nameTable, params, res);
     });
 }
+usersRolesTable();
 checkLoginPassReturnData();
 selectByIdDataTable();
 selectOneDataTable();

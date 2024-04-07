@@ -20,6 +20,10 @@ class Authorization extends React.Component {
                 newRef.current.type = 'password';
             }
             return { ref2: newRef };
+        }, () => {
+            // Дополнительные действия после обновления состояния
+            this.emailChange();
+            this.passChange();
         });
     }
     validateEmail = (email) => {
@@ -50,21 +54,41 @@ class Authorization extends React.Component {
             axios.get("http://localhost:3003/check-login-pass", {
                 params: {
                     nameTable: 'users',
-                    params: CheckDataToDB}
+                    params: CheckDataToDB
+                }
             })
                 .then(response => {
                     // console.log(response.data);
-
+                    // Принимаем данные из ответа
+                    const userData = response.data;
                     // Проверяем результат ответа
                     if (response.data.error) {
                         // Выводим сообщение об ошибке пользователю
                         alert(response.data.error);
                     } else {
                         // Если пользователь найден, выполняем необходимые действия
+
                         this.props.loginUser();
-                        this.props.setSession(CheckDataToDB);
+                        this.props.setSession({id: userData.id, email: userData.email});
+                        this.props.myUserId(userData.id);
+                        axios.get("http://localhost:3003/role", {
+                            params: {
+                                nameTable: 'userroles',
+                                params: userData.id
+                            }
+                        })
+                            .then(response => {
+                                const roleData = response.data;
+                                this.props.myUserId(roleData.nameRole);
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
+                        // this.props.isLoggedIn = true;
                         // Перенаправление на страницу профиля после успешной авторизации
                         this.setState({ redirectToProfile: true });
+                        window.location.href = "/../../pages/profile/Profile.js";
+
                     }
                 })
                 .catch(error => {
@@ -79,7 +103,8 @@ class Authorization extends React.Component {
                         // Другие типы ошибок
                         alert("Произошла неизвестная ошибка. Пожалуйста, обратитесь в службу поддержки.");
                     }
-                });}else{
+                });
+        } else {
             alert(errorMessage);
         }
     }

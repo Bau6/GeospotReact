@@ -17,7 +17,8 @@ import {
 const mapStateToProps = (state) => {
     return {
         userInf: state.infoUsers.usersNewInfo,
-        myInf: state.infoUsers.userExampleInfo
+        myInf: state.infoUsers.userExampleInfo,
+        sessionUser: state.sessionUser
     }
 }
 

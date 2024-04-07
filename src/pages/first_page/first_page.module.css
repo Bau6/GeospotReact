@@ -1,3 +1,48 @@
-.containerNews {
+.newsContent {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
 
+.newsItem {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.newsImage img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.newsText {
+    line-height: 1.5;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pageNumber {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.newsMain {
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 150px;
+    font-family: 'Arial', sans-serif; /* Пример красивого шрифта */
 }

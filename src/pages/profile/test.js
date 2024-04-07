@@ -15,7 +15,6 @@ const FormFields = ({
                     }) => {
     const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество", "", "", "Страна", "Город"];
     const emailChange = () => {
-
         let newText = refs[0].current.value;
         onEmailChange(newText);
     }

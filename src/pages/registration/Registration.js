@@ -51,7 +51,6 @@ class Registration extends Component {
         newRefsArray[index].current.value = eventKey;
         this.setState({ refsArray: newRefsArray });
     }
-
     onAddData = (event) => {
         // Логика добавления данных
         let errorMessage = "";

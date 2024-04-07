@@ -3,15 +3,17 @@ import Authorization from "./Authorization";
 import {login, logout} from "../../database/redux/authActions";
 import {
     clearSessionActionCreator,
-    onEmailLoginActionCreator, onPassLoginActionCreator,
+    onEmailLoginActionCreator, onPassLoginActionCreator, setRoleActionCreator,
     setSessionActionCreator
 } from "../../database/redux/sessionUser";
+import {clearSessionUsersActionCreator} from "../../database/redux/infoUsers-reducer";
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.auth.isLoggedIn,
         user: state.user,
         myInf: state.sessionUser.dataLogin,
-        isAuthenticated: state.isAuthenticated
+        isAuthenticated: state.isAuthenticated,
+        sessionUser: state.sessionUser
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -33,6 +35,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         clearSession: () => {
             dispatch(clearSessionActionCreator());
+        },
+        myUserId: (role) => {
+            dispatch(setRoleActionCreator(role));
         }
     }
 }

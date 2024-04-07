@@ -7,11 +7,8 @@ import {NavLink} from "react-router-dom";
 const Profile = (props) => {
     const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество"];
     const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
-
     const outputInfo = () => {
-        console.log(props.userInf)
     }
-    console.log(props.userInf)
     return (
         <div>
             <div>

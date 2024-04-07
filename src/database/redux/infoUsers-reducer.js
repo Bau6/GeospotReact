@@ -1,5 +1,4 @@
-// import axios from "axios";
-// import {setSessionActionCreator} from "./sessionUser";
+// import {compose} from "redux";
 
 const INFO_FOR_REG_USER = 'INFO-FOR-REG-USER';
 const EMAIL = 'EMAIL';
@@ -12,11 +11,10 @@ const DATE_BIRTHDAY = 'DATE-BIRTHDAY';
 const CITY = 'CITY';
 const COUNTRY = 'COUNTRY';
 const ADD_DATA = 'ADD_DATA';
-
+const CLEAR_SESSION = 'CLEAR_SESSION';
 let initialState = {
-
     userExampleInfo: {
-        id: 1,
+        id: null,
         email: "",
         password: "",
         replayPassword: "",
@@ -123,12 +121,33 @@ const infoUsersReducer = (state = initialState, action) => {
                 ...state,
                 data: [...state.data, action.payload]
             };
+        case CLEAR_SESSION:
+            return {
+                ...state,
+                userExampleInfo: {
+                    id: null,
+                    email: "",
+                    password: "",
+                    replayPassword: "",
+                    nameUser: "",
+                    surnameUser: "",
+                    patronymicUser: "",
+                    dateOfBirth: null,
+                    city: "",
+                    country: "",
+                    photoUrl: ''
+                },
+                usersNewInfo: [],
+                data: []
+            };
         default:
             return state;
     }
 }
 
-
+export const clearSessionUsersActionCreator = () => ({
+    type: CLEAR_SESSION
+});
 export const changeRegDataActionCreator = (value) => (
     {
         type: INFO_FOR_REG_USER,
@@ -194,22 +213,3 @@ export const onCountryChangeActionCreator = (value) => (
 )
 
 export default infoUsersReducer;
-
-// export const addDataActionCreator = (nameTable, params) => {
-//     return async (dispatch) => {
-//         try {
-//             const response = await axios.post("http://localhost:3003/add-record", {
-//                 nameTable: nameTable,
-//                 params: params
-//             });
-//             const data = await response.data;
-//             // Можно добавить дополнительную обработку ответа от сервера здесь
-//             dispatch({ type: ADD_DATA, payload: data });
-//             dispatch(setSessionActionCreator(true)); // Вызываем действие для установки сессии
-//         } catch (error) {
-//             dispatch(setSessionActionCreator(false)); // Вызываем действие для установки сессии
-//             console.error('Ошибка при отправке данных на сервер:', error);
-//             // Можно добавить обработку ошибки здесь
-//         }
-//     };
-// };

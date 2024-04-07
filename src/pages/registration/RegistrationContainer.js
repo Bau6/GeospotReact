@@ -19,7 +19,7 @@ import {setSessionActionCreator} from "../../database/redux/sessionUser";
 
 let mapStateToProps = (state) => {
     return {
-        sportNameFromBD: state.eventsInfo.sportNameFromBD,
+        sportNameFromBD: state.eventsReducer.sportNameFromBD,
         userExampleInfo: state.infoUsers.userExampleInfo,
         myInf: state.infoUsers.userExampleInfo,
         isLoggedIn: state.auth.isLoggedIn,

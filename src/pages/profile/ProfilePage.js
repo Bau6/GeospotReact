@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import "./changeInfProfile.css";
 import RegistrationCss from "../registration/RegistrationCss.module.css";
-// import ShowPasswordButton from "../registration/passwordButton";
-// import DropDownMenuReg from "../registration/DropDownMenuReg";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import FormFields from "./test";
@@ -12,16 +10,17 @@ const ProfilePage = (props) => {
     const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
     const [editMode, setEditMode] = useState(false);
     const [users, setUsers] = useState([]);
+
+    const params = props.sessionUser.userID.id;
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3003/output-table", {
+                const response = await axios.get("http://localhost:3003/output-one-record", {
                     params: {
                         nameTable: 'users',
-                        params: {} // Параметры, если необходимо
+                        params:  params  // Параметры, если необходимо
                     }
                 });
-                console.log(response.data);
                 setUsers(response.data);
                 // console.log(users);
             } catch (error) {
@@ -39,12 +38,11 @@ const ProfilePage = (props) => {
 
     const handleEditClick = () => {
         setEditMode(true);
-        if (users.length > 0) {
-            props.onEmailChange(users[0].email);
-            props.onNameChange(users[0].name);
-            props.onSurnameChange(users[0].surname);
-            props.onPatronymicChange(users[0].patronymic);
-        }
+            props.onEmailChange(users.email);
+            props.onNameChange(users.name);
+            props.onSurnameChange(users.surname);
+            props.onPatronymicChange(users.patronymic);
+
     };
 
     const countryChange = () => {

@@ -1,13 +1,15 @@
 import HeaderCss from '../../assets/css/styleHeader.module.css';
 import {NavLink} from "react-router-dom";
-
+// import { Navigate } from 'react-router-dom';
 const Header = (props) => {
     const isLoggedIn = props.isLoggedIn;
-
     const handleLogout = () => {
         props.logoutUser();
         props.clearSession();
+        props.clearSessionUsers();
+        window.location.href = "/../../pages/first_page/first_page.js";
     };
+
     return (
         <header className={HeaderCss.container}>
             <div className={HeaderCss.nameS}>

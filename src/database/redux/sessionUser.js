@@ -2,12 +2,13 @@ const SET_SESSION = "SET_SESSION";
 const CLEAR_SESSION = "CLEAR_SESSION";
 const EMAIL = 'EMAIL';
 const PASSWORD = 'PASSWORD';
+const SET_ROLE = "SET_ROLE";
 
 const initialState = {
-    user: null,
+    userID: null,
     isAuthenticated: false,
     role: null,
-    dataLogin: {email: "", password: ""}
+    dataLogin: {id: null, email: "", password: ""}
 };
 
 const sessionReducer = (state = initialState, action) => {
@@ -15,13 +16,15 @@ const sessionReducer = (state = initialState, action) => {
         case SET_SESSION:
             return {
                 ...state,
-                user: action.payload,
+                userID: action.payload,
                 isAuthenticated: true
             };
         case CLEAR_SESSION:
             return {
                 ...state,
-                user: null,
+                role: null,
+                dataLogin: {id: null, email: "", password: ""},
+                userID: null,
                 isAuthenticated: false
             };
         case EMAIL:
@@ -40,7 +43,11 @@ const sessionReducer = (state = initialState, action) => {
                     password: action.newText
                 }
             };
-
+        case SET_ROLE:
+            return {
+                ...state,
+                role: action.payload
+            };
         default:
             return state;
     }
@@ -68,6 +75,10 @@ export const onPassLoginActionCreator = (value) => (
         newText: value
     }
 )
+export const setRoleActionCreator = (role) => ({
+    type: SET_ROLE,
+    payload: role
+});
 
 
 export default sessionReducer;
