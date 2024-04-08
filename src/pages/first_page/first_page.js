@@ -31,7 +31,7 @@ class FirstPage extends React.Component {
         const { newsList, currentPage, newsPerPage, setCurrentPage } = this.props;
         const indexOfLastNews = currentPage * newsPerPage;
         const indexOfFirstNews = indexOfLastNews - newsPerPage;
-        const currentNews = newsList.slice(indexOfFirstNews, indexOfLastNews);
+        const currentNews = newsList.filter(newsItem => newsItem.status === 'online').slice(indexOfFirstNews, indexOfLastNews);
         // const fullStars = Math.floor(news.rating);
 // const halfStar = news.rating % 1 >= 0.5 ? 1 : 0;
         const showPreviousButton = currentPage > 1;

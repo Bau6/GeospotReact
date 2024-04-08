@@ -1,7 +1,8 @@
 import FirstPage from "./first_page";
 import React from "react";
 import FirstPageCss from "./first_page.module.css";
-import MyButton from "../../assets/buttons/button";
+// import MyButton from "../../assets/buttons/button";
+import MyButtonContainer from "../../assets/buttons/myButtonContainer";
 class OrganizerFirstPage extends FirstPage {
     constructor(props) {
         super(props);
@@ -13,37 +14,46 @@ class OrganizerFirstPage extends FirstPage {
         this.ref7 = React.createRef();
         this.ref6 = React.createRef();
         this.ref8 = React.createRef();
+        this.newNew = {name: "", date: "", country: "", city: "", author: "", description: "", image: "", organizer: ""};
     }
     nameChange = () => {
         let newText = this.ref1.current.value;
+        this.newNew.name = newText;
         this.props.onChangeAreaText("NAME", newText);
     }
     orgChange = () => {
         let newText = this.ref2.current.value;
+        this.newNew.organizer = newText;
         this.props.onChangeAreaText("ORGANIZER", newText);
     }
     dateChange = () => {
         let newText = this.ref3.current.value;
+        this.newNew.date = newText;
         this.props.onChangeAreaText("DATE", newText);
     }
     countryChange = () => {
         let newText = this.ref4.current.value;
+        this.newNew.country = newText;
         this.props.onChangeAreaText("COUNTRY", newText);
     }
     cityChange = () => {
         let newText = this.ref5.current.value;
+        this.newNew.city = newText;
         this.props.onChangeAreaText("CITY", newText);
     }
     authorChange = () => {
         let newText = this.ref6.current.value;
+        this.newNew.author = newText;
         this.props.onChangeAreaText("AUTHOR", newText);
     }
     descriptionChange = () => {
         let newText = this.ref7.current.value;
+        this.newNew.description = newText;
         this.props.onChangeAreaText("DESCRIPTION", newText);
     }
     imageChange = () => {
         let newText = this.ref8.current.value;
+        this.newNew.image = newText;
         this.props.onChangeAreaText("IMAGE", newText);
     }
     render() {
@@ -78,7 +88,7 @@ class OrganizerFirstPage extends FirstPage {
                                 <textarea value={this.props.newNews.description} ref={this.ref7} onChange={this.descriptionChange} className={FirstPageCss.newsTextDescription}></textarea>
                             </div>
                             <div>
-                                <MyButton name={"Предложить запись"} actionButton={1}/>
+                                <MyButtonContainer newNews={this.newNew} name={"Предложить запись"} actionButton={1}/>
                             </div>
                         </div>
                     </div>

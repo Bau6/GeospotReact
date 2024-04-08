@@ -10,6 +10,7 @@ const {selectOne} = require("./selectOne");
 const {selectById} = require("./selectById");
 const {checkLoginPass} = require("./checkLoginPass");
 const {myRole} = require("./roleUser");
+const {addNew} = require("./addNews");
 
 app.use(cors());
 const port = 3003;
@@ -87,6 +88,17 @@ function checkLoginPassReturnData() {
         checkLoginPass(nameTable, params, res);
     });
 }
+
+function addNews() {
+    // app.use(express.json());
+    app.post('/add-news', (req, res) => {
+        // const { nameTable, params } = req.body;
+        const nameTable = 'news';
+        const params = {namePub: "1", date: "10.10.2000", country: "R", city: "M", autor: "", textPub: "text", image: "", orgPub: "OOO"};
+        addNew(nameTable, params, res);
+    });
+}
+addNews();
 usersRolesTable();
 checkLoginPassReturnData();
 selectByIdDataTable();
