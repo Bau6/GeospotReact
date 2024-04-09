@@ -69,7 +69,7 @@ class Authorization extends React.Component {
                         // Если пользователь найден, выполняем необходимые действия
 
                         this.props.loginUser();
-                        this.props.setSession({id: userData.id, email: userData.email});
+                        this.props.setSession({id: userData.id, email: userData.email, name: userData.surname + " " + userData.name + " " + userData.patronymic});
                         this.props.myUserId(userData.id);
                         axios.get("http://localhost:3003/role", {
                             params: {

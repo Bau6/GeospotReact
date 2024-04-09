@@ -8,7 +8,7 @@ const initialState = {
     userID: null,
     isAuthenticated: false,
     role: null,
-    dataLogin: {id: null, email: "", password: ""}
+    dataLogin: {id: null, email: "", password: "", name:""}
 };
 
 const sessionReducer = (state = initialState, action) => {

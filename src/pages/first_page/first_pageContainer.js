@@ -2,11 +2,18 @@ import {connect} from "react-redux";
 import AdminFirstPage from "./AdminFirstPage";
 import OrganizerFirstPage from "./OrganizerFirstPage";
 import FirstPage from "./first_page";
-import {loadNews, onChangeActionCreator, setCurrentPage} from "../../database/redux/news-reducer";
+import {
+    defaultNewNewsActionCreator,
+    loadNews,
+    onChangeActionCreator,
+    setCurrentPage
+} from "../../database/redux/news-reducer";
 // import {onPassLoginActionCreator} from "../../database/redux/sessionUser";
 const mapStateToProps = (state) => {
+    // debugger
     return {
         role: state.sessionUser.role,
+        userID: state.sessionUser.userID,
         newsList: state.newsReducer.newsList,
         currentPage: state.newsReducer.currentPage,
         newsPerPage: state.newsReducer.newsPerPage,
@@ -23,6 +30,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onChangeAreaText: (type, text) => {
             dispatch(onChangeActionCreator(type, text));
+        },
+        clearTextArea: () => {
+            dispatch(defaultNewNewsActionCreator());
         }
     }
 }

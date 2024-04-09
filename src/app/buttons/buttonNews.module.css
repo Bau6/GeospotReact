@@ -1,0 +1,18 @@
+.buttonAdd {
+    background-color: #3665f4; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    padding: 10px 20px; /* Внутренние отступы кнопки */
+    border: none; /* Убираем границу кнопки */
+    border-radius: 5px; /* Скругленные углы кнопки */
+    margin-right: 10px; /* Отступ справа от кнопки */
+    float: right; /* Помещаем кнопку вправо */
+}
+.buttonDelete {
+    background-color: #f43636; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    padding: 10px 20px; /* Внутренние отступы кнопки */
+    border: none; /* Убираем границу кнопки */
+    border-radius: 5px; /* Скругленные углы кнопки */
+    margin-right: 10px; /* Отступ справа от кнопки */
+    float: right; /* Помещаем кнопку вправо */
+}

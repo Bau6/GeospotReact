@@ -47,8 +47,8 @@
     font-family: 'Arial', sans-serif; /* Пример красивого шрифта */
 }
 .newsTextArea {
-    height: 20px;
-    width: 200px;
+    height: 25px;
+    width: 600px;
 }
 .newsTextDescription {
     height: 50px;

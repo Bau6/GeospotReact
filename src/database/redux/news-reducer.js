@@ -8,12 +8,15 @@ const AUTHOR = 'AUTHOR';
 const DESCRIPTION = 'DESCRIPTION';
 const IMAGE = 'IMAGE';
 const ORGANIZER = 'ORGANIZER';
+const DEFAULT_NEW_NEWS = 'DEFAULT_NEW_NEWS';
+const UPDATE_NEW_LIST = 'UPDATE_NEW_LIST';
 
 let initialState = {
     newsList: [{id: 0, nameEvent: "net"}],
     currentPage: 1,
     newsPerPage: 2,
-    newNews: {name: "", date: "", country: "", city: "", author: "", description: "", image: "", organizer: ""}
+    defaultNewNews: {name: "", date: "", country: "", city: "", author: "", description: "", organizer: "", status: 2},
+    newNews: {name: "", date: "", country: "", city: "", author: "", description: "", organizer: "", status: 2}
 }
 
 const newsReducer = (state = initialState, action) => {
@@ -38,6 +41,10 @@ const newsReducer = (state = initialState, action) => {
             return {...state, newNews: {...state.newNews, author: action.newText}};
         case IMAGE:
             return {...state, newNews: {...state.newNews, image: action.newText}};
+        case DEFAULT_NEW_NEWS:
+            return {...state, newNews: {...state.defaultNewNews}};
+        case UPDATE_NEW_LIST:
+            return {...state,newsList: action.text}
         default:
             return state;
     }
@@ -54,5 +61,12 @@ export const setCurrentPage = (page) => ({
 export const onChangeActionCreator = (type, value) => ({
     type: type,
     newText: value
+})
+export const defaultNewNewsActionCreator = () => ({
+    type: DEFAULT_NEW_NEWS
+})
+export const updateNewListActionCreator = (value) => ({
+    type: UPDATE_NEW_LIST,
+    text: value
 })
 export default newsReducer;

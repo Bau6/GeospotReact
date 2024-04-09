@@ -90,11 +90,12 @@ function checkLoginPassReturnData() {
 }
 
 function addNews() {
-    // app.use(express.json());
+    app.use(express.json());
     app.post('/add-news', (req, res) => {
-        // const { nameTable, params } = req.body;
-        const nameTable = 'news';
-        const params = {namePub: "1", date: "10.10.2000", country: "R", city: "M", autor: "", textPub: "text", image: "", orgPub: "OOO"};
+        const nameTable = req.body.nameTable;
+        const params = req.body.params;
+        // const nameTable = 'news';
+        // const params = {namePub: "1", date: "10.10.2000", country: "R", city: "M", autor: "", textPub: "text", image: "", orgPub: "OOO"};
         addNew(nameTable, params, res);
     });
 }

@@ -1,8 +1,9 @@
 import FirstPage from "./first_page";
 import React from "react";
 import FirstPageCss from "./first_page.module.css";
-// import MyButton from "../../assets/buttons/button";
-import MyButtonContainer from "../../assets/buttons/myButtonContainer";
+import MyButtonContainer from "../../app/buttons/myButtonContainer";
+import CheckNewsOrgAdmContainer from "./checkNewsOrgAdmContainer";
+
 class OrganizerFirstPage extends FirstPage {
     constructor(props) {
         super(props);
@@ -14,16 +15,16 @@ class OrganizerFirstPage extends FirstPage {
         this.ref7 = React.createRef();
         this.ref6 = React.createRef();
         this.ref8 = React.createRef();
-        this.newNew = {name: "", date: "", country: "", city: "", author: "", description: "", image: "", organizer: ""};
+        this.newNew = {authorID: this.props.userID.id, namePub: "", date: "", country: "", city: "", autor: this.props.userID.name, textPub: "", orgPub: "", status: 2};
     }
     nameChange = () => {
         let newText = this.ref1.current.value;
-        this.newNew.name = newText;
+        this.newNew.namePub = newText;
         this.props.onChangeAreaText("NAME", newText);
     }
     orgChange = () => {
         let newText = this.ref2.current.value;
-        this.newNew.organizer = newText;
+        this.newNew.orgPub = newText;
         this.props.onChangeAreaText("ORGANIZER", newText);
     }
     dateChange = () => {
@@ -42,13 +43,11 @@ class OrganizerFirstPage extends FirstPage {
         this.props.onChangeAreaText("CITY", newText);
     }
     authorChange = () => {
-        let newText = this.ref6.current.value;
-        this.newNew.author = newText;
-        this.props.onChangeAreaText("AUTHOR", newText);
+
     }
     descriptionChange = () => {
         let newText = this.ref7.current.value;
-        this.newNew.description = newText;
+        this.newNew.textPub = newText;
         this.props.onChangeAreaText("DESCRIPTION", newText);
     }
     imageChange = () => {
@@ -59,7 +58,13 @@ class OrganizerFirstPage extends FirstPage {
     render() {
         const parentRender = super.render();
         return (
-            <div>{parentRender}
+            <div>
+                <div>
+                    {parentRender}
+                </div>
+                <div>
+                    {<CheckNewsOrgAdmContainer />}
+                </div>
                 <div>
                     <div className={FirstPageCss.newsItem}>
                         <div className={FirstPageCss.newsImage}>
@@ -74,21 +79,21 @@ class OrganizerFirstPage extends FirstPage {
                                 <textarea value={this.props.newNews.organizer} ref={this.ref2} onChange={this.orgChange} className={FirstPageCss.newsTextArea}></textarea><br/>
                                 <label>Дата: </label>
                                 <textarea
-                                    value={this.props.newNews.date} ref={this.ref3} onChange={this.dateChange} className={FirstPageCss.newsTextArea}></textarea>&nbsp;
+                                    value={this.props.newNews.date} ref={this.ref3} onChange={this.dateChange} className={FirstPageCss.newsTextArea}></textarea><br/>
                                 <label>Страна: </label>
                                 <textarea
-                                    value={this.props.newNews.country} ref={this.ref4} onChange={this.countryChange} className={FirstPageCss.newsTextArea}></textarea>&nbsp;
+                                    value={this.props.newNews.country} ref={this.ref4} onChange={this.countryChange} className={FirstPageCss.newsTextArea}></textarea><br/>
                                 <label>Город: </label>
                                 <textarea value={this.props.newNews.city} ref={this.ref5} onChange={this.cityChange} className={FirstPageCss.newsTextArea}></textarea><br/>
                                 <label>Автор: </label>
-                                <textarea value={this.props.newNews.author} ref={this.ref6} onChange={this.authorChange} className={FirstPageCss.newsTextArea}></textarea>&nbsp;
+                                <textarea value={this.props.userID===null ? "" : this.props.userID.name} ref={this.ref6} onChange={this.authorChange} className={FirstPageCss.newsTextArea}></textarea>&nbsp;
                             </div>
                             <div>
                                 <label>Описание: </label>
                                 <textarea value={this.props.newNews.description} ref={this.ref7} onChange={this.descriptionChange} className={FirstPageCss.newsTextDescription}></textarea>
                             </div>
                             <div>
-                                <MyButtonContainer newNews={this.newNew} name={"Предложить запись"} actionButton={1}/>
+                                <MyButtonContainer clearTextArea={this.props.clearTextArea} newNews={this.newNew} name={"Предложить запись"} actionButton={1}/>
                             </div>
                         </div>
                     </div>
