@@ -1,5 +1,6 @@
 import FirstPage from "./first_page";
 import React from "react";
+import CheckNewsOrgAdmContainer from "./checkNewsOrgAdmContainer";
 class AdminFirstPage extends FirstPage {
 
     render() {
@@ -8,7 +9,9 @@ class AdminFirstPage extends FirstPage {
             <div>
                 {parentRender}
                 <div>
-                    <button>Сменить информацию</button>
+                    <div>
+                        {<CheckNewsOrgAdmContainer />}
+                    </div>
                 </div>
             </div>
         );

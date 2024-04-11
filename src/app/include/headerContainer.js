@@ -5,6 +5,8 @@ import {clearSessionActionCreator, setSessionActionCreator} from "../../database
 import {clearSessionUsersActionCreator} from "../../database/redux/infoUsers-reducer";
 const mapStateToProps = (state) => {
     return {
+        role: state.sessionUser.role,
+        user: state.sessionUser.userID,
         isLoggedIn: state.auth.isLoggedIn,
         isAuthenticated: state.isAuthenticated
     }

@@ -1,6 +1,5 @@
 import HeaderCss from '../../assets/css/styleHeader.module.css';
 import {NavLink} from "react-router-dom";
-// import { Navigate } from 'react-router-dom';
 const Header = (props) => {
     const isLoggedIn = props.isLoggedIn;
     const handleLogout = () => {
@@ -9,32 +8,41 @@ const Header = (props) => {
         props.clearSessionUsers();
         window.location.href = "/../../pages/first_page/first_page.js";
     };
-
+    const handleProfile = () => {
+        window.location.href = "/../../pages/profile/profile.js";
+    }
     return (
         <header className={HeaderCss.container}>
-            <div className={HeaderCss.nameS}>
-                <h1 className={HeaderCss.H1Name}>
-                    <NavLink className={HeaderCss.nameMySite} to="/../../pages/first_page/first_page.js">ГеоСпот</NavLink>
-                </h1>
-            </div>
+
             <nav className={HeaderCss.nameCon}>
                 <ul>
-                    <li><NavLink className={HeaderCss.item} to="/../../pages/first_page/first_page.js">Новости</NavLink></li>
+                    {/*<li>*/}
+                        <div className={HeaderCss.nameS}>
+                            <h1 className={HeaderCss.H1Name}>
+                                <NavLink className={HeaderCss.nameMySite}
+                                         to="/../../pages/first_page/first_page.js">ГеоСпот</NavLink>
+                            </h1>
+                        </div>
+                    {/*</li>*/}
+                    <li><NavLink className={HeaderCss.item} to="/../../pages/first_page/first_page.js">Новости</NavLink>
+                    </li>
                     <li><NavLink className={HeaderCss.item} to="/../../pages/events/events.js">Мероприятия</NavLink></li>
                     {isLoggedIn ? (
-                        <li>
-                            <button className={HeaderCss.item} onClick={handleLogout}>Выход</button>
+                        <li className={HeaderCss.dropdown}>
+                            <div onClick={handleProfile} className={HeaderCss.itemProfile}>{props.user.name}</div>
+                            <div className={HeaderCss.dropdownContent}>
+                                <div onClick={handleLogout}>Выход</div>
+                            </div>
                         </li>
                     ) : (
                         <li>
-                            <NavLink className={HeaderCss.item}
+                            <NavLink className={HeaderCss.itemProfile}
                                      to="/../../pages/authorization/Authorization.js">Вход</NavLink>
                         </li>
-            )}
+                    )}
                 </ul>
             </nav>
         </header>
     );
 }
-
 export default Header;

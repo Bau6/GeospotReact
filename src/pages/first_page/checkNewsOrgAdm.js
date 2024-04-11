@@ -11,17 +11,22 @@ class CheckNewsOrgAdm extends React.Component {
             isLoading: true
         };
     }
-    handleDeleteNews = (id) => {
+
+    handleNews = (id, status) => {
         const updatedNewsList = this.props.newsList.map(newsItem => {
             if (newsItem.id === id) {
                 return axios.get("http://localhost:3003/update-record", {
                     params: {
                         nameTable: NEWS,
-                        params: { id: id, status: 7 }
+                        params: { id: id, status: status }
                     }
                 })
                     .then(response => {
-                        alert("Успешно удалено!");
+                        if (status === 1) {
+                            alert("Успешно опубликовано!");
+                        } else if (status === 7) {
+                            alert("Успешно удалено!");
+                        }
                         console.log(response.data);
                         return { ...newsItem, status: 7 };
                     })
@@ -56,7 +61,14 @@ class CheckNewsOrgAdm extends React.Component {
     render() {
         const { newsList } = this.props;
         // debugger
-        const currentNews = newsList.filter(newsItem => newsItem.status === 2 && newsItem.authorID === this.props.userID.id);
+        let currentNews = [];
+        if (this.props.role === "organizer") {
+            currentNews = newsList.filter(newsItem => newsItem.status === 2 && newsItem.authorID === this.props.userID.id);
+        } else if (this.props.role === "admin"){
+            currentNews = newsList.filter(newsItem => newsItem.status === 2);
+        } else {
+            currentNews = [];
+        }
         return (
             <div>
                 <div>
@@ -92,7 +104,12 @@ class CheckNewsOrgAdm extends React.Component {
                                     <span className={FirstPageCss.newsText}>Описание: {newsItem.textPub}   </span>
                                 </div>
                                 <div>
-                                    <button onClick={() => this.handleDeleteNews(newsItem.id)} className={buttonNews.buttonDelete}>Удалить запись</button>
+                                    <button onClick={() => this.handleNews(newsItem.id, 7)} className={buttonNews.buttonDelete}>Удалить запись</button>
+                                </div>
+                                <div>
+                                    {this.props.role === "admin" && (
+                                        <button onClick={() => this.handleNews(newsItem.id, 1)} className={buttonNews.buttonAdd}>Опубликовать запись</button>
+                                    )}
                                 </div>
                             </div>
 

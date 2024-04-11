@@ -6,6 +6,7 @@ import CheckNewsOrgAdm from "./checkNewsOrgAdm";
 const mapStateToProps = (state) => {
     // debugger
     return {
+        role: state.sessionUser.role,
         userID: state.sessionUser.userID,
         newsList: state.newsReducer.newsList
     }
