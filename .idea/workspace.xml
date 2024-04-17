@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/events/eventsContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/include/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/include/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/include/headerContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/include/headerContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/css/styleHeader.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/styleHeader.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/first_page/AdminFirstPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/AdminFirstPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/first_page/checkNewsOrgAdm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/checkNewsOrgAdm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/first_page/checkNewsOrgAdmContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/checkNewsOrgAdmContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +131,7 @@
       <workItem from="1711724951334" duration="18275000" />
       <workItem from="1711791841038" duration="75471000" />
       <workItem from="1712237116445" duration="10710000" />
-      <workItem from="1712251304023" duration="104798000" />
+      <workItem from="1712251304023" duration="106934000" />
     </task>
     <servers />
   </component>

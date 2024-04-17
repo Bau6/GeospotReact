@@ -14,6 +14,7 @@ import UsersContainer from "./pages/users/usersContainer";
 import AuthorizationContainer from "./pages/authorization/AuthorizationContainer";
 import HeaderContainer from "./app/include/headerContainer";
 import FirstPageContainer from "./pages/first_page/first_pageContainer";
+import EventsContainer from "./pages/events/eventsContainer";
 const App = (props) => {
     return (
         <BrowserRouter>
@@ -22,7 +23,7 @@ const App = (props) => {
                     store={props.store}
                 />
                 <Routes>
-                    <Route path={'/pages/events/events.js'} element={<Events store={props.store}/>}/>
+                    <Route path={'/pages/events/events.js'} element={<EventsContainer store={props.store}/>}/>
                     <Route path={'/pages/event/event.js'} element={<Event store={props.store}/>}/>
                     <Route path={'/pages/registration/Registration.js'}
                            element={<RegistrationContainer store={props.store}

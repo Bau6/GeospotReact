@@ -8,7 +8,7 @@ const Events = (props) => {
         <div>
             <div className={eventsCss.containerEvent}>
                 <div>
-                    <DropDownMenuEvent sportNameFromBD={props.sportNameFromBD}/>
+                    <DropDownMenuEvent sportNameFromBD={props.sports}/>
                     <ChooseDataEvent />
                     <button className={eventsCss.FindEvent}>Поиск</button>
                 </div>
