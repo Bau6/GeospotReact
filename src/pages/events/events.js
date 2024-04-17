@@ -1,7 +1,8 @@
 import eventsCss from "./events.module.css"
 import DropDownMenuEvent from "./DropDownMenuEvent";
 import ChooseDataEvent from "./ChooseDataEvent";
-import EventsForm from "./eventsForm";
+// import EventsForm from "./eventsForm";
+import EventsFormContainer from "./eventsFormContainer";
 const Events = (props) => {
 
     return (
@@ -14,8 +15,7 @@ const Events = (props) => {
                 </div>
                 <div>
                     <a>Мероприятия</a>
-                    <EventsForm numEvent={1}/>
-                    <EventsForm numEvent={2}/>
+                    <EventsFormContainer />
                 </div>
             </div>
         </div>
