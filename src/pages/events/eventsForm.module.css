@@ -1,4 +1,24 @@
-.events {
-    border: 3px solid black;
-    margin-top: 20px;
+.eventListContainer {
+    flex-wrap: wrap;
+}
+
+.eventItem {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.eventField {
+    margin-bottom: 5px;
+}
+
+.eventField strong {
+    margin-right: 5px;
+}
+.eventsImage {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    grid-template-columns: 300px 1fr;
 }
