@@ -104,8 +104,8 @@ class EventsForm extends React.Component {
                 {this.props.thisEvents && this.props.thisEvents.length > 0 ? (
                     // Используем map для вывода каждого объекта
                     this.props.thisEvents.map(event => (
-                        <div key={event.eventID} className={EventsFormCss.events}>
-                            <div className={EventsFormCss.eventListContainer}>
+                        <div  className={EventsFormCss.events}>
+                            <div key={event.eventID} className={EventsFormCss.eventListContainer}>
                                 <div className={EventsFormCss.eventItem}>
                                     {/* Проверяем каждое поле перед выводом */}
                                     <div className={EventsFormCss.imageContainer}>

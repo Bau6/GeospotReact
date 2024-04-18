@@ -10,6 +10,7 @@ const IMAGE = 'IMAGE';
 const ORGANIZER = 'ORGANIZER';
 const DEFAULT_NEW_NEWS = 'DEFAULT_NEW_NEWS';
 const UPDATE_NEW_LIST = 'UPDATE_NEW_LIST';
+const CLEAR = "CLEAR";
 
 let initialState = {
     newsList: [{id: 0, nameEvent: "net"}],
@@ -45,6 +46,14 @@ const newsReducer = (state = initialState, action) => {
             return {...state, newNews: {...state.defaultNewNews}};
         case UPDATE_NEW_LIST:
             return {...state,newsList: action.text}
+        case CLEAR:
+            return {...state,
+                newsList: [{id: 0, nameEvent: "net"}],
+                currentPage: 1,
+                newsPerPage: 2,
+                defaultNewNews: {name: "", date: "", country: "", city: "", author: "", description: "", organizer: "", status: 2},
+                newNews: {name: "", date: "", country: "", city: "", author: "", description: "", organizer: "", status: 2}
+            }
         default:
             return state;
     }
@@ -68,5 +77,8 @@ export const defaultNewNewsActionCreator = () => ({
 export const updateNewListActionCreator = (value) => ({
     type: UPDATE_NEW_LIST,
     text: value
+})
+export const clearNews = ()=> ({
+    type: CLEAR
 })
 export default newsReducer;

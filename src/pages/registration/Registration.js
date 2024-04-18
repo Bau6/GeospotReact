@@ -9,6 +9,7 @@ import {validationsReg} from "../../app/include/validations";
 import React, {Component} from 'react';
 import axios from "axios";
 const USERS = "users";
+const TABLE_SPORTS = "sporttype";
 class Registration extends Component {
     constructor(props) {
         super(props);
@@ -33,6 +34,19 @@ class Registration extends Component {
             }
             return { refs: newRefs };
         });
+
+            axios.get('http://localhost:3003/output-table', {
+                params: {
+                    nameTable: TABLE_SPORTS,
+                    params: {}
+                }
+            })
+                .then(response => {
+                    this.props.loadSports(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
     }
 
     handleChange = (e) => {

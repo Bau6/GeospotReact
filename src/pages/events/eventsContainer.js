@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import Events from "./events";
+import {clearEvents, loadSports} from "../../database/redux/events-reducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -9,9 +10,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // setUsers: (users) => {
-        //     dispatch(setUsersAC(users));
-        // }
+        loadSports: (text) => {
+            dispatch(loadSports(text));
+        }
     }
 }
 

@@ -3,14 +3,37 @@ import {NavLink} from "react-router-dom";
 const Header = (props) => {
     const isLoggedIn = props.isLoggedIn;
     const handleLogout = () => {
+        props.clearNews();
+        props.clearEvents();
         props.logoutUser();
         props.clearSession();
         props.clearSessionUsers();
         window.location.href = "/../../pages/first_page/first_page.js";
     };
     const handleProfile = () => {
+        props.clearNews();
+        props.clearEvents();
         window.location.href = "/../../pages/profile/profile.js";
     }
+
+    const handleNews = () => {
+        if (window.location == 'http://localhost:3000/pages/first_page/first_page.js'){window.location.reload();}
+        // props.clearNews();
+        props.clearEvents();
+    }
+
+    const handleEvents = () => {
+        props.clearNews();
+        if (window.location == 'http://localhost:3000/pages/events/events.js'){window.location.reload();}
+        // alert(window.location)
+        // window.location.reload();
+        // props.clearEvents();
+    }
+    const handleLogin = () => {
+        props.clearNews();
+        props.clearEvents();
+    }
+
     return (
         <header className={HeaderCss.container}>
 
@@ -19,14 +42,14 @@ const Header = (props) => {
                     {/*<li>*/}
                         <div className={HeaderCss.nameS}>
                             <h1 className={HeaderCss.H1Name}>
-                                <NavLink className={HeaderCss.nameMySite}
+                                <NavLink onClick={handleNews} className={HeaderCss.nameMySite}
                                          to="/../../pages/first_page/first_page.js">ГеоСпот</NavLink>
                             </h1>
                         </div>
                     {/*</li>*/}
-                    <li><NavLink className={HeaderCss.item} to="/../../pages/first_page/first_page.js">Новости</NavLink>
+                    <li><NavLink onClick={handleNews} className={HeaderCss.item} to="/../../pages/first_page/first_page.js">Новости</NavLink>
                     </li>
-                    <li><NavLink className={HeaderCss.item} to="/../../pages/events/events.js">Мероприятия</NavLink></li>
+                    <li><NavLink onClick={handleEvents} className={HeaderCss.item} to="/../../pages/events/events.js">Мероприятия</NavLink></li>
                     {isLoggedIn ? (
                         <li className={HeaderCss.dropdown}>
                             <div onClick={handleProfile} className={HeaderCss.itemProfile}>{props.user.name}</div>
@@ -36,7 +59,7 @@ const Header = (props) => {
                         </li>
                     ) : (
                         <li>
-                            <NavLink className={HeaderCss.itemProfile}
+                            <NavLink onClick={handleLogin} className={HeaderCss.itemProfile}
                                      to="/../../pages/authorization/Authorization.js">Вход</NavLink>
                         </li>
                     )}

@@ -3,6 +3,8 @@ import {login, logout} from "../../database/redux/authActions";
 import header from "./header";
 import {clearSessionActionCreator, setSessionActionCreator} from "../../database/redux/sessionUser";
 import {clearSessionUsersActionCreator} from "../../database/redux/infoUsers-reducer";
+import {clearEvents} from "../../database/redux/events-reducer";
+import {clearNews} from "../../database/redux/news-reducer";
 const mapStateToProps = (state) => {
     return {
         role: state.sessionUser.role,
@@ -28,6 +30,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         clearSessionUsers: () => {
             dispatch(clearSessionUsersActionCreator());
+        },
+        clearEvents: () => {
+            dispatch(clearEvents());
+        },
+        clearNews: () => {
+            dispatch(clearNews());
         }
     }
 }

@@ -14,6 +14,7 @@ import Registration from "./Registration";
 import {connect} from "react-redux";
 import {login, logout} from "../../database/redux/authActions";
 import {setSessionActionCreator} from "../../database/redux/sessionUser";
+import {loadSports} from "../../database/redux/events-reducer";
 
 
 
@@ -61,6 +62,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         logoutUser: () => {
             dispatch(logout());
+        },
+        loadSports: (text) => {
+            dispatch(loadSports(text))
         }
     }
 }
