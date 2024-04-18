@@ -43,52 +43,60 @@ class EventsForm extends React.Component {
                             <div className={EventsFormCss.eventListContainer}>
                                 <div className={EventsFormCss.eventItem} key={event.eventID}>
                                     {/* Проверяем каждое поле перед выводом */}
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Event ID:</strong> {event.eventID ? event.eventID : ""}
+                                    <div className={EventsFormCss.imageContainer}>
+                                        {event.image ?
+                                        <img className={EventsFormCss.eventsImage} src={event.image}
+                                             alt={event.image}/> : ""}
                                     </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Sport Type
-                                            ID:</strong> {event.sportTypeID ? event.sportTypeID : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Org ID:</strong> {event.orgID ? event.orgID : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>nameEvent:</strong> {event.nameEvent ? event.nameEvent : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>country:</strong> {event.country ? event.country : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>city:</strong> {event.city ? event.city : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>descriptionEvent:</strong> {event.descriptionEvent ? event.descriptionEvent : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>gender:</strong> {event.gender ? event.gender : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>minAge:</strong> {event.minAge ? event.minAge : ""}
-                                    </div>
+                                    <div className={EventsFormCss.textContainer}>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Event ID:</strong> {event.eventID ? event.eventID : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Sport Type
+                                                ID:</strong> {event.sportTypeID ? event.sportTypeID : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Org ID:</strong> {event.orgID ? event.orgID : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>nameEvent:</strong> {event.nameEvent ? event.nameEvent : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>country:</strong> {event.country ? event.country : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>city:</strong> {event.city ? event.city : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>descriptionEvent:</strong> {event.descriptionEvent ? event.descriptionEvent : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>gender:</strong> {event.gender ? event.gender : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>minAge:</strong> {event.minAge ? event.minAge : ""}
+                                        </div>
 
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>maxAge:</strong> {event.maxAge ? event.maxAge : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>minAge:</strong> {event.minAge ? event.minAge : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>dateStart:</strong> {event.dateStart ? event.dateStart : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>dateFinish:</strong> {event.dateFinish ? event.dateFinish : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>cntPlayersInGroup:</strong> {event.cntPlayersInGroup ? event.cntPlayersInGroup : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>rating:</strong> {event.rating ? <img className={EventsFormCss.eventsImage} src={event.rating} alt={event.rating} /> : ""}
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>maxAge:</strong> {event.maxAge ? event.maxAge : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>minAge:</strong> {event.minAge ? event.minAge : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>dateStart:</strong> {event.dateStart ? event.dateStart : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>dateFinish:</strong> {event.dateFinish ? event.dateFinish : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>cntPlayersInGroup:</strong> {event.cntPlayersInGroup ? event.cntPlayersInGroup : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>rating:</strong>
+                                            {event.rating ? event.rating : ""}
+                                        </div>
                                     </div>
                                     {/* Продолжайте аналогично для остальных полей */}
                                     <NavLink to="/../pages/event/event.js">Просмотр</NavLink>

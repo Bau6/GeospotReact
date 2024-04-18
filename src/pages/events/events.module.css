@@ -1,15 +1,26 @@
 .containerEvent{
-    margin-top: 100px;
+    margin-top: 30px;
     display: grid;
     gap: 20px;
     min-width: 1200px;
-
+    position: relative;
+    /* Добавляем position: relative, чтобы вложенные элементы могли быть
+    позиционированы относительно этого контейнера */
     /* ! */
-    grid-template-columns: 200px 1000px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
 }
+.fixedContent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999; /* Устанавливаем высокий z-index, чтобы блок всегда оставался наверху */
+    background-color: white;
+    padding: 10px;
+    margin-top: 150px; /* Устанавливаем отступ сверху, чтобы не перекрывать заголовок */
+    margin-left: 10px; /* Добавляем отступ слева для красоты или пространства */
+}
+.fixedEvents {
+    margin-left: 300px;
+ }
 .FindEvent {
     margin-top: 20px;
 }
