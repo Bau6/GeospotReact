@@ -55,7 +55,37 @@ class EventsForm extends React.Component {
                         });
                 });
 
-                Promise.all([...userPromises, ...sportTypePromises]).then(() => {
+                let cityPromises = updatedEvents.filter(event => event.city).map(event => {
+                    return axios.get('http://localhost:3003/output-one-record', {
+                        params: {
+                            nameTable: "cities",
+                            params: event.city
+                        }
+                    })
+                        .then(response => {
+                            event.city = response.data.city;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                });
+
+                let countryPromises = updatedEvents.filter(event => event.country).map(event => {
+                    return axios.get('http://localhost:3003/output-one-record', {
+                        params: {
+                            nameTable: "countries",
+                            params: event.country
+                        }
+                    })
+                        .then(response => {
+                            event.country = response.data.country;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                });
+
+                Promise.all([...userPromises, ...sportTypePromises, ...countryPromises, cityPromises]).then(() => {
                     this.setState({ isLoading: false, thisEventsTest: updatedEvents });
                     this.props.loadEvents(updatedEvents);
                     console.log(updatedEvents);
