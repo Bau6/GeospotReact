@@ -20,7 +20,8 @@ const Header = (props) => {
         // if (window.location == 'http://localhost:3000/pages/first_page/first_page.js'){window.location.reload();}
         // props.clearNews();
         props.clearEvents();
-        window.location.href = "/../../pages/first_page/first_page.js";
+        if (window.location == 'http://localhost:3000/pages/first_page/first_page.js'){window.location.href = "/../../pages/first_page/first_page.js";}
+        // window.location.href = "/../../pages/first_page/first_page.js";
     }
 
     const handleEvents = () => {
@@ -29,7 +30,8 @@ const Header = (props) => {
         // alert(window.location)
         // window.location.reload();
         // props.clearEvents();
-        window.location.href = "/../../pages/events/events.js";
+        if (window.location == 'http://localhost:3000/pages/events/events.js'){window.location.href = "/../../pages/events/events.js";}
+        // window.location.href = "/../../pages/events/events.js";
     }
     const handleLogin = () => {
         props.clearNews();

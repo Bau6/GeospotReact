@@ -10,12 +10,12 @@ class Events extends React.Component {
             <div>
                 <div className={eventsCss.containerEvent}>
                     <div className={eventsCss.fixedContent}>
-                        <DropDownMenuEventContainer/>
+                        <DropDownMenuEventContainer loadSports={this.props.loadSports}/>
                         <ChooseDataEvent/>
                         <button className={eventsCss.FindEvent}>Поиск</button>
                     </div>
                     <div className={eventsCss.fixedEvents}>
-                        <a>Мероприятия</a>
+                        <div>Мероприятия</div>
                         <EventsFormContainer/>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ let initialState = {
         {id: 1, name: 'Баскетбол'}
     ],
     sports: {},
-    storeEvents: {eventID: 0, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
+    storeEvents: {id: 1, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
 }
 
 const eventsReducer = (state = initialState, action) => {
@@ -22,7 +22,7 @@ const eventsReducer = (state = initialState, action) => {
                     {id: 1, name: 'Баскетбол'}
                 ],
                 sports: {},
-                storeEvents: {eventID: 0, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
+                storeEvents: {id: 1, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
             };
         default:
             return state;

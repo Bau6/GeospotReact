@@ -1,7 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import axios from "axios";
-const TABLE_SPORTS = "sporttype";
+// import axios from "axios";
 class DropDownMenuEvent extends React.Component {
     constructor(props) {
         super(props);
@@ -9,20 +8,9 @@ class DropDownMenuEvent extends React.Component {
             selectedValue: ''
         };
     }
-    // componentDidMount() {
-    //     axios.get('http://localhost:3003/output-table', {
-    //         params: {
-    //             nameTable: TABLE_SPORTS,
-    //             params: {}
-    //         }
-    //     })
-    //         .then(response => {
-    //             this.props.loadSports(response.data);
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // }
+    componentDidMount() {
+        // console.log(this.props + " 111")
+    }
     handleDropdownSelect = (eventKey) => {
         this.setState({ selectedValue: eventKey });
         // console.log(this.props.sports)
@@ -32,12 +20,12 @@ class DropDownMenuEvent extends React.Component {
         return (
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    {'Вид спорта'}
+                    {this.state.selectedValue || 'Вид спорта'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     {Array.isArray(this.props.sports) ? this.props.sports && this.props.sports.map((item) => (
                         <Dropdown.Item key={item.id} onClick={() => this.handleDropdownSelect(item.name)}>
-                            {item.id + " " + item.name}
+                            {item.name}
                         </Dropdown.Item>
                     )) : ""}
                 </Dropdown.Menu>

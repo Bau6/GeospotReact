@@ -1,18 +1,16 @@
 import {connect} from "react-redux";
-import {loadSports} from "../../database/redux/events-reducer";
+// import {loadSports} from "../../database/redux/events-reducer";
 import DropDownMenuEvent from "./DropDownMenuEvent";
 
 const mapStateToProps = (state) => {
     return {
-        // sports: state.eventsReducer.sports
+        sports: state.eventsReducer.sports
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadSports: (text) => {
-            dispatch(loadSports(text));
-        }
+
     }
 }
 

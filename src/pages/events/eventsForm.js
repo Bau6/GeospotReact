@@ -25,6 +25,7 @@ class EventsForm extends React.Component {
             .then(response => {
                 let updatedEvents = [...response.data];
                 let userPromises = updatedEvents.filter(event => event.orgID).map(event => {
+                    if (Number.isInteger(event.orgID)) {
                     return axios.get('http://localhost:3003/output-one-record', {
                         params: {
                             nameTable: "users",
@@ -36,9 +37,10 @@ class EventsForm extends React.Component {
                         })
                         .catch(error => {
                             console.log(error);
-                        });
+                        });} else {return event.orgName}
                 });
                 let sportTypePromises = updatedEvents.filter(event => event.sportTypeID).map(event => {
+                    if (Number.isInteger(event.sportTypeID)) {
                     return axios.get('http://localhost:3003/output-one-record', {
                         params: {
                             nameTable: "sporttype",
@@ -50,9 +52,10 @@ class EventsForm extends React.Component {
                         })
                         .catch(error => {
                             console.log(error);
-                        });
+                        });} else {return event.sportTypeID}
                 });
                 let cityPromises = updatedEvents.filter(event => event.city).map(event => {
+                    if (Number.isInteger(event.city)) {
                     return axios.get('http://localhost:3003/output-one-record', {
                         params: {
                             nameTable: "cities",
@@ -64,9 +67,10 @@ class EventsForm extends React.Component {
                         })
                         .catch(error => {
                             console.log(error);
-                        });
+                        });} else {return event.city}
                 });
                 let countryPromises = updatedEvents.filter(event => event.country).map(event => {
+                    if (Number.isInteger(event.country)) {
                     return axios.get('http://localhost:3003/output-one-record', {
                         params: {
                             nameTable: "countries",
@@ -78,18 +82,29 @@ class EventsForm extends React.Component {
                         })
                         .catch(error => {
                             console.log(error);
-                        });
+                        });} else {return event.country}
                 });
                 Promise.all([...userPromises, ...sportTypePromises, ...countryPromises, cityPromises]).then(() => {
                     this.setState({ isLoading: false, thisEventsTest: updatedEvents });
                     this.props.loadEvents(updatedEvents);
-                    console.log(updatedEvents);
+                    axios.get('http://localhost:3003/output-table', {
+                        params: {
+                            nameTable: 'sporttype'
+                        }
+                    })
+                        .then(response => {
+                            this.props.loadSports(response.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                 });
             })
             .catch(error => {
                 console.log(error);
                 this.setState({ isLoading: false });
             });
+
     }
 
     render() {
@@ -99,7 +114,7 @@ class EventsForm extends React.Component {
                 {this.props.thisEvents && this.props.thisEvents.length > 0 ? (
                     // Используем map для вывода каждого объекта
                     this.props.thisEvents.map(event => (
-                            <div key={event.eventID} className={EventsFormCss.eventListContainer}>
+                            <div key={event.id} className={EventsFormCss.eventListContainer}>
                                 {/*{event.eventID}{event.id}*/}
                                     {/* Проверяем каждое поле перед выводом */}
                                     <div className={EventsFormCss.imageContainer}>
@@ -158,7 +173,6 @@ class EventsForm extends React.Component {
                 ) : (
                     <div>No events found</div>
                 )}
-
             </div>
         )
     }
