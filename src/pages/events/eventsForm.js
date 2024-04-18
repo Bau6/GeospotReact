@@ -24,7 +24,6 @@ class EventsForm extends React.Component {
         })
             .then(response => {
                 let updatedEvents = [...response.data];
-
                 let userPromises = updatedEvents.filter(event => event.orgID).map(event => {
                     return axios.get('http://localhost:3003/output-one-record', {
                         params: {
@@ -39,7 +38,6 @@ class EventsForm extends React.Component {
                             console.log(error);
                         });
                 });
-
                 let sportTypePromises = updatedEvents.filter(event => event.sportTypeID).map(event => {
                     return axios.get('http://localhost:3003/output-one-record', {
                         params: {
@@ -54,7 +52,6 @@ class EventsForm extends React.Component {
                             console.log(error);
                         });
                 });
-
                 let cityPromises = updatedEvents.filter(event => event.city).map(event => {
                     return axios.get('http://localhost:3003/output-one-record', {
                         params: {
@@ -69,7 +66,6 @@ class EventsForm extends React.Component {
                             console.log(error);
                         });
                 });
-
                 let countryPromises = updatedEvents.filter(event => event.country).map(event => {
                     return axios.get('http://localhost:3003/output-one-record', {
                         params: {
@@ -84,7 +80,6 @@ class EventsForm extends React.Component {
                             console.log(error);
                         });
                 });
-
                 Promise.all([...userPromises, ...sportTypePromises, ...countryPromises, cityPromises]).then(() => {
                     this.setState({ isLoading: false, thisEventsTest: updatedEvents });
                     this.props.loadEvents(updatedEvents);
@@ -104,9 +99,8 @@ class EventsForm extends React.Component {
                 {this.props.thisEvents && this.props.thisEvents.length > 0 ? (
                     // Используем map для вывода каждого объекта
                     this.props.thisEvents.map(event => (
-                        <div  className={EventsFormCss.events}>
                             <div key={event.eventID} className={EventsFormCss.eventListContainer}>
-                                <div className={EventsFormCss.eventItem}>
+                                {/*{event.eventID}{event.id}*/}
                                     {/* Проверяем каждое поле перед выводом */}
                                     <div className={EventsFormCss.imageContainer}>
                                         {event.image ?
@@ -160,8 +154,6 @@ class EventsForm extends React.Component {
                                     {/* Продолжайте аналогично для остальных полей */}
                                     <NavLink to="/../pages/event/event.js">Просмотр</NavLink>
                                 </div>
-                            </div>
-                        </div>
                     ))
                 ) : (
                     <div>No events found</div>

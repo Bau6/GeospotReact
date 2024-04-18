@@ -5,6 +5,7 @@ let initialState = {
     sportNameFromBD: [
         {id: 1, name: 'Баскетбол'}
     ],
+    sports: {},
     storeEvents: {eventID: 0, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
 }
 
@@ -13,13 +14,14 @@ const eventsReducer = (state = initialState, action) => {
         case LOAD_EVENTS:
             return {...state, storeEvents: action.payload}
         case LOAD_SPORTS:
-            return {...state,sportNameFromBD: action.payload}
+            return {...state,sports: action.sportsLoad}
         case CLEAR:
             return {
                 ...state,
                 sportNameFromBD: [
                     {id: 1, name: 'Баскетбол'}
                 ],
+                sports: {},
                 storeEvents: {eventID: 0, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
             };
         default:
@@ -32,7 +34,7 @@ export const loadEvents = (text) => ({
 });
 export const loadSports = (text) => ({
     type: LOAD_SPORTS,
-    payload: text
+    sportsLoad: text
 });
 export const clearEvents = () => ({
     type: CLEAR

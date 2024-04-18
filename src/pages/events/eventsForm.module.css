@@ -1,5 +1,10 @@
 .eventListContainer {
     flex-wrap: wrap;
+    display: flex; /* Используем flexbox для размещения элементов в строку */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
 }
 .eventField {
     margin-bottom: 5px;

@@ -4,15 +4,15 @@ import {clearEvents, loadSports} from "../../database/redux/events-reducer";
 
 const mapStateToProps = (state) => {
     return {
-        sports: state.eventsReducer.sportNameFromBD
+        sports: state.eventsReducer.sports
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadSports: (text) => {
-            dispatch(loadSports(text));
-        }
+        // loadSports: (text) => {
+        //     dispatch(loadSports(text));
+        // }
     }
 }
 

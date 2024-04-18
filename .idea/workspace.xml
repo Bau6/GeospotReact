@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/events/DropDownMenuEventContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/include/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/include/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/include/headerContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/include/headerContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/redux/events-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/events-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/news-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/news-reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/events/DropDownMenuEvent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/DropDownMenuEvent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/events/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/events.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/events/eventsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/events/eventsForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/eventsForm.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsForm.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,7 +139,7 @@
       <workItem from="1711724951334" duration="18275000" />
       <workItem from="1711791841038" duration="75471000" />
       <workItem from="1712237116445" duration="10710000" />
-      <workItem from="1712251304023" duration="129634000" />
+      <workItem from="1712251304023" duration="132510000" />
     </task>
     <servers />
   </component>

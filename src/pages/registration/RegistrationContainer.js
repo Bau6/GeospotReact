@@ -64,7 +64,7 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(logout());
         },
         loadSports: (text) => {
-            dispatch(loadSports(text))
+            // dispatch(loadSports(text))
         }
     }
 }
