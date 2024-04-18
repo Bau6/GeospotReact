@@ -52,7 +52,7 @@ function deleteData() {
 function selectAllDataTable() {
     app.get('/output-table', (req, res) => {
         const { nameTable, params } = req.query;
-        console.log(nameTable, params);
+        // console.log(nameTable, params);
         selectAll(nameTable, params, res);
     });
 }
@@ -61,6 +61,7 @@ function selectOneDataTable() {
         const { nameTable, params } = req.query;
         // const nameTable = 'users';
         // const params = 27;
+        // console.log(nameTable, params)
         selectOne(nameTable, params, res);
     });
 }

@@ -10,7 +10,8 @@ class EventsForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true
+            isLoading: true,
+            thisEventsTest: {}
         };
     }
 
@@ -22,13 +23,47 @@ class EventsForm extends React.Component {
             }
         })
             .then(response => {
-                this.props.loadEvents(response.data);
-                console.log(response.data)
-                this.setState({isLoading: false});
+                let updatedEvents = [...response.data];
+
+                let userPromises = updatedEvents.filter(event => event.orgID).map(event => {
+                    return axios.get('http://localhost:3003/output-one-record', {
+                        params: {
+                            nameTable: "users",
+                            params: event.orgID
+                        }
+                    })
+                        .then(response => {
+                            event.orgName = response.data.surname + " " + response.data.name + " " + response.data.patronymic;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                });
+
+                let sportTypePromises = updatedEvents.filter(event => event.sportTypeID).map(event => {
+                    return axios.get('http://localhost:3003/output-one-record', {
+                        params: {
+                            nameTable: "sporttype",
+                            params: event.sportTypeID
+                        }
+                    })
+                        .then(response => {
+                            event.sportTypeID = response.data.name;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                });
+
+                Promise.all([...userPromises, ...sportTypePromises]).then(() => {
+                    this.setState({ isLoading: false, thisEventsTest: updatedEvents });
+                    this.props.loadEvents(updatedEvents);
+                    console.log(updatedEvents);
+                });
             })
             .catch(error => {
                 console.log(error);
-                this.setState({isLoading: false});
+                this.setState({ isLoading: false });
             });
     }
 
@@ -39,62 +74,56 @@ class EventsForm extends React.Component {
                 {this.props.thisEvents && this.props.thisEvents.length > 0 ? (
                     // Используем map для вывода каждого объекта
                     this.props.thisEvents.map(event => (
-                        <div className={EventsFormCss.events}>
+                        <div key={event.eventID} className={EventsFormCss.events}>
                             <div className={EventsFormCss.eventListContainer}>
-                                <div className={EventsFormCss.eventItem} key={event.eventID}>
+                                <div className={EventsFormCss.eventItem}>
                                     {/* Проверяем каждое поле перед выводом */}
                                     <div className={EventsFormCss.imageContainer}>
                                         {event.image ?
-                                        <img className={EventsFormCss.eventsImage} src={event.image}
-                                             alt={event.image}/> : ""}
+                                            <img className={EventsFormCss.eventsImage} src={event.image}
+                                                 alt={event.image}/> : ""}
                                     </div>
                                     <div className={EventsFormCss.textContainer}>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>Event ID:</strong> {event.eventID ? event.eventID : ""}
+                                            <strong>Тип спорта:</strong> {event.sportTypeID ? event.sportTypeID : ""}
+                                        </div>
+                                        {/* Здесь вставляем запрос для получения имени организатора */}
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Организатор:</strong> {event.orgName}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>Sport Type
-                                                ID:</strong> {event.sportTypeID ? event.sportTypeID : ""}
+                                            <strong>Название:</strong> {event.nameEvent ? event.nameEvent : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>Org ID:</strong> {event.orgID ? event.orgID : ""}
+                                            <strong>Страна:</strong> {event.country ? event.country : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>nameEvent:</strong> {event.nameEvent ? event.nameEvent : ""}
+                                            <strong>Город:</strong> {event.city ? event.city : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>country:</strong> {event.country ? event.country : ""}
+                                            <strong>Описание:</strong> {event.descriptionEvent ? event.descriptionEvent : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>city:</strong> {event.city ? event.city : ""}
+                                            <strong>Пол:</strong> {event.gender ? event.gender : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>descriptionEvent:</strong> {event.descriptionEvent ? event.descriptionEvent : ""}
-                                        </div>
-                                        <div className={EventsFormCss.eventField}>
-                                            <strong>gender:</strong> {event.gender ? event.gender : ""}
-                                        </div>
-                                        <div className={EventsFormCss.eventField}>
-                                            <strong>minAge:</strong> {event.minAge ? event.minAge : ""}
+                                            <strong>Возраст от:</strong> {event.minAge ? event.minAge : ""}
                                         </div>
 
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>maxAge:</strong> {event.maxAge ? event.maxAge : ""}
+                                            <strong>до:</strong> {event.maxAge ? event.maxAge : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>minAge:</strong> {event.minAge ? event.minAge : ""}
+                                            <strong>Дата начала:</strong> {event.dateStart ? event.dateStart : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>dateStart:</strong> {event.dateStart ? event.dateStart : ""}
+                                            <strong>Дата окончания:</strong> {event.dateFinish ? event.dateFinish : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>dateFinish:</strong> {event.dateFinish ? event.dateFinish : ""}
+                                            <strong>Количество игроков в группе:</strong> {event.cntPlayersInGroup ? event.cntPlayersInGroup : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>cntPlayersInGroup:</strong> {event.cntPlayersInGroup ? event.cntPlayersInGroup : ""}
-                                        </div>
-                                        <div className={EventsFormCss.eventField}>
-                                            <strong>rating:</strong>
+                                            <strong>Рейтинг:</strong>
                                             {event.rating ? event.rating : ""}
                                         </div>
                                     </div>

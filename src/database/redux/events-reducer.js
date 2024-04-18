@@ -3,7 +3,7 @@ let initialState = {
     sportNameFromBD: [
         {id: 1, name: 'Баскетбол'}
     ],
-    storeEvents: {eventID: "", portTypeID: "", orgID: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
+    storeEvents: {eventID: "", portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
 }
 
 const eventsReducer = (state = initialState, action) => {
