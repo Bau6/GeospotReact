@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/database/redux/locationUserReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/redux-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/users-page-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/users-page-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/events/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/events/eventsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +133,7 @@
       <workItem from="1711791841038" duration="75471000" />
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
-      <workItem from="1713628857019" duration="6378000" />
+      <workItem from="1713628857019" duration="8302000" />
     </task>
     <servers />
   </component>

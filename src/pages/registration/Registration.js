@@ -19,7 +19,7 @@ class Registration extends Component {
             initialCheckedState: [],
             refs: [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()],
             checked: [],
-            refsArray: this.props.sportNameFromBD.map(() => React.createRef())
+            // refsArray: this.props.sportNameFromBD.map(() => React.createRef())
         };
     }
 
@@ -35,18 +35,18 @@ class Registration extends Component {
             return { refs: newRefs };
         });
 
-            axios.get('http://localhost:3003/output-table', {
-                params: {
-                    nameTable: TABLE_SPORTS,
-                    params: {}
-                }
-            })
-                .then(response => {
-                    this.props.loadSports(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            // axios.get('http://localhost:3003/output-table', {
+            //     params: {
+            //         nameTable: TABLE_SPORTS,
+            //         params: {}
+            //     }
+            // })
+            //     .then(response => {
+            //         this.props.loadSports(response.data);
+            //     })
+            //     .catch(error => {
+            //         console.log(error);
+            //     });
     }
 
     handleChange = (e) => {
@@ -88,9 +88,9 @@ class Registration extends Component {
                 patronymic: this.props.userExampleInfo.patronymicUser,
                 birthday: this.props.userExampleInfo.dateOfBirth
             };
-            for (let i = 0; i < this.props.sportNameFromBD.length; i++) {
-                test1.checkedTypeSport[i] = { id: i + 1, status: this.state.refsArray[i].current.value };
-            }
+            // for (let i = 0; i < this.props.sportNameFromBD.length; i++) {
+            //     test1.checkedTypeSport[i] = { id: i + 1, status: this.state.refsArray[i].current.value };
+            // }
             this.props.addData(test1);
             axios.post("http://localhost:3003/add-record", {
                 nameTable: USERS,
@@ -99,7 +99,8 @@ class Registration extends Component {
                 .then(response => {
                     alert("Вы успешно зарегистрированы!");
                     this.props.loginUser();
-                    this.props.setSession(true);
+                    this.props.setSession({email: addDataToDB.email, name: addDataToDB.surname + " " + addDataToDB.name + " " + addDataToDB.patronymic});
+                    this.props.myUserId("user");
                     this.setState(
                         { redirectToProfile: true });
                 })
@@ -160,18 +161,18 @@ class Registration extends Component {
                         {inputElementData}
                     </div>
                 </div>
-                <div>
-                    {sportNameFromBD && sportNameFromBD.map((item, index) => (
-                        <div key={index} className={RegistrationCss.checkboxReg}>
-                            <label className={RegistrationCss.nameLabelInputButtonReg}>{item.name}</label>
-                            <input ref={refsArray[index]} type="checkbox" checked={checked[index]}
-                                   onChange={() => this.changeChecked(index)}/>
-                            {checked[index] ? <DropDownMenuReg index={index}
-                                                               onDropdownSelect={(eventKey) => this.handleDropdownSelect(eventKey, index)}/> :
-                                <div> {""} </div>}
-                        </div>
-                    ))}
-                </div>
+                {/*<div>*/}
+                {/*    {sportNameFromBD && sportNameFromBD.map((item, index) => (*/}
+                {/*        <div key={index} className={RegistrationCss.checkboxReg}>*/}
+                {/*            <label className={RegistrationCss.nameLabelInputButtonReg}>{item.name}</label>*/}
+                {/*            <input ref={refsArray[index]} type="checkbox" checked={checked[index]}*/}
+                {/*                   onChange={() => this.changeChecked(index)}/>*/}
+                {/*            {checked[index] ? <DropDownMenuReg index={index}*/}
+                {/*                                               onDropdownSelect={(eventKey) => this.handleDropdownSelect(eventKey, index)}/> :*/}
+                {/*                <div> {""} </div>}*/}
+                {/*        </div>*/}
+                {/*    ))}*/}
+                {/*</div>*/}
                 <div>
                     <AvatarUpload/>
                     {/*<NavLink onClick={this.onAddData} className={RegistrationCss.nameButtonReg}*/}
