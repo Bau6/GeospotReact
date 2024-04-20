@@ -11,6 +11,18 @@ function queryDB(query, params, callback) {
         });
     });
 }
+function getData(params) {
+    return new Promise((resolve, reject) => {
+        let query = "SELECT * FROM ??";
+        connection.query(query, [params], (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+}
 
 function selectEvents(params, res) {
     let query = "SELECT * FROM ??";
@@ -19,6 +31,7 @@ function selectEvents(params, res) {
             console.log(err);
         } else {
             let promises = [];
+
             result.forEach(row => {
                 let orgID = row.orgID;
                 let sportTypeID = row.sportTypeID;
@@ -43,9 +56,23 @@ function selectEvents(params, res) {
 
                 promises.push(promiseOrg, promiseSport, promiseCity, promiseCountry);
             });
+            // Создаем промис для получения данных о спортах для всех записей
+            let resultData = { events: result }; // Создаем объект, содержащий массив событий
 
+            // Создаем промис для получения данных о спортах для всех записей
+            let promiseAllSports = getData(params.sport)
+                .then(resultSports => {
+                    resultData.sports = resultSports; // Добавляем массив resultSports к объекту resultData
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).json({ error: 'Ошибка при запросе к базе данных' });
+                });
+
+            promises.push(promiseAllSports);
             Promise.all(promises).then(() => {
-                res.json(result);
+                res.json(resultData);
+                // res.json(result);
             }).catch(error => {
                 console.log(error);
                 res.status(500).json({ error: 'Ошибка при запросе к базе данных' });

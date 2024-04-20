@@ -4,7 +4,7 @@ import DropDownMenuEvent from "./DropDownMenuEvent";
 
 const mapStateToProps = (state) => {
     return {
-        sports: state.eventsReducer.sports
+        sports: state.eventsReducer.storeEvents.sports
     }
 }
 

@@ -1,18 +1,15 @@
 import {connect} from "react-redux";
 import EventsForm from "./eventsForm";
-import {loadEvents, loadSports} from "../../database/redux/events-reducer";
+import {loadEvents} from "../../database/redux/events-reducer";
 const mapStateToProps = (state) => {
     return {
-        thisEvents: state.eventsReducer.storeEvents
+        thisEvents: state.eventsReducer.storeEvents.events
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         loadEvents: (text) => {
             dispatch(loadEvents(text));
-        },
-        loadSports: (text) => {
-            dispatch(loadSports(text));
         }
     }
 }

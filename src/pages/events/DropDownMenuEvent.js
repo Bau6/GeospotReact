@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-// import axios from "axios";
 class DropDownMenuEvent extends React.Component {
     constructor(props) {
         super(props);
@@ -8,14 +7,9 @@ class DropDownMenuEvent extends React.Component {
             selectedValue: ''
         };
     }
-    componentDidMount() {
-        // console.log(this.props + " 111")
-    }
     handleDropdownSelect = (eventKey) => {
         this.setState({ selectedValue: eventKey });
-        // console.log(this.props.sports)
     };
-
     render() {
         return (
             <Dropdown>

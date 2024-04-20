@@ -1,11 +1,7 @@
 import EventsFormCss from "./eventsForm.module.css";
-// import AuthorizationCss from "../authorization/AuthorizationCss.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
-import axios from "axios";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
-
-const TABLE = "events";
 
 class EventsForm extends React.Component {
     constructor(props) {
@@ -13,16 +9,6 @@ class EventsForm extends React.Component {
         this.state = {
             thisEventsTest: {}
         };
-    }
-
-    componentDidMount() {
-        axios.get('http://localhost:3003/events-table')
-            .then(responseEvents => {
-                this.props.loadEvents(responseEvents.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
     }
 
     render() {

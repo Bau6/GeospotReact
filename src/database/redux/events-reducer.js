@@ -1,8 +1,6 @@
 const LOAD_EVENTS = "LOAD_EVENTS";
-const LOAD_SPORTS = "LOAD_SPORTS";
 const CLEAR = "CLEAR";
 let initialState = {
-    sports: {},
     storeEvents: {id: 1, sport: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
 }
 
@@ -10,12 +8,9 @@ const eventsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_EVENTS:
             return {...state, storeEvents: action.payload}
-        case LOAD_SPORTS:
-            return {...state,sports: action.sportsLoad}
         case CLEAR:
             return {
                 ...state,
-                sports: {},
                 storeEvents: {id: 1, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
             };
         default:
@@ -25,10 +20,6 @@ const eventsReducer = (state = initialState, action) => {
 export const loadEvents = (text) => ({
     type: LOAD_EVENTS,
     payload: text
-});
-export const loadSports = (text) => ({
-    type: LOAD_SPORTS,
-    sportsLoad: text
 });
 export const clearEvents = () => ({
     type: CLEAR
