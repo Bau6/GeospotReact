@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-// import {loadSports} from "../../database/redux/events-reducer";
+import {loadSports} from "../../database/redux/events-reducer";
 import DropDownMenuEvent from "./DropDownMenuEvent";
 
 const mapStateToProps = (state) => {
@@ -10,7 +10,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        loadSports: (text) => {
+            dispatch(loadSports(text));
+        }
     }
 }
 

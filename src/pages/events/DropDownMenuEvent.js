@@ -9,6 +9,7 @@ class DropDownMenuEvent extends React.Component {
     }
     handleDropdownSelect = (eventKey) => {
         this.setState({ selectedValue: eventKey });
+        this.props.loadSports(eventKey);
     };
     render() {
         return (
