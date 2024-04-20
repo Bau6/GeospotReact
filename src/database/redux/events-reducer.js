@@ -2,11 +2,8 @@ const LOAD_EVENTS = "LOAD_EVENTS";
 const LOAD_SPORTS = "LOAD_SPORTS";
 const CLEAR = "CLEAR";
 let initialState = {
-    sportNameFromBD: [
-        {id: 1, name: 'Баскетбол'}
-    ],
     sports: {},
-    storeEvents: {id: 1, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
+    storeEvents: {id: 1, sport: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
 }
 
 const eventsReducer = (state = initialState, action) => {
@@ -18,9 +15,6 @@ const eventsReducer = (state = initialState, action) => {
         case CLEAR:
             return {
                 ...state,
-                sportNameFromBD: [
-                    {id: 1, name: 'Баскетбол'}
-                ],
                 sports: {},
                 storeEvents: {id: 1, portTypeID: "", orgID: "", orgName: "", nameEvent: "", country: "", city: "", descriptionEvent: "", gender: "", minAge: "", maxAge: "", dateStart: "", dateFinish: "", cntPlayersInGroup: "", rating: "", image: ""}
             };

@@ -12,7 +12,7 @@ const DEFAULT_NEW_NEWS = 'DEFAULT_NEW_NEWS';
 const UPDATE_NEW_LIST = 'UPDATE_NEW_LIST';
 const CLEAR = "CLEAR";
 
-let initialState = {
+const initialState = {
     newsList: [{id: 0, nameEvent: "net"}],
     currentPage: 1,
     newsPerPage: 2,
@@ -47,13 +47,7 @@ const newsReducer = (state = initialState, action) => {
         case UPDATE_NEW_LIST:
             return {...state,newsList: action.text}
         case CLEAR:
-            return {...state,
-                newsList: [{id: 0, nameEvent: "net"}],
-                currentPage: 1,
-                newsPerPage: 2,
-                defaultNewNews: {name: "", date: "", country: "", city: "", author: "", description: "", organizer: "", status: 2},
-                newNews: {name: "", date: "", country: "", city: "", author: "", description: "", organizer: "", status: 2}
-            }
+            return {...initialState, newsList: initialState.newsList.slice().map(item=> ({...item})), newNews: {...initialState.newNews}}
         default:
             return state;
     }

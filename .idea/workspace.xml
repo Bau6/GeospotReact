@@ -5,14 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/selectEvents.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/init.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/redux/http.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/redux/relation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/NodeJS/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/include/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/include/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/redux/events-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/events-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/events/DropDownMenuEvent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/DropDownMenuEvent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/events/DropDownMenuEventContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/DropDownMenuEventContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/events/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/news-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/news-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/redux-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/eventsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/events/eventsForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/events/eventsFormContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsFormContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/first_page/first_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/first_page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +98,7 @@
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\events" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="Node.js.test.js">
     <configuration name="test.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="test.js" working-dir="$PROJECT_DIR$/back/NodeJS">
       <method v="2" />
     </configuration>
@@ -137,7 +144,7 @@
       <workItem from="1711724951334" duration="18275000" />
       <workItem from="1711791841038" duration="75471000" />
       <workItem from="1712237116445" duration="10710000" />
-      <workItem from="1712251304023" duration="136670000" />
+      <workItem from="1712251304023" duration="156389000" />
     </task>
     <servers />
   </component>

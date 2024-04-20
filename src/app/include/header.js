@@ -17,20 +17,19 @@ const Header = (props) => {
     }
 
     const handleNews = () => {
-        // if (window.location == 'http://localhost:3000/pages/first_page/first_page.js'){window.location.reload();}
+        if (window.location == 'http://localhost:3000/pages/first_page/first_page.js'){window.location.reload();}
         // props.clearNews();
         props.clearEvents();
-        if (window.location == 'http://localhost:3000/pages/first_page/first_page.js'){window.location.href = "/../../pages/first_page/first_page.js";}
         // window.location.href = "/../../pages/first_page/first_page.js";
     }
 
     const handleEvents = () => {
         props.clearNews();
-        // if (window.location == 'http://localhost:3000/pages/events/events.js'){window.location.reload();}
+        if (window.location == 'http://localhost:3000/pages/events/events.js'){window.location.reload();}
         // alert(window.location)
         // window.location.reload();
         // props.clearEvents();
-        if (window.location == 'http://localhost:3000/pages/events/events.js'){window.location.href = "/../../pages/events/events.js";}
+        // if (window.location == 'http://localhost:3000/pages/events/events.js'){window.location.reload();}
         // window.location.href = "/../../pages/events/events.js";
     }
     const handleLogin = () => {

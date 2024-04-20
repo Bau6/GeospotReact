@@ -12,14 +12,15 @@ class FirstPage extends React.Component {
     }
 
     componentDidMount() {
+
         axios.get('http://localhost:3003/output-table', {
             params: {
                 nameTable: 'news',
                 params: {}
             }
         })
-            .then(response => {
-                this.props.loadNews(response.data);
+            .then(responseNews => {
+                this.props.loadNews(responseNews.data);
                 this.setState({ isLoading: false });
             })
             .catch(error => {
@@ -29,7 +30,7 @@ class FirstPage extends React.Component {
     }
 
     render() {
-        const { newsList, currentPage, newsPerPage, setCurrentPage } = this.props;
+        const { newsList, currentPage, newsPerPage } = this.props;
         const indexOfLastNews = currentPage * newsPerPage;
         const indexOfFirstNews = indexOfLastNews - newsPerPage;
         const newListFilter = newsList.filter(newsList => newsList.status===1);
@@ -68,11 +69,11 @@ class FirstPage extends React.Component {
                 ))}
                 <div className={FirstPageCss.pagination}>
                     {showPreviousButton && (
-                        <button onClick={() => setCurrentPage(currentPage - 1)}>Страница {currentPage - 1}</button>
+                        <button onClick={() => this.props.setCurrentPage(currentPage - 1)}>Страница {currentPage - 1}</button>
                     )}
                     <span className={FirstPageCss.pageNumber}>Страница {currentPage}</span>
                     {showNextButton && (
-                        <button onClick={() => setCurrentPage(currentPage + 1)}>Страница {currentPage + 1}</button>
+                        <button onClick={() => this.props.setCurrentPage(currentPage + 1)}>Страница {currentPage + 1}</button>
                     )}
                 </div>
             </div>

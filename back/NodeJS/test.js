@@ -11,6 +11,7 @@ const {selectById} = require("./selectById");
 const {checkLoginPass} = require("./checkLoginPass");
 const {myRole} = require("./roleUser");
 const {addNew} = require("./addNews");
+const {selectEvents} = require("./selectEvents");
 
 app.use(cors());
 const port = 3003;
@@ -100,6 +101,14 @@ function addNews() {
         addNew(nameTable, params, res);
     });
 }
+function selectMyEvents() {
+    app.get('/events-table', (req, res) => {
+        // const { params } = req.query;
+        const params = { events: "events", user: "users", sport: "sporttype", city: "cities", country: "countries"};
+        selectEvents(params, res);
+    });
+}
+selectMyEvents();
 addNews();
 usersRolesTable();
 checkLoginPassReturnData();

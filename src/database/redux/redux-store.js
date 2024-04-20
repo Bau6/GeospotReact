@@ -1,8 +1,5 @@
 import {combineReducers} from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-// import { persistStore, persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-// import eventsInfoReducer from "./eventsInfo-reducer";
 import infoUsersReducer from "./infoUsers-reducer";
 import usersReducer from "./users-reducer";
 import UsersPageReducer from "./users-page-reducer";
@@ -10,11 +7,8 @@ import AuthReducer from "./authActions";
 import sessionReducer from "./sessionUser";
 import newsReducer from "./news-reducer";
 import eventsReducer from "./events-reducer";
-
-// Получаем данные из LocalStorage
 const persistedSessionState = localStorage.getItem('sessionState');
 const initialState = persistedSessionState ? JSON.parse(persistedSessionState) : {};
-
 let reducers = combineReducers({
     infoUsers: infoUsersReducer,
     users: usersReducer,
@@ -29,16 +23,14 @@ const filteredInitialState = {
     auth: initialState.auth,
     sessionUser: initialState.sessionUser
 };
-
 const store = configureStore({
     reducer: reducers,
     preloadedState: filteredInitialState
 });
-
 // Сохраняем только необходимые данные о сессии в localStorage
 store.subscribe(() => {
+    console.log(store.getState());
     const { auth, sessionUser } = store.getState();
     localStorage.setItem('sessionState', JSON.stringify({ auth, sessionUser }));
 });
-
 export default store;
