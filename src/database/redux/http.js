@@ -1,7 +1,7 @@
 import axios from "axios";
 import relation from "./relation";
-import * as infologActions from "./infolog";
-import * as userActions from "./user";
+// import * as infologActions from "./infolog";
+// import * as userActions from "./user";
 export const ON_BEFORE = "_BEFORE";
 export const ON_AFTER = "_AFTER";
 export const ON_ERROR = "_ERROR";

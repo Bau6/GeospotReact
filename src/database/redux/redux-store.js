@@ -7,6 +7,7 @@ import AuthReducer from "./authActions";
 import sessionReducer from "./sessionUser";
 import newsReducer from "./news-reducer";
 import eventsReducer from "./events-reducer";
+import locationUserReducer from "./locationUserReducer";
 const persistedSessionState = localStorage.getItem('sessionState');
 const initialState = persistedSessionState ? JSON.parse(persistedSessionState) : {};
 let reducers = combineReducers({
@@ -16,7 +17,8 @@ let reducers = combineReducers({
     auth: AuthReducer,
     sessionUser: sessionReducer,
     newsReducer: newsReducer,
-    eventsReducer: eventsReducer
+    eventsReducer: eventsReducer,
+    locationUser: locationUserReducer
 });
 // Фильтруем начальное состояние, оставляем только необходимые ключи
 const filteredInitialState = {

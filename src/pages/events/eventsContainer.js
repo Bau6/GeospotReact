@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import Events from "./events";
-import {loadEvents} from "../../database/redux/events-reducer";
+// import {loadEvents} from "../../database/redux/events-reducer";
+import {UserLocation} from "../../database/redux/locationUserReducer";
 const mapStateToProps = (state) => {
     return {
         sports: state.eventsReducer.sports
@@ -8,8 +9,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadEvents: (text) => {
-            dispatch(loadEvents(text));
+        UserLocation: (text) => {
+            dispatch(UserLocation(text))
         }
     }
 }

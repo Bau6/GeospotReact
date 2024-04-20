@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/client';
 // import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
 import App from './App';
-// import {initStore} from "../init";
+// import {initStore} from "./init";
 // const initialState = {
 //     newsList: [{id: 0, nameEvent: "net"}],
 //     currentPage: 1,

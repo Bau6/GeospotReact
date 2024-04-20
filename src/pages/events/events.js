@@ -3,17 +3,11 @@ import ChooseDataEvent from "./ChooseDataEvent";
 import EventsFormContainer from "./eventsFormContainer";
 import React from "react";
 import DropDownMenuEventContainer from "./DropDownMenuEventContainer";
-import axios from "axios";
+// import axios from "axios";
 
 class Events extends React.Component {
     componentDidMount() {
-        axios.get('http://localhost:3003/events-table')
-            .then(responseEvents => {
-                this.props.loadEvents(responseEvents.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        this.props.UserLocation(window.location.href);
     }
     render() {
         return (
