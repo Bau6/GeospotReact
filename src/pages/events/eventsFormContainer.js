@@ -4,7 +4,8 @@ import {loadEvents} from "../../database/redux/events-reducer";
 const mapStateToProps = (state) => {
     return {
         thisEvents: state.eventsReducer.storeEvents.events,
-        chooseSport: state.eventsReducer.sports
+        chooseSport: state.eventsReducer.sports,
+        data: state.eventsReducer.data,
     }
 }
 const mapDispatchToProps = (dispatch) => {

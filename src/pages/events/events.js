@@ -15,7 +15,6 @@ class Events extends React.Component {
                     <div className={eventsCss.fixedContent}>
                         <DropDownMenuEventContainer />
                         <ChooseDataEventContainer/>
-                        <button className={eventsCss.FindEvent}>Поиск</button>
                     </div>
                     <div className={eventsCss.fixedEvents}>
                         <div>Мероприятия</div>

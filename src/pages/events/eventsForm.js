@@ -17,68 +17,86 @@ class EventsForm extends React.Component {
                 {/* Проверяем наличие thisEvents и его длину */}
                 {this.props.thisEvents && this.props.thisEvents.length > 0 ? (
                     // Используем map для вывода каждого объекта
-                    this.props.thisEvents.map(event => (
-                        this.props.chooseSport === "" || event.sport === this.props.chooseSport ? (
-                            <div key={event.id} className={EventsFormCss.eventListContainer}>
-                                {/* Проверяем каждое поле перед выводом */}
-                                <div className={EventsFormCss.imageContainer}>
-                                    {event.image ?
-                                        <img className={EventsFormCss.eventsImage} src={event.image}
-                                             alt={event.image}/> : ""}
-                                </div>
-                                <div className={EventsFormCss.textContainer}>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Тип спорта:</strong> {event.sport ? event.sport : ""}
+                    this.props.thisEvents.map(event => {
+                        // Проверяем условия фильтрации по выбранной дате
+                        const dateStart = new Date(event.dateStart);
+                        const dateEnd = new Date(event.dateFinish);
+                        const currentDate = new Date();
+                        dateStart.setHours(0, 0, 0, 0);
+                        dateEnd.setHours(0, 0, 0, 0);
+                        currentDate.setHours(0, 0, 0, 0);
+                        console.log(dateStart + ":start " + dateEnd + ":end " + currentDate);
+// Сравниваем только по году, месяцу и дню
+                        if ((this.props.chooseSport === "" || event.sport === this.props.chooseSport) &&
+                            ((dateStart.getTime() > currentDate.getTime() && dateEnd.getTime() > currentDate.getTime() && this.props.data === 1) || // Предстоящие
+                                (dateEnd.getTime() < currentDate.getTime() && this.props.data === 2) || // Прошедшие
+                                (dateStart.getTime() <= currentDate.getTime() && dateEnd.getTime() >= currentDate.getTime() && this.props.data === 3) || // Идущие
+                                (this.props.data === 0))) { // Все
+                            return (
+                                <div key={event.id} className={EventsFormCss.eventListContainer}>
+                                    {/* Проверяем каждое поле перед выводом */}
+                                    <div className={EventsFormCss.imageContainer}>
+                                        {event.image ?
+                                            <img className={EventsFormCss.eventsImage} src={event.image}
+                                                 alt={event.image}/> : ""}
                                     </div>
-                                    {/* Здесь вставляем запрос для получения имени организатора */}
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Организатор:</strong> {event.orgName}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Название:</strong> {event.nameEvent ? event.nameEvent : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Страна:</strong> {event.country ? event.country : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Город:</strong> {event.city ? event.city : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Описание:</strong> {event.descriptionEvent ? event.descriptionEvent : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Пол:</strong> {event.gender ? event.gender : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Возраст от:</strong> {event.minAge ? event.minAge : ""}
-                                    </div>
+                                    <div className={EventsFormCss.textContainer}>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Тип спорта:</strong> {event.sport ? event.sport : ""}
+                                        </div>
+                                        {/* Здесь вставляем запрос для получения имени организатора */}
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Организатор:</strong> {event.orgName}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Название:</strong> {event.nameEvent ? event.nameEvent : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Страна:</strong> {event.country ? event.country : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Город:</strong> {event.city ? event.city : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Описание:</strong> {event.descriptionEvent ? event.descriptionEvent : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Пол:</strong> {event.gender ? event.gender : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Возраст от:</strong> {event.minAge ? event.minAge : ""}
+                                        </div>
 
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>до:</strong> {event.maxAge ? event.maxAge : ""}
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>до:</strong> {event.maxAge ? event.maxAge : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Дата
+                                                начала:</strong> {event.dateStart ? dateStrISO(event.dateStart, DATE_FORMAT_DATE) : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Дата
+                                                окончания:</strong> {event.dateFinish ? dateStrISO(event.dateFinish, DATE_FORMAT_DATE) : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Количество игроков в
+                                                группе:</strong> {event.cntPlayersInGroup ? event.cntPlayersInGroup : ""}
+                                        </div>
+                                        <div className={EventsFormCss.eventField}>
+                                            <strong>Рейтинг:</strong>
+                                            {event.rating ? event.rating : ""}
+                                        </div>
                                     </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Дата
-                                            начала:</strong> {event.dateStart ? dateStrISO(event.dateStart, DATE_FORMAT_DATE) : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Дата
-                                            окончания:</strong> {event.dateFinish ? dateStrISO(event.dateFinish, DATE_FORMAT_DATE) : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Количество игроков в
-                                            группе:</strong> {event.cntPlayersInGroup ? event.cntPlayersInGroup : ""}
-                                    </div>
-                                    <div className={EventsFormCss.eventField}>
-                                        <strong>Рейтинг:</strong>
-                                        {event.rating ? event.rating : ""}
-                                    </div>
+                                    {/* Продолжайте аналогично для остальных полей */}
+                                    <NavLink to="/../pages/event/event.js">Просмотр</NavLink>
                                 </div>
-                                {/* Продолжайте аналогично для остальных полей */}
-                                <NavLink to="/../pages/event/event.js">Просмотр</NavLink>
-                            </div>
-                        ) : null))
+                            )
+                        } else {
+                            return null; // Если не соответствует условиям фильтрации, возвращаем null
+                        }
+                    })
                 ) : (
-                    <div>No events found</div>
+                    <div>Мероприятия не найдены</div>
                 )}
             </div>
         )

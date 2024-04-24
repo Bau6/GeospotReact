@@ -1,11 +1,9 @@
 import {addDays} from "date-fns";
-// import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 
 const LOAD_EVENTS = "LOAD_EVENTS";
 const LOAD_SPORTS = "LOAD_SPORTS";
 const CLEAR = "CLEAR";
-const LOAD_END_DATA = "LOAD_END_DATA";
-const LOAD_START_DATA = "LOAD_START_DATA";
+const LOAD_DATA = "LOAD_DATA";
 let initialState = {
     sports: "",
     storeEvents: {
@@ -26,10 +24,7 @@ let initialState = {
         rating: "",
         image: ""
     },
-    data: {
-        startData: new Date().toISOString(),
-        endData: addDays(new Date(), 7).toISOString(),
-    },
+    data: 0,
 }
 
 const eventsReducer = (state = initialState, action) => {
@@ -38,22 +33,12 @@ const eventsReducer = (state = initialState, action) => {
             return {...state, storeEvents: action.payload}
         case LOAD_SPORTS:
             return {...state, sports: action.sportsLoad}
-        case LOAD_START_DATA:
+        case LOAD_DATA:
             return {
                 ...state,
-                data: {
-                    ...state.data,
-                    startData: action.startDate // предполагается, что action содержит endDate
-                }
+                data:  action.startDate // предполагается, что action содержит endDate
             };
-        case LOAD_END_DATA:
-            return {
-                ...state,
-                data: {
-                    ...state.data,
-                    endData: action.endDate // предполагается, что action содержит endDate
-                }
-            };
+
         case CLEAR:
             return {
                 ...state,
@@ -77,8 +62,8 @@ const eventsReducer = (state = initialState, action) => {
                     image: ""
                 },
                 data: {
-                    startData: new Date().toISOString(),
-                    endData: addDays(new Date(), 7).toISOString(),
+                    ...state,
+                    data:  0,
                 },
             };
         default:
@@ -93,13 +78,9 @@ export const loadSports = (text) => ({
     type: LOAD_SPORTS,
     sportsLoad: text
 });
-export const loadStartData = (text) => ({
-    type: LOAD_START_DATA,
+export const loadData = (text) => ({
+    type: LOAD_DATA,
     startDate: text
-});
-export const loadEndData = (text) => ({
-    type: LOAD_END_DATA,
-    endDate: text
 });
 export const clearEvents = () => ({
     type: CLEAR
