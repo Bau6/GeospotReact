@@ -12,7 +12,7 @@ import {
 } from "../../database/redux/infoUsers-reducer";
 import Registration from "./Registration";
 import {connect} from "react-redux";
-import {login, logout} from "../../database/redux/authActions";
+import {login, logout, registrationsLoadDataUser} from "../../database/redux/authActions";
 import {
     clearSessionActionCreator,
     setRoleActionCreator,
@@ -28,7 +28,7 @@ let mapStateToProps = (state) => {
         userExampleInfo: state.infoUsers.userExampleInfo,
         myInf: state.infoUsers.userExampleInfo,
         isLoggedIn: state.auth.isLoggedIn,
-        isAuthenticated: state.sessionUser.isAuthenticated
+        isAuthenticated: state.sessionUser.isAuthenticated,
     }
 }
 
@@ -72,6 +72,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         myUserId: (role) => {
             dispatch(setRoleActionCreator(role));
+        },
+        registrationsLoadDataUser: (role) => {
+            dispatch(registrationsLoadDataUser(role));
         }
     }
 }

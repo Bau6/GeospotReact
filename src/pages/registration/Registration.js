@@ -8,13 +8,13 @@ import AvatarUpload from "../avatar/avatar";
 import {validationsReg} from "../../app/include/validations";
 import React, {Component} from 'react';
 import axios from "axios";
+import {registrationsLoadDataUser} from "../../database/redux/authActions";
 const USERS = "users";
 const TABLE_SPORTS = "sporttype";
 class Registration extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirectToProfile: false,
             date: '',
             initialCheckedState: [],
             refs: [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()],
@@ -92,25 +92,7 @@ class Registration extends Component {
             //     test1.checkedTypeSport[i] = { id: i + 1, status: this.state.refsArray[i].current.value };
             // }
             this.props.addData(test1);
-            axios.post("http://localhost:3003/add-record", {
-                nameTable: USERS,
-                params: addDataToDB
-            })
-                .then(response => {
-                    alert("Вы успешно зарегистрированы!");
-                    this.props.loginUser();
-                    this.props.setSession({email: addDataToDB.email, name: addDataToDB.surname + " " + addDataToDB.name + " " + addDataToDB.patronymic});
-                    this.props.myUserId("user");
-                    this.setState(
-                        { redirectToProfile: true });
-                })
-                .catch(error => {
-                    if (error.response.data.error) {
-                        alert(error.response.data.error);
-                    } else {
-                        alert("An error occurred");
-                    }
-                });
+            this.props.registrationsLoadDataUser(addDataToDB);
         } else {
             alert(errorMessage);
             event.preventDefault();
@@ -140,9 +122,6 @@ class Registration extends Component {
                        value={date} onChange={this.handleChange} placeholder="dd.mm.yyyy"/>
             </div>
         ));
-        if (this.state.redirectToProfile) {
-            return <Navigate to="/../../pages/profile/Profile.js" />;
-        }
         return (
             <div>
                 <div>

@@ -104,4 +104,27 @@ function getUserRole(userId, dispatch) {
             console.log(error);
         });
 }
+
+export const registrationsLoadDataUser = (addDataToDB) => {
+    return (dispatch) => {
+        axios.post("http://localhost:3003/add-record", {
+            nameTable: "users",
+            params: addDataToDB
+        })
+            .then(response => {
+                alert("Вы успешно зарегистрированы!");
+                dispatch(login());
+                dispatch(setSessionActionCreator({email: addDataToDB.email, name: addDataToDB.surname + " " + addDataToDB.name + " " + addDataToDB.patronymic}));
+                dispatch(setRoleActionCreator("user"));
+                window.location.href = 'http://localhost:3000/pages/profile/profile.js';
+            })
+            .catch(error => {
+                if (error.response.data.error) {
+                    alert(error.response.data.error);
+                } else {
+                    alert("An error occurred");
+                }
+            });
+    }
+}
 export default AuthReducer;
