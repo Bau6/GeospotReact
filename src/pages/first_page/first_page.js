@@ -1,6 +1,6 @@
 import React from "react";
 import FirstPageCss from "./first_page.module.css"
-import axios from "axios";
+// import axios from "axios";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 
 class FirstPage extends React.Component {
@@ -12,21 +12,7 @@ class FirstPage extends React.Component {
     }
 
     componentDidMount() {
-
-        axios.get('http://localhost:3003/output-table', {
-            params: {
-                nameTable: 'news',
-                params: {}
-            }
-        })
-            .then(responseNews => {
-                this.props.loadNews(responseNews.data);
-                this.setState({ isLoading: false });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ isLoading: false });
-            });
+        this.props.UserLocation(window.location.href);
     }
 
     render() {

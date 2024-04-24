@@ -1,122 +1,108 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import "./changeInfProfile.css";
 import RegistrationCss from "../registration/RegistrationCss.module.css";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 import FormFields from "./test";
-const ProfilePage = (props) => {
-    const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество", "", "", "Город", "Страна"];
-    // const labelData = ["Дата рождения"];
-    const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
-    const [editMode, setEditMode] = useState(false);
-    const [users, setUsers] = useState([]);
-
-    const params = props.sessionUser.userID.id;
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:3003/output-one-record", {
-                    params: {
-                        nameTable: 'users',
-                        params:  params  // Параметры, если необходимо
-                    }
-                });
-                setUsers(response.data);
-                // console.log(users);
-            } catch (error) {
-                console.error(error);
-            }
+class ProfilePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество", "", "", "Город", "Страна"];
+        // this.labelData = ["Дата рождения"];
+        this.reffs = {};
+        this.labels.forEach(label => {
+            this.reffs[label] = React.createRef();
+        });
+        this.state = {
+            editMode: false,
+            users: []
         };
-        fetchData();
-    }, []);
-
-
-
-    const handleCancelClick = () => {
-        setEditMode(false);
+    }
+    componentDidMount() {
+        this.props.UserLocation(window.location.href, this.props.sessionUser.userID.id);
+    }
+    handleCancelClick = () => {
+        this.setState({ editMode: false });
     };
 
-    const handleEditClick = () => {
-        setEditMode(true);
-            props.onEmailChange(users.email);
-            props.onNameChange(users.name);
-            props.onSurnameChange(users.surname);
-            props.onPatronymicChange(users.patronymic);
-
+    handleEditClick = () => {
+        this.setState({ editMode: true });
+        this.props.onEmailChange(this.state.users.email);
+        this.props.onNameChange(this.state.users.name);
+        this.props.onSurnameChange(this.state.users.surname);
+        this.props.onPatronymicChange(this.state.users.patronymic);
     };
 
-    const countryChange = () => {
-        let newText = refs[8].current.value;
-        props.onCountryChange(newText);
-    }
+    countryChange = () => {
+        let newText = this.reffs[8].current.value;
+        this.props.onCountryChange(newText);
+    };
 
-    const cityChange = () => {
-        let newText = refs[9].current.value;
-        props.onCityChange(newText);
-    }
+    cityChange = () => {
+        let newText = this.reffs[9].current.value;
+        this.props.onCityChange(newText);
+    };
 
-    return (
-        <div>
-            {editMode ? (
-                <div>
-                    <div>
+    render() {
+        console.log(this.props.userInf);
+        return (
+            <div>
+                {this.state.editMode ? (
                         <div>
-                            <div className={RegistrationCss.RegistrationName}>
-                                Изменение информации
-                            </div>
-                            <div className={RegistrationCss.containerReg}>
+                            <div>
                                 <div>
-                                    <FormFields
-                                        myInf={props.myInf}
-                                        refs={refs}
-                                        users={users}
-                                        onEmailChange={props.onEmailChange}
-                                        onPassChange={props.onPassChange}
-                                        onRepassChange={props.onRepassChange}
-                                        onNameChange={props.onNameChange}
-                                        onSurnameChange={props.onSurnameChange}
-                                        onPatronymicChange={props.onPatronymicChange}
-                                    />
-                                    <div>
-                                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                                            {labels[8]}
-                                        </label>
-                                        <input
-                                            ref={refs[8]}
-                                            className={RegistrationCss.nameLabelInputButtonReg}
-                                            onChange={countryChange}>
-                                        </input>
+                                    <div className={RegistrationCss.RegistrationName}>
+                                        Изменение информации
                                     </div>
-                                    <div>
-                                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                                            {labels[9]}
-                                        </label>
-                                        <input
-                                            ref={refs[9]}
-                                            className={RegistrationCss.nameLabelInputButtonReg}
-                                            onChange={cityChange}>
-                                        </input>
+                                    <div className={RegistrationCss.containerReg}>
+                                        <FormFields
+                                            myInf={this.props.userInf}
+                                            refs={this.reffs}
+                                            users={this.state.users}
+                                            onEmailChange={this.props.onEmailChange}
+                                            onPassChange={this.props.onPassChange}
+                                            onRepassChange={this.props.onRepassChange}
+                                            onNameChange={this.props.onNameChange}
+                                            onSurnameChange={this.props.onSurnameChange}
+                                            onPatronymicChange={this.props.onPatronymicChange}
+                                        />
+                                        <div>
+                                            <label className={RegistrationCss.nameLabelInputButtonReg}>
+                                                {this.labels[8]}
+                                            </label>
+                                            <input
+                                                ref={this.reffs[8]}
+                                                className={RegistrationCss.nameLabelInputButtonReg}
+                                                onChange={this.countryChange}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className={RegistrationCss.nameLabelInputButtonReg}>
+                                                {this.labels[9]}
+                                            </label>
+                                            <input
+                                                ref={this.reffs[9]}
+                                                className={RegistrationCss.nameLabelInputButtonReg} onChange={this.cityChange}
+                                            />
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                    </div>
                     <NavLink onClick={() => {
                     }} className={RegistrationCss.nameButtonReg}
                              to="/../../pages/profile/profile.js">Сохранить изменения</NavLink>
                     <button className={RegistrationCss.nameButtonReg}>Изменить аватар</button>
-                    <button onClick={handleCancelClick}>Cancel</button>
+                    <button onClick={this.handleCancelClick}>Cancel</button>
                 </div>
             ) : (
                 <div>
                     {/*<p>Name: {formData.firstName} {formData.lastName} {formData.patronymic}</p>*/}
                     {/*<p>Password: {formData.password}</p>*/}
-                    <button onClick={handleEditClick}>Edit Information</button>
+                    <button onClick={this.handleEditClick}>Edit Information</button>
                 </div>
             )}
         </div>
-    );
-};
+    )}
+}
 
 export default ProfilePage;

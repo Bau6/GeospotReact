@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import RegistrationCss from "../registration/RegistrationCss.module.css";
 // import ShowPasswordButton from "../registration/passwordButton";
 

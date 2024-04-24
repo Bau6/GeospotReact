@@ -3,6 +3,7 @@ import {
     loadNews, updateNewListActionCreator
 } from "../../database/redux/news-reducer";
 import CheckNewsOrgAdm from "./checkNewsOrgAdm";
+import {addNewsUser, UserLocation} from "../../database/redux/locationUserReducer";
 const mapStateToProps = (state) => {
     // debugger
     return {
@@ -18,6 +19,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateNewsList: (text) => {
             dispatch(updateNewListActionCreator(text));
+        },
+        UserLocation: (text) => {
+            dispatch(UserLocation(text))
+        },
+        addNewsUser: (id, status) => {
+            dispatch(addNewsUser(id, status));
         }
     }
 }

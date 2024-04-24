@@ -1,9 +1,9 @@
 import React from "react";
 import FirstPageCss from "./first_page.module.css";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
-import axios from "axios";
+// import axios from "axios";
 import buttonNews from "../../app/buttons/buttonNews.module.css";
-const NEWS = 'news';
+// const NEWS = 'news';
 class CheckNewsOrgAdm extends React.Component {
     constructor(props) {
         super(props);
@@ -13,52 +13,14 @@ class CheckNewsOrgAdm extends React.Component {
     }
 
     handleNews = (id, status) => {
-        const updatedNewsList = this.props.newsList.map(newsItem => {
-            if (newsItem.id === id) {
-                return axios.get("http://localhost:3003/update-record", {
-                    params: {
-                        nameTable: NEWS,
-                        params: { id: id, status: status }
-                    }
-                })
-                    .then(response => {
-                        if (status === 1) {
-                            alert("Успешно опубликовано!");
-                        } else if (status === 7) {
-                            alert("Успешно удалено!");
-                        }
-                        console.log(response.data);
-                        return { ...newsItem, status: 7 };
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        return newsItem; // Вернуть исходный элемент, если произошла ошибка
-                    });
-            } else {
-                return newsItem;
-            }
-        });
-        // Обновите состояние newsList с новым значением status
-        this.props.updateNewsList(updatedNewsList);
+        this.props.addNewsUser(id, status);
         window.location.reload();
     }
-    componentDidMount() {
-        axios.get('http://localhost:3003/output-table', {
-            params: {
-                nameTable: NEWS,
-                params: {}
-            }
-        })
-            .then(response => {
-                this.props.loadNews(response.data);
-                this.setState({ isLoading: false });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ isLoading: false });
-            });
-    }
+    // componentDidMount() {
+    //     this.props.UserLocation(window.location.href);
+    // }
     render() {
+        console.log(this.props)
         const { newsList } = this.props;
         // debugger
         let currentNews = [];

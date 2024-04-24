@@ -1,9 +1,8 @@
 import eventsCss from "./events.module.css";
-import ChooseDataEvent from "./ChooseDataEvent";
 import EventsFormContainer from "./eventsFormContainer";
 import React from "react";
 import DropDownMenuEventContainer from "./DropDownMenuEventContainer";
-// import axios from "axios";
+import ChooseDataEventContainer from "./ChooseDataEventContainer";
 
 class Events extends React.Component {
     componentDidMount() {
@@ -15,7 +14,7 @@ class Events extends React.Component {
                 <div className={eventsCss.containerEvent}>
                     <div className={eventsCss.fixedContent}>
                         <DropDownMenuEventContainer />
-                        <ChooseDataEvent/>
+                        <ChooseDataEventContainer/>
                         <button className={eventsCss.FindEvent}>Поиск</button>
                     </div>
                     <div className={eventsCss.fixedEvents}>

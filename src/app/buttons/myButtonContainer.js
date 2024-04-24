@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import MyButton from './button';
+import {addNewsOrg} from "../../database/redux/locationUserReducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -8,7 +9,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // Здесь можно определить действия, если это необходимо
+        addNewsOrg: (news) => {
+            dispatch(addNewsOrg(news));
+        }
     };
 };
 

@@ -8,6 +8,7 @@ import {
     onChangeActionCreator,
     setCurrentPage
 } from "../../database/redux/news-reducer";
+import {UserLocation} from "../../database/redux/locationUserReducer";
 // import {onPassLoginActionCreator} from "../../database/redux/sessionUser";
 const mapStateToProps = (state) => {
     // debugger
@@ -33,6 +34,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         clearTextArea: () => {
             dispatch(defaultNewNewsActionCreator());
+        },
+        UserLocation: (text) => {
+            dispatch(UserLocation(text))
         }
     }
 }

@@ -1,5 +1,7 @@
 import axios from "axios";
 import {loadEvents} from "./events-reducer";
+import {defaultNewNewsActionCreator, loadNews} from "./news-reducer";
+import {authUserInfo} from "./infoUsers-reducer";
 
 const LOCATION = 'LOCATION';
 
@@ -17,7 +19,7 @@ const UsersPageReducer = (state = initialState, action) => {
 }
 
 
-export const UserLocation = (text) => {
+export const UserLocation = (text, id) => {
     return (dispatch) => {
         dispatch({
             type: LOCATION,
@@ -31,9 +33,78 @@ export const UserLocation = (text) => {
             })
             .catch(error => {
                 console.log(error);
-            });}
+            });
+        } else if (text === "http://localhost:3000/pages/first_page/first_page.js") {
+            axios.get('http://localhost:3003/output-table', {
+                params: {
+                    nameTable: 'news',
+                    params: {}
+                }
+            })
+                .then(responseNews => {
+                    dispatch(loadNews(responseNews.data));
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else if (text === "http://localhost:3000/pages/profile/ProfilePage.js") {
+            axios.get('http://localhost:3003/output-one-record', {
+                params: {
+                    nameTable: 'users',
+                    params: id
+                }
+            })
+                .then(responseUser => {
+                    dispatch(authUserInfo(responseUser.data));
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     };
 };
+
+export const addNewsUser = (id, status) => {
+    return dispatch => {
+        axios.get("http://localhost:3003/update-record", {
+            params: {
+                nameTable: 'news',
+                params: { id: id, status: status }
+            }
+        })
+            .then(response => {
+                if (status === 1) {
+                    alert("Успешно опубликовано!");
+                } else if (status === 7) {
+                    alert("Успешно удалено!");
+                }
+                console.log(response.data);
+                // Вызовите другой action для обновления состояния newsList
+                // dispatch(updateNewsList(updatedNewsList));
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+}
+
+export const addNewsOrg = (newNews) => {
+    return dispatch => {
+        axios.post('http://localhost:3003/add-news', {
+            nameTable: 'news',
+            params: newNews,
+        })
+            .then(response => {
+                alert("Данные успешно добавлены");
+                // console.log(response.data);
+                dispatch(defaultNewNewsActionCreator());
+            })
+            .catch(error => {
+                alert("Проверьте правильность написания даты!\nDD.MM.YYYY или dd-mm-yyyy");
+                console.error(error);
+            });
+    }
+}
 
 
 export default UsersPageReducer;

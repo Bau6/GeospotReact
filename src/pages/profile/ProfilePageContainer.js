@@ -9,6 +9,7 @@ import {
     onPatronymicChangeActionCreator, onRepassChangeActionCreator, onSurnameChangeActionCreator, onCityChangeActionCreator,
     onCountryChangeActionCreator
 } from "../../database/redux/infoUsers-reducer";
+import {UserLocation} from "../../database/redux/locationUserReducer";
 // const ProfilePageContainer = (props) => {
 //     debugger
 //     let state = props.store.getState();
@@ -17,7 +18,7 @@ import {
 const mapStateToProps = (state) => {
     return {
         userInf: state.infoUsers.usersNewInfo,
-        myInf: state.infoUsers.userExampleInfo,
+        // myInf: state.infoUsers.userExampleInfo,
         sessionUser: state.sessionUser
     }
 }
@@ -53,7 +54,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         onCountryChange: (text) => {
             dispatch(onCountryChangeActionCreator( text ));
-        }
+        },
+        UserLocation: (text, id) => {
+        dispatch(UserLocation(text, id))
+    },
     }
 }
 

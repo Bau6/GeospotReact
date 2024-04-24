@@ -5,9 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/events/ChooseDataEventContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/buttons/button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/buttons/button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/buttons/myButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/buttons/myButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/events-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/events-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/locationUserReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/locationUserReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/ChooseDataEvent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/ChooseDataEvent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/first_page/checkNewsOrgAdm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/checkNewsOrgAdm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/first_page/checkNewsOrgAdmContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/checkNewsOrgAdmContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/first_page/first_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/first_page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/first_page/first_pageContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/first_pageContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfilePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfilePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfilePageContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfilePageContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +146,7 @@
       <workItem from="1711791841038" duration="75471000" />
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
-      <workItem from="1713628857019" duration="8302000" />
+      <workItem from="1713628857019" duration="25209000" />
     </task>
     <servers />
   </component>

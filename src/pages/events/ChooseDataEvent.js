@@ -1,28 +1,27 @@
-import React, {useState} from 'react';
-import {format, addDays} from 'date-fns';
+import React from 'react';
+// import {format} from 'date-fns';
 
-function ChooseDataEvent(props) {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(addDays(new Date(), 7)); // добавляем 7 дней к текущей дате
+class ChooseDataEvent extends React.Component {
 
-    const handleStartDateChange = (event) => {
-        setStartDate(new Date(event.target.value));
+    handleStartDateChange = (event) => {
+        this.props.thisStartData(new Date(event.target.value).toISOString());
     };
 
-    const handleEndDateChange = (event) => {
-        setEndDate(new Date(event.target.value));
+    handleEndDateChange = (event) => {
+        this.props.thisEndData(new Date(event.target.value).toISOString());
     };
 
-    return (
-        <div>
-            <label>Начальная дата:</label>
-            <input type="date" value={format(startDate, 'yyyy-MM-dd')} onChange={handleStartDateChange}/>
-            <br/>
-            <label>Конечная дата:</label>
-            <input type="date" value={format(endDate, 'yyyy-MM-dd')} onChange={handleEndDateChange}
-                   min={format(startDate, 'yyyy-MM-dd')}/>
-        </div>
-    );
+    render() {
+        return (
+            <div>
+                <label>Начальная дата:</label>
+                <input type="date" value={this.props.startData} onChange={this.handleStartDateChange}/>
+                <br/>
+                <label>Конечная дата:</label>
+                <input type="date" value={this.props.endData} onChange={this.handleEndDateChange}/>
+            </div>
+        );
+    }
 }
 
 export default ChooseDataEvent;

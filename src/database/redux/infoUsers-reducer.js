@@ -12,6 +12,7 @@ const CITY = 'CITY';
 const COUNTRY = 'COUNTRY';
 const ADD_DATA = 'ADD_DATA';
 const CLEAR_SESSION = 'CLEAR_SESSION';
+const AUTH_USER = "AUTH_USER";
 let initialState = {
     userExampleInfo: {
         id: null,
@@ -43,6 +44,20 @@ const infoUsersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 usersNewInfo: state.usersNewInfo.concat(action.value),
+            };
+        case AUTH_USER:
+            return {
+                ...state,
+                usersNewInfo: {
+                    ...state.usersNewInfo,
+                    email: action.newText.email,
+                    nameUser: action.newText.name,
+                    surnameUser: action.newText.surname,
+                    patronymicUser: action.newText.patronymic,
+                    city: action.newText.city,
+                    country: action.newText.country,
+                    dateOfBirth: action.newText.birthday,
+                },
             };
         case EMAIL:
             return {
@@ -208,6 +223,12 @@ export const onCityChangeActionCreator = (value) => (
 export const onCountryChangeActionCreator = (value) => (
     {
         type: COUNTRY,
+        newText: value
+    }
+)
+export const authUserInfo = (value) => (
+    {
+        type: AUTH_USER,
         newText: value
     }
 )
