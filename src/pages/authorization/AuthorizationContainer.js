@@ -1,12 +1,12 @@
 import {connect} from "react-redux";
 import Authorization from "./Authorization";
-import {login, logout} from "../../database/redux/authActions";
+import {checkUserData, login, logout} from "../../database/redux/authActions";
 import {
     clearSessionActionCreator,
     onEmailLoginActionCreator, onPassLoginActionCreator, setRoleActionCreator,
     setSessionActionCreator
 } from "../../database/redux/sessionUser";
-import {clearSessionUsersActionCreator} from "../../database/redux/infoUsers-reducer";
+// import {clearSessionUsersActionCreator} from "../../database/redux/infoUsers-reducer";
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.auth.isLoggedIn,
@@ -38,6 +38,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         myUserId: (role) => {
             dispatch(setRoleActionCreator(role));
+        },
+        loadDataUser: (login, pass) => {
+            dispatch(checkUserData(login, pass));
         }
     }
 }

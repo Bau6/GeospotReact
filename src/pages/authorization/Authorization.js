@@ -45,65 +45,7 @@ class Authorization extends React.Component {
             errorMessage += "Пароль должен содержать от 6 до 20 символов, включать латинские буквы нижнего и верхнего регистров, а также цифры.\n";
         }
         if (errorMessage === '') {
-            let CheckDataToDB = {
-                email: this.props.myInf.email,
-                password: this.props.myInf.password,
-            };
-            // Логика обработки данных и запроса к серверу
-            // Добавить GET запрос при нажатии на NavLink "Авторизация"
-            axios.get("http://localhost:3003/check-login-pass", {
-                params: {
-                    nameTable: 'users',
-                    params: CheckDataToDB
-                }
-            })
-                .then(response => {
-                    // console.log(response.data);
-                    // Принимаем данные из ответа
-                    const userData = response.data;
-                    // Проверяем результат ответа
-                    if (response.data.error) {
-                        // Выводим сообщение об ошибке пользователю
-                        alert(response.data.error);
-                    } else {
-                        // Если пользователь найден, выполняем необходимые действия
-
-                        this.props.loginUser();
-                        this.props.setSession({id: userData.id, email: userData.email, name: userData.surname + " " + userData.name + " " + userData.patronymic});
-                        this.props.myUserId(userData.id);
-                        axios.get("http://localhost:3003/role", {
-                            params: {
-                                nameTable: 'userroles',
-                                params: userData.id
-                            }
-                        })
-                            .then(response => {
-                                const roleData = response.data;
-                                this.props.myUserId(roleData.nameRole);
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            });
-                        // this.props.isLoggedIn = true;
-                        // Перенаправление на страницу профиля после успешной авторизации
-                        this.setState({ redirectToProfile: true });
-                        window.location.href = "/../../pages/profile/Profile.js";
-
-                    }
-                })
-                .catch(error => {
-                    // console.error(error);
-                    if (error.response) {
-                        // Ошибка с ответом от сервера
-                        alert("Неправильный пароль или логин.");
-                    } else if (error.request) {
-                        // Ошибка отправки запроса
-                        alert("Произошла ошибка при отправке запроса. Пожалуйста, проверьте ваше подключение к сети.");
-                    } else {
-                        // Другие типы ошибок
-                        alert("Произошла неизвестная ошибка. Пожалуйста, обратитесь в службу поддержки.");
-                    }
-                });
+            this.props.loadDataUser(this.props.myInf.email, this.props.myInf.password);
         } else {
             alert(errorMessage);
         }
