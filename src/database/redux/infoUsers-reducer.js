@@ -48,8 +48,8 @@ const infoUsersReducer = (state = initialState, action) => {
         case AUTH_USER:
             return {
                 ...state,
-                usersNewInfo: {
-                    ...state.usersNewInfo,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
                     email: action.newText.email,
                     nameUser: action.newText.name,
                     surnameUser: action.newText.surname,

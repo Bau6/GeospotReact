@@ -9,8 +9,10 @@ class ProfilePage extends React.Component {
         this.labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество", "", "", "Город", "Страна"];
         // this.labelData = ["Дата рождения"];
         this.reffs = {};
+        this.cnt = 0 ;
         this.labels.forEach(label => {
-            this.reffs[label] = React.createRef();
+            this.reffs[this.cnt] = React.createRef();
+            this.cnt+=1;
         });
         this.state = {
             editMode: false,
@@ -26,10 +28,6 @@ class ProfilePage extends React.Component {
 
     handleEditClick = () => {
         this.setState({ editMode: true });
-        this.props.onEmailChange(this.state.users.email);
-        this.props.onNameChange(this.state.users.name);
-        this.props.onSurnameChange(this.state.users.surname);
-        this.props.onPatronymicChange(this.state.users.patronymic);
     };
 
     countryChange = () => {
@@ -43,7 +41,6 @@ class ProfilePage extends React.Component {
     };
 
     render() {
-        console.log(this.props.userInf);
         return (
             <div>
                 {this.state.editMode ? (

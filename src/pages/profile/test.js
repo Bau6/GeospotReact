@@ -1,11 +1,9 @@
 import React from 'react';
 import RegistrationCss from "../registration/RegistrationCss.module.css";
-// import ShowPasswordButton from "../registration/passwordButton";
 
 const FormFields = ({
                         myInf,
                         refs,
-                        // users,
                         onEmailChange,
                         onPassChange,
                         onRepassChange,
@@ -15,6 +13,7 @@ const FormFields = ({
                     }) => {
     const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество", "", "", "Страна", "Город"];
     const emailChange = () => {
+        debugger
         let newText = refs[0].current.value;
         onEmailChange(newText);
     }

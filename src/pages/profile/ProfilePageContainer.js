@@ -1,8 +1,6 @@
-// import React from 'react';
 import "./changeInfProfile.css";
 import ProfilePage from "./ProfilePage";
 import {connect} from "react-redux";
-// import Profile from "./Profile";
 import {
     changeRegDataActionCreator,
     onDateChangeActionCreator, onEmailChangeActionCreator, onNameChangeActionCreator, onPassChangeActionCreator,
@@ -10,15 +8,9 @@ import {
     onCountryChangeActionCreator
 } from "../../database/redux/infoUsers-reducer";
 import {UserLocation} from "../../database/redux/locationUserReducer";
-// const ProfilePageContainer = (props) => {
-//     debugger
-//     let state = props.store.getState();
-//     return (<ProfilePage userInf={state.infoUsers.usersNewInfo}/>);
-// };
 const mapStateToProps = (state) => {
     return {
-        userInf: state.infoUsers.usersNewInfo,
-        // myInf: state.infoUsers.userExampleInfo,
+        userInf: state.infoUsers.userExampleInfo,
         sessionUser: state.sessionUser
     }
 }
