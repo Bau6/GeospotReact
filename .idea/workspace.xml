@@ -6,14 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/include/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/include/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/authActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/authorization/Authorization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/authorization/Authorization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfileContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfileContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfilePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfilePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/InfoUserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/events-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/events-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/redux/locationUserReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/locationUserReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/eventsForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/eventsFormContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsFormContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +137,7 @@
       <workItem from="1711791841038" duration="75471000" />
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
-      <workItem from="1713628857019" duration="49232000" />
+      <workItem from="1713628857019" duration="63126000" />
     </task>
     <servers />
   </component>

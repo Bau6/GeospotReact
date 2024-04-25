@@ -25,7 +25,7 @@ export const UserLocation = (text, id) => {
             type: LOCATION,
             payload: text
         });
-        if (text === "http://localhost:3000/pages/events/events.js") {
+        if (text === "http://localhost:3000/pages/events/events.js" || text === "http://localhost:3000/pages/registration/Registration.js") {
         axios.get('http://localhost:3003/events-table')
             .then(responseEvents => {
                 // Вызываем другой action creator для загрузки данных

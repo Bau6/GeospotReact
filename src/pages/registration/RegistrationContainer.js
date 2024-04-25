@@ -19,12 +19,14 @@ import {
     setSessionActionCreator
 } from "../../database/redux/sessionUser";
 import {loadSports} from "../../database/redux/events-reducer";
+import {UserLocation} from "../../database/redux/locationUserReducer";
 
 
 
 let mapStateToProps = (state) => {
+    // debugger
     return {
-        sportNameFromBD: state.eventsReducer.sportNameFromBD,
+        sports: state.eventsReducer.storeEvents.sports,
         userExampleInfo: state.infoUsers.userExampleInfo,
         myInf: state.infoUsers.userExampleInfo,
         isLoggedIn: state.auth.isLoggedIn,
@@ -33,6 +35,7 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = (dispatch) => {
+    dispatch(UserLocation("http://localhost:3000/pages/registration/Registration.js"));
     return {
         updateText: (text) => {
             dispatch(onDateChangeActionCreator( text ));
@@ -75,7 +78,7 @@ let mapDispatchToProps = (dispatch) => {
         },
         registrationsLoadDataUser: (role) => {
             dispatch(registrationsLoadDataUser(role));
-        }
+        },
     }
 }
 

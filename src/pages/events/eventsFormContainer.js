@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
         thisEvents: state.eventsReducer.storeEvents.events,
         chooseSport: state.eventsReducer.sports,
         data: state.eventsReducer.data,
+        log: state.auth.isLoggedIn,
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -12,6 +12,7 @@ class EventsForm extends React.Component {
     }
 
     render() {
+        // debugger
         let cnt = false;
         return (
             <div>
@@ -88,8 +89,10 @@ class EventsForm extends React.Component {
                                             {event.rating ? event.rating : ""}
                                         </div>
                                     </div>
-                                    {/* Продолжайте аналогично для остальных полей */}
-                                    <NavLink to="/../pages/event/event.js">Просмотр</NavLink>
+                                    <div>
+                                        {/* Продолжайте аналогично для остальных полей */}
+                                        {this.props.log && <NavLink to="/../pages/event/event.js">Просмотр</NavLink>}
+                                    </div>
                                 </div>
                             )
                         } else {
