@@ -6,7 +6,6 @@ import {NavLink} from "react-router-dom";
 
 const Profile = (props) => {
     const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество"];
-    const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
     const outputInfo = () => {
     }
     return (
@@ -15,18 +14,16 @@ const Profile = (props) => {
                 <label className={RegistrationCss.nameLabelInputButtonReg}>
                     {labels[0]}
                 </label>
-                <input
-                    ref={refs[0]}
+                <label
                     className={RegistrationCss.nameLabelInputButtonReg}
                     onChange={outputInfo}
-                    value={props.userInf[0] &&
-                    props.userInf[0].email ?
-                        props.userInf[0].email : ''}
-                ></input>
+                >{props.userInf[0] &&
+                props.userInf[0].email ?
+                    props.userInf[0].email : ''}</label>
                 {/*<ShowPasswordButton getRef={() => refs[0]}/>*/}
             </div>
             <NavLink onClick={()=>{}} className={RegistrationCss.nameButtonReg}
-                     to="/../../pages/profile/ProfilePage.js">Сохранить изменения</NavLink>
+                     to="/../../pages/profile/ProfilePage.js">Изменить инфирмацию</NavLink>
         </div>
     )
 }

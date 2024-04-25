@@ -116,7 +116,7 @@ export const registrationsLoadDataUser = (addDataToDB) => {
                 dispatch(login());
                 dispatch(setSessionActionCreator({email: addDataToDB.email, name: addDataToDB.surname + " " + addDataToDB.name + " " + addDataToDB.patronymic}));
                 dispatch(setRoleActionCreator("user"));
-                window.location.href = 'http://localhost:3000/pages/profile/profile.js';
+                window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
             })
             .catch(error => {
                 if (error.response.data.error) {

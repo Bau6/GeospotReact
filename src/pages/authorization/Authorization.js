@@ -63,7 +63,7 @@ class Authorization extends React.Component {
 
     render() {
         if (this.state.redirectToProfile) {
-            return <Navigate to="/../../pages/profile/Profile.js" />;
+            return <Navigate to="/../../pages/profile/ProfilePage.js" />;
         }
         return (
             <div>

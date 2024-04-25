@@ -13,7 +13,7 @@ const Header = (props) => {
     const handleProfile = () => {
         props.clearNews();
         props.clearEvents();
-        window.location.href = "/../../pages/profile/profile.js";
+        window.location.href = "/../../pages/profile/ProfilePage.js";
     }
 
     const handleNews = () => {

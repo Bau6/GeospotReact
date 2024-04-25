@@ -3,7 +3,7 @@ import RegistrationCss from "./RegistrationCss.module.css"
 import DropDownMenuReg from "./DropDownMenuReg";
 import {Navigate} from "react-router-dom";
 import 'react-datepicker/dist/react-datepicker.css';
-import FormFields from "../profile/test";
+import FormFields from "../profile/InfoUserProfile";
 import AvatarUpload from "../avatar/avatar";
 import {validationsReg} from "../../app/include/validations";
 import React, {Component} from 'react';
