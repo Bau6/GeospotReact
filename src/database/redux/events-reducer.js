@@ -61,10 +61,7 @@ const eventsReducer = (state = initialState, action) => {
                     rating: "",
                     image: ""
                 },
-                data: {
-                    ...state,
-                    data:  0,
-                },
+                data: 0,
             };
         default:
             return state;

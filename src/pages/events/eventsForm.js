@@ -12,6 +12,7 @@ class EventsForm extends React.Component {
     }
 
     render() {
+        let cnt = false;
         return (
             <div>
                 {/* Проверяем наличие thisEvents и его длину */}
@@ -25,13 +26,13 @@ class EventsForm extends React.Component {
                         dateStart.setHours(0, 0, 0, 0);
                         dateEnd.setHours(0, 0, 0, 0);
                         currentDate.setHours(0, 0, 0, 0);
-                        console.log(dateStart + ":start " + dateEnd + ":end " + currentDate);
 // Сравниваем только по году, месяцу и дню
                         if ((this.props.chooseSport === "" || event.sport === this.props.chooseSport) &&
                             ((dateStart.getTime() > currentDate.getTime() && dateEnd.getTime() > currentDate.getTime() && this.props.data === 1) || // Предстоящие
                                 (dateEnd.getTime() < currentDate.getTime() && this.props.data === 2) || // Прошедшие
                                 (dateStart.getTime() <= currentDate.getTime() && dateEnd.getTime() >= currentDate.getTime() && this.props.data === 3) || // Идущие
                                 (this.props.data === 0))) { // Все
+                            cnt = true;
                             return (
                                 <div key={event.id} className={EventsFormCss.eventListContainer}>
                                     {/* Проверяем каждое поле перед выводом */}
@@ -95,9 +96,8 @@ class EventsForm extends React.Component {
                             return null; // Если не соответствует условиям фильтрации, возвращаем null
                         }
                     })
-                ) : (
-                    <div>Мероприятия не найдены</div>
-                )}
+                ) : (<div></div>)}
+                {cnt ? null : <div>Мероприятия не найдены! Попробуйте изменить фильтры</div>}
             </div>
         )
     }
