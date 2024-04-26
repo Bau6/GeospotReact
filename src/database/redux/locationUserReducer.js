@@ -26,14 +26,14 @@ export const UserLocation = (text, id) => {
             payload: text
         });
         if (text === "http://localhost:3000/pages/events/events.js" || text === "http://localhost:3000/pages/registration/Registration.js") {
-        axios.get('http://localhost:3003/events-table')
-            .then(responseEvents => {
-                // Вызываем другой action creator для загрузки данных
-                dispatch(loadEvents(responseEvents.data));
-            })
-            .catch(error => {
-                console.log(error);
-            });
+            axios.get('http://localhost:3003/events-table')
+                .then(responseEvents => {
+                    // Вызываем другой action creator для загрузки данных
+                    dispatch(loadEvents(responseEvents.data));
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         } else if (text === "http://localhost:3000/pages/first_page/first_page.js") {
             axios.get('http://localhost:3003/output-table', {
                 params: {
@@ -48,18 +48,20 @@ export const UserLocation = (text, id) => {
                     console.log(error);
                 });
         } else if (text === "http://localhost:3000/pages/profile/ProfilePage.js") {
-            axios.get('http://localhost:3003/output-one-record', {
-                params: {
-                    nameTable: 'users',
-                    params: id
-                }
-            })
-                .then(responseUser => {
-                    dispatch(authUserInfo(responseUser.data));
+
+                axios.get('http://localhost:3003/output-one-record', {
+                    params: {
+                        nameTable: 'users',
+                        params: id
+                    }
                 })
-                .catch(error => {
-                    console.log(error);
-                });
+                    .then(responseUser => {
+                        dispatch(authUserInfo(responseUser.data));
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+
         }
     };
 };
@@ -69,7 +71,7 @@ export const addNewsUser = (id, status) => {
         axios.get("http://localhost:3003/update-record", {
             params: {
                 nameTable: 'news',
-                params: { id: id, status: status }
+                params: {id: id, status: status}
             }
         })
             .then(response => {

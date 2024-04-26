@@ -77,8 +77,8 @@ let mapDispatchToProps = (dispatch) => {
         registrationsLoadDataUser: (role) => {
             dispatch(registrationsLoadDataUser(role));
         },
-        selectedSports: (selectedOptions) => {
-            dispatch(setSelectedSports(selectedOptions));
+        selectedSports: (checked) => {
+            dispatch(setSelectedSports(checked));
         },
         loadSportsFunc: (text) => {
             dispatch(loadSportsFunc(text))

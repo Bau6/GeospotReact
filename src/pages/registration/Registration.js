@@ -91,8 +91,8 @@ class Registration extends Component {
         handleDropdownSelect = (eventKey, index) => {
             const selectedValuesCopy = [...this.state.selectedValues];
             selectedValuesCopy[index] = eventKey;
-            this.setState( {selectedValues: selectedValuesCopy} )
-            console.log(this.state.selectedValues)
+            this.setState( {selectedValues: selectedValuesCopy} );
+            this.props.selectedSports(selectedValuesCopy);
             }
 
     // Логика отображения компоненты
@@ -138,8 +138,6 @@ class Registration extends Component {
                 </div>
                 <div>
                     <AvatarUpload/>
-                    {/*<NavLink onClick={this.onAddData} className={RegistrationCss.nameButtonReg}*/}
-                    {/*         to="/../../pages/profile/profile.js">Сохранить изменения</NavLink>*/}
                     <button onClick={this.onAddData} className={RegistrationCss.nameButtonReg}>
                         Сохранить изменения
                     </button>

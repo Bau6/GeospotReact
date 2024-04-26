@@ -150,10 +150,9 @@ const infoUsersReducer = (state = initialState, action) => {
                 data: []
             };
         case SET_SELECTED_SPORTS:
-            console.log(action.payload);
             return {
                 ...state,
-                selectedSports: action.payload
+                selectedSports: action.checked,
             };
         default:
             return state;
@@ -232,8 +231,8 @@ export const authUserInfo = (value) => (
         newText: value
     }
 )
-export const setSelectedSports = (selectedOption) => ({
+export const setSelectedSports = ( checked) => ({
     type: SET_SELECTED_SPORTS,
-    payload: selectedOption
+    checked: checked,
 });
 export default infoUsersReducer;

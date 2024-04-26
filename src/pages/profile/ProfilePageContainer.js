@@ -11,7 +11,8 @@ import {UserLocation} from "../../database/redux/locationUserReducer";
 const mapStateToProps = (state) => {
     return {
         userInf: state.infoUsers.userExampleInfo,
-        sessionUser: state.sessionUser
+        sessionUser: state.sessionUser,
+        isLoggedIn: state.auth.isLoggedIn,
     }
 }
 
