@@ -43,8 +43,8 @@ function updateData() {
 function addData() {
     app.use(express.json());
     app.post('/add-record', (req, res) => {
-        const { nameTable, params } = req.body;
-        addRecord(nameTable, params, res);
+        const { nameTable, fParams } = req.body;
+        addRecord(nameTable, fParams, res);
     });}
 function deleteData() {
     app.get('/delete-record', (req, res) => {

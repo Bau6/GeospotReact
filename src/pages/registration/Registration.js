@@ -12,14 +12,14 @@ class Registration extends Component {
             date: '',
             initialCheckedState: [],
             refs: [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()],
-            checked: Array(this.props.sports.length).fill(false),
-            selectedValues: Array(this.props.sports.length).fill(true),
-            refsArray: Array(this.props.sports.length).fill(React.createRef()),
         };
     }
 
     componentDidMount() {
         this.props.loadSportsFunc();
+        this.props.selectedSportsFunc(Array(this.props.sports.length).fill(false));
+        this.props.refsArrayFunc(Array(this.props.sports.length).fill(React.createRef()));
+        this.props.checkedFunc(Array(this.props.sports.length).fill(false));
         this.setState(prevState => {
             const newRefs = [...prevState.refs];
             if (newRefs[1].current) {
@@ -30,15 +30,6 @@ class Registration extends Component {
             }
             return {refs: newRefs};
         });
-    }
-    componentDidUpdate(prevProps) {
-        if (prevProps.sports !== this.props.sports) {
-            this.setState({
-                checked: Array(this.props.sports.length).fill(false),
-                selectedValues: Array(this.props.sports.length).fill(true),
-                refsArray: Array(this.props.sports.length).fill(React.createRef()),
-            });
-        }
     }
     handleChange = (e) => {
         // Логика обработки изменения даты
@@ -73,10 +64,10 @@ class Registration extends Component {
                 birthday: this.props.userExampleInfo.dateOfBirth
             };
             for (let i = 0; i < this.props.sports.length; i++) {
-                test1.checkedTypeSport[i] = {id: i + 1, status: this.state.refsArray[i].current.value};
+                test1.checkedTypeSport[i] = {id: i + 1, status: this.props.refsArray[i].current.value};
             }
             this.props.addData(test1);
-            this.props.registrationsLoadDataUser(addDataToDB);
+            this.props.registrationsLoadDataUser(addDataToDB, this.props.sportsDB);
         } else {
             alert(errorMessage);
             event.preventDefault();
@@ -84,20 +75,23 @@ class Registration extends Component {
     }
 
     changeChecked = (index) => {
-        const checkedCopy = [...this.state.checked];
+        const checkedCopy = [...this.props.checked];
         checkedCopy[index] = !checkedCopy[index];
-        this.setState( {checked: checkedCopy} )
+        this.props.checkedFunc({checked: checkedCopy});
         }
-        handleDropdownSelect = (eventKey, index) => {
-            const selectedValuesCopy = [...this.state.selectedValues];
+        handleDropdownSelect = (eventKey, index, name) => {
+            // this.props.selectedSportsFunc(Array(this.props.sports.length).fill(true));
+            // this.props.refsArrayFunc(Array(this.props.sports.length).fill(React.createRef()));
+            const selectedValuesCopy = [...this.props.sportsDB];
             selectedValuesCopy[index] = eventKey;
-            this.setState( {selectedValues: selectedValuesCopy} );
-            this.props.selectedSports(selectedValuesCopy);
+            // this.setState( {selectedValues: selectedValuesCopy} );
+            this.props.selectedSportsFunc(selectedValuesCopy);
+            console.log(this.props.sportsDB)
             }
 
     // Логика отображения компоненты
     render() {
-        const {date, refsArray, checked} = this.state;
+        const {date} = this.state;
         const inputElementData = ["Дата рождения"].map((labelData, index) => (
             <div key={index}>
                 <label className={RegistrationCss.nameLabelInputButtonReg}>{labelData}</label>
@@ -124,17 +118,27 @@ class Registration extends Component {
                     </div>
                 </div>
                 <div>
-                    {this.props.sports && this.props.sports.map((item, index) => (
-                        <div key={index} className={RegistrationCss.checkboxReg}>
-                            <label className={RegistrationCss.nameLabelInputButtonReg}>{item.name}</label>
-                            <input ref={refsArray[index]} type="checkbox" checked={checked[index]}
-                                   onChange={() => this.changeChecked(index)}/>
-                            {checked[index] ?
-                                <DropDownMenuReg index={index} onDropdownSelect={
-                                    (eventKey) => this.handleDropdownSelect(eventKey, index)}/> :
-                                <div> {""} </div>}
-                        </div>
-                    ))}
+                    <div>
+                        {this.props.sports && this.props.sports.map((item, index) => (
+                            <div key={index} className={RegistrationCss.checkboxReg}>
+                                <label className={RegistrationCss.nameLabelInputButtonReg}>{item.name}</label>
+                                <input
+                                    ref={this.props.refsArray[index]}
+                                    type="checkbox"
+                                    checked={this.props.checked[index]}
+                                    onChange={() => this.changeChecked(index)}
+                                />
+                                {this.props.checked[index] ? (
+                                    <DropDownMenuReg
+                                        index={index}
+                                        onDropdownSelect={(eventKey) => this.handleDropdownSelect(eventKey, index, item.name)}
+                                    />
+                                ) : (
+                                    <div>{""}</div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 <div>
                     <AvatarUpload/>

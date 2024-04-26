@@ -1,4 +1,3 @@
-const SET_SELECTED_SPORTS = 'SET_SELECTED_SPORTS';
 const INFO_FOR_REG_USER = 'INFO-FOR-REG-USER';
 const EMAIL = 'EMAIL';
 const PASSWORD = 'PASSWORD';
@@ -26,7 +25,6 @@ let initialState = {
         country: "",
         photoUrl: ''
     },
-    selectedSports: null,
     usersNewInfo: [],
     data: []
 }
@@ -149,11 +147,6 @@ const infoUsersReducer = (state = initialState, action) => {
                 usersNewInfo: [],
                 data: []
             };
-        case SET_SELECTED_SPORTS:
-            return {
-                ...state,
-                selectedSports: action.checked,
-            };
         default:
             return state;
     }
@@ -231,8 +224,4 @@ export const authUserInfo = (value) => (
         newText: value
     }
 )
-export const setSelectedSports = ( checked) => ({
-    type: SET_SELECTED_SPORTS,
-    checked: checked,
-});
 export default infoUsersReducer;

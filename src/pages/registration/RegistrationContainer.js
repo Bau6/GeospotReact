@@ -8,7 +8,7 @@ import {
     onPassChangeActionCreator,
     onPatronymicChangeActionCreator,
     onRepassChangeActionCreator,
-    onSurnameChangeActionCreator, setSelectedSports
+    onSurnameChangeActionCreator
 } from "../../database/redux/infoUsers-reducer";
 import Registration from "./Registration";
 import {connect} from "react-redux";
@@ -18,7 +18,7 @@ import {
     setRoleActionCreator,
     setSessionActionCreator
 } from "../../database/redux/sessionUser";
-import {loadSportsFunc} from "../../database/redux/locationUserReducer";
+import {checkedFunc, initializeStore, refArrayFunc, setSelectedSports} from "../../database/redux/events-reducer";
 
 
 
@@ -30,6 +30,9 @@ let mapStateToProps = (state) => {
         myInf: state.infoUsers.userExampleInfo,
         isLoggedIn: state.auth.isLoggedIn,
         isAuthenticated: state.sessionUser.isAuthenticated,
+        sportsDB: state.eventsReducer.selectedSports,
+        checked: state.eventsReducer.checked,
+        refsArray: state.eventsReducer.refsArray,
     }
 }
 
@@ -74,15 +77,21 @@ let mapDispatchToProps = (dispatch) => {
         myUserId: (role) => {
             dispatch(setRoleActionCreator(role));
         },
-        registrationsLoadDataUser: (role) => {
-            dispatch(registrationsLoadDataUser(role));
+        registrationsLoadDataUser: (role, sports) => {
+            dispatch(registrationsLoadDataUser(role, sports));
         },
-        selectedSports: (checked) => {
+        selectedSportsFunc: (checked) => {
             dispatch(setSelectedSports(checked));
         },
         loadSportsFunc: (text) => {
-            dispatch(loadSportsFunc(text))
-        }
+            dispatch(initializeStore(text))
+        },
+        refsArrayFunc: (text) => {
+            dispatch(refArrayFunc(text));
+        },
+        checkedFunc: (text) => {
+            dispatch(checkedFunc(text));
+        },
     }
 }
 

@@ -1,5 +1,7 @@
 import axios from "axios";
 import {setRoleActionCreator, setSessionActionCreator} from "./sessionUser";
+import {defaultNewNewsActionCreator} from "./news-reducer";
+
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 const initialState = {
@@ -35,60 +37,67 @@ export const logout = () => {
 };
 export const checkUserData = (email, password) => {
     return (dispatch) => {
-    let errorMessage = '';
-    if (!validateEmail(email)) {
-        errorMessage += "Пожалуйста, введите корректный Email.\n";
-    }
-    if (!validatePassword(password)) {
-        errorMessage += "Пароль должен содержать от 6 до 20 символов, включать латинские буквы нижнего и верхнего регистров, а также цифры.\n";
-    }
-    if (errorMessage === '') {
-        let CheckDataToDB = {
-            email: email,
-            password: password,
-        };
-        axios.get("http://localhost:3003/check-login-pass", {
-            params: {
-                nameTable: 'users',
-                params: CheckDataToDB
-            }
-        })
-            .then(response => {
-                const userData = response.data;
-                if (response.data.error) {
-                    alert(response.data.error);
-                } else {
-                    dispatch(login());
-                    dispatch(setSessionActionCreator({id: userData.id, email: userData.email, name: userData.surname + " " + userData.name + " " + userData.patronymic}));
-                    // setSession({id: userData.id, email: userData.email, name: userData.surname + " " + userData.name + " " + userData.patronymic});
-                    dispatch(setRoleActionCreator(userData.id));
-                    getUserRole(userData.id, dispatch);
-                    window.location.href = 'http://localhost:3000/pages/profile/profile.js';
-                    // redirectToProfile();
+        let errorMessage = '';
+        if (!validateEmail(email)) {
+            errorMessage += "Пожалуйста, введите корректный Email.\n";
+        }
+        if (!validatePassword(password)) {
+            errorMessage += "Пароль должен содержать от 6 до 20 символов, включать латинские буквы нижнего и верхнего регистров, а также цифры.\n";
+        }
+        if (errorMessage === '') {
+            let CheckDataToDB = {
+                email: email,
+                password: password,
+            };
+            axios.get("http://localhost:3003/check-login-pass", {
+                params: {
+                    nameTable: 'users',
+                    params: CheckDataToDB
                 }
             })
-            .catch(error => {
-                if (error.response) {
-                    alert("Неправильный пароль или логин.");
-                } else if (error.request) {
-                    alert("Произошла ошибка при отправке запроса. Пожалуйста, проверьте ваше подключение к сети.");
-                } else {
-                    alert("Произошла неизвестная ошибка. Пожалуйста, обратитесь в службу поддержки.");
-                }
-            });
-    } else {
-        alert(errorMessage);
-    }}
+                .then(response => {
+                    const userData = response.data;
+                    if (response.data.error) {
+                        alert(response.data.error);
+                    } else {
+                        dispatch(login());
+                        dispatch(setSessionActionCreator({
+                            id: userData.id,
+                            email: userData.email,
+                            name: userData.surname + " " + userData.name + " " + userData.patronymic
+                        }));
+                        // setSession({id: userData.id, email: userData.email, name: userData.surname + " " + userData.name + " " + userData.patronymic});
+                        dispatch(setRoleActionCreator(userData.id));
+                        getUserRole(userData.id, dispatch);
+                        window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
+                        // redirectToProfile();
+                    }
+                })
+                .catch(error => {
+                    if (error.response) {
+                        alert("Неправильный пароль или логин.");
+                    } else if (error.request) {
+                        alert("Произошла ошибка при отправке запроса. Пожалуйста, проверьте ваше подключение к сети.");
+                    } else {
+                        alert("Произошла неизвестная ошибка. Пожалуйста, обратитесь в службу поддержки.");
+                    }
+                });
+        } else {
+            alert(errorMessage);
+        }
+    }
 }
-function validateEmail (email) {
+
+function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
 }
 
-function validatePassword (password) {
+function validatePassword(password) {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/;
     return passwordRegex.test(password);
 }
+
 function getUserRole(userId, dispatch) {
     axios.get("http://localhost:3003/role", {
         params: {
@@ -105,17 +114,26 @@ function getUserRole(userId, dispatch) {
         });
 }
 
-export const registrationsLoadDataUser = (addDataToDB) => {
+export const registrationsLoadDataUser = (addDataToDB, sports) => {
     return (dispatch) => {
         axios.post("http://localhost:3003/add-record", {
             nameTable: "users",
-            params: addDataToDB
+            fParams: {
+                params: addDataToDB,
+                sports: sports,
+            }
         })
             .then(response => {
                 alert("Вы успешно зарегистрированы!");
                 dispatch(login());
-                dispatch(setSessionActionCreator({email: addDataToDB.email, name: addDataToDB.surname + " " + addDataToDB.name + " " + addDataToDB.patronymic}));
+                dispatch(setSessionActionCreator({
+                    email: addDataToDB.email,
+                    name: addDataToDB.surname + " " + addDataToDB.name + " " + addDataToDB.patronymic
+                }));
                 dispatch(setRoleActionCreator("user"));
+                debugger
+                console.log(response.data);
+                debugger
                 window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
             })
             .catch(error => {
@@ -124,6 +142,23 @@ export const registrationsLoadDataUser = (addDataToDB) => {
                 } else {
                     alert("An error occurred");
                 }
+            });
+    }
+}
+export const AddChecked = (newNews) => {
+    return dispatch => {
+        axios.post('http://localhost:3003/add-checked', {
+            nameTable: 'news',
+            params: newNews,
+        })
+            .then(response => {
+                alert("Данные успешно добавлены");
+                // console.log(response.data);
+                dispatch(defaultNewNewsActionCreator());
+            })
+            .catch(error => {
+                alert("Проверьте правильность написания даты!\nDD.MM.YYYY или dd-mm-yyyy");
+                console.error(error);
             });
     }
 }
