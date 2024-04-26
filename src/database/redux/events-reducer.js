@@ -1,9 +1,8 @@
-import {addDays} from "date-fns";
-
 const LOAD_EVENTS = "LOAD_EVENTS";
 const LOAD_SPORTS = "LOAD_SPORTS";
 const CLEAR = "CLEAR";
 const LOAD_DATA = "LOAD_DATA";
+const SPORTS ="SPORTS";
 let initialState = {
     sports: "",
     storeEvents: {
@@ -19,6 +18,8 @@ const eventsReducer = (state = initialState, action) => {
             return {...state, storeEvents: action.payload}
         case LOAD_SPORTS:
             return {...state, sports: action.sportsLoad}
+        case SPORTS:
+            return {...state, storeEvents: {sports: action.sport}}
         case LOAD_DATA:
             return {
                 ...state,
@@ -50,6 +51,10 @@ export const loadSports = (text) => ({
 export const loadData = (text) => ({
     type: LOAD_DATA,
     startDate: text
+});
+export const sportsLoad = (text) => ({
+    type: SPORTS,
+    sport: text
 });
 export const clearEvents = () => ({
     type: CLEAR

@@ -8,7 +8,7 @@ import {
     onPassChangeActionCreator,
     onPatronymicChangeActionCreator,
     onRepassChangeActionCreator,
-    onSurnameChangeActionCreator
+    onSurnameChangeActionCreator, setSelectedSports
 } from "../../database/redux/infoUsers-reducer";
 import Registration from "./Registration";
 import {connect} from "react-redux";
@@ -18,8 +18,7 @@ import {
     setRoleActionCreator,
     setSessionActionCreator
 } from "../../database/redux/sessionUser";
-import {loadSports} from "../../database/redux/events-reducer";
-import {UserLocation} from "../../database/redux/locationUserReducer";
+import {loadSportsFunc} from "../../database/redux/locationUserReducer";
 
 
 
@@ -35,7 +34,6 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = (dispatch) => {
-    dispatch(UserLocation("http://localhost:3000/pages/registration/Registration.js"));
     return {
         updateText: (text) => {
             dispatch(onDateChangeActionCreator( text ));
@@ -79,6 +77,12 @@ let mapDispatchToProps = (dispatch) => {
         registrationsLoadDataUser: (role) => {
             dispatch(registrationsLoadDataUser(role));
         },
+        selectedSports: (selectedOptions) => {
+            dispatch(setSelectedSports(selectedOptions));
+        },
+        loadSportsFunc: (text) => {
+            dispatch(loadSportsFunc(text))
+        }
     }
 }
 

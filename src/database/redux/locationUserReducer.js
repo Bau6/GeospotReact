@@ -1,5 +1,5 @@
 import axios from "axios";
-import {loadEvents} from "./events-reducer";
+import {loadEvents, sportsLoad} from "./events-reducer";
 import {defaultNewNewsActionCreator, loadNews} from "./news-reducer";
 import {authUserInfo} from "./infoUsers-reducer";
 
@@ -78,7 +78,7 @@ export const addNewsUser = (id, status) => {
                 } else if (status === 7) {
                     alert("Успешно удалено!");
                 }
-                console.log(response.data);
+                // console.log(response.data);
                 // Вызовите другой action для обновления состояния newsList
                 // dispatch(updateNewsList(updatedNewsList));
             })
@@ -102,6 +102,18 @@ export const addNewsOrg = (newNews) => {
             .catch(error => {
                 alert("Проверьте правильность написания даты!\nDD.MM.YYYY или dd-mm-yyyy");
                 console.error(error);
+            });
+    }
+}
+export const loadSportsFunc = () => {
+    return dispatch => {
+        axios.get('http://localhost:3003/sports')
+            .then(responseSports => {
+                // Вызываем другой action creator для загрузки данных
+                dispatch(sportsLoad(responseSports.data));
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
 }

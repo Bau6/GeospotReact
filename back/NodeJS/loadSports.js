@@ -1,0 +1,19 @@
+let savedResult = null;
+const connection = require('./connect');
+const SPORTS = "sporttype"
+function loadSport(res) {
+    let query = "SELECT * FROM ?? ";
+    connection.query(query, SPORTS, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            savedResult = result;
+        }
+    });
+    if (savedResult) {
+        res.json(savedResult);
+    } else {
+        res.status(404).json({ error: 'Результат не найден' });
+    }
+}
+module.exports = { loadSport };

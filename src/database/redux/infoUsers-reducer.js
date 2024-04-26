@@ -1,5 +1,4 @@
-// import {compose} from "redux";
-
+const SET_SELECTED_SPORTS = 'SET_SELECTED_SPORTS';
 const INFO_FOR_REG_USER = 'INFO-FOR-REG-USER';
 const EMAIL = 'EMAIL';
 const PASSWORD = 'PASSWORD';
@@ -26,13 +25,8 @@ let initialState = {
         city: "",
         country: "",
         photoUrl: ''
-        // checkedTypeSport: [
-        //     {event: "Баскетбол", status: 'on'},
-        //     {event: "Воллейбол", status: 'on'},
-        //     {event: "Хоккей", status: 'on'},
-        //     {event: "Футбол", status: "Опытный"}
-        // ]
     },
+    selectedSports: null,
     usersNewInfo: [],
     data: []
 }
@@ -155,6 +149,12 @@ const infoUsersReducer = (state = initialState, action) => {
                 usersNewInfo: [],
                 data: []
             };
+        case SET_SELECTED_SPORTS:
+            console.log(action.payload);
+            return {
+                ...state,
+                selectedSports: action.payload
+            };
         default:
             return state;
     }
@@ -232,5 +232,8 @@ export const authUserInfo = (value) => (
         newText: value
     }
 )
-
+export const setSelectedSports = (selectedOption) => ({
+    type: SET_SELECTED_SPORTS,
+    payload: selectedOption
+});
 export default infoUsersReducer;

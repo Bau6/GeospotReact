@@ -13,12 +13,13 @@ class Registration extends Component {
             initialCheckedState: [],
             refs: [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()],
             checked: Array(this.props.sports.length).fill(false),
-            selectedValues: Array(this.props.sports.length).fill(null),
+            selectedValues: Array(this.props.sports.length).fill(true),
             refsArray: Array(this.props.sports.length).fill(React.createRef()),
         };
     }
 
     componentDidMount() {
+        this.props.loadSportsFunc();
         this.setState(prevState => {
             const newRefs = [...prevState.refs];
             if (newRefs[1].current) {
@@ -30,7 +31,15 @@ class Registration extends Component {
             return {refs: newRefs};
         });
     }
-
+    componentDidUpdate(prevProps) {
+        if (prevProps.sports !== this.props.sports) {
+            this.setState({
+                checked: Array(this.props.sports.length).fill(false),
+                selectedValues: Array(this.props.sports.length).fill(true),
+                refsArray: Array(this.props.sports.length).fill(React.createRef()),
+            });
+        }
+    }
     handleChange = (e) => {
         // Логика обработки изменения даты
         const inputDate = e.target.value;
@@ -83,6 +92,7 @@ class Registration extends Component {
             const selectedValuesCopy = [...this.state.selectedValues];
             selectedValuesCopy[index] = eventKey;
             this.setState( {selectedValues: selectedValuesCopy} )
+            console.log(this.state.selectedValues)
             }
 
     // Логика отображения компоненты
