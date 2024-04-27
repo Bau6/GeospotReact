@@ -6,7 +6,7 @@ import {
     onEmailLoginActionCreator, onPassLoginActionCreator, setRoleActionCreator,
     setSessionActionCreator
 } from "../../database/redux/sessionUser";
-import {loadSportsFunc} from "../../database/redux/locationUserReducer";
+// import {loadSportsFunc} from "../../database/redux/locationUserReducer";
 // import {clearSessionUsersActionCreator} from "../../database/redux/infoUsers-reducer";
 const mapStateToProps = (state) => {
     return {
@@ -18,7 +18,6 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => {
-    dispatch(loadSportsFunc());
     return {
         onPassLoginChange: (text) => {
             dispatch(onPassLoginActionCreator( text ));

@@ -18,9 +18,8 @@ import {
     setRoleActionCreator,
     setSessionActionCreator
 } from "../../database/redux/sessionUser";
-import {checkedFunc, initializeStore, refArrayFunc, setSelectedSports} from "../../database/redux/events-reducer";
-
-
+import {checkedFunc,  setSelectedSports} from "../../database/redux/events-reducer";
+import {loadSportsFunc} from "../../database/redux/locationUserReducer";
 
 let mapStateToProps = (state) => {
     // debugger
@@ -30,7 +29,7 @@ let mapStateToProps = (state) => {
         myInf: state.infoUsers.userExampleInfo,
         isLoggedIn: state.auth.isLoggedIn,
         isAuthenticated: state.sessionUser.isAuthenticated,
-        sportsDB: state.eventsReducer.selectedSports,
+        selectedSports: state.eventsReducer.selectedSports,
         checked: state.eventsReducer.checked,
         refsArray: state.eventsReducer.refsArray,
     }
@@ -83,11 +82,11 @@ let mapDispatchToProps = (dispatch) => {
         selectedSportsFunc: (checked) => {
             dispatch(setSelectedSports(checked));
         },
-        loadSportsFunc: (text) => {
-            dispatch(initializeStore(text))
-        },
-        refsArrayFunc: (text) => {
-            dispatch(refArrayFunc(text));
+        // loadSportsFunc: (text) => {
+        //     dispatch(loadSportsFunc(text))
+        // },
+        loadSportsFunc: () => {
+            dispatch(loadSportsFunc());
         },
         checkedFunc: (text) => {
             dispatch(checkedFunc(text));

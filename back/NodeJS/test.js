@@ -111,8 +111,6 @@ function selectMyEvents() {
 }
 function loadSports() {
     app.get('/sports', (req, res) => {
-        // const { params } = req.query;
-        // const params = { events: "events", user: "users", sport: "sporttype", city: "cities", country: "countries"};
         loadSport(res);
     });
 }

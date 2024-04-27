@@ -1,5 +1,5 @@
 import React from "react";
-import {loadSportsFunc} from "./locationUserReducer";
+
 
 const LOAD_EVENTS = "LOAD_EVENTS";
 const LOAD_SPORTS = "LOAD_SPORTS";
@@ -9,20 +9,16 @@ const SPORTS ="SPORTS";
 const SET_SELECTED_SPORTS = 'SET_SELECTED_SPORTS';
 const REF = "REF";
 const CHECK = "CHECK";
-export const initializeStore = () => {
-    return (dispatch) => {
-        dispatch(loadSportsFunc());
-    };
-};
+
 let initialState = {
     sports: "",
     storeEvents: {
         events: "",
         sports: [{name:"", id:0}],
     },
-    selectedSports: "",
-    checked: "",
-    refsArray: "",
+    selectedSports: [],
+    checked: Array(0).fill(false),
+    refsArray: Array(0).fill(null),
     data: 0,
 }
 
@@ -48,25 +44,25 @@ const eventsReducer = (state = initialState, action) => {
                     events: "",
                     sports: [{name:"", id:0}],
                 },
-                selectedSports: "",
-                checked: "",
-                refsArray: "",
+                selectedSports: [],
+                checked: Array(0).fill(false),
+                refsArray: Array(0).fill(React.createRef()),
                 data: 0,
             };
         case SET_SELECTED_SPORTS:
             return {
                 ...state,
-                selectedSports: action.checked.map(() => true),
+                selectedSports: action.sports,
             };
         case REF:
             return {
                 ...state,
-                checked: action.checked,
+                refsArray: action.refs,
             };
         case CHECK:
             return {
                 ...state,
-                refsArray: action.checked,
+                checked: action.checked,
             };
         default:
             return state;
@@ -91,16 +87,16 @@ export const sportsLoad = (text) => ({
 export const clearEvents = () => ({
     type: CLEAR
 });
-export const setSelectedSports = ( checked) => ({
+export const setSelectedSports = ( sports) => ({
     type: SET_SELECTED_SPORTS,
-    checked: checked,
+    sports: sports,
 });
 export const checkedFunc = ( checked) => ({
     type: CHECK,
     checked: checked,
 });
-export const refArrayFunc = ( checked) => ({
+export const refArrayFunc = ( refs) => ({
     type: REF,
-    checked: checked,
+    refs: refs,
 });
 export default eventsReducer;

@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/NodeJS/add.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/add.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/NodeJS/loadSports.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/loadSports.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/NodeJS/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/authActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/redux/events-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/events-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/infoUsers-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/locationUserReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/locationUserReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/authorization/AuthorizationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/authorization/AuthorizationContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationContainer.js" afterDir="false" />
     </list>
@@ -139,7 +138,7 @@
       <workItem from="1711791841038" duration="75471000" />
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
-      <workItem from="1713628857019" duration="86821000" />
+      <workItem from="1713628857019" duration="96236000" />
     </task>
     <servers />
   </component>

@@ -5,6 +5,7 @@ import FormFields from "../profile/InfoUserProfile";
 import AvatarUpload from "../avatar/avatar";
 import {validationsReg} from "../../app/include/validations";
 import React, {Component} from 'react';
+
 class Registration extends Component {
     constructor(props) {
         super(props);
@@ -17,9 +18,6 @@ class Registration extends Component {
 
     componentDidMount() {
         this.props.loadSportsFunc();
-        this.props.selectedSportsFunc(Array(this.props.sports.length).fill(false));
-        this.props.refsArrayFunc(Array(this.props.sports.length).fill(React.createRef()));
-        this.props.checkedFunc(Array(this.props.sports.length).fill(false));
         this.setState(prevState => {
             const newRefs = [...prevState.refs];
             if (newRefs[1].current) {
@@ -30,7 +28,15 @@ class Registration extends Component {
             }
             return {refs: newRefs};
         });
+
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.sports !== this.props.sports) {
+            this.props.selectedSportsFunc(Array(this.props.sports.length).fill({}));
+        }
+    }
+
+
     handleChange = (e) => {
         // Логика обработки изменения даты
         const inputDate = e.target.value;
@@ -77,17 +83,18 @@ class Registration extends Component {
     changeChecked = (index) => {
         const checkedCopy = [...this.props.checked];
         checkedCopy[index] = !checkedCopy[index];
-        this.props.checkedFunc({checked: checkedCopy});
-        }
-        handleDropdownSelect = (eventKey, index, name) => {
-            // this.props.selectedSportsFunc(Array(this.props.sports.length).fill(true));
-            // this.props.refsArrayFunc(Array(this.props.sports.length).fill(React.createRef()));
-            const selectedValuesCopy = [...this.props.sportsDB];
-            selectedValuesCopy[index] = eventKey;
-            // this.setState( {selectedValues: selectedValuesCopy} );
+        this.props.checkedFunc(checkedCopy);
+    }
+
+    handleDropdownSelect = (eventKey, index, name) => {
+        if (Array.isArray(this.props.selectedSports)) {
+            const selectedValuesCopy = [...this.props.selectedSports];
+            selectedValuesCopy[index] = {[name]: eventKey};
             this.props.selectedSportsFunc(selectedValuesCopy);
-            console.log(this.props.sportsDB)
-            }
+        } else {
+            console.error("selectedSports is not an array");
+        }
+    }
 
     // Логика отображения компоненты
     render() {
@@ -129,6 +136,7 @@ class Registration extends Component {
                                     onChange={() => this.changeChecked(index)}
                                 />
                                 {this.props.checked[index] ? (
+                                    // <div>loh</div>
                                     <DropDownMenuReg
                                         index={index}
                                         onDropdownSelect={(eventKey) => this.handleDropdownSelect(eventKey, index, item.name)}
