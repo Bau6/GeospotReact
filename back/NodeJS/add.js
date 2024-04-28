@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const QUALIFICATION = 'user_sport_qualification'
 const QUALIFICATIONS = 'qualifications'
 const SPORTS = "sporttype"
+const ROLE = "userroles";
 function addRecord(table, fParams, res) {
     let params = fParams.params;
     let sports = fParams.sports;
@@ -38,47 +39,66 @@ function addRecord(table, fParams, res) {
                                                     res.status(500).json({error: 'Ошибка при запросе к базе данных'});
                                                 } else {
                                                     if (result.length > 0) {
-                                                        res.json(result[0]);
 
-                                                        sports.forEach((sport, index) => {
-                                                            if (sport !== true) {
-                                                                // Здесь выполняется остальной код для каждого значения, не равного true
+                                                        const userID = result[0].id;
+                                                        const sportsFor = sports.map(obj => Object.keys(obj)[0]);
+                                                        const qualsFor = sports.map(obj => obj[Object.keys(obj)[0]]);
 
-                                                                // Поиск sportID по имени спорта
-                                                                const findSportQuery = "SELECT id FROM ?? WHERE name = ?";
-                                                                connection.query(findSportQuery, [SPORTS, sport], (sportErr, sportResult) => {
-                                                                    if (sportErr) {
-                                                                        console.log(sportErr);
-                                                                        res.status(500).json({error: 'Ошибка при поиске спорта'});
-                                                                    } else {
-                                                                        const sportID = sportResult[0].id;
-
-                                                                        // Поиск qID по нужному условию
-                                                                        const findQIDQuery = "SELECT id FROM ?? WHERE condition = ?";
-                                                                        connection.query(findQIDQuery, [QUALIFICATIONS, yourCondition], (qErr, qResult) => {
-                                                                            if (qErr) {
-                                                                                console.log(qErr);
-                                                                                res.status(500).json({error: 'Ошибка при поиске qID'});
-                                                                            } else {
-                                                                                const qID = qResult[0].id;
-
-                                                                                // Вставка данных в таблицу usersSports
-                                                                                const insertQuery = "INSERT INTO ?? (user_id, sport_id, qualification_id) VALUES (?, ?, ?)";
-                                                                                const values = [QUALIFICATION, result[0].id, sportID, qID];
-                                                                                connection.query(insertQuery, values, (insertErr, insertResult) => {
-                                                                                    if (insertErr) {
-                                                                                        console.log(insertErr);
-                                                                                        res.status(500).json({error: 'Ошибка при добавлении записи'});
-                                                                                    } else {
-                                                                                        res.json({message: 'Запись успешно добавлена'});
-                                                                                    }
-                                                                                });
-                                                                            }
-                                                                        });
-                                                                    }
-                                                                });
+                                                        const promises = [];
+                                                        const valuesRole = [ROLE, userID, 4];
+                                                        const insertQueryRole = "INSERT INTO ?? (userID, roleID) VALUES (?, ?)";
+                                                        connection.query(insertQueryRole, valuesRole, (insertErrRole) => {
+                                                            if (insertErrRole) {
+                                                                console.log(insertErrRole);
                                                             }
-                                                        })
+                                                        });
+
+
+                                                        sportsFor.forEach((sport, index) => {
+                                                            if (!!sport && !!qualsFor[index]) {
+                                                                const findSportQuery = "SELECT id FROM ?? WHERE name = ?";
+                                                                const findQIDQuery = "SELECT id FROM ?? WHERE name = ?";
+
+                                                                const promise = new Promise((resolve, reject) => {
+                                                                    connection.query(findSportQuery, [SPORTS, sport], (sportErr, sportResult) => {
+                                                                        if (sportErr) {
+                                                                            console.log(sportErr);
+                                                                            reject('Ошибка при поиске спорта');
+                                                                        } else {
+                                                                            const sportID = sportResult[0].id;
+                                                                            connection.query(findQIDQuery, [QUALIFICATIONS, qualsFor[index]], (qErr, qResult) => {
+                                                                                if (qErr) {
+                                                                                    console.log(qErr);
+                                                                                    reject('Ошибка при поиске квалификации');
+                                                                                } else {
+                                                                                    const qID = qResult[0].id;
+                                                                                    const insertQuery = "INSERT INTO ?? (user_id, qualification_id, sport_id) VALUES (?, ?, ?)";
+                                                                                    const values = [QUALIFICATION, userID, qID, sportID];
+                                                                                    connection.query(insertQuery, values, (insertErr, insertResult) => {
+                                                                                        if (insertErr) {
+                                                                                            console.log(insertErr);
+                                                                                            reject('Ошибка при добавлении записи');
+                                                                                        } else {
+                                                                                            resolve('Запись успешно добавлена');
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                    });
+                                                                });
+
+                                                                promises.push(promise);
+                                                            }
+                                                        });
+
+                                                        Promise.all(promises)
+                                                            .then(messages => {
+                                                                res.json({ message: messages }); // Отправляем сообщения об успехе всех запросов
+                                                            })
+                                                            .catch(error => {
+                                                                res.status(500).json({ error: error }); // Отправляем сообщение об ошибке
+                                                            });
                                                     } else {
                                                         res.status(404).json({error: 'Результат не найден'});
                                                     }

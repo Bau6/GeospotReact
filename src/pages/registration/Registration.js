@@ -10,14 +10,15 @@ class Registration extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: '',
-            initialCheckedState: [],
+            // date: '',
+            // initialCheckedState: [],
             refs: [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()],
         };
     }
 
     componentDidMount() {
         this.props.loadSportsFunc();
+        this.props.loadQualificationsFunc();
         this.setState(prevState => {
             const newRefs = [...prevState.refs];
             if (newRefs[1].current) {
@@ -69,11 +70,11 @@ class Registration extends Component {
                 patronymic: this.props.userExampleInfo.patronymicUser,
                 birthday: this.props.userExampleInfo.dateOfBirth
             };
-            for (let i = 0; i < this.props.sports.length; i++) {
-                test1.checkedTypeSport[i] = {id: i + 1, status: this.props.refsArray[i].current.value};
-            }
+            // for (let i = 0; i < this.props.sports.length; i++) {
+            //     test1.checkedTypeSport[i] = {id: i + 1, status: this.props.refsArray[i].current.value};
+            // }
             this.props.addData(test1);
-            this.props.registrationsLoadDataUser(addDataToDB, this.props.sportsDB);
+            this.props.registrationsLoadDataUser(addDataToDB, this.props.selectedSports);
         } else {
             alert(errorMessage);
             event.preventDefault();
@@ -103,11 +104,13 @@ class Registration extends Component {
             <div key={index}>
                 <label className={RegistrationCss.nameLabelInputButtonReg}>{labelData}</label>
                 <input ref={this.state.refs[6]} className={RegistrationCss.nameLabelInputButtonReg} type="text"
-                       value={date} onChange={this.handleChange} placeholder="dd.mm.yyyy"/>
+                       value={date ? date : ""} onChange={this.handleChange} placeholder="dd.mm.yyyy"/>
             </div>
         ));
         return (
             <div>
+                {!this.props.isLoggedIn ? (
+                    <div>
                 <div>
                     <div className={RegistrationCss.RegistrationName}>Регистрация</div>
                     <div className={RegistrationCss.containerReg}>
@@ -132,12 +135,13 @@ class Registration extends Component {
                                 <input
                                     ref={this.props.refsArray[index]}
                                     type="checkbox"
-                                    checked={this.props.checked[index]}
+                                    checked={!!this.props.checked[index]}
                                     onChange={() => this.changeChecked(index)}
                                 />
                                 {this.props.checked[index] ? (
                                     // <div>loh</div>
                                     <DropDownMenuReg
+                                        qualifications={this.props.qualifications}
                                         index={index}
                                         onDropdownSelect={(eventKey) => this.handleDropdownSelect(eventKey, index, item.name)}
                                     />
@@ -153,7 +157,7 @@ class Registration extends Component {
                     <button onClick={this.onAddData} className={RegistrationCss.nameButtonReg}>
                         Сохранить изменения
                     </button>
-                </div>
+                </div></div>) : <div>Страница не найдена!</div>}
             </div>
         );
     }

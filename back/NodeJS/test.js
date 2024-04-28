@@ -13,6 +13,7 @@ const {myRole} = require("./roleUser");
 const {addNew} = require("./addNews");
 const {selectEvents} = require("./selectEvents");
 const {loadSport} = require("./loadSports");
+const {loadQual} = require("./loadQualifications");
 
 app.use(cors());
 const port = 3003;
@@ -114,6 +115,12 @@ function loadSports() {
         loadSport(res);
     });
 }
+function loadQuals() {
+    app.get('/qualifications', (req, res) => {
+        loadQual(res);
+    });
+}
+loadQuals();
 loadSports();
 selectMyEvents();
 addNews();

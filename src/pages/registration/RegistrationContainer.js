@@ -19,7 +19,7 @@ import {
     setSessionActionCreator
 } from "../../database/redux/sessionUser";
 import {checkedFunc,  setSelectedSports} from "../../database/redux/events-reducer";
-import {loadSportsFunc} from "../../database/redux/locationUserReducer";
+import {loadQualificationsFunc, loadSportsFunc} from "../../database/redux/locationUserReducer";
 
 let mapStateToProps = (state) => {
     // debugger
@@ -32,6 +32,7 @@ let mapStateToProps = (state) => {
         selectedSports: state.eventsReducer.selectedSports,
         checked: state.eventsReducer.checked,
         refsArray: state.eventsReducer.refsArray,
+        qualifications: state.eventsReducer.qualifications,
     }
 }
 
@@ -82,9 +83,9 @@ let mapDispatchToProps = (dispatch) => {
         selectedSportsFunc: (checked) => {
             dispatch(setSelectedSports(checked));
         },
-        // loadSportsFunc: (text) => {
-        //     dispatch(loadSportsFunc(text))
-        // },
+        loadQualificationsFunc: () => {
+            dispatch(loadQualificationsFunc())
+        },
         loadSportsFunc: () => {
             dispatch(loadSportsFunc());
         },

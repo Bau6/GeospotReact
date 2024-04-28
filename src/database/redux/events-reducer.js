@@ -9,6 +9,7 @@ const SPORTS ="SPORTS";
 const SET_SELECTED_SPORTS = 'SET_SELECTED_SPORTS';
 const REF = "REF";
 const CHECK = "CHECK";
+const QUALIFICATIONS = "QUALIFICATIONS";
 
 let initialState = {
     sports: "",
@@ -16,6 +17,7 @@ let initialState = {
         events: "",
         sports: [{name:"", id:0}],
     },
+    qualifications: [],
     selectedSports: [],
     checked: Array(0).fill(false),
     refsArray: Array(0).fill(null),
@@ -44,9 +46,10 @@ const eventsReducer = (state = initialState, action) => {
                     events: "",
                     sports: [{name:"", id:0}],
                 },
+                qualifications: [],
                 selectedSports: [],
                 checked: Array(0).fill(false),
-                refsArray: Array(0).fill(React.createRef()),
+                refsArray: Array(0).fill(null),
                 data: 0,
             };
         case SET_SELECTED_SPORTS:
@@ -54,16 +57,21 @@ const eventsReducer = (state = initialState, action) => {
                 ...state,
                 selectedSports: action.sports,
             };
-        case REF:
-            return {
-                ...state,
-                refsArray: action.refs,
-            };
+        // case REF:
+        //     return {
+        //         ...state,
+        //         refsArray: action.refs,
+        //     };
         case CHECK:
             return {
                 ...state,
                 checked: action.checked,
             };
+        case QUALIFICATIONS:
+            return {
+                ...state,
+                qualifications: action.qualifications
+            }
         default:
             return state;
     }
@@ -84,6 +92,10 @@ export const sportsLoad = (text) => ({
     type: SPORTS,
     sport: text
 });
+export const qualificationsLoad = (text) => ({
+    type: QUALIFICATIONS,
+    qualifications: text
+});
 export const clearEvents = () => ({
     type: CLEAR
 });
@@ -95,8 +107,8 @@ export const checkedFunc = ( checked) => ({
     type: CHECK,
     checked: checked,
 });
-export const refArrayFunc = ( refs) => ({
-    type: REF,
-    refs: refs,
-});
+// export const refArrayFunc = ( refs) => ({
+//     type: REF,
+//     refs: refs,
+// });
 export default eventsReducer;

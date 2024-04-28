@@ -45,47 +45,52 @@ export const checkUserData = (email, password) => {
             errorMessage += "Пароль должен содержать от 6 до 20 символов, включать латинские буквы нижнего и верхнего регистров, а также цифры.\n";
         }
         if (errorMessage === '') {
-            let CheckDataToDB = {
-                email: email,
-                password: password,
-            };
-            axios.get("http://localhost:3003/check-login-pass", {
-                params: {
-                    nameTable: 'users',
-                    params: CheckDataToDB
-                }
-            })
-                .then(response => {
-                    const userData = response.data;
-                    if (response.data.error) {
-                        alert(response.data.error);
-                    } else {
-                        dispatch(login());
-                        dispatch(setSessionActionCreator({
-                            id: userData.id,
-                            email: userData.email,
-                            name: userData.surname + " " + userData.name + " " + userData.patronymic
-                        }));
-                        // setSession({id: userData.id, email: userData.email, name: userData.surname + " " + userData.name + " " + userData.patronymic});
-                        dispatch(setRoleActionCreator(userData.id));
-                        getUserRole(userData.id, dispatch);
-                        window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
-                        // redirectToProfile();
-                    }
-                })
-                .catch(error => {
-                    if (error.response) {
-                        alert("Неправильный пароль или логин.");
-                    } else if (error.request) {
-                        alert("Произошла ошибка при отправке запроса. Пожалуйста, проверьте ваше подключение к сети.");
-                    } else {
-                        alert("Произошла неизвестная ошибка. Пожалуйста, обратитесь в службу поддержки.");
-                    }
-                });
+            axiosUsersLogin(dispatch, email, password);
+            window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
         } else {
             alert(errorMessage);
         }
     }
+}
+
+function axiosUsersLogin(dispatch, email, password){
+    let CheckDataToDB = {
+        email: email,
+        password: password,
+    };
+    axios.get("http://localhost:3003/check-login-pass", {
+        params: {
+            nameTable: 'users',
+            params: CheckDataToDB
+        }
+    })
+        .then(response => {
+            const userData = response.data;
+            if (response.data.error) {
+                alert(response.data.error);
+            } else {
+                dispatch(login());
+                console.log(response.data)
+                dispatch(setSessionActionCreator({
+                    id: userData.id,
+                    email: userData.email,
+                    name: userData.surname + " " + userData.name + " " + userData.patronymic
+                }));
+                // setSession({id: userData.id, email: userData.email, name: userData.surname + " " + userData.name + " " + userData.patronymic});
+                dispatch(setRoleActionCreator(userData.id));
+                getUserRole(userData.id, dispatch);
+                // redirectToProfile();
+            }
+        })
+        .catch(error => {
+            if (error.response) {
+                alert("Неправильный пароль или логин.");
+            } else if (error.request) {
+                alert("Произошла ошибка при отправке запроса. Пожалуйста, проверьте ваше подключение к сети.");
+            } else {
+                alert("Произошла неизвестная ошибка. Пожалуйста, обратитесь в службу поддержки.");
+            }
+        });
 }
 
 function validateEmail(email) {
@@ -124,41 +129,17 @@ export const registrationsLoadDataUser = (addDataToDB, sports) => {
             }
         })
             .then(response => {
+                axiosUsersLogin(dispatch, addDataToDB.email, addDataToDB.password);
+                // dispatch(setRoleActionCreator("user"));
                 alert("Вы успешно зарегистрированы!");
-                dispatch(login());
-                dispatch(setSessionActionCreator({
-                    email: addDataToDB.email,
-                    name: addDataToDB.surname + " " + addDataToDB.name + " " + addDataToDB.patronymic
-                }));
-                dispatch(setRoleActionCreator("user"));
-                debugger
-                console.log(response.data);
-                debugger
                 window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
             })
             .catch(error => {
                 if (error.response.data.error) {
-                    alert(error.response.data.error);
+                    alert("ERROR\n Обратитесь в техподдержку!");
                 } else {
                     alert("An error occurred");
                 }
-            });
-    }
-}
-export const AddChecked = (newNews) => {
-    return dispatch => {
-        axios.post('http://localhost:3003/add-checked', {
-            nameTable: 'news',
-            params: newNews,
-        })
-            .then(response => {
-                alert("Данные успешно добавлены");
-                // console.log(response.data);
-                dispatch(defaultNewNewsActionCreator());
-            })
-            .catch(error => {
-                alert("Проверьте правильность написания даты!\nDD.MM.YYYY или dd-mm-yyyy");
-                console.error(error);
             });
     }
 }

@@ -35,7 +35,8 @@ class EventsForm extends React.Component {
                                 (this.props.data === 0))) { // Все
                             cnt = true;
                             return (
-                                <div key={event.id} className={EventsFormCss.eventListContainer}>
+                                // onClick={() => {window.location="/../pages/event/event.js"}}
+                            <div key={event.id} className={EventsFormCss.eventListContainer}>
                                     {/* Проверяем каждое поле перед выводом */}
                                     <div className={EventsFormCss.imageContainer}>
                                         {event.image ?
@@ -100,7 +101,7 @@ class EventsForm extends React.Component {
                         }
                     })
                 ) : (<div></div>)}
-                {cnt ? null : <div>Мероприятия не найдены! Попробуйте изменить фильтры</div>}
+                {cnt ? null : <div>Мероприятия не найдены!</div>}
             </div>
         )
     }

@@ -25,7 +25,7 @@ class ProfilePage extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.sessionUser.userID === "" ||this.props.sessionUser.userID === null || !this.props.sessionUser.userID.id) {
+        if (this.props.sessionUser.userID === "" || this.props.sessionUser.userID === null || !this.props.sessionUser.userID.id) {
             alert("Ошибка! Страница не существует! Обратитесь в техподдержку!")
         } else {
         this.props.UserLocation(window.location.href, this.props.sessionUser.userID.id);}

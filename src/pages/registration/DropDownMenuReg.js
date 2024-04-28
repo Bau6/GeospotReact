@@ -16,15 +16,11 @@ function DropDownMenuReg(props) {
                 {selectedValue || 'Выберите уровень'}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item eventKey="Action" onClick={() => handleDropdownSelect("Начинающий", props.index)}>
-                    Начинающий
-                </Dropdown.Item>
-                <Dropdown.Item eventKey="Another action" onClick={() => handleDropdownSelect("Опытный", props.index)}>
-                    Опытный
-                </Dropdown.Item>
-                <Dropdown.Item eventKey="Something else" onClick={() => handleDropdownSelect("Профессионал", props.index)}>
-                    Профессионал
-                </Dropdown.Item>
+                {props.qualifications.map((qualification, index) => (
+                    <Dropdown.Item key={index} eventKey={qualification.name} onClick={() => handleDropdownSelect(qualification.name, props.index)}>
+                        {qualification.name}
+                    </Dropdown.Item>
+                ))}
             </Dropdown.Menu>
         </Dropdown>
     );

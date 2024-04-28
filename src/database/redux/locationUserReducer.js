@@ -1,5 +1,5 @@
 import axios from "axios";
-import {loadEvents, sportsLoad} from "./events-reducer";
+import {loadEvents, qualificationsLoad, sportsLoad} from "./events-reducer";
 import {defaultNewNewsActionCreator, loadNews} from "./news-reducer";
 import {authUserInfo} from "./infoUsers-reducer";
 
@@ -113,6 +113,18 @@ export const loadSportsFunc = () => {
             .then(responseSports => {
                 // Вызываем другой action creator для загрузки данных
                 dispatch(sportsLoad(responseSports.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const loadQualificationsFunc = () => {
+    return dispatch => {
+        axios.get('http://localhost:3003/qualifications')
+            .then(responseQualifications => {
+                // Вызываем другой action creator для загрузки данных
+                dispatch(qualificationsLoad(responseQualifications.data));
             })
             .catch(error => {
                 console.log(error);
