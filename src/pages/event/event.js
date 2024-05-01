@@ -1,43 +1,39 @@
 import React from "react";
-import eventCss from "./event.module.css"
+import eventCss from "./event.module.css";
 import {NavLink} from "react-router-dom";
+import myImage from '../../app/images/icone.png';
 
 class Event extends React.Component {
-
-
     render() {
 
 
         return (
             <div>
-                <h1>Описание спортивного мероприятия</h1>
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="company-details marginbottom60">
-
-
-                                <div className="title-and-info" id="scroll">
-                                    <div className="title">
-                                        <div className="thumb">
-                                            <img src="../../app/images/icone.jpg" className="img-fluid" alt=""/>
+                <div className={eventCss.containerEvent}>
+                    <div className={eventCss.row}>
+                        {/*<h1>Описание спортивного мероприятия</h1>*/}
+                        <div className={eventCss.col}>
+                            <div className={eventCss.companyDetails}>
+                                <div className={eventCss.titleAndInfo} id="scroll">
+                                    <div className={eventCss.title}>
+                                        <div className={eventCss.thumb}>
+                                            <img src={myImage} className={eventCss.imgFluid} alt=""/>
                                         </div>
                                         <div className="title-body">
-                                            <a href="en/tour/FFT"><h4>FFT&nbsp;BT200</h4></a>
+                                            <a href=""><h4>FFT&nbsp;BT200</h4></a>
                                             <div className="info">
-                                                <span >FFT</span>
+                                                <span>FFT</span>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
-                                <div className="details-information padding-top-60">
-                                    <div className="row">
-                                        <div className="col-xl-7 col-lg-8">
-                                            <div className="about-details details-section">
+                                <div className={eventCss.paddingTop60}>
+                                    <div className={eventCss.row}>
+                                        <div className={eventCss.colXl7}>
+                                            <div className={eventCss.detailsSection}>
                                                 <h4>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    <svg xmlns="" width="24" height="24"
                                                          viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                          className="feather feather-align-left">
                                                         <line x1="17" y1="10" x2="3" y2="10"></line>
@@ -48,8 +44,6 @@ class Event extends React.Component {
                                                     Description
                                                 </h4>
                                                 <div className="tournament-desc">
-
-
                                                     <p><span>- 1/64èmes, 1/32èmes, 1/16èmes et matchs de classement le samedi 4 mai au soir.</span><br/>
                                                     </p><p>- 1/8èmes (8 têtes de série) et fin du tournoi et classement
                                                     dimanche matin à partir de 8H, avant les finales de l'ITF (14H).</p>
@@ -57,10 +51,9 @@ class Event extends React.Component {
                                                     matchs de classement.</p></div>
                                             </div>
                                         </div>
-                                        <div className="col-xl-4 offset-xl-1 col-lg-4">
-                                            <div className="information-and-contact">
+                                        <div className={eventCss.colLg4}>
+                                            <div className={eventCss.information}>
 
-                                                <div className="information">
                                                     <h4>Info</h4>
                                                     <ul>
                                                         <li><span>Start date:</span>04/05/2024 08:00</li>
@@ -74,17 +67,16 @@ class Event extends React.Component {
                                                         <li><span>Categories:</span> DMXD [BT200]</li>
                                                         <li className="tournament-contact">
                                                             <span>Organizer:</span>
-                                                            <a href="en/organizer/1802">Beach Park Dionysien</a> <a
-                                                            href="tel:0692339739">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            <a href="">Beach Park Dionysien</a>
+                                                            <a href="">
+                                                            <svg xmlns="" width="24"
                                                                  height="24" viewBox="0 0 24 24" fill="none"
                                                                  className="feather feather-phone">
                                                                 <path
                                                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                                            </svg>
-                                                        </a>
-                                                            <a href="mailto:beachpark974@gmail.com">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            </svg></a>
+                                                            <a href="">
+                                                                <svg xmlns="" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none"
                                                                      className="feather feather-mail">
                                                                     <path
@@ -92,28 +84,23 @@ class Event extends React.Component {
                                                                     <polyline points="22,6 12,13 2,6"></polyline>
                                                                 </svg>
                                                             </a></li>
-                                                        <a href="mailto:beachpark974@gmail.com">
+                                                        <a href="">
                                                         </a>
                                                     </ul>
-                                                </div>
 
-                                                <div className="job-location">
+                                                <div className={eventCss.jobLocation}>
                                                     <h4>Location</h4>
-                                                    <div id="map-area">
-                                                        <iframe width="100%" height="auto" frameBorder="0"
-                                                                scrolling="no" marginHeight="0" marginWidth="0"
-                                                                src="https://maps.google.com/maps?q=Sainte-Clotilde, 41 bis rue Gabriel de Kerveguen&amp;output=embed"></iframe>
-                                                    </div>
+                                                    <LocationMap />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
 
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <NavLink to="/../../pages/resultsTourney/resultsTourney.js">Результаты</NavLink>
                 <button onClick={this.handleRegistrationClick}>Зарегистрироваться на турнир</button>
@@ -126,3 +113,14 @@ class Event extends React.Component {
 }
 
 export default Event;
+export const LocationMap = () => {
+    const srcLocation1 = "30.251109";
+    const srcLocation2 = "59.909346";
+    return (
+        <div id="map-area">
+            <iframe width="100%" height="auto"
+                    src={`https://yandex.ru/map-widget/v1/?um=/?ll=${srcLocation1},${srcLocation2};source=constructor&pt=${srcLocation1},${srcLocation2}`}>
+            </iframe>
+        </div>
+    );
+};
