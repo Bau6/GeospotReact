@@ -9,18 +9,18 @@ const AvatarUpload = () => {
         const formData = new FormData();
         formData.append('avatar', file);
 
-        // try {
-        //     const response = await axios.post('http://localhost:3003/upload-avatar', formData, {
-        //         headers: {
-        //             'Content-Type': 'multipart/form-data'
-        //         }
-        //     });
-        //
-        //     // Обновить состояние с путем к загруженному файлу
-        //     setAvatar(response.data.avatarPath);
-        // } catch (error) {
-        //     console.error(error);
-        // }
+        try {
+            const response = await axios.post('http://localhost:3003/upload-avatar', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            // Обновить состояние с путем к загруженному файлу
+            setAvatar(response.data.avatarPath);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

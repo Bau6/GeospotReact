@@ -1,6 +1,6 @@
 import axios from "axios";
 import {setRoleActionCreator, setSessionActionCreator} from "./sessionUser";
-import {defaultNewNewsActionCreator} from "./news-reducer";
+// import {defaultNewNewsActionCreator} from "./news-reducer";
 
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
@@ -46,14 +46,14 @@ export const checkUserData = (email, password) => {
         }
         if (errorMessage === '') {
             axiosUsersLogin(dispatch, email, password);
-            window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
+            // window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
         } else {
             alert(errorMessage);
         }
     }
 }
 
-function axiosUsersLogin(dispatch, email, password){
+export const axiosUsersLogin = (dispatch, email, password) => {
     let CheckDataToDB = {
         email: email,
         password: password,
@@ -70,16 +70,14 @@ function axiosUsersLogin(dispatch, email, password){
                 alert(response.data.error);
             } else {
                 dispatch(login());
-                console.log(response.data)
                 dispatch(setSessionActionCreator({
                     id: userData.id,
                     email: userData.email,
                     name: userData.surname + " " + userData.name + " " + userData.patronymic
                 }));
-                // setSession({id: userData.id, email: userData.email, name: userData.surname + " " + userData.name + " " + userData.patronymic});
                 dispatch(setRoleActionCreator(userData.id));
                 getUserRole(userData.id, dispatch);
-                // redirectToProfile();
+                window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
             }
         })
         .catch(error => {
@@ -132,7 +130,7 @@ export const registrationsLoadDataUser = (addDataToDB, sports) => {
                 axiosUsersLogin(dispatch, addDataToDB.email, addDataToDB.password);
                 // dispatch(setRoleActionCreator("user"));
                 alert("Вы успешно зарегистрированы!");
-                window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
+                // window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
             })
             .catch(error => {
                 if (error.response.data.error) {

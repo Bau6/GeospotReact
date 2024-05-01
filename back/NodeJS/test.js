@@ -87,8 +87,6 @@ function selectByIdDataTable() {
 function checkLoginPassReturnData() {
     app.get('/check-login-pass', (req, res) => {
         const { nameTable, params } = req.query;
-        // const nameTable = 'users';
-        // const params = {email: "u@u.ullll", password: "default"};
         checkLoginPass(nameTable, params, res);
     });
 }
