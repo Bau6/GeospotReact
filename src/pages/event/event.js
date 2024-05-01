@@ -20,7 +20,7 @@ class Event extends React.Component {
                                 <div className="title-and-info" id="scroll">
                                     <div className="title">
                                         <div className="thumb">
-                                            <img src="https://i.imgur.com/oXoDx9V.png" className="img-fluid" alt=""/>
+                                            <img src="../../app/images/icone.jpg" className="img-fluid" alt=""/>
                                         </div>
                                         <div className="title-body">
                                             <a href="en/tour/FFT"><h4>FFT&nbsp;BT200</h4></a>
