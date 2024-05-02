@@ -65,26 +65,12 @@ class EventsForm extends React.Component {
                                             <strong>Описание:</strong> {event.descriptionEvent ? event.descriptionEvent : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>Пол:</strong> {event.gender ? event.gender : ""}
-                                        </div>
-                                        <div className={EventsFormCss.eventField}>
-                                            <strong>Возраст от:</strong> {event.minAge ? event.minAge : ""}
-                                        </div>
-
-                                        <div className={EventsFormCss.eventField}>
-                                            <strong>до:</strong> {event.maxAge ? event.maxAge : ""}
-                                        </div>
-                                        <div className={EventsFormCss.eventField}>
                                             <strong>Дата
                                                 начала:</strong> {event.dateStart ? dateStrISO(event.dateStart, DATE_FORMAT_DATE) : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
                                             <strong>Дата
                                                 окончания:</strong> {event.dateFinish ? dateStrISO(event.dateFinish, DATE_FORMAT_DATE) : ""}
-                                        </div>
-                                        <div className={EventsFormCss.eventField}>
-                                            <strong>Количество игроков в
-                                                группе:</strong> {event.cntPlayersInGroup ? event.cntPlayersInGroup : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
                                             <strong>Рейтинг:</strong>
