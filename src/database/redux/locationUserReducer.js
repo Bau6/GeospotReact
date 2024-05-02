@@ -1,5 +1,5 @@
 import axios from "axios";
-import {loadEvents, qualificationsLoad, sportsLoad} from "./events-reducer";
+import {eventInfo, loadEvents, qualificationsLoad, sportsLoad} from "./events-reducer";
 import {defaultNewNewsActionCreator, loadNews} from "./news-reducer";
 import {authUserInfo} from "./infoUsers-reducer";
 
@@ -131,6 +131,19 @@ export const loadQualificationsFunc = () => {
             });
     }
 }
-
+export const loadEvent = (id) => {
+    return dispatch => {
+        axios.get('http://localhost:3003/event-from-db',{
+            params: {
+                id: id,
+            }})
+            .then(responseEvent => {
+                dispatch(eventInfo(responseEvent.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
 
 export default UsersPageReducer;

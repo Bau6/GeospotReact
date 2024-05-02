@@ -1,12 +1,32 @@
 import React from "react";
 import eventCss from "./event.module.css";
 import {NavLink} from "react-router-dom";
-import myImage from '../../app/images/icone.png';
+import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 
 class Event extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get(`id`);
+        this.props.loadEvent(id);
+    }
+
+    LocationMap () {
+        const srcLocation1 = "30.251109";
+        const srcLocation2 = "59.909346";
+        return (
+            <div id="map-area">
+                <iframe width="100%" height="auto" title="Карта с местоположением"
+                        src={`https://yandex.ru/map-widget/v1/?um=/?ll=${srcLocation1},${srcLocation2};source=constructor&pt=${srcLocation1},${srcLocation2}`}>
+                </iframe>
+            </div>
+        );
+    };
     render() {
-
-
+        if (!!this.props.event) {
         return (
             <div>
                 <div className={eventCss.containerEvent}>
@@ -17,10 +37,10 @@ class Event extends React.Component {
                                 <div className={eventCss.titleAndInfo} id="scroll">
                                     <div className={eventCss.title}>
                                         <div className={eventCss.thumb}>
-                                            <img src={myImage} className={eventCss.imgFluid} alt=""/>
+                                            <img src={this.props.myImage} className={eventCss.imgFluid} alt=""/>
                                         </div>
                                         <div className="title-body">
-                                            <a href=""><h4>FFT&nbsp;BT200</h4></a>
+                                            <a href=""><h4>{this.props.event.id}&nbsp;</h4></a>
                                             <div className="info">
                                                 <span>FFT</span>
                                             </div>
@@ -41,32 +61,25 @@ class Event extends React.Component {
                                                         <line x1="21" y1="14" x2="3" y2="14"></line>
                                                         <line x1="17" y1="18" x2="3" y2="18"></line>
                                                     </svg>
-                                                    Description
+                                                    Описание мероприятия
                                                 </h4>
                                                 <div className="tournament-desc">
-                                                    <p><span>- 1/64èmes, 1/32èmes, 1/16èmes et matchs de classement le samedi 4 mai au soir.</span><br/>
-                                                    </p><p>- 1/8èmes (8 têtes de série) et fin du tournoi et classement
-                                                    dimanche matin à partir de 8H, avant les finales de l'ITF (14H).</p>
-                                                    <p>- Repas et bar sur place.</p><p>- Filet à 1m70, balles sandever,
-                                                    matchs de classement.</p></div>
+                                                    <p><span>{this.props.event.descriptionEvent}</span><br/></p></div>
                                             </div>
                                         </div>
                                         <div className={eventCss.colLg4}>
                                             <div className={eventCss.information}>
 
-                                                    <h4>Info</h4>
+                                                    <h4>Информация</h4>
                                                     <ul>
-                                                        <li><span>Start date:</span>04/05/2024 08:00</li>
-                                                        <li><span>Entry fee:</span>40.00EUR</li>
-                                                        <li><span>Location:</span>Sainte-Clotilde, 41 bis rue Gabriel de
+                                                        <li><span>Дата начала:</span>{this.props.event.dateStart ? dateStrISO(this.props.event.dateStart, DATE_FORMAT_DATE) : ""}</li>
+                                                        <li><span>Дата окончания:</span>{this.props.event.dateFinish ? dateStrISO(this.props.event.dateStart, DATE_FORMAT_DATE) : ""}</li>
+                                                        <li><span>Местоположение:</span>Sainte-Clotilde, 41 bis rue Gabriel de
                                                             Kerveguen
                                                         </li>
-                                                        ģ
-                                                        <li><span>Entry deadline:</span> 28/04/2024 20:00</li>
-                                                        <li><span>Withdrawal deadline:</span> 28/04/2024 20:00</li>
-                                                        <li><span>Categories:</span> DMXD [BT200]</li>
+                                                        <li><span>Спорт:</span> DMXD [BT200]</li>
                                                         <li className="tournament-contact">
-                                                            <span>Organizer:</span>
+                                                            <span>Организатор:</span>
                                                             <a href="">Beach Park Dionysien</a>
                                                             <a href="">
                                                             <svg xmlns="" width="24"
@@ -89,8 +102,8 @@ class Event extends React.Component {
                                                     </ul>
 
                                                 <div className={eventCss.jobLocation}>
-                                                    <h4>Location</h4>
-                                                    <LocationMap />
+                                                    <h4>Местоположение на карте</h4>
+                                                    <this.LocationMap />
                                                 </div>
                                             </div>
                                         </div>
@@ -109,18 +122,10 @@ class Event extends React.Component {
                 <NavLink to="/../../pages/events/events.js">Назад</NavLink>
             </div>
         );
+        } else {
+            return <div>Страница не найдена!</div>;
+        }
     }
 }
 
 export default Event;
-export const LocationMap = () => {
-    const srcLocation1 = "30.251109";
-    const srcLocation2 = "59.909346";
-    return (
-        <div id="map-area">
-            <iframe width="100%" height="auto"
-                    src={`https://yandex.ru/map-widget/v1/?um=/?ll=${srcLocation1},${srcLocation2};source=constructor&pt=${srcLocation1},${srcLocation2}`}>
-            </iframe>
-        </div>
-    );
-};

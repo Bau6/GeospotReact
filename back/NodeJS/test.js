@@ -14,6 +14,7 @@ const {addNew} = require("./addNews");
 const {selectEvents} = require("./selectEvents");
 const {loadSport} = require("./loadSports");
 const {loadQual} = require("./loadQualifications");
+const {loadEventFromDB} = require("./loadEvent");
 
 app.use(cors());
 const port = 3003;
@@ -118,6 +119,13 @@ function loadQuals() {
         loadQual(res);
     });
 }
+function loadMyEvent() {
+    app.get('/event-from-db', (req, res) => {
+        const { id } = req.query;
+        loadEventFromDB(id, res);
+    });
+}
+loadMyEvent();
 loadQuals();
 loadSports();
 selectMyEvents();

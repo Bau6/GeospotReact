@@ -1,6 +1,5 @@
 import './App.css';
 import React from "react";
-import Event from "./pages/event/event";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import CheckingPlayersOnTourney from "./pages/checkingPlayersOnTourney/checkingPlayersOnTourney";
 import ResultsTourney from "./pages/resultsTourney/resultsTourney";
@@ -12,6 +11,7 @@ import AuthorizationContainer from "./pages/authorization/AuthorizationContainer
 import HeaderContainer from "./app/include/headerContainer";
 import FirstPageContainer from "./pages/first_page/first_pageContainer";
 import EventsContainer from "./pages/events/eventsContainer";
+import EventContainer from "./pages/event/eventContainer";
 const App = (props) => {
     return (
         <BrowserRouter>
@@ -28,7 +28,7 @@ const AppContent = (props) => {
             />
             <Routes>
                 <Route path={'/pages/events/events.js'} element={<EventsContainer store={props.store}/>}/>
-                <Route path={'/pages/event/event.js'} element={<Event store={props.store}/>}/>
+                <Route path={'/pages/event/event.js'} element={<EventContainer store={props.store}/>}/>
                 <Route path={'/pages/registration/Registration.js'}
                        element={<RegistrationContainer store={props.store}
                        />}/>

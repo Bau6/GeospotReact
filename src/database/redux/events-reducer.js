@@ -1,18 +1,15 @@
-import React from "react";
-
-
 const LOAD_EVENTS = "LOAD_EVENTS";
 const LOAD_SPORTS = "LOAD_SPORTS";
 const CLEAR = "CLEAR";
 const LOAD_DATA = "LOAD_DATA";
 const SPORTS ="SPORTS";
 const SET_SELECTED_SPORTS = 'SET_SELECTED_SPORTS';
-const REF = "REF";
 const CHECK = "CHECK";
 const QUALIFICATIONS = "QUALIFICATIONS";
-
+const EVENT = "EVENT";
 let initialState = {
     sports: "",
+    event: "",
     storeEvents: {
         events: "",
         sports: [{name:"", id:0}],
@@ -57,11 +54,11 @@ const eventsReducer = (state = initialState, action) => {
                 ...state,
                 selectedSports: action.sports,
             };
-        // case REF:
-        //     return {
-        //         ...state,
-        //         refsArray: action.refs,
-        //     };
+        case EVENT:
+            return {
+                ...state,
+                event: action.event,
+            };
         case CHECK:
             return {
                 ...state,
@@ -107,8 +104,8 @@ export const checkedFunc = ( checked) => ({
     type: CHECK,
     checked: checked,
 });
-// export const refArrayFunc = ( refs) => ({
-//     type: REF,
-//     refs: refs,
-// });
+export const eventInfo = (text) => ({
+    type: EVENT,
+    event: text,
+});
 export default eventsReducer;
