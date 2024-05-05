@@ -80,50 +80,49 @@ class Event extends React.Component {
                                         <div className={eventCss.colLg4}>
                                             <div className={eventCss.information}>
 
-                                                    <h4>Информация</h4>
-                                                <ul>
+                                                <h4>Информация</h4>
+                                                <ul className={eventCss.information}>
                                                     <li>
-                                                        <span>Дата начала:</span>{this.props.event.dateStart ? dateStrISO(this.props.event.dateStart, DATE_FORMAT_DATE) : ""}
+                                                        <span>Дата начала:&nbsp;</span>{this.props.event.dateStart ? dateStrISO(this.props.event.dateStart, DATE_FORMAT_DATE) : ""}
                                                     </li>
                                                     <br/>
                                                     <li>
-                                                        <span>Дата окончания:</span>{this.props.event.dateFinish ? dateStrISO(this.props.event.dateFinish, DATE_FORMAT_DATE) : ""}
+                                                        <span>Дата окончания:&nbsp;</span>{this.props.event.dateFinish ? dateStrISO(this.props.event.dateFinish, DATE_FORMAT_DATE) : ""}
                                                     </li>
                                                     <br/>
                                                     <li>
-                                                        <span>Местоположение:</span>{this.props.event.country ? this.props.event.country : ""} {this.props.event.city ? this.props.event.city : ""}
+                                                        <span>Местоположение:&nbsp;</span>{this.props.event.country ? this.props.event.country : ""} {this.props.event.city ? this.props.event.city : ""}
                                                     </li>
                                                     <br/>
                                                     <li>
-                                                        <span>Спорт:</span>{this.props.event.sportTypeID ? this.props.event.sportTypeID : ""}
+                                                        <span>Спорт:&nbsp;</span>{this.props.event.sport ? this.props.event.sport : ""}
+                                                    </li>
+                                                    <br/><br/>
+                                                    <li>
+                                                        <span>Пол:&nbsp;</span>{this.props.event.gender ? this.props.event.gender : ""}
                                                     </li>
                                                     <br/>
                                                     <li>
-                                                        <span>Пол:</span>{this.props.event.gender ? this.props.event.gender : ""}
+                                                        <span>Возраст от:&nbsp;</span>{this.props.event.minAge ? this.props.event.minAge : ""}
+                                                    </li>
+                                                    <li>
+                                                        <span> &nbsp;до:&nbsp;</span>{this.props.event.maxAge ? this.props.event.maxAge : ""}
                                                     </li>
                                                     <br/>
                                                     <li>
-                                                        <span>Возраст от:</span>{this.props.event.minAge ? this.props.event.minAge : ""}
-                                                    </li>
-                                                    <li>
-                                                        <span> до:</span>{this.props.event.maxAge ? this.props.event.maxAge : ""}
+                                                        <span>Число игроков:&nbsp;</span>{this.props.event.cntPlayersInGroup ? this.props.event.cntPlayersInGroup : ""}
                                                     </li>
                                                     <br/>
                                                     <li>
-                                                        <span>Число игроков:</span>{this.props.event.cntPlayersInGroup ? this.props.event.cntPlayersInGroup : ""}
-                                                    </li>
-                                                    <br/>
-                                                    <li>
-                                                        <span>Организатор:</span>{this.props.event.orgID ? this.props.event.orgID : ""}
+                                                        <span>Организатор:&nbsp;</span>{this.props.event.orgName ? this.props.event.orgName : ""}
                                                     </li>
                                                     <br/>
                                                     <br/>
                                                 </ul>
-
-                                                <div className={eventCss.jobLocation}>
-                                                    <h4>Местоположение на карте</h4>
-                                                    <this.LocationMap/>
-                                                </div>
+                                            </div>
+                                            <div className={eventCss.jobLocation}>
+                                                <h4>Местоположение на карте</h4>
+                                                <this.LocationMap/>
                                             </div>
                                         </div>
                                     </div>

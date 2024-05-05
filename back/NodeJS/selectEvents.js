@@ -81,4 +81,4 @@ function selectEvents(params, res) {
     });
 }
 
-module.exports = { selectEvents };
+module.exports = { selectEvents, getData,queryDB };
