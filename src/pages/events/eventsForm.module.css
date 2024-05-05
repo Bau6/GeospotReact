@@ -36,3 +36,6 @@
     height: auto; /* Автоматическая высота */
     border-radius: 5px; /* Закругленные углы */
 }
+.notEvents {
+    margin-bottom: 100px;
+}

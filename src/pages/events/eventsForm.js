@@ -94,7 +94,7 @@ class EventsForm extends React.Component {
                         }
                     })
                 ) : (<div></div>)}
-                {cnt ? null : <div>Мероприятия не найдены!</div>}
+                {cnt ? null : <div className={EventsFormCss.notEvents}>Мероприятия не найдены!</div>}
             </div>
         )
     }

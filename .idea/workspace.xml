@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/back/NodeJS/loadUsersTourney.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourneyContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/NodeJS/loadEvent.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/loadEvent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/users-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/users-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/event/event.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/events.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/events.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/events/eventsForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTourney.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/eventsForm.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsForm.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +135,7 @@
       <workItem from="1711791841038" duration="75471000" />
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
-      <workItem from="1713628857019" duration="163857000" />
+      <workItem from="1713628857019" duration="166651000" />
     </task>
     <servers />
   </component>

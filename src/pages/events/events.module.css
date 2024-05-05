@@ -4,15 +4,12 @@
     gap: 20px;
     min-width: 1200px;
     position: relative;
-    /* Добавляем position: relative, чтобы вложенные элементы могли быть
-    позиционированы относительно этого контейнера */
-    /* ! */
 }
 .fixedContent {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999; /* Устанавливаем высокий z-index, чтобы блок всегда оставался наверху */
+    /*z-index: 999; !* Устанавливаем высокий z-index, чтобы блок всегда оставался наверху *!*/
     background-color: white;
     padding: 10px;
     margin-top: 150px; /* Устанавливаем отступ сверху, чтобы не перекрывать заголовок */
@@ -23,4 +20,56 @@
  }
 .FindEvent {
     margin-top: 20px;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.modal-open .overlay {
+    display: block;
+}
+
+.modal-open body > *:not(.modal):not(.overlay) {
+    pointer-events: none;
+}
+
+.modal-open body > *:not(.modal):not(.overlay) {
+    filter: grayscale(100%);
 }
