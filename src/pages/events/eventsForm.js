@@ -1,6 +1,7 @@
 import EventsFormCss from "./eventsForm.module.css";
 import React from "react";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
+import {NavLink} from "react-router-dom";
 
 class EventsForm extends React.Component {
     constructor(props) {
@@ -10,7 +11,11 @@ class EventsForm extends React.Component {
         };
     }
     onClickCheckEvent(id) {
-        window.location.href=`/../pages/event/event.js?id=${id}`;
+        // return (
+        //     <NavLink to={`/../pages/event/event.js?id=${id}`}>
+        //     </NavLink>
+        // );
+        // window.location.href=`/../pages/event/event.js?id=${id}`;
     }
     render() {
         // debugger
@@ -77,10 +82,11 @@ class EventsForm extends React.Component {
                                             {event.rating ? event.rating : ""}
                                         </div>
                                     </div>
-                                    <div>
-                                        {/* Продолжайте аналогично для остальных полей */}
-                                        {this.props.log && <button onClick={() => this.onClickCheckEvent(event.id)}>Просмотр</button>}
-                                    </div>
+                                {this.props.log && (
+                                    <NavLink to={`/../pages/event/event.js?id=${event.id}`}>
+                                        <button onClick={() => this.onClickCheckEvent(event.id)}>Просмотр</button>
+                                    </NavLink>
+                                )}
                                 </div>
                             )
                         } else {

@@ -1,12 +1,14 @@
 import React from "react";
 import eventCss from "./event.module.css";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
+import {NavLink} from "react-router-dom";
 
 class Event extends React.Component {
     componentDidMount() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get(`id`);
-        this.props.loadEvent(id);
+        // const urlParams = new URLSearchParams(window.location.search);
+        // const id = urlParams.get(`id`);
+        this.props.loadEvent(this.props.thisEvents[0].id);
+        console.log(this.props)
     }
 
     LocationMap () {
@@ -22,15 +24,6 @@ class Event extends React.Component {
     };
     handleRegistrationTourney(){
         alert("Вы успешно зарегистрированы!");
-    }
-    handleBack(){
-        window.location.href="/../../pages/events/events.js";
-    }
-    handlePlayers(){
-        window.location.href="/../../pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js";
-    }
-    handleResults(){
-        window.location.href="/../../pages/resultsTourney/resultsTourney.js";
     }
     render() {
         if (!!this.props.event) {
@@ -49,11 +42,19 @@ class Event extends React.Component {
                                         <div className="title-body">
                                             <a href=""><h4>{this.props.event.nameEvent}&nbsp;</h4></a>
                                             <div className="info">
-                                                <button className={eventCss.buttonsInfo} onClick={()=>{this.handleRegistrationTourney()}}>Зарегистрироваться на турнир</button>&nbsp;
-                                                <button className={eventCss.buttonsInfo} onClick={()=>{this.handleResults()}} >Результаты</button>&nbsp;
-                                                <button className={eventCss.buttonsInfo} onClick={()=>{this.handlePlayers()}} >Просмотр
-                                                    участников</button>&nbsp;
-                                                <button className={eventCss.buttonsInfo} onClick={()=>{this.handleBack()}}>Назад</button>&nbsp;
+                                                &nbsp;<button className={eventCss.buttonsInfo} onClick={()=>{this.handleRegistrationTourney()}}>Зарегистрироваться на турнир</button>
+                                                <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
+                                                    <button className={eventCss.buttonsInfo}>Результаты</button>
+                                                </NavLink>
+                                                <NavLink to={`/../pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js`}>
+                                                    <button className={eventCss.buttonsInfo}>Просмотр участников</button>
+                                                </NavLink>
+                                                <NavLink to={`/../pages/events/events.js`}>
+                                                    <button className={eventCss.buttonsInfo}>Назад</button>
+                                                </NavLink>
+                                                {/*<button className={eventCss.buttonsInfo} onClick={()=>{this.handleResults()}} >Результаты</button>&nbsp;*/}
+                                                {/*<button className={eventCss.buttonsInfo} onClick={()=>{this.handlePlayers()}} >Просмотр участников</button>&nbsp;*/}
+                                                {/*<button className={eventCss.buttonsInfo} onClick={()=>{this.handleBack()}}>Назад</button>&nbsp;*/}
                                             </div>
                                         </div>
                                     </div>
@@ -77,11 +78,10 @@ class Event extends React.Component {
                                                     <p><span>{this.props.event.descriptionEvent}</span><br/></p></div>
                                             </div>
                                         </div>
-                                        <div className={eventCss.colLg4}>
-                                            <div className={eventCss.information}>
-
+                                        <div className={`${eventCss.colLg4} ${eventCss.information}`}>
+                                            <div>
                                                 <h4>Информация</h4>
-                                                <ul className={eventCss.information}>
+                                                <ul>
                                                     <li>
                                                         <span>Дата начала:&nbsp;</span>{this.props.event.dateStart ? dateStrISO(this.props.event.dateStart, DATE_FORMAT_DATE) : ""}
                                                     </li>
@@ -120,7 +120,7 @@ class Event extends React.Component {
                                                     <br/>
                                                 </ul>
                                             </div>
-                                            <div className={eventCss.jobLocation}>
+                                            <div>
                                                 <h4>Местоположение на карте</h4>
                                                 <this.LocationMap/>
                                             </div>

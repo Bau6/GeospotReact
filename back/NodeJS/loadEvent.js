@@ -56,7 +56,6 @@ function loadEventFromDB(id, res) {
 
                 Promise.all(promises).then(() => {
                     res.json(info);
-                    console.log(info);
                 });
             } else {
                 res.status(404).json({error: 'Результат не найден'});
