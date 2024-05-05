@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
+import drop from "../../assets/css/dropDown.module.css";
 class DropDownMenuEvent extends React.Component {
     constructor(props) {
         super(props);
@@ -16,17 +17,17 @@ class DropDownMenuEvent extends React.Component {
     };
     render() {
         return (
-            <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown className={`${drop.dropDownDesign}`}>
+                <Dropdown.Toggle variant="success" id="dropdown-basic" className={`${drop.dropdownToggle}`}>
                     {this.state.selectedValue || 'Вид спорта'}
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu className={`${drop.dropdownMenu}`}>
                     {Array.isArray(this.props.sports) ? this.props.sports && this.props.sports.map((item) => (
-                        <Dropdown.Item key={item.id} onClick={() => this.handleDropdownSelect(item.name)}>
+                        <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id} onClick={() => this.handleDropdownSelect(item.name)}>
                             {item.name}
                         </Dropdown.Item>
                     )) : ""}
-                    <Dropdown.Item key={0} onClick={() => this.handleDropdownSelect("Все мероприятия")}>
+                    <Dropdown.Item className={`${drop.dropdownItem}`} key={0} onClick={() => this.handleDropdownSelect("Все мероприятия")}>
                         Все мероприятия
                     </Dropdown.Item>
                 </Dropdown.Menu>

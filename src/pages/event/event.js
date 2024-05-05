@@ -1,5 +1,6 @@
 import React from "react";
 import eventCss from "./event.module.css";
+import button from "../../assets/css/button.module.css";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import {NavLink} from "react-router-dom";
 
@@ -42,15 +43,15 @@ class Event extends React.Component {
                                         <div className="title-body">
                                             <a href=""><h4>{this.props.event.nameEvent}&nbsp;</h4></a>
                                             <div className="info">
-                                                &nbsp;<button className={eventCss.buttonsInfo} onClick={()=>{this.handleRegistrationTourney()}}>Зарегистрироваться на турнир</button>
+                                                &nbsp;<button className={button.buttonsInfo} onClick={()=>{this.handleRegistrationTourney()}}>Зарегистрироваться на турнир</button>
                                                 <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
-                                                    <button className={eventCss.buttonsInfo}>Результаты</button>
+                                                    <button className={button.buttonsInfo}>Результаты</button>
                                                 </NavLink>
                                                 <NavLink to={`/../pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js`}>
-                                                    <button className={eventCss.buttonsInfo}>Просмотр участников</button>
+                                                    <button className={button.buttonsInfo}>Просмотр участников</button>
                                                 </NavLink>
                                                 <NavLink to={`/../pages/events/events.js`}>
-                                                    <button className={eventCss.buttonsInfo}>Назад</button>
+                                                    <button className={button.buttonsInfo}>Назад</button>
                                                 </NavLink>
                                                 {/*<button className={eventCss.buttonsInfo} onClick={()=>{this.handleResults()}} >Результаты</button>&nbsp;*/}
                                                 {/*<button className={eventCss.buttonsInfo} onClick={()=>{this.handlePlayers()}} >Просмотр участников</button>&nbsp;*/}

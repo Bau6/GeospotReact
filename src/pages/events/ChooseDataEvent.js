@@ -2,6 +2,7 @@ import React from 'react';
 import {Dropdown} from "react-bootstrap";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import {addDays} from "date-fns";
+import drop from "../../assets/css/dropDown.module.css";
 
 // import {format} from 'date-fns';
 
@@ -37,21 +38,21 @@ class ChooseDataEvent extends React.Component {
     render() {
         return (
             <div>
-                <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown className={`${drop.dropDownDesign}`}>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" className={`${drop.dropdownToggle}`}>
                         {this.state.selectedValue || 'Дата соревнования'}
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => this.handleDropdownSelect( 1)}>
+                    <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                        <Dropdown.Item className={`${drop.dropdownItem}`} onClick={() => this.handleDropdownSelect( 1)}>
                             Предстояшие
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => this.handleDropdownSelect(2)}>
+                        <Dropdown.Item className={`${drop.dropdownItem}`} onClick={() => this.handleDropdownSelect(2)}>
                             Прошедшие
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => this.handleDropdownSelect(3)}>
+                        <Dropdown.Item className={`${drop.dropdownItem}`} onClick={() => this.handleDropdownSelect(3)}>
                             Текущие
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => this.handleDropdownSelect(0)}>
+                        <Dropdown.Item className={`${drop.dropdownItem}`} onClick={() => this.handleDropdownSelect(0)}>
                             Все мероприятия
                         </Dropdown.Item>
                     </Dropdown.Menu>

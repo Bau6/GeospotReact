@@ -85,21 +85,4 @@
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
 }
-.buttonsInfo {
-    background-color: #3498db; /* Синий цвет */
-    color: #fff; /* Белый цвет текста */
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-family: cursive;
-}
 
-.buttonsInfo:hover {
-    background-color: #2980b9; /* Цвет при наведении */
-}
