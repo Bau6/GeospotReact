@@ -7,11 +7,13 @@ import {
 import addNewEvent from "./addNewEvent";
 const mapStateToProps = (state) => {
     return {
-        sports: state.eventsReducer.sports,
+        role: state.sessionUser.role,
+        sports: state.eventsReducer.storeEvents.sports,
         thisNewEvent: state.eventsReducer.newEvent,
         userID: state.sessionUser.userID,
         cities: state.eventsReducer.cities,
         countries: state.eventsReducer.countries,
+        gender: state.eventsReducer.genders,
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -3,33 +3,40 @@ const LOAD_EVENTS = "LOAD_EVENTS";
 const LOAD_SPORTS = "LOAD_SPORTS";
 const CLEAR = "CLEAR";
 const LOAD_DATA = "LOAD_DATA";
-const SPORTS ="SPORTS";
+const SPORTS = "SPORTS";
 const SET_SELECTED_SPORTS = 'SET_SELECTED_SPORTS';
 const CHECK = "CHECK";
 const QUALIFICATIONS = "QUALIFICATIONS";
 const EVENT = "EVENT";
 const NAME = 'NAME';
-const DATE = 'DATE';
+// const DATE = 'DATE';
+const COUNTRY_ID = 'COUNTRY_ID';
 const COUNTRY = 'COUNTRY';
+const CITY_ID = 'CITY_ID';
 const CITY = 'CITY';
 const AUTHOR = 'AUTHOR';
 const DESCRIPTION = 'DESCRIPTION';
 const IMAGE = 'IMAGE';
-const ORGANIZER = 'ORGANIZER';
+const GENDERS = 'GENDERS';
 const CLEAR_NEW_EVENT = "CLEAR_NEW_EVENT";
 const CITIES = "CITIES";
 const COUNTRIES = "COUNTRIES";
 const DATE_START = "DATE_START";
 const DATE_END = "DATE_END";
+const SPORT = "SPORT";
+const GENDER = "GENDER";
+const SPORT_ID = "SPORT_ID";
+const GENDER_ID = "GENDER_ID";
 let initialState = {
     sports: "",
     event: "",
     newEvent: {},
     cities: {},
+    genders: {},
     countries: {},
     storeEvents: {
         events: "",
-        sports: [{name:"", id:0}],
+        sports: [{name: "", id: 0}],
     },
     qualifications: [],
     selectedSports: [],
@@ -49,18 +56,30 @@ const eventsReducer = (state = initialState, action) => {
         case LOAD_DATA:
             return {
                 ...state,
-                data:  action.startDate // предполагается, что action содержит endDate
+                data: action.startDate // предполагается, что action содержит endDate
             };
         case NAME:
             return {...state, newEvent: {...state.newEvent, name: action.newText}};
+        case SPORT:
+            return {...state, newEvent: {...state.newEvent, sport: action.newText}};
+        case SPORT_ID:
+            return {...state, newEvent: {...state.newEvent, sportId: action.newText}};
+        case GENDER:
+            return {...state, newEvent: {...state.newEvent, gender: action.newText}};
+        case GENDER_ID:
+            return {...state, newEvent: {...state.newEvent, genderId: action.newText}};
         case DATE_END:
             return {...state, newEvent: {...state.newEvent, dateFinish: action.newText}};
         case DATE_START:
             return {...state, newEvent: {...state.newEvent, dateStart: action.newText}};
         case COUNTRY:
             return {...state, newEvent: {...state.newEvent, country: action.newText}};
+        case COUNTRY_ID:
+            return {...state, newEvent: {...state.newEvent, countryId: action.newText}};
         case CITY:
             return {...state, newEvent: {...state.newEvent, city: action.newText}};
+        case CITY_ID:
+            return {...state, newEvent: {...state.newEvent, cityId: action.newText}};
         case DESCRIPTION:
             return {...state, newNews: {...state.newNews, description: action.newText}};
         case AUTHOR:
@@ -78,10 +97,11 @@ const eventsReducer = (state = initialState, action) => {
                 sports: "",
                 newEvent: {},
                 cities: {},
+                genders: {},
                 countries: {},
                 storeEvents: {
                     events: "",
-                    sports: [{name:"", id:0}],
+                    sports: [{name: "", id: 0}],
                 },
                 qualifications: [],
                 selectedSports: [],
@@ -119,6 +139,11 @@ const eventsReducer = (state = initialState, action) => {
                 ...state,
                 countries: action.payload
             }
+        case GENDERS:
+            return {
+                ...state,
+                genders: action.payload
+            }
         default:
             return state;
     }
@@ -149,11 +174,11 @@ export const clearEvents = () => ({
 export const clearNewEvent = () => ({
     type: CLEAR_NEW_EVENT
 });
-export const setSelectedSports = ( sports) => ({
+export const setSelectedSports = (sports) => ({
     type: SET_SELECTED_SPORTS,
     sports: sports,
 });
-export const checkedFunc = ( checked) => ({
+export const checkedFunc = (checked) => ({
     type: CHECK,
     checked: checked,
 });
@@ -173,6 +198,10 @@ export const countriesActionCreator = (value) => ({
     type: COUNTRIES,
     payload: value
 })
+export const gendersActionCreator = (value) => ({
+    type: GENDERS,
+    payload: value
+})
 export const loadCities = () => {
     return dispatch => {
         axios.get('http://localhost:3003/cities')
@@ -189,6 +218,17 @@ export const loadCountries = () => {
         axios.get('http://localhost:3003/countries')
             .then(responseCountries => {
                 dispatch(countriesActionCreator(responseCountries.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const loadGenders = () => {
+    return dispatch => {
+        axios.get('http://localhost:3003/genders')
+            .then(responseGenders => {
+                dispatch(gendersActionCreator(responseGenders.data));
             })
             .catch(error => {
                 console.log(error);

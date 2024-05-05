@@ -10,6 +10,7 @@ class Events extends React.Component {
         this.props.UserLocation(window.location.href);
         this.props.loadCities();
         this.props.loadCountries();
+        this.props.loadGenders();
     }
     render() {
         return (
@@ -24,7 +25,9 @@ class Events extends React.Component {
                         <EventsFormContainer/>
                     </div>
                 </div>
-                <AddNewEventContainer/>
+                <div>
+                    <AddNewEventContainer/>
+                </div>
             </div>
         )
     }

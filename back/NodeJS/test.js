@@ -17,6 +17,7 @@ const {loadQual} = require("./loadQualifications");
 const {loadEventFromDB} = require("./loadEvent");
 const {loadCountries} = require("./loadCountries");
 const {loadCities} = require("./loadCities");
+const {loadGender} = require("./loadGender");
 
 app.use(cors());
 const port = 3003;
@@ -137,6 +138,12 @@ function load_countries() {
         loadCountries(res);
     });
 }
+function load_genders() {
+    app.get('/genders', (req, res) => {
+        loadGender(res);
+    });
+}
+load_genders();
 load_countries();
 load_cities();
 loadMyEvent();

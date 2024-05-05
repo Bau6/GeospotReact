@@ -3,7 +3,7 @@ import Events from "./events";
 import {UserLocation} from "../../database/redux/locationUserReducer";
 import {
     loadCities,
-    loadCountries,
+    loadCountries, loadGenders, loadSports,
 } from "../../database/redux/events-reducer";
 const mapStateToProps = (state) => {
     return {
@@ -19,6 +19,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         loadCountries: () => {
             dispatch(loadCountries())
+        },
+        loadSports: () => {
+            dispatch(loadSports())
+        },
+        loadGenders: () => {
+            dispatch(loadGenders())
         },
     }
 }

@@ -8,11 +8,7 @@ class addNewEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedValue: '',
             showModal: false,
-            city: '',
-            startDate: '',
-            endDate: '',
             ref1: React.createRef(),
             ref2: React.createRef(),
             ref3: React.createRef(),
@@ -21,17 +17,11 @@ class addNewEvent extends React.Component {
             ref7: React.createRef(),
             ref6: React.createRef(),
             ref8: React.createRef(),
-            myNewEvent: {},
-            selectedCountry: null,
-            selectedCountryId: null,
-            selectedCity: null,
         };
     }
 
     toggleModal = () => {
         this.setState({showModal: !this.state.showModal});
-        console.log(this.props.cities)
-        console.log(this.props.countries)
         if (this.state.showModal === false) {
             this.props.clearAreaText();
         }
@@ -43,11 +33,6 @@ class addNewEvent extends React.Component {
             this.props.onChangeAreaText("NAME", newText);
         }
     }
-    orgChange = () => {
-        let newText = this.ref4.current.value;
-        // this.myNewEvent.orgPub = newText;
-        this.props.onChangeAreaText("ORGANIZER", newText);
-    }
     handleStartDateChange = () => {
         let newText = this.state.ref2.current.value;
         // this.state.myNewEvent.dateStart = newText;
@@ -58,10 +43,11 @@ class addNewEvent extends React.Component {
         // this.state.myNewEvent.dateFinish = newText;
         this.props.onChangeAreaText("DATE_END", newText);
     }
-    countryChange = () => {
-        // let newText = this.ref4.current.value;
-        // this.newNew.country = newText;
-        // this.props.onChangeAreaText("COUNTRY", newText);
+    handleChange = () => {
+        if (!!this.state.ref1) {
+            let newText = this.state.ref4.current.value;
+            this.props.onChangeAreaText("NAME", newText);
+        }
     }
     handleCityChange = () => {
         let newText = this.ref5.current.value;
@@ -97,14 +83,25 @@ class addNewEvent extends React.Component {
 
     handleDropdownSelect = (value, type, id) => {
         if (type === 'country') {
-            this.setState({ selectedCountry: value, selectedCity: null, selectedCountryId: id });
+            // this.setState({ selectedCountry: value, selectedCity: null, selectedCountryId: id });
+            this.props.onChangeAreaText("COUNTRY_ID", id);
             this.props.onChangeAreaText("COUNTRY", value);
         } else if (type === 'city') {
-            this.setState({ selectedCity: value });
+            // this.setState({ selectedCity: value });
+            this.props.onChangeAreaText("CITY_ID", id);
             this.props.onChangeAreaText("CITY", value);
+        } else if (type === 'sport') {
+            // this.setState({ selectedSport: value });
+            this.props.onChangeAreaText("SPORT_ID", id);
+            this.props.onChangeAreaText("SPORT", value);
+        } else if (type === 'gender') {
+            // this.setState({ selectedSport: value });
+            this.props.onChangeAreaText("GENDER_ID", id);
+            this.props.onChangeAreaText("GENDER", value);
         }
     };
     render() {
+        if (this.props.role === "organizer" || this.props.role === "admin") {
         return (
             <div>
                 <div>
@@ -125,7 +122,7 @@ class addNewEvent extends React.Component {
                             <Dropdown className={`${drop.dropDownDesign}`}>
                                 <Dropdown.Toggle variant="success" id="dropdown-basic"
                                                  className={`${drop.dropdownToggle}`}>
-                                    {this.state.selectedCountry ? this.state.selectedCountry : 'Страна'}
+                                    {this.props.thisNewEvent.country ? this.props.thisNewEvent.country : 'Страна'}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu className={`${drop.dropdownMenu}`}>
                                     {Array.isArray(this.props.countries) ? this.props.countries && this.props.countries.map((item) => (
@@ -139,14 +136,14 @@ class addNewEvent extends React.Component {
                             <Dropdown className={`${drop.dropDownDesign}`}>
                                 <Dropdown.Toggle variant="success" id="dropdown-basic"
                                                  className={`${drop.dropdownToggle}`}>
-                                    {this.state.selectedCity ? this.state.selectedCity : 'Город'}
+                                    {this.props.thisNewEvent.city ? this.props.thisNewEvent.city : 'Город'}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu className={`${drop.dropdownMenu}`}>
                                     {Array.isArray(this.props.cities) ? this.props.cities && this.props.cities.map((item) => {
-                                        if (item.idCountry === this.state.selectedCountryId) {
+                                        if (item.idCountry === this.props.thisNewEvent.countryId) {
                                             return (
                                                 <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
-                                                               onClick={() => this.handleDropdownSelect(item.city, 'city')}>
+                                                               onClick={() => this.handleDropdownSelect(item.city, 'city', item.id)}>
                                                     {item.city}
                                                 </Dropdown.Item>
                                             );
@@ -155,13 +152,47 @@ class addNewEvent extends React.Component {
                                     }) : ""}
                                 </Dropdown.Menu>
                             </Dropdown>
-
-                            <input ref={this.state.ref2} className={eventsCss.modalContent} type="date" placeholder="Дата начала"
+                            <Dropdown className={`${drop.dropDownDesign}`}>
+                                <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                 className={`${drop.dropdownToggle}`}>
+                                    {this.props.thisNewEvent.sport ? this.props.thisNewEvent.sport : 'Вид спорта'}
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                    {Array.isArray(this.props.sports) ? this.props.sports && this.props.sports.map((item) => (
+                                        <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
+                                                       onClick={() => this.handleDropdownSelect(item.name, 'sport', item.id)}>
+                                            {item.name}
+                                        </Dropdown.Item>
+                                    )) : ""}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Dropdown className={`${drop.dropDownDesign}`}>
+                                <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                 className={`${drop.dropdownToggle}`}>
+                                    {this.props.thisNewEvent.gender ? this.props.thisNewEvent.gender : 'Пол'}
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                    {Array.isArray(this.props.gender) ? this.props.gender && this.props.gender.map((item) => (
+                                        <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
+                                                       onClick={() => this.handleDropdownSelect(item.name, 'gender', item.id)}>
+                                            {item.name}
+                                        </Dropdown.Item>
+                                    )) : ""}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <input ref={this.state.ref2} className={eventsCss.modalContent} type="date"
+                                   placeholder="Дата начала"
                                    value={this.props.thisNewEvent.dateStart ? this.props.thisNewEvent.dateStart : ""}
                                    onChange={this.handleStartDateChange}/><br/><label>Дата начала мероприятия</label>
-                            <input ref={this.state.ref3} className={eventsCss.modalContent} type="date" placeholder="Дата конца"
+                            <input ref={this.state.ref3} className={eventsCss.modalContent} type="date"
+                                   placeholder="Дата конца"
                                    value={this.props.thisNewEvent.dateFinish ? this.props.thisNewEvent.dateFinish : ""}
                                    onChange={this.handleEndDateChange}/><br/><label>Дата конца мероприятия</label>
+                            <input ref={this.state.ref4}
+                                   value={this.props.thisNewEvent.name ? this.props.thisNewEvent.name : ""}
+                                   className={eventsCss.modalContent} type="text"
+                                   placeholder="Наименование мероприятия"
+                                   onChange={this.handleNameChange}/><br/>
                             <button className={`${eventsCss.saveBtn} ${button.buttonsInfo}`}
                                     onClick={this.handleSave}>Сохранить
                             </button>
@@ -174,6 +205,7 @@ class addNewEvent extends React.Component {
                 {this.state.showModal && <div className={eventsCss.overlay}></div>}
             </div>
         )
+        }
     }
 }
 
