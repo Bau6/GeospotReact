@@ -3,6 +3,7 @@ import button from "../../assets/css/button.module.css";
 import React from "react";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import {NavLink} from "react-router-dom";
+import AcceptEventContainer from "./AcceptEventContainer";
 
 class EventsForm extends React.Component {
     constructor(props) {
@@ -11,22 +12,23 @@ class EventsForm extends React.Component {
             thisEventsTest: {}
         };
     }
+
     onClickCheckEvent(id) {
-        // return (
-        //     <NavLink to={`/../pages/event/event.js?id=${id}`}>
-        //     </NavLink>
-        // );
-        // window.location.href=`/../pages/event/event.js?id=${id}`;
+        this.props.onChangeAreaText("CHOOSE_EVENT", id)
     }
+
     render() {
-        // debugger
+        let filterThisEvents = {};
+        if (this.props.thisEvents) {
+            filterThisEvents = this.props.thisEvents.filter(thisEvents => thisEvents.status===1);
+        }
         let cnt = false;
         return (
             <div>
                 {/* Проверяем наличие thisEvents и его длину */}
-                {this.props.thisEvents && this.props.thisEvents.length > 0 ? (
+                {filterThisEvents && filterThisEvents.length > 0 ? (
                     // Используем map для вывода каждого объекта
-                    this.props.thisEvents.map(event => {
+                    filterThisEvents.map(event => {
                         // Проверяем условия фильтрации по выбранной дате
                         const dateStart = new Date(event.dateStart);
                         const dateEnd = new Date(event.dateFinish);
@@ -43,7 +45,7 @@ class EventsForm extends React.Component {
                             cnt = true;
                             return (
                                 // onClick={() => {window.location="/../pages/event/event.js"}}
-                            <div key={event.id} className={EventsFormCss.eventListContainer}>
+                                <div key={event.id} className={EventsFormCss.eventListContainer}>
                                     {/* Проверяем каждое поле перед выводом */}
                                     <div className={EventsFormCss.imageContainer}>
                                         {event.image ?
@@ -80,11 +82,17 @@ class EventsForm extends React.Component {
                                             {event.rating ? event.rating : ""}
                                         </div>
                                     </div>
-                                {this.props.log && (
-                                    <NavLink to={`/../pages/event/event.js?id=${event.id}`}>
-                                        <button className={button.buttonsInfo} onClick={() => this.onClickCheckEvent(event.id)}>Просмотр</button>
-                                    </NavLink>
-                                )}
+                                    {this.props.log && (
+                                        // <NavLink to={`/../pages/event/event.js?id=${event.id}`}>
+                                        <NavLink to={`/../pages/event/event.js`}>
+                                            <button className={button.buttonsInfo}
+                                                    onClick={() => this.onClickCheckEvent(event.id)}>Просмотр
+                                            </button>
+                                        </NavLink>
+                                    )}
+                                    <div>
+                                        <AcceptEventContainer/>
+                                    </div>
                                 </div>
                             )
                         } else {

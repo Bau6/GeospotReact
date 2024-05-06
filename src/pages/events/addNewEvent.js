@@ -98,134 +98,139 @@ class addNewEvent extends React.Component {
             this.props.onChangeAreaText("ORG", this.props.userID.id);
         }
     };
+
     render() {
         if (this.props.role === "organizer" || this.props.role === "admin") {
-        return (
-            <div>
+            return (
                 <div>
-                    <button className={`${eventsCss.addBtn} ${button.buttonsInfo}`} onClick={this.toggleModal} >Добавить запись</button>
-                    {this.state.showModal && (
-                        <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
-                             style={{display: this.state.showModal ? 'block' : 'none'}}>
-                            <input ref={this.state.ref1}
-                                   value={this.props.thisNewEvent.name ? this.props.thisNewEvent.name : ""}
-                                   className={eventsCss.modalContent} type="text"
-                                   placeholder="Наименование мероприятия"
-                                   onChange={this.handleNameChange}/><br/>
-                            <input value={this.props.userID.name ? this.props.userID.name : ""}
-                                   className={eventsCss.modalContent} type="text"
-                                   placeholder="Автор"
-                                   onChange={() => {
-                                   }}/><br/>
-                            <Dropdown className={`${drop.dropDownDesign}`}>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic"
-                                                 className={`${drop.dropdownToggle}`}>
-                                    {this.props.thisNewEvent.country ? this.props.thisNewEvent.country : 'Страна'}
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu className={`${drop.dropdownMenu}`}>
-                                    {Array.isArray(this.props.countries) ? this.props.countries && this.props.countries.map((item) => (
-                                        <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
-                                                       onClick={() => this.handleDropdownSelect(item.country, 'country', item.id)}>
-                                            {item.country}
-                                        </Dropdown.Item>
-                                    )) : ""}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown className={`${drop.dropDownDesign}`}>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic"
-                                                 className={`${drop.dropdownToggle}`}>
-                                    {this.props.thisNewEvent.city ? this.props.thisNewEvent.city : 'Город'}
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu className={`${drop.dropdownMenu}`}>
-                                    {Array.isArray(this.props.cities) ? this.props.cities && this.props.cities.map((item) => {
-                                        if (item.idCountry === this.props.thisNewEvent.countryId) {
-                                            return (
-                                                <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
-                                                               onClick={() => this.handleDropdownSelect(item.city, 'city', item.id)}>
-                                                    {item.city}
-                                                </Dropdown.Item>
-                                            );
-                                        }
-                                        return null;
-                                    }) : ""}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown className={`${drop.dropDownDesign}`}>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic"
-                                                 className={`${drop.dropdownToggle}`}>
-                                    {this.props.thisNewEvent.sport ? this.props.thisNewEvent.sport : 'Вид спорта'}
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu className={`${drop.dropdownMenu}`}>
-                                    {Array.isArray(this.props.sports) ? this.props.sports && this.props.sports.map((item) => (
-                                        <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
-                                                       onClick={() => this.handleDropdownSelect(item.name, 'sport', item.id)}>
-                                            {item.name}
-                                        </Dropdown.Item>
-                                    )) : ""}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown className={`${drop.dropDownDesign}`}>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic"
-                                                 className={`${drop.dropdownToggle}`}>
-                                    {this.props.thisNewEvent.gender ? this.props.thisNewEvent.gender : 'Пол'}
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu className={`${drop.dropdownMenu}`}>
-                                    {Array.isArray(this.props.gender) ? this.props.gender && this.props.gender.map((item) => (
-                                        <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
-                                                       onClick={() => this.handleDropdownSelect(item.name, 'gender', item.id)}>
-                                            {item.name}
-                                        </Dropdown.Item>
-                                    )) : ""}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <input ref={this.state.ref2} className={eventsCss.modalContent} type="date"
-                                   placeholder="Дата начала"
-                                   value={this.props.thisNewEvent.dateStart ? this.props.thisNewEvent.dateStart : ""}
-                                   onChange={this.handleStartDateChange}/><br/><label>Дата начала мероприятия</label>
-                            <input ref={this.state.ref3} className={eventsCss.modalContent} type="date"
-                                   placeholder="Дата конца"
-                                   value={this.props.thisNewEvent.dateFinish ? this.props.thisNewEvent.dateFinish : ""}
-                                   onChange={this.handleEndDateChange}/><br/><label>Дата конца мероприятия</label>
-                            <input ref={this.state.ref4}
-                                   value={this.props.thisNewEvent.minAge ? this.props.thisNewEvent.minAge : ""}
-                                   className={eventsCss.modalContent} type="text"
-                                   placeholder="Минимальный возраст"
-                                   onChange={this.handleMinAgeChange}/><br/>
-                            <input ref={this.state.ref5}
-                                   value={this.props.thisNewEvent.maxAge ? this.props.thisNewEvent.maxAge : ""}
-                                   className={eventsCss.modalContent} type="text"
-                                   placeholder="Максимальный возраст"
-                                   onChange={this.handleMaxAgeChange}/><br/>
-                            <input ref={this.state.ref6}
-                                   value={this.props.thisNewEvent.cntPlayers ? this.props.thisNewEvent.cntPlayers : ""}
-                                   className={eventsCss.modalContent} type="text"
-                                   placeholder="Количество человек в группе"
-                                   onChange={this.handleCntPlayersChange}/><br/>
-                            <textarea ref={this.state.ref7}
-                                   value={this.props.thisNewEvent.description ? this.props.thisNewEvent.description : ""}
-                                   className={eventsCss.modalContentTextArea} type="text"
-                                   placeholder="Описание мероприятия"
-                                   onChange={this.handleDescriptionEventChange}/><br/>
-                            <input ref={this.state.ref8}
-                                   value={this.props.thisNewEvent.image ? this.props.thisNewEvent.image : ""}
-                                   className={eventsCss.modalContent} type="text"
-                                   placeholder="Ссылка на картинку"
-                                   onChange={this.handleImageChange}/><br/>
+                    <div>
+                        <button className={`${eventsCss.addBtn} ${button.buttonsInfo}`}
+                                onClick={this.toggleModal}>Добавить запись
+                        </button>
+                        {this.state.showModal && (
+                            <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                                 style={{display: this.state.showModal ? 'block' : 'none'}}>
+                                <button className={eventsCss.closeButton} onClick={this.toggleModal}>X</button>
+                                <input ref={this.state.ref1}
+                                       value={this.props.thisNewEvent.name ? this.props.thisNewEvent.name : ""}
+                                       className={eventsCss.modalContent} type="text"
+                                       placeholder="Наименование мероприятия"
+                                       onChange={this.handleNameChange}/><br/>
+                                <input value={this.props.userID.name ? this.props.userID.name : ""}
+                                       className={eventsCss.modalContent} type="text"
+                                       placeholder="Автор"
+                                       onChange={() => {
+                                       }}/><br/>
+                                <Dropdown className={`${drop.dropDownDesign}`}>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                     className={`${drop.dropdownToggle}`}>
+                                        {this.props.thisNewEvent.country ? this.props.thisNewEvent.country : 'Страна'}
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                        {Array.isArray(this.props.countries) ? this.props.countries && this.props.countries.map((item) => (
+                                            <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
+                                                           onClick={() => this.handleDropdownSelect(item.country, 'country', item.id)}>
+                                                {item.country}
+                                            </Dropdown.Item>
+                                        )) : ""}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                <Dropdown className={`${drop.dropDownDesign}`}>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                     className={`${drop.dropdownToggle}`}>
+                                        {this.props.thisNewEvent.city ? this.props.thisNewEvent.city : 'Город'}
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                        {Array.isArray(this.props.cities) ? this.props.cities && this.props.cities.map((item) => {
+                                            if (item.idCountry === this.props.thisNewEvent.countryId) {
+                                                return (
+                                                    <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
+                                                                   onClick={() => this.handleDropdownSelect(item.city, 'city', item.id)}>
+                                                        {item.city}
+                                                    </Dropdown.Item>
+                                                );
+                                            }
+                                            return null;
+                                        }) : ""}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                <Dropdown className={`${drop.dropDownDesign}`}>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                     className={`${drop.dropdownToggle}`}>
+                                        {this.props.thisNewEvent.sport ? this.props.thisNewEvent.sport : 'Вид спорта'}
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                        {Array.isArray(this.props.sports) ? this.props.sports && this.props.sports.map((item) => (
+                                            <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
+                                                           onClick={() => this.handleDropdownSelect(item.name, 'sport', item.id)}>
+                                                {item.name}
+                                            </Dropdown.Item>
+                                        )) : ""}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                <Dropdown className={`${drop.dropDownDesign}`}>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                     className={`${drop.dropdownToggle}`}>
+                                        {this.props.thisNewEvent.gender ? this.props.thisNewEvent.gender : 'Пол'}
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                        {Array.isArray(this.props.gender) ? this.props.gender && this.props.gender.map((item) => (
+                                            <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
+                                                           onClick={() => this.handleDropdownSelect(item.name, 'gender', item.id)}>
+                                                {item.name}
+                                            </Dropdown.Item>
+                                        )) : ""}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                <input ref={this.state.ref2} className={eventsCss.modalContent} type="date"
+                                       placeholder="Дата начала"
+                                       value={this.props.thisNewEvent.dateStart ? this.props.thisNewEvent.dateStart : ""}
+                                       onChange={this.handleStartDateChange}/><br/><label>Дата начала
+                                мероприятия</label>
+                                <input ref={this.state.ref3} className={eventsCss.modalContent} type="date"
+                                       placeholder="Дата конца"
+                                       value={this.props.thisNewEvent.dateFinish ? this.props.thisNewEvent.dateFinish : ""}
+                                       onChange={this.handleEndDateChange}/><br/><label>Дата конца мероприятия</label>
+                                <input ref={this.state.ref4}
+                                       value={this.props.thisNewEvent.minAge ? this.props.thisNewEvent.minAge : ""}
+                                       className={eventsCss.modalContent} type="text"
+                                       placeholder="Минимальный возраст"
+                                       onChange={this.handleMinAgeChange}/><br/>
+                                <input ref={this.state.ref5}
+                                       value={this.props.thisNewEvent.maxAge ? this.props.thisNewEvent.maxAge : ""}
+                                       className={eventsCss.modalContent} type="text"
+                                       placeholder="Максимальный возраст"
+                                       onChange={this.handleMaxAgeChange}/><br/>
+                                <input ref={this.state.ref6}
+                                       value={this.props.thisNewEvent.cntPlayers ? this.props.thisNewEvent.cntPlayers : ""}
+                                       className={eventsCss.modalContent} type="text"
+                                       placeholder="Количество человек в группе"
+                                       onChange={this.handleCntPlayersChange}/><br/>
+                                <textarea ref={this.state.ref7}
+                                          value={this.props.thisNewEvent.description ? this.props.thisNewEvent.description : ""}
+                                          className={eventsCss.modalContentTextArea} type="text"
+                                          placeholder="Описание мероприятия"
+                                          onChange={this.handleDescriptionEventChange}/><br/>
+                                <input ref={this.state.ref8}
+                                       value={this.props.thisNewEvent.image ? this.props.thisNewEvent.image : ""}
+                                       className={eventsCss.modalContent} type="text"
+                                       placeholder="Ссылка на картинку"
+                                       onChange={this.handleImageChange}/><br/>
 
 
-                            {/**/}
-                            <button className={`${eventsCss.saveBtn} ${button.buttonsInfo}`}
-                                    onClick={this.handleSave}>Сохранить
-                            </button>
-                            <button className={`${eventsCss.closeBtn} ${button.buttonsInfo}`}
-                                    onClick={this.toggleModal}>Отмена
-                            </button>
-                        </div>
-                    )}
+                                {/**/}
+                                <button className={`${eventsCss.saveBtn} ${button.buttonsInfo}`}
+                                        onClick={this.handleSave}>Сохранить
+                                </button>
+                                <button className={`${eventsCss.closeBtn} ${button.buttonsInfo}`}
+                                        onClick={this.toggleModal}>Отмена
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                    {this.state.showModal && <div className={eventsCss.overlay}></div>}
                 </div>
-                {this.state.showModal && <div className={eventsCss.overlay}></div>}
-            </div>
-        )
+            )
         }
     }
 }

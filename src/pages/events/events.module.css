@@ -7,13 +7,14 @@
 }
 .fixedContent {
     position: fixed;
-    top: 0;
-    left: 0;
-    /*z-index: 999; !* Устанавливаем высокий z-index, чтобы блок всегда оставался наверху *!*/
+    top: 200px;
+    left: 152px;
+    z-index: 1; /* Устанавливаем высокий z-index, чтобы блок всегда оставался наверху */
     background-color: white;
     padding: 10px;
-    margin-top: 150px; /* Устанавливаем отступ сверху, чтобы не перекрывать заголовок */
-    margin-left: 10px; /* Добавляем отступ слева для красоты или пространства */
+    transform: translate(-50%, -50%); /* Центрируем блок точно по центру */
+    max-width: 80%; /* Максимальная ширина блока, чтобы он не становился слишком широким */
+    margin: auto; /* Автоматически центрируем блок по горизонтали */
 }
 .fixedEvents {
     margin-left: 300px;
@@ -83,10 +84,19 @@
 .addBtn {
     cursor: pointer;
     position: fixed;
-    z-index: 900;
-    right: 100px;
+    left: 65px;
+    top: 350px;
 }
 .newWindowAddEvent {
     overflow-y: scroll;
     max-height: 600px;
+}
+.closeButton {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
 }

@@ -8,7 +8,7 @@ class Event extends React.Component {
     componentDidMount() {
         // const urlParams = new URLSearchParams(window.location.search);
         // const id = urlParams.get(`id`);
-        this.props.loadEvent(this.props.thisEvents[0].id);
+        this.props.loadEvent(this.props.eventId);
         console.log(this.props)
     }
 
@@ -92,15 +92,17 @@ class Event extends React.Component {
                                                     </li>
                                                     <br/>
                                                     <li>
-                                                        <span>Местоположение:&nbsp;</span>{this.props.event.country ? this.props.event.country : ""} {this.props.event.city ? this.props.event.city : ""}
+                                                        <span>Местоположение:&nbsp;{this.props.event.country ? this.props.event.country : ""} {this.props.event.city ? this.props.event.city : ""}
+                                                        </span>
                                                     </li>
                                                     <br/>
                                                     <li>
-                                                        <span>Спорт:&nbsp;</span>{this.props.event.sport ? this.props.event.sport : ""}
+                                                        <span>Вид спорта:&nbsp;{this.props.event.sport ? this.props.event.sport : ""}&nbsp;
+                                                        </span>
                                                     </li>
-                                                    <br/><br/>
+                                                    <br/>
                                                     <li>
-                                                        <span>Пол:&nbsp;</span>{this.props.event.gender ? this.props.event.gender : ""}
+                                                        <span>Пол:&nbsp;{this.props.event.gender ? this.props.event.gender : ""}</span>
                                                     </li>
                                                     <br/>
                                                     <li>

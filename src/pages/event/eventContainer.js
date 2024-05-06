@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
         event: state.eventsReducer.event,
         myImage: myImage,
         states: state,
+        eventId: state.eventsReducer.chooseEvent,
     }
 }
 const mapDispatchToProps = (dispatch) => {

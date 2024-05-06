@@ -4,6 +4,7 @@ import React from "react";
 import DropDownMenuEventContainer from "./DropDownMenuEventContainer";
 import ChooseDataEventContainer from "./ChooseDataEventContainer";
 import AddNewEventContainer from "./AddNewEventContainer";
+// import AcceptEventContainer from "./AcceptEventContainer";
 
 class Events extends React.Component {
     componentDidMount() {
@@ -28,6 +29,7 @@ class Events extends React.Component {
                 <div>
                     <AddNewEventContainer/>
                 </div>
+
             </div>
         )
     }

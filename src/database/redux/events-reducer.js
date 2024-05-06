@@ -1,5 +1,4 @@
 import axios from "axios";
-import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 
 const ORG = "ORG";
 const LOAD_EVENTS = "LOAD_EVENTS";
@@ -34,6 +33,7 @@ const GENDER_ID = "GENDER_ID";
 const DESCRIPTION_EVENT = "DESCRIPTION_EVENT";
 const CNT_PLAYERS = "CNT_PLAYERS";
 const IMAGE_EVENT = "IMAGE_EVENT";
+const CHOOSE_EVENT = "CHOOSE_EVENT";
 let initialState = {
     sports: "",
     event: "",
@@ -45,6 +45,7 @@ let initialState = {
         events: "",
         sports: [{name: "", id: 0}],
     },
+    chooseEvent: null,
     qualifications: [],
     selectedSports: [],
     checked: Array(0).fill(false),
@@ -54,6 +55,8 @@ let initialState = {
 
 const eventsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case CHOOSE_EVENT:
+            return {...state, chooseEvent: action.newText}
         case LOAD_EVENTS:
             return {...state, storeEvents: action.payload}
         case LOAD_SPORTS:
@@ -122,6 +125,7 @@ const eventsReducer = (state = initialState, action) => {
                     events: "",
                     sports: [{name: "", id: 0}],
                 },
+                chooseEvent: null,
                 qualifications: [],
                 selectedSports: [],
                 checked: Array(0).fill(false),
