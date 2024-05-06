@@ -2,13 +2,14 @@ import {connect} from "react-redux";
 import {UserLocation} from "../../database/redux/locationUserReducer";
 import {
     clearNewEvent,
-    onChangeActionCreator, saveEvent
+    onChangeActionCreator, saveEvent, updateEvent
 } from "../../database/redux/events-reducer";
 import AcceptEvent from "./AcceptEvent";
 const mapStateToProps = (state) => {
     return {
         role: state.sessionUser.role,
         sports: state.eventsReducer.storeEvents.sports,
+        thisEvents: state.eventsReducer.storeEvents.events,
         thisNewEvent: state.eventsReducer.newEvent,
         userID: state.sessionUser.userID,
         cities: state.eventsReducer.cities,
@@ -29,6 +30,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         saveEvent: (text) => {
             dispatch(saveEvent(text))
+        },
+        updateEvent: (text) => {
+            dispatch(updateEvent(text))
         },
     }
 }

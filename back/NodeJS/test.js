@@ -18,6 +18,7 @@ const {loadEventFromDB} = require("./loadEvent");
 const {loadCountries} = require("./loadCountries");
 const {loadCities} = require("./loadCities");
 const {loadGender} = require("./loadGender");
+const {updateEvent} = require("./updateEvent");
 
 app.use(cors());
 const port = 3003;
@@ -151,6 +152,15 @@ function add_event() {
         addNew(nameTable, params, res);
     });
 }
+function update_event() {
+    app.use(express.json());
+    app.put('/update-event', (req, res) => {
+        const nameTable = req.body.nameTable;
+        const params = req.body.params;
+        updateEvent(nameTable, params, res);
+    });
+}
+update_event();
 add_event();
 load_genders();
 load_countries();

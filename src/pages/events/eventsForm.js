@@ -91,7 +91,7 @@ class EventsForm extends React.Component {
                                         </NavLink>
                                     )}
                                     <div>
-                                        <AcceptEventContainer/>
+                                        <AcceptEventContainer eventId={event.id}/>
                                     </div>
                                 </div>
                             )

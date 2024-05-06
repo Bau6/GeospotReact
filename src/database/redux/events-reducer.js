@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const ORG = "ORG";
+const ORG_NAME = "ORG_NAME";
 const LOAD_EVENTS = "LOAD_EVENTS";
 const LOAD_SPORTS = "LOAD_SPORTS";
 const CLEAR = "CLEAR";
@@ -33,7 +34,8 @@ const GENDER_ID = "GENDER_ID";
 const DESCRIPTION_EVENT = "DESCRIPTION_EVENT";
 const CNT_PLAYERS = "CNT_PLAYERS";
 const IMAGE_EVENT = "IMAGE_EVENT";
-const CHOOSE_EVENT = "CHOOSE_EVENT";
+const CHOOSE_EVENT = "CHOOSE_EVENT"
+const EVENT_ID = "EVENT_ID";
 let initialState = {
     sports: "",
     event: "",
@@ -72,6 +74,8 @@ const eventsReducer = (state = initialState, action) => {
             return {...state, newEvent: {...state.newEvent, name: action.newText}};
         case ORG:
             return {...state, newEvent: {...state.newEvent, orgId: action.newText}};
+        case ORG_NAME:
+            return {...state, newEvent: {...state.newEvent, orgName: action.newText}};
         case DESCRIPTION_EVENT:
             return {...state, newEvent: {...state.newEvent, description: action.newText}};
         case IMAGE_EVENT:
@@ -86,6 +90,8 @@ const eventsReducer = (state = initialState, action) => {
             return {...state, newEvent: {...state.newEvent, sport: action.newText}};
         case SPORT_ID:
             return {...state, newEvent: {...state.newEvent, sportId: action.newText}};
+        case EVENT_ID:
+            return {...state, newEvent: {...state.newEvent, eventId: action.newText}};
         case GENDER:
             return {...state, newEvent: {...state.newEvent, gender: action.newText}};
         case GENDER_ID:
@@ -273,7 +279,57 @@ export const saveEvent = (event) => {
             });
     }
 }
-
+export const updateEvent = (event) => {
+    return dispatch => {
+        const {
+            eventId,
+            sportId,
+            name,
+            countryId,
+            cityId,
+            description,
+            genderId,
+            minAge,
+            maxAge,
+            cntPlayers,
+            dateStart,
+            dateFinish,
+            image,
+            orgId
+        } = event;
+        axios.put("http://localhost:3003/update-event", {
+            nameTable: 'events',
+            params: {
+                id: eventId,
+                data: {
+                    sportTypeID: sportId,
+                    orgID: orgId,
+                    nameEvent: name,
+                    country: countryId,
+                    city: cityId,
+                    descriptionEvent: description,
+                    gender: genderId,
+                    minAge: minAge,
+                    maxAge: maxAge,
+                    cntPlayersInGroup: cntPlayers,
+                    dateStart: new Date(dateStart),
+                    dateFinish: new Date(dateFinish),
+                    image: image,
+                    status: 2,
+                }
+            },
+        })
+            .then(response => {
+                alert("Данные успешно обновлены");
+                console.log(response.data);
+                dispatch(clearNewEvent());
+            })
+            .catch(error => {
+                alert("ERROR! Данные не обновлены! Обратитесь в техподдержку!!!");
+                console.error(error);
+            });
+    }
+}
 export const loadCities = () => {
     return dispatch => {
         axios.get('http://localhost:3003/cities')
