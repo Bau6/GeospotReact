@@ -7,6 +7,7 @@ import {
 } from "../../database/redux/events-reducer";
 const mapStateToProps = (state) => {
     return {
+        role: state.sessionUser.role,
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -19,6 +19,8 @@ const {loadCountries} = require("./loadCountries");
 const {loadCities} = require("./loadCities");
 const {loadGender} = require("./loadGender");
 const {updateEvent} = require("./updateEvent");
+const {deleteEvent} = require("./deleteEvent");
+const {addOnPageEvent} = require("./addOnPageEvent");
 
 app.use(cors());
 const port = 3003;
@@ -109,7 +111,7 @@ function addNews() {
 function selectMyEvents() {
     app.get('/events-table', (req, res) => {
         // const { params } = req.query;
-        const params = { events: "events", user: "users", sport: "sporttype", city: "cities", country: "countries"};
+        const params = { events: "events", user: "users", sport: "sporttype", city: "cities", country: "countries", gender: "gender"};
         selectEvents(params, res);
     });
 }
@@ -160,6 +162,24 @@ function update_event() {
         updateEvent(nameTable, params, res);
     });
 }
+function delete_event() {
+    app.use(express.json());
+    app.put('/delete-event', (req, res) => {
+        const nameTable = req.body.nameTable;
+        const params = req.body.params;
+        deleteEvent(nameTable, params, res);
+    });
+}
+function add_on_page_event() {
+    app.use(express.json());
+    app.put('/add-on-page-event', (req, res) => {
+        const nameTable = req.body.nameTable;
+        const params = req.body.params;
+        addOnPageEvent(nameTable, params, res);
+    });
+}
+add_on_page_event();
+delete_event();
 update_event();
 add_event();
 load_genders();

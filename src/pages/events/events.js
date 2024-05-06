@@ -4,7 +4,7 @@ import React from "react";
 import DropDownMenuEventContainer from "./DropDownMenuEventContainer";
 import ChooseDataEventContainer from "./ChooseDataEventContainer";
 import AddNewEventContainer from "./AddNewEventContainer";
-// import AcceptEventContainer from "./AcceptEventContainer";
+import AdminOrgEventsContainer from "./AdminOrgEventsContainer";
 
 class Events extends React.Component {
     componentDidMount() {
@@ -13,6 +13,7 @@ class Events extends React.Component {
         this.props.loadCountries();
         this.props.loadGenders();
     }
+
     render() {
         return (
             <div>
@@ -24,12 +25,16 @@ class Events extends React.Component {
                     <div className={eventsCss.fixedEvents}>
                         <div>Мероприятия</div>
                         <EventsFormContainer/>
+                        {this.props.role === "admin" || this.props.role === "organizer" ? (
+                            <div>
+                                <AdminOrgEventsContainer/>
+                            </div>
+                        ) : null}
                     </div>
                 </div>
                 <div>
                     <AddNewEventContainer/>
                 </div>
-
             </div>
         )
     }

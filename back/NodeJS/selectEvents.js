@@ -37,6 +37,7 @@ function selectEvents(params, res) {
                 let sportTypeID = row.sportTypeID;
                 let city = row.city;
                 let country = row.country;
+                let gender = row.gender;
 
                 let promiseOrg = queryDB("SELECT name, surname, patronymic FROM ?? WHERE id = ?", [params.user, orgID], resultOrgName => {
                     row.orgName = resultOrgName[0].surname + " " + resultOrgName[0].name + " " + resultOrgName[0].patronymic;
@@ -54,7 +55,11 @@ function selectEvents(params, res) {
                     row.country = resultCountryName[0].country;
                 });
 
-                promises.push(promiseOrg, promiseSport, promiseCity, promiseCountry);
+                let promiseGender = queryDB("SELECT name FROM ?? WHERE id = ?", [params.gender, gender], resultGenderName => {
+                    row.gender = resultGenderName[0].name;
+                });
+
+                promises.push(promiseOrg, promiseSport, promiseCity, promiseCountry, promiseGender);
             });
             // Создаем промис для получения данных о спортах для всех записей
             let resultData = { events: result }; // Создаем объект, содержащий массив событий

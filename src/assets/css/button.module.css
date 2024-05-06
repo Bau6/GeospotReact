@@ -12,7 +12,13 @@
     border-radius: 5px;
     font-family: cursive;
 }
+.deleteBtn {
+    background-color: #ff5e5e;
+}
 
 .buttonsInfo:hover {
     background-color: #2980b9; /* Цвет при наведении */
+}
+.deleteBtn:hover {
+    background-color: #ff4a4a; /* Цвет при наведении */
 }

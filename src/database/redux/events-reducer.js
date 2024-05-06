@@ -330,6 +330,50 @@ export const updateEvent = (event) => {
             });
     }
 }
+export const deleteEventPage = (event) => {
+    return dispatch => {
+        axios.put("http://localhost:3003/delete-event", {
+            nameTable: 'events',
+            params: {
+                id: event,
+                data: {
+                    status: 4,
+                }
+            },
+        })
+            .then(response => {
+                alert("Данные успешно удалены");
+                console.log(response.data);
+                dispatch(clearNewEvent());
+            })
+            .catch(error => {
+                alert("ERROR! Данные не удалены! Обратитесь в техподдержку!!!");
+                console.error(error);
+            });
+    }
+}
+export const addOnPageEventAdmin = (event) => {
+    return dispatch => {
+        axios.put("http://localhost:3003/add-on-page-event", {
+            nameTable: 'events',
+            params: {
+                id: event,
+                data: {
+                    status: 1,
+                }
+            },
+        })
+            .then(response => {
+                alert("Данные успешно добавлены");
+                console.log(response.data);
+                dispatch(clearNewEvent());
+            })
+            .catch(error => {
+                alert("ERROR! Данные не добавлены! Обратитесь в техподдержку!!!");
+                console.error(error);
+            });
+    }
+}
 export const loadCities = () => {
     return dispatch => {
         axios.get('http://localhost:3003/cities')

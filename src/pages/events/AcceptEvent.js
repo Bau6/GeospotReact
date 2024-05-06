@@ -110,6 +110,10 @@ class AcceptEvent extends React.Component {
                 if (sports) {
                     this.props.onChangeAreaText("SPORT_ID", sports.id);
                 }
+                const genders = this.props.gender.find(gender => gender.name === eventToUpdate.gender);
+                if (genders) {
+                    this.props.onChangeAreaText("GENDER_ID", genders.id);
+                }
             }
         }
     };
@@ -126,12 +130,11 @@ class AcceptEvent extends React.Component {
         } else if (type === 'gender') {
             this.props.onChangeAreaText("GENDER_ID", id);
             this.props.onChangeAreaText("GENDER", value);
-            this.props.onChangeAreaText("ORG", this.props.userID.id);
         }
     };
 
     render() {
-        if (this.props.role === "admin") {
+        if (this.props.role === "admin" || this.props.role === "organizer") {
             return (
                 <div>
                     <div>

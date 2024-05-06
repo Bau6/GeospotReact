@@ -7,7 +7,7 @@ import AcceptEventContainer from "./AcceptEventContainer";
 import DeleteEventContainer from "./deleteEventContainer";
 import AddOnPageEventContainer from "./addOnPageEventContainer";
 
-class EventsForm extends React.Component {
+class AdminOrgEvents extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -21,12 +21,17 @@ class EventsForm extends React.Component {
 
     render() {
         let filterThisEvents = {};
-        if (this.props.thisEvents) {
-            filterThisEvents = this.props.thisEvents.filter(thisEvents => thisEvents.status === 1);
+        if (this.props.thisEvents && (this.props.role === "admin" || this.props.role === "organizer")) {
+            if (this.props.role === "admin") {
+                filterThisEvents = this.props.thisEvents.filter(thisEvents => thisEvents.status === 2);
+            } else if (this.props.role === "organizer") {
+                filterThisEvents = this.props.thisEvents.filter(thisEvents => thisEvents.status === 2 && thisEvents.orgID === this.props.userID.id);
+            }
         }
         let cnt = false;
         return (
             <div>
+                <div>Предложенные мероприятия</div>
                 {/* Проверяем наличие thisEvents и его длину */}
                 {filterThisEvents && filterThisEvents.length > 0 ? (
                     // Используем map для вывода каждого объекта
@@ -97,11 +102,15 @@ class EventsForm extends React.Component {
                                         )}
                                         <div>
                                             {(this.props.role === "admin" || (this.props.role === "organizer" && event.orgID === this.props.userID.id)) ? (
-                                            <AcceptEventContainer eventId={event.id}/>) : ""}
+                                                <AcceptEventContainer eventId={event.id}/>) : ""}
+                                        </div>
+                                        <div>
+                                            {(this.props.role === "admin") ? (
+                                                <AddOnPageEventContainer eventId={event.id}/>) : ""}
                                         </div>
                                         <div>
                                             {(this.props.role === "admin" || (this.props.role === "organizer" && event.orgID === this.props.userID.id)) ? (
-                                            <DeleteEventContainer eventId={event.id}/>) : ""}
+                                                <DeleteEventContainer eventId={event.id}/>) : ""}
                                         </div>
                                     </div>
                                 </div>
@@ -117,4 +126,4 @@ class EventsForm extends React.Component {
     }
 }
 
-export default EventsForm;
+export default AdminOrgEvents;
