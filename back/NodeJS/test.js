@@ -143,6 +143,15 @@ function load_genders() {
         loadGender(res);
     });
 }
+function add_event() {
+    app.use(express.json());
+    app.post('/add-event', (req, res) => {
+        const nameTable = req.body.nameTable;
+        const params = req.body.params;
+        addNew(nameTable, params, res);
+    });
+}
+add_event();
 load_genders();
 load_countries();
 load_cities();

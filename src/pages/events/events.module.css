@@ -29,18 +29,13 @@
     width: 100%;
     margin-top: 10px;
 }
-
-.closeBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    cursor: pointer;
-}
-.saveBtn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    cursor: pointer;
+.modalContentTextArea {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    height: 150px;
 }
 
 .modal {
@@ -55,7 +50,8 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     z-index: 999;
-    padding-bottom: 90px;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .overlay {
@@ -89,4 +85,8 @@
     position: fixed;
     z-index: 900;
     right: 100px;
+}
+.newWindowAddEvent {
+    overflow-y: scroll;
+    max-height: 600px;
 }

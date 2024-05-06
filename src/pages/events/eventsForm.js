@@ -1,4 +1,5 @@
 import EventsFormCss from "./eventsForm.module.css";
+import button from "../../assets/css/button.module.css";
 import React from "react";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import {NavLink} from "react-router-dom";
@@ -67,9 +68,6 @@ class EventsForm extends React.Component {
                                             <strong>Город:</strong> {event.city ? event.city : ""}
                                         </div>
                                         <div className={EventsFormCss.eventField}>
-                                            <strong>Описание:</strong> {event.descriptionEvent ? event.descriptionEvent : ""}
-                                        </div>
-                                        <div className={EventsFormCss.eventField}>
                                             <strong>Дата
                                                 начала:</strong> {event.dateStart ? dateStrISO(event.dateStart, DATE_FORMAT_DATE) : ""}
                                         </div>
@@ -84,7 +82,7 @@ class EventsForm extends React.Component {
                                     </div>
                                 {this.props.log && (
                                     <NavLink to={`/../pages/event/event.js?id=${event.id}`}>
-                                        <button onClick={() => this.onClickCheckEvent(event.id)}>Просмотр</button>
+                                        <button className={button.buttonsInfo} onClick={() => this.onClickCheckEvent(event.id)}>Просмотр</button>
                                     </NavLink>
                                 )}
                                 </div>

@@ -29,49 +29,50 @@ class addNewEvent extends React.Component {
     handleNameChange = () => {
         if (!!this.state.ref1) {
             let newText = this.state.ref1.current.value;
-            // this.state.myNewEvent.name = newText;
             this.props.onChangeAreaText("NAME", newText);
         }
     }
     handleStartDateChange = () => {
         let newText = this.state.ref2.current.value;
-        // this.state.myNewEvent.dateStart = newText;
         this.props.onChangeAreaText("DATE_START", newText);
     }
     handleEndDateChange = () => {
         let newText = this.state.ref3.current.value;
-        // this.state.myNewEvent.dateFinish = newText;
         this.props.onChangeAreaText("DATE_END", newText);
     }
-    handleChange = () => {
-        if (!!this.state.ref1) {
+    handleMinAgeChange = () => {
+        if (!!this.state.ref4) {
             let newText = this.state.ref4.current.value;
-            this.props.onChangeAreaText("NAME", newText);
+            this.props.onChangeAreaText("MIN_AGE", newText);
         }
     }
-    handleCityChange = () => {
-        let newText = this.ref5.current.value;
-        this.newNew.city = newText;
-        this.props.onChangeAreaText("CITY", newText);
+    handleMaxAgeChange = () => {
+        if (!!this.state.ref5) {
+            let newText = this.state.ref5.current.value;
+            this.props.onChangeAreaText("MAX_AGE", newText);
+        }
     }
-    descriptionChange = () => {
-        let newText = this.ref7.current.value;
-        this.newNew.textPub = newText;
-        this.props.onChangeAreaText("DESCRIPTION", newText);
+    handleDescriptionEventChange = () => {
+        if (!!this.state.ref7) {
+            let newText = this.state.ref7.current.value;
+            this.props.onChangeAreaText("DESCRIPTION_EVENT", newText);
+        }
     }
-    imageChange = () => {
-        let newText = this.ref8.current.value;
-        this.newNew.image = newText;
-        this.props.onChangeAreaText("IMAGE", newText);
+    handleCntPlayersChange = () => {
+        if (!!this.state.ref6) {
+            let newText = this.state.ref6.current.value;
+            this.props.onChangeAreaText("CNT_PLAYERS", newText);
+        }
+    }
+    handleImageChange = () => {
+        if (!!this.state.ref8) {
+            let newText = this.state.ref8.current.value;
+            this.props.onChangeAreaText("IMAGE_EVENT", newText);
+        }
     }
 
     handleSave = () => {
-        // Добавить логику для сохранения данных
-        console.log('Город:', this.state.city);
-        console.log('Дата начала:', this.state.startDate);
-        console.log('Дата конца:', this.state.endDate);
-
-        // Закрыть модальное окно после сохранения
+        this.props.saveEvent(this.props.thisNewEvent);
         this.toggleModal();
     };
 
@@ -83,21 +84,18 @@ class addNewEvent extends React.Component {
 
     handleDropdownSelect = (value, type, id) => {
         if (type === 'country') {
-            // this.setState({ selectedCountry: value, selectedCity: null, selectedCountryId: id });
             this.props.onChangeAreaText("COUNTRY_ID", id);
             this.props.onChangeAreaText("COUNTRY", value);
         } else if (type === 'city') {
-            // this.setState({ selectedCity: value });
             this.props.onChangeAreaText("CITY_ID", id);
             this.props.onChangeAreaText("CITY", value);
         } else if (type === 'sport') {
-            // this.setState({ selectedSport: value });
             this.props.onChangeAreaText("SPORT_ID", id);
             this.props.onChangeAreaText("SPORT", value);
         } else if (type === 'gender') {
-            // this.setState({ selectedSport: value });
             this.props.onChangeAreaText("GENDER_ID", id);
             this.props.onChangeAreaText("GENDER", value);
+            this.props.onChangeAreaText("ORG", this.props.userID.id);
         }
     };
     render() {
@@ -107,7 +105,7 @@ class addNewEvent extends React.Component {
                 <div>
                     <button className={`${eventsCss.addBtn} ${button.buttonsInfo}`} onClick={this.toggleModal} >Добавить запись</button>
                     {this.state.showModal && (
-                        <div className={eventsCss.modal}
+                        <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
                              style={{display: this.state.showModal ? 'block' : 'none'}}>
                             <input ref={this.state.ref1}
                                    value={this.props.thisNewEvent.name ? this.props.thisNewEvent.name : ""}
@@ -189,10 +187,33 @@ class addNewEvent extends React.Component {
                                    value={this.props.thisNewEvent.dateFinish ? this.props.thisNewEvent.dateFinish : ""}
                                    onChange={this.handleEndDateChange}/><br/><label>Дата конца мероприятия</label>
                             <input ref={this.state.ref4}
-                                   value={this.props.thisNewEvent.name ? this.props.thisNewEvent.name : ""}
+                                   value={this.props.thisNewEvent.minAge ? this.props.thisNewEvent.minAge : ""}
                                    className={eventsCss.modalContent} type="text"
-                                   placeholder="Наименование мероприятия"
-                                   onChange={this.handleNameChange}/><br/>
+                                   placeholder="Минимальный возраст"
+                                   onChange={this.handleMinAgeChange}/><br/>
+                            <input ref={this.state.ref5}
+                                   value={this.props.thisNewEvent.maxAge ? this.props.thisNewEvent.maxAge : ""}
+                                   className={eventsCss.modalContent} type="text"
+                                   placeholder="Максимальный возраст"
+                                   onChange={this.handleMaxAgeChange}/><br/>
+                            <input ref={this.state.ref6}
+                                   value={this.props.thisNewEvent.cntPlayers ? this.props.thisNewEvent.cntPlayers : ""}
+                                   className={eventsCss.modalContent} type="text"
+                                   placeholder="Количество человек в группе"
+                                   onChange={this.handleCntPlayersChange}/><br/>
+                            <textarea ref={this.state.ref7}
+                                   value={this.props.thisNewEvent.description ? this.props.thisNewEvent.description : ""}
+                                   className={eventsCss.modalContentTextArea} type="text"
+                                   placeholder="Описание мероприятия"
+                                   onChange={this.handleDescriptionEventChange}/><br/>
+                            <input ref={this.state.ref8}
+                                   value={this.props.thisNewEvent.image ? this.props.thisNewEvent.image : ""}
+                                   className={eventsCss.modalContent} type="text"
+                                   placeholder="Ссылка на картинку"
+                                   onChange={this.handleImageChange}/><br/>
+
+
+                            {/**/}
                             <button className={`${eventsCss.saveBtn} ${button.buttonsInfo}`}
                                     onClick={this.handleSave}>Сохранить
                             </button>

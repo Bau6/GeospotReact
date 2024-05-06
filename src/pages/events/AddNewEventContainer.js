@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {UserLocation} from "../../database/redux/locationUserReducer";
 import {
     clearNewEvent,
-    onChangeActionCreator
+    onChangeActionCreator, saveEvent
 } from "../../database/redux/events-reducer";
 import addNewEvent from "./addNewEvent";
 const mapStateToProps = (state) => {
@@ -26,6 +26,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         clearAreaText: () => {
             dispatch(clearNewEvent())
+        },
+        saveEvent: (text) => {
+            dispatch(saveEvent(text))
         },
     }
 }
