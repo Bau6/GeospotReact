@@ -21,6 +21,7 @@ const {loadGender} = require("./loadGender");
 const {updateEvent} = require("./updateEvent");
 const {deleteEvent} = require("./deleteEvent");
 const {addOnPageEvent} = require("./addOnPageEvent");
+const {registrationUserOnTourney} = require("./registrationUserTourney");
 
 app.use(cors());
 const port = 3003;
@@ -178,6 +179,15 @@ function add_on_page_event() {
         addOnPageEvent(nameTable, params, res);
     });
 }
+function registration_user_on_tourney() {
+    app.use(express.json());
+    app.post('/registration-user-on-tourney', (req, res) => {
+        const params = req.body.params;
+        console.log(params);
+        registrationUserOnTourney( params, res );
+    });
+}
+registration_user_on_tourney();
 add_on_page_event();
 delete_event();
 update_event();

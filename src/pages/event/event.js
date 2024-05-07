@@ -24,7 +24,7 @@ class Event extends React.Component {
         );
     };
     handleRegistrationTourney(){
-        alert("Вы успешно зарегистрированы!");
+        this.props.registrationTourney(this.props.eventId, this.props.userID.id);
     }
     render() {
         if (!!this.props.event) {
@@ -43,7 +43,8 @@ class Event extends React.Component {
                                         <div className="title-body">
                                             <a href=""><h4>{this.props.event.nameEvent}&nbsp;</h4></a>
                                             <div className="info">
-                                                &nbsp;<button className={button.buttonsInfo} onClick={()=>{this.handleRegistrationTourney()}}>Зарегистрироваться на турнир</button>
+                                                &nbsp;<button className={button.buttonsInfo} onClick={()=>{this.handleRegistrationTourney()}}
+                                            >Зарегистрироваться на турнир</button>
                                                 <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
                                                     <button className={button.buttonsInfo}>Результаты</button>
                                                 </NavLink>

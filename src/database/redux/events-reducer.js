@@ -279,6 +279,22 @@ export const saveEvent = (event) => {
             });
     }
 }
+export const registrationTourney = (eventId, userId) => {
+    return dispatch => {
+        axios.post('http://localhost:3003/registration-user-on-tourney', {
+            params:{
+                userId: userId,
+                eventId: eventId,
+            }
+        })
+            .then(response => {
+                alert("Вы успешно зарегистрированы!");
+            })
+            .catch(error => {
+                alert(error.response.data.error)
+            });
+    }
+}
 export const updateEvent = (event) => {
     return dispatch => {
         const {
