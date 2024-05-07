@@ -36,6 +36,7 @@ const CNT_PLAYERS = "CNT_PLAYERS";
 const IMAGE_EVENT = "IMAGE_EVENT";
 const CHOOSE_EVENT = "CHOOSE_EVENT"
 const EVENT_ID = "EVENT_ID";
+const STATUS_EVENT = "STATUS_EVENT";
 let initialState = {
     sports: "",
     event: "",
@@ -43,6 +44,7 @@ let initialState = {
     cities: {},
     genders: {},
     countries: {},
+    statusEvent: null,
     storeEvents: {
         events: "",
         sports: [{name: "", id: 0}],
@@ -59,6 +61,8 @@ const eventsReducer = (state = initialState, action) => {
     switch (action.type) {
         case CHOOSE_EVENT:
             return {...state, chooseEvent: action.newText}
+        case STATUS_EVENT:
+            return {...state, statusEvent: action.newText}
         case LOAD_EVENTS:
             return {...state, storeEvents: action.payload}
         case LOAD_SPORTS:
@@ -126,6 +130,7 @@ const eventsReducer = (state = initialState, action) => {
                 newEvent: {},
                 cities: {},
                 genders: {},
+                statusEvent: null,
                 countries: {},
                 storeEvents: {
                     events: "",

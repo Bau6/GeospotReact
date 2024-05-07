@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
         states: state,
         eventId: state.eventsReducer.chooseEvent,
         userID: state.sessionUser.userID,
+        status: state.eventsReducer.statusEvent,
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -183,7 +183,6 @@ function registration_user_on_tourney() {
     app.use(express.json());
     app.post('/registration-user-on-tourney', (req, res) => {
         const params = req.body.params;
-        console.log(params);
         registrationUserOnTourney( params, res );
     });
 }

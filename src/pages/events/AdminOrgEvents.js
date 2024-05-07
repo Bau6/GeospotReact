@@ -15,8 +15,9 @@ class AdminOrgEvents extends React.Component {
         };
     }
 
-    onClickCheckEvent(id) {
+    onClickCheckEvent(id, status) {
         this.props.onChangeAreaText("CHOOSE_EVENT", id)
+        this.props.onChangeAreaText("STATUS_EVENT", status)
     }
 
     render() {
@@ -95,7 +96,7 @@ class AdminOrgEvents extends React.Component {
                                             <div>
                                                 <NavLink to={`/../pages/event/event.js`}>
                                                     <button className={button.buttonsInfo}
-                                                            onClick={() => this.onClickCheckEvent(event.id)}>Просмотр
+                                                            onClick={() => this.onClickCheckEvent(event.id, event.status)}>Просмотр
                                                     </button>
                                                 </NavLink>
                                             </div>

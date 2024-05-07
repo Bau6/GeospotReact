@@ -9,7 +9,6 @@ function registrationUserOnTourney(params, res) {
     let selectEventQuery = "SELECT * FROM ?? WHERE id = ?";
     let selectQualsQuery = "SELECT * FROM ?? WHERE user_id = ?";
     let addInfoRegTourney = {};
-    console.log(params.userId)
     connection.query(selectUserQuery, [USERS, params.userId], (userErr, userResult) => {
         if (userErr) {
             console.log(userErr);
