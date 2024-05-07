@@ -1,235 +1,166 @@
-import React, {useState, useEffect} from "react";
 import RegistrationCss from "./RegistrationCss.module.css"
 import DropDownMenuReg from "./DropDownMenuReg";
-import {NavLink} from "react-router-dom";
 import 'react-datepicker/dist/react-datepicker.css';
-import ShowPasswordButton from "./passwordButton";
+import FormFields from "../profile/InfoUserProfile";
+import AvatarUpload from "../avatar/avatar";
 import {validationsReg} from "../../app/include/validations";
+import React, {Component} from 'react';
 
-const Registration = (props) => {
-    const [date, setDate] = useState('');
-    // debugger;
-    const numberOfElements = props.sportNameFromBD.length;
-    const initialCheckedState = [];
-    const labels = ["Почта", "Пароль", "Подтверждение пароля", "Имя", "Фамилия", "Отчество"];
-    const labelData = ["Дата рождения"];
-    let addDataElement1 = React.createRef();
-    let addDataElement2 = React.createRef();
-    let addDataElement3 = React.createRef();
-    let addDataElement4 = React.createRef();
-    let addDataElement5 = React.createRef();
-    let addDataElement6 = React.createRef();
-    let addDataElement7 = React.createRef();
-    const refs = [addDataElement1, addDataElement2, addDataElement3, addDataElement4, addDataElement5, addDataElement6, addDataElement7];
-    const [checked, setChecked] = useState(initialCheckedState);
-    const [refsArray, setRefsArray] = useState(props.sportNameFromBD.map(() => React.createRef()));
+class Registration extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            // date: '',
+            // initialCheckedState: [],
+            refs: [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()],
+        };
+    }
 
-    useEffect(() => {
-        if (refs[1].current) {
-            refs[1].current.type = 'password';
+    componentDidMount() {
+        this.props.loadSportsFunc();
+        this.props.loadQualificationsFunc();
+        this.setState(prevState => {
+            const newRefs = [...prevState.refs];
+            if (newRefs[1].current) {
+                newRefs[1].current.type = 'password';
+            }
+            if (newRefs[2].current) {
+                newRefs[2].current.type = 'password';
+            }
+            return {refs: newRefs};
+        });
+
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.sports !== this.props.sports) {
+            this.props.selectedSportsFunc(Array(this.props.sports.length).fill({}));
         }
-        if (refs[2].current) {
-            refs[2].current.type = 'password';
-        }
-    }, [refs]);
+    }
 
 
-    const handleChange = (e) => {
+    handleChange = (e) => {
+        // Логика обработки изменения даты
         const inputDate = e.target.value;
         const formattedDate = inputDate
-            .replace(/\D/g, '') // Удаляем все нецифровые символы
-            .replace(/(\d{2})(\d{2})(\d{4})/, '$1.$2.$3'); // Добавляем разделители между днями, месяцами и годом
-        props.updateText(formattedDate);
-        // props.dispatch(onDateChangeActionCreator( formattedDate ));
-        setDate(formattedDate);
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d{2})(\d{4})/, '$1.$2.$3');
+        this.props.updateText(formattedDate);
+        this.setState({date: formattedDate});
     }
-
-    const inputElementData = labelData.map((labelData, index) => (
-        <div key={index}>
-            <label className={RegistrationCss.nameLabelInputButtonReg}>
-                {labelData}
-            </label>
-            <input
-                ref={refs[6]}
-                className={RegistrationCss.nameLabelInputButtonReg}
-                type="text"
-                value={date}
-                onChange={handleChange}
-                placeholder="dd.mm.yyyy"
-            />
-        </div>
-    ));
-
-    for (let i = 0; i < numberOfElements; i++) {
-        initialCheckedState.push(false);
-    }
-
-    const handleDropdownSelect = (eventKey, index) => {
-        const newRefsArray = [...refsArray];
-        // Добавить eventKey в массив refsArray
-        newRefsArray[index].current.value = eventKey;
-        setRefsArray(newRefsArray);
-    };
-
-
-    let onAddData = (event) => {
-        let errorMessage = '';
-        // errorMessage = validationsReg(refs);
+    onAddData = (event) => {
+        // Логика добавления данных
+        let errorMessage = "";
+        errorMessage = validationsReg(this.state.refs);
         if (errorMessage === '') {
             let test1 = {
-                email: props.userExampleInfo.email,
-                password: props.userExampleInfo.password,
-                replayPassword: props.userExampleInfo.replayPassword,
-                nameUser: props.userExampleInfo.nameUser,
-                surnameUser: props.userExampleInfo.surnameUser,
-                patronymicUser: props.userExampleInfo.patronymicUser,
-                dateOfBirth: props.userExampleInfo.dateOfBirth,
+                email: this.props.userExampleInfo.email,
+                password: this.props.userExampleInfo.password,
+                replayPassword: this.props.userExampleInfo.replayPassword,
+                nameUser: this.props.userExampleInfo.nameUser,
+                surnameUser: this.props.userExampleInfo.surnameUser,
+                patronymicUser: this.props.userExampleInfo.patronymicUser,
+                dateOfBirth: this.props.userExampleInfo.dateOfBirth,
                 checkedTypeSport: {}
             };
-
-            for (let i = 0; i < numberOfElements; i++) {
-                test1.checkedTypeSport[i] = {
-                    id: i + 1,
-                    status: refsArray[i].current.value
-                };
-            }
-            props.addData(test1);
-            // props.dispatch(changeRegDataActionCreator(test1));
+            let addDataToDB = {
+                email: this.props.userExampleInfo.email,
+                password: this.props.userExampleInfo.password,
+                name: this.props.userExampleInfo.nameUser,
+                surname: this.props.userExampleInfo.surnameUser,
+                patronymic: this.props.userExampleInfo.patronymicUser,
+                birthday: this.props.userExampleInfo.dateOfBirth
+            };
+            // for (let i = 0; i < this.props.sports.length; i++) {
+            //     test1.checkedTypeSport[i] = {id: i + 1, status: this.props.refsArray[i].current.value};
+            // }
+            this.props.addData(test1);
+            this.props.registrationsLoadDataUser(addDataToDB, this.props.selectedSports);
         } else {
             alert(errorMessage);
             event.preventDefault();
-            // Действия в случае некорректных данных
         }
-        //вывод на экран значения
     }
 
-    let changeChecked = (index) => {
-        setChecked(prevState => {
-            const newState = [...prevState];
-            newState[index] = !newState[index];
-            const newRefsArray = [...refsArray];
-            newRefsArray[index].current.value = 1;
-            setRefsArray(newRefsArray);
-            return newState;
-        });
+    changeChecked = (index) => {
+        const checkedCopy = [...this.props.checked];
+        checkedCopy[index] = !checkedCopy[index];
+        this.props.checkedFunc(checkedCopy);
     }
 
-    let emailChange = () => {
-        let newText = refs[0].current.value;
-        props.onEmailChange(newText);
+    handleDropdownSelect = (eventKey, index, name) => {
+        if (Array.isArray(this.props.selectedSports)) {
+            const selectedValuesCopy = [...this.props.selectedSports];
+            selectedValuesCopy[index] = {[name]: eventKey};
+            this.props.selectedSportsFunc(selectedValuesCopy);
+        } else {
+            console.error("selectedSports is not an array");
+        }
     }
 
-    let passChange = () => {
-        let newText = refs[1].current.value;
-        props.onPassChange(newText);
-    }
-
-    let repassChange = () => {
-        let newText = refs[2].current.value;
-        props.onRepassChange(newText);
-    }
-
-    let nameChange = () => {
-        let newText = refs[3].current.value;
-        props.onNameChange(newText);
-    }
-
-    let surnameChange = () => {
-        let newText = refs[4].current.value;
-        props.onSurnameChange(newText);
-    }
-
-    let patronymicChange = () => {
-        let newText = refs[5].current.value;
-        props.onPatronymicChange(newText);
-    }
-
-    return (
-        <div>
-            <div>
-                <div className={RegistrationCss.RegistrationName}>
-                    Регистрация
-                </div>
-                <div className={RegistrationCss.containerReg}>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[0]}
-                        </label>
-                        <input
-                            onChange={emailChange}
-                            ref={refs[0]}
-                            className={RegistrationCss.nameLabelInputButtonReg}
-                        >
-                        </input>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[1]}
-                        </label>
-                        <input ref={refs[1]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={passChange}></input>
-                        <ShowPasswordButton getRef={() => refs[1]}/>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[2]}
-                        </label>
-                        <input ref={refs[2]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={repassChange}></input>
-                        <ShowPasswordButton getRef={() => refs[2]}/>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[3]}
-                        </label>
-                        <input ref={refs[3]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={nameChange}></input>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[4]}
-                        </label>
-                        <input ref={refs[4]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={surnameChange}></input>
-                    </div>
-                    <div>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {labels[5]}
-                        </label>
-                        <input ref={refs[5]}
-                               className={RegistrationCss.nameLabelInputButtonReg}
-                               onChange={patronymicChange}></input>
-                    </div>
-                    {inputElementData}
-                </div>
+    // Логика отображения компоненты
+    render() {
+        const {date} = this.state;
+        const inputElementData = ["Дата рождения"].map((labelData, index) => (
+            <div key={index}>
+                <label className={RegistrationCss.nameLabelInputButtonReg}>{labelData}</label>
+                <input ref={this.state.refs[6]} className={RegistrationCss.nameLabelInputButtonReg} type="text"
+                       value={date ? date : ""} onChange={this.handleChange} placeholder="dd.mm.yyyy"/>
             </div>
+        ));
+        return (
             <div>
-                {props.sportNameFromBD && props.sportNameFromBD.map((item, index) => (
-                    <div key={index} className={RegistrationCss.checkboxReg}>
-                        <label className={RegistrationCss.nameLabelInputButtonReg}>
-                            {item.name}
-                        </label>
-                        <input
-                            ref={refsArray[index]}
-                            type="checkbox"
-                            checked={checked[index]}
-                            onChange={() => changeChecked(index)}
+                {!this.props.isLoggedIn ? (
+                    <div>
+                <div>
+                    <div className={RegistrationCss.RegistrationName}>Регистрация</div>
+                    <div className={RegistrationCss.containerReg}>
+                        <FormFields
+                            myInf={this.props.myInf}
+                            refs={this.state.refs}
+                            onEmailChange={this.props.onEmailChange}
+                            onPassChange={this.props.onPassChange}
+                            onRepassChange={this.props.onRepassChange}
+                            onNameChange={this.props.onNameChange}
+                            onSurnameChange={this.props.onSurnameChange}
+                            onPatronymicChange={this.props.onPatronymicChange}
                         />
-                        {checked[index] ?
-                            <DropDownMenuReg index={index}
-                                             onDropdownSelect={(eventKey) => handleDropdownSelect(eventKey, index)}/> :
-                            <div> {""} </div>}
+                        {inputElementData}
                     </div>
-                ))}
+                </div>
+                <div>
+                    <div>
+                        {this.props.sports && this.props.sports.map((item, index) => (
+                            <div key={index} className={RegistrationCss.checkboxReg}>
+                                <label className={RegistrationCss.nameLabelInputButtonReg}>{item.name}</label>
+                                <input
+                                    ref={this.props.refsArray[index]}
+                                    type="checkbox"
+                                    checked={!!this.props.checked[index]}
+                                    onChange={() => this.changeChecked(index)}
+                                />
+                                {this.props.checked[index] ? (
+                                    // <div>loh</div>
+                                    <DropDownMenuReg
+                                        qualifications={this.props.qualifications}
+                                        index={index}
+                                        onDropdownSelect={(eventKey) => this.handleDropdownSelect(eventKey, index, item.name)}
+                                    />
+                                ) : (
+                                    <div>{""}</div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <AvatarUpload/>
+                    <button onClick={this.onAddData} className={RegistrationCss.nameButtonReg}>
+                        Сохранить изменения
+                    </button>
+                </div></div>) : <div>Страница не найдена!</div>}
             </div>
-            <NavLink onClick={onAddData} className={RegistrationCss.nameButtonReg}
-                     to="/../../pages/profile/profile.js">Сохранить изменения</NavLink>
-            <button className={RegistrationCss.nameButtonReg}>Изменить аватар</button>
-        </div>);
+        );
+    }
 }
 
 export default Registration;

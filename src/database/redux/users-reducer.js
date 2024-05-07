@@ -1,13 +1,19 @@
+const USERS = 'USERS';
 let initialState = {
-    participantsFromBD: [
-        {id: 1, name: 'Иванов Иван', age: 25},
-        {id: 2, name: 'Петров Петр', age: 30},
-        {id: 3, name: 'Сидоров Сидор', age: 28}
-    ]
+    usersTourney: []
 }
 
 const usersReducer = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+        case USERS:
+            return {...state, usersTourney: action.text}
+        default:
+            return state;
+    }
 }
+export const usersLoadForTourney = (text) => ({
+    type: USERS,
+    text: text,
+});
 
 export default usersReducer;

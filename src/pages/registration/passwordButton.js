@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 
-const ShowPasswordButton = ({getRef}) => {
+const ShowPasswordButton = ({ getRef }) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-        getRef().current.type = showPassword ? 'password' : 'text';
+        setShowPassword(prevShowPassword => !prevShowPassword);
+        getRef().current.type = !showPassword ? 'text' : 'password';
     };
 
     return (
@@ -14,5 +14,4 @@ const ShowPasswordButton = ({getRef}) => {
         </button>
     );
 };
-
 export default ShowPasswordButton;

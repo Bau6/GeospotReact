@@ -6,32 +6,27 @@ const NAME_USER = 'NAME-USER';
 const SURNAME_USER = 'SURNAME-USER';
 const PATRONYMIC_USER = 'PATRONYMIC-USER';
 const DATE_BIRTHDAY = 'DATE-BIRTHDAY';
-
-
+const CITY = 'CITY';
+const COUNTRY = 'COUNTRY';
+const ADD_DATA = 'ADD_DATA';
+const CLEAR_SESSION = 'CLEAR_SESSION';
+const AUTH_USER = "AUTH_USER";
 let initialState = {
-
     userExampleInfo: {
-        id: 1,
-        email: "example@mail.ru",
-        password: "MyPass1",
-        replayPassword: "MyPass1",
-        nameUser: "name",
-        surnameUser: "surName",
-        patronymicUser: "patronymic",
+        id: null,
+        email: "",
+        password: "",
+        replayPassword: "",
+        nameUser: "",
+        surnameUser: "",
+        patronymicUser: "",
         dateOfBirth: null,
-        location: [
-            {country: 'Россия'},
-            {city: 'Москва'}
-        ],
-        photoUrl: '',
-        checkedTypeSport: [
-            {event: "Баскетбол", status: 'on'},
-            {event: "Воллейбол", status: 'on'},
-            {event: "Хоккей", status: 'on'},
-            {event: "Футбол", status: "Опытный"}
-        ]
+        city: "",
+        country: "",
+        photoUrl: ''
     },
-    usersNewInfo: []
+    usersNewInfo: [],
+    data: []
 }
 
 const infoUsersReducer = (state = initialState, action) => {
@@ -41,6 +36,20 @@ const infoUsersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 usersNewInfo: state.usersNewInfo.concat(action.value),
+            };
+        case AUTH_USER:
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    email: action.newText.email,
+                    nameUser: action.newText.name,
+                    surnameUser: action.newText.surname,
+                    patronymicUser: action.newText.patronymic,
+                    city: action.newText.city,
+                    country: action.newText.country,
+                    dateOfBirth: action.newText.birthday,
+                },
             };
         case EMAIL:
             return {
@@ -98,13 +107,54 @@ const infoUsersReducer = (state = initialState, action) => {
                     dateOfBirth: action.newText
                 }
             };
+        case CITY:
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    city: action.newText
+                }
+            };
+        case COUNTRY:
+            return {
+                ...state,
+                userExampleInfo: {
+                    ...state.userExampleInfo,
+                    country: action.newText
+                }
+            };
+        case ADD_DATA:
+            return {
+                ...state,
+                data: [...state.data, action.payload]
+            };
+        case CLEAR_SESSION:
+            return {
+                ...state,
+                userExampleInfo: {
+                    id: null,
+                    email: "",
+                    password: "",
+                    replayPassword: "",
+                    nameUser: "",
+                    surnameUser: "",
+                    patronymicUser: "",
+                    dateOfBirth: null,
+                    city: "",
+                    country: "",
+                    photoUrl: ''
+                },
+                usersNewInfo: [],
+                data: []
+            };
         default:
             return state;
     }
 }
 
-
-
+export const clearSessionUsersActionCreator = () => ({
+    type: CLEAR_SESSION
+});
 export const changeRegDataActionCreator = (value) => (
     {
         type: INFO_FOR_REG_USER,
@@ -155,4 +205,23 @@ export const onDateChangeActionCreator = (value) => (
     }
 )
 
+export const onCityChangeActionCreator = (value) => (
+    {
+        type: CITY,
+        newText: value
+    }
+)
+
+export const onCountryChangeActionCreator = (value) => (
+    {
+        type: COUNTRY,
+        newText: value
+    }
+)
+export const authUserInfo = (value) => (
+    {
+        type: AUTH_USER,
+        newText: value
+    }
+)
 export default infoUsersReducer;

@@ -1,12 +1,10 @@
-import React from "react";
-
 const SET_USERS = 'SET_USERS';
 
 let initialState = {
     users: []
 }
 
-const UsersPageReducer = (state = initialState, action) => {
+const locationUserReducer = (state = initialState, action) => {
     // debugger
     switch (action.type) {
         case SET_USERS:
@@ -22,4 +20,4 @@ const UsersPageReducer = (state = initialState, action) => {
 
 export const setUsersAC = (users) => ({type: SET_USERS, users})
 
-export default UsersPageReducer;
+export default locationUserReducer;

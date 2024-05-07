@@ -1,0 +1,38 @@
+/* Стили для Dropdown */
+.dropDownDesign {
+    width: 100%; /* Ширина во всю ширину контейнера */
+}
+
+/* Стили для Toggle кнопки */
+.dropdownToggle {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #007bff !important; /* Синий цвет фона */
+    color: #fff; /* Белый цвет текста */
+    border: 1px solid #007bff !important; /* Синяя обводка */
+    border-radius: 5px; /* Закругленные углы */
+    font-family: Arial, sans-serif; /* Шрифт */
+    transition: background-color 0.3s;
+}
+.dropdownToggle:hover,
+.dropdownToggle:focus {
+    background-color: #3665f4 !important;
+}
+.dropdownToggle:active {
+    background-color: #004085 !important; /* Цвет фона при клике */
+}
+/* Стили для элементов меню */
+.dropdownMenu {
+    overflow-y: auto; /* Добавляем вертикальную прокрутку, если содержимое не помещается */
+    width: 100%;
+    text-align: center;
+    background-color: #f8f9fa; /* Цвет фона меню */
+}
+
+.dropdownItem {
+    color: #333; /* Цвет текста элементов меню */
+}
+
+.dropdownItem:hover {
+    background-color: #e9ecef; /* Цвет фона при наведении на элемент */
+}

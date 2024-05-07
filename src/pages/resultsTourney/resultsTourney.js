@@ -6,7 +6,7 @@ const ResultsTourney = (props) => {
         <div>
             <div >
                 results
-                <NavLink to="/../pages/event/event.js">Назад</NavLink>
+                <NavLink to="/pages/event/event.js">Назад</NavLink>
             </div>
         </div>
     )

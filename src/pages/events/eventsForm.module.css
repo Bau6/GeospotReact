@@ -1,4 +1,41 @@
-.events {
-    border: 3px solid black;
-    margin-top: 20px;
+.eventListContainer {
+    flex-wrap: wrap;
+    display: flex; /* Используем flexbox для размещения элементов в строку */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+.eventField {
+    margin-bottom: 5px;
+}
+
+.eventField strong {
+    margin-right: 5px;
+}
+
+.eventItem {
+    display: flex; /* Используем flexbox для размещения элементов в строку */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.imageContainer {
+    flex: 0 0 auto; /* Фиксированная ширина для изображения */
+    margin-right: 20px; /* Расстояние между изображением и текстом */
+}
+
+.textContainer {
+    flex: 1; /* Занимает все доступное пространство в контейнере */
+}
+
+.eventsImage {
+    width: 300px; /* Ширина изображения */
+    height: auto; /* Автоматическая высота */
+    border-radius: 5px; /* Закругленные углы */
+}
+.notEvents {
+    margin-bottom: 100px;
 }

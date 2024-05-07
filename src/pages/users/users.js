@@ -1,123 +1,100 @@
 import React, {useEffect, useState} from "react";
-import styles from './users.module.css';
 import axios from "axios";
-import {responsivePropType} from "react-bootstrap/createUtilityClasses";
+import RegistrationCss from "../registration/RegistrationCss.module.css";
 
 const Users = (props) => {
+    const refs = [React.createRef(), React.createRef()];
     const [users, setUsers] = useState([]);
+    const [inputValue, setInputValue] = useState("");
 
-    useEffect(() => {
-        // Получение сохраненного результата с сервера
-        axios.get("http://localhost:3003/saved-result")
-            .then(response => {
-                console.log(response.data); // Вывод данных в консоль
-                setUsers(response.data);
-            })
-            .catch(error => {
-                console.error(error);
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    };
+
+    const fetchData = async () => {
+        const isValidEmail = validateEmail(inputValue);
+        if (!isValidEmail) {
+            console.log("Invalid email format");
+            return;
+        }
+        // Проверка на уникальность email в базе данных
+        const isEmailUnique = users.every(user => user.email !== inputValue);
+        if (!isEmailUnique) {
+            console.log("Email already exists in the database");
+            return;
+        }
+        try {
+            const response = await axios.get("http://localhost:3003/update-record", {
+                params: {
+                    nameTable: 'users',
+                    params: { id: "27", name: "ivan", surname: "gromov", password: "defoult", email: inputValue}
+                }
             });
-    }, []); // Пустой массив зависимостей указывает, что эффект зависит только от момента монтирования компонента
-    //
-    // axios.get("http://localhost:3000/console-log").then(response => {
-    //     debugger
-    //     props.setUsers();
-    // });
+            console.log(response.data);
+            setUsers(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    const fetchAddData = async () => {
+        const isValidEmail = validateEmail(inputValue);
+        if (!isValidEmail) {
+            console.log("Invalid email format");
+            return;
+        }
+        // Проверка на уникальность email в базе данных
+        const isEmailUnique = users.every(user => user.email !== inputValue);
+        if (!isEmailUnique) {
+            console.log("Email already exists in the database");
+            return;
+        }
+        try {
+            const response = await axios.post("http://localhost:3003/add-record", {
+                nameTable: 'users',
+                params: { name: "neya", surname: "gromov", password: "default", email: inputValue }
+            });
+            console.log(response.data);
+            setUsers(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-    // if (props.users.length === 0) {
-    //     props.setUsers([
-    //         {
-    //             id: 1,
-    //             email: "example@mail.ru",
-    //             password: "MyPass1",
-    //             replayPassword: "MyPass1",
-    //             nameUser: "name1111111111111",
-    //             surnameUser: "surName",
-    //             patronymicUser: "patronymic",
-    //             dateOfBirth: null,
-    //             location:
-    //                 {country: 'Россия', city: 'Москва'},
-    //             photoUrl: 'https://zakazposterov.ru/fotooboi/z/fotooboi-e-31044-tad-pa-suam-vodopad-yujniy-laos-zakazposterov-ru_z.jpg',
-    //             checkedTypeSport: [
-    //                 {event: "Баскетбол", status: 'on'},
-    //                 {event: "Воллейбол", status: 'on'},
-    //                 {event: "Хоккей", status: 'on'},
-    //                 {event: "Футбол", status: "Опытный"}
-    //             ]
-    //         },
-    //         {
-    //             id: 1,
-    //             email: "example@mail.ru",
-    //             password: "MyPass1",
-    //             replayPassword: "MyPass1",
-    //             nameUser: "name2222222222222",
-    //             surnameUser: "surName",
-    //             patronymicUser: "patronymic",
-    //             dateOfBirth: null,
-    //             location: {country: 'Россия', city: 'Москва'},
-    //             photoUrl: 'https://gas-kvas.com/uploads/posts/2023-02/1675446642_gas-kvas-com-p-kartinki-na-fonovii-risunok-rabochego-9.jpg',
-    //             checkedTypeSport: [
-    //                 {event: "Баскетбол", status: 'on'},
-    //                 {event: "Воллейбол", status: 'on'},
-    //                 {event: "Хоккей", status: 'on'},
-    //                 {event: "Футбол", status: "Опытный"}
-    //             ]
-    //         },
-    //         {
-    //             id: 1,
-    //             email: "example@mail.ru",
-    //             password: "MyPass1",
-    //             replayPassword: "MyPass1",
-    //             nameUser: "name33333333333",
-    //             surnameUser: "surName",
-    //             patronymicUser: "patronymic",
-    //             dateOfBirth: null,
-    //             location: {country: 'Россия', city: 'Москва'},
-    //             photoUrl: 'https://bonpic.com/wallpapers/original/7189.jpg',
-    //             checkedTypeSport: [
-    //                 {event: "Баскетбол", status: 'on'},
-    //                 {event: "Воллейбол", status: 'on'},
-    //                 {event: "Хоккей", status: 'on'},
-    //                 {event: "Футбол", status: "Опытный"}
-    //             ]
-    //         }
-    //     ]);
-    // }
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:3003/output-table", {
+                    params: {
+                        nameTable: 'users',
+                        params: {} // Параметры, если необходимо
+                    }
+                });
+                console.log(response.data);
+                setUsers(response.data);
+                setInputValue(response.data[2] && response.data[2].email ? response.data[2].email : "");
+                // console.log(users);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return <div>
         <h1>Users LOL</h1>
-        <ul>
-            {users.map(user =>
-                <div key={user.id} >{user.name}</div>
-            )}
-        </ul>
-
-        {
-        //     props.users.map(u => <div key={u.id}>
-        //     <span>
-        //     <div>
-        //         <img src={u.photoUrl} className={styles.userPhoto}/>
-        //     </div>
-        //     <div>
-        //         <button>mb</button>
-        //     </div>
-        // </span>
-        // <span>
-        //     <span>
-        //         <div>
-        //             {u.nameUser}
-        //         </div>
-        //         <div>
-        //             {u.surnameUser}
-        //         </div>
-        //     </span>
-        //     <span>
-        //         <div>{u.location.country}</div>
-        //         <div>{u.location.city}</div>
-        //     </span>
-        // </span>
-        //
-        //     </div>)
-        }
+        <input
+            ref={refs[0]}
+            className={RegistrationCss.nameLabelInputButtonReg}
+            onChange={handleInputChange}
+            value={inputValue} // Проверка на наличие и определенность значения users[0].name
+        ></input>
+        <button onClick={fetchData}>Update Record</button>
+        <button onClick={fetchAddData}>Add Record</button>
     </div>
 }
 

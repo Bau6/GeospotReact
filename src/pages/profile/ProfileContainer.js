@@ -1,10 +1,10 @@
-import React from "react";
+// import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
     return {
-        userInf: state.infoUsers.usersNewInfo
+        userInf: state.infoUsers.userExampleInfo,
     }
 }
 
