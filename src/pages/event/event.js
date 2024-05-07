@@ -59,7 +59,7 @@ class Event extends React.Component {
                                                             </NavLink>
                                                             <NavLink
                                                                 to={`/../pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js`}>
-                                                                <button className={button.buttonsInfo}>Просмотр
+                                                                <button onClick={() => {this.props.thisUsersLoadForEvent(this.props.eventId)}} className={button.buttonsInfo}>Просмотр
                                                                     участников
                                                                 </button>
                                                             </NavLink>

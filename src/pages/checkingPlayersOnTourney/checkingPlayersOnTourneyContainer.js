@@ -5,6 +5,7 @@ const mapStateToProps = (state) => {
     return {
         event: state.eventsReducer.event,
         myUsers: state.users.usersTourney,
+        role: state.sessionUser.role,
     }
 }
 const mapDispatchToProps = (dispatch) => {

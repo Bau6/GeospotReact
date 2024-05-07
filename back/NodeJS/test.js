@@ -22,6 +22,7 @@ const {updateEvent} = require("./updateEvent");
 const {deleteEvent} = require("./deleteEvent");
 const {addOnPageEvent} = require("./addOnPageEvent");
 const {registrationUserOnTourney} = require("./registrationUserTourney");
+const {loadUsersForEvent} = require("./loadUsersForEvent");
 
 app.use(cors());
 const port = 3003;
@@ -186,6 +187,13 @@ function registration_user_on_tourney() {
         registrationUserOnTourney( params, res );
     });
 }
+function load_users_for_event() {
+    app.get('/load-users-for-event', (req, res) => {
+        const { eventId } = req.query;
+        loadUsersForEvent(eventId, res);
+    });
+}
+load_users_for_event();
 registration_user_on_tourney();
 add_on_page_event();
 delete_event();
