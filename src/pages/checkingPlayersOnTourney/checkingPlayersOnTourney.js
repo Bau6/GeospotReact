@@ -8,7 +8,6 @@ class PlayersInTourney extends React.Component {
         this.state = {
             isBlocked: false, // состояние блокировки
             isEditable: false, // состояние редактирования
-            participants: props.participantsFromBD // список участников
         };
     }
 
@@ -26,7 +25,12 @@ class PlayersInTourney extends React.Component {
         // реализация функционала
         this.setState({ isBlocked: true });
     };
-
+    handleBlockUserEvent = (id) => {
+        this.props.blockUserEvent(id);
+    }
+    handleChangeUserEvent = (id) => {
+        alert(id)
+    }
     handleEditClick = () => {
         // обработчик нажатия на кнопку "Редактирование"
         // реализация функционала
@@ -35,8 +39,6 @@ class PlayersInTourney extends React.Component {
     componentDidMount() {
         // генерация рандомных данных
         console.log(this.props)
-        const participants = this.state.participants;
-        this.setState({ participants });
     }
 
 
@@ -47,6 +49,7 @@ class PlayersInTourney extends React.Component {
             if (this.props.role === "admin") {
                 filterThisPlayers = this.props.myUsers;
                 isBlocked = true;
+                isEditable = true;
             } else if (this.props.role === "organizer") {
                 isEditable = true;
                 filterThisPlayers = this.props.myUsers.filter(players => players.status === 2 && players.status === 1);
@@ -60,17 +63,25 @@ class PlayersInTourney extends React.Component {
                     <table>
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Имя</th>
-                            <th>Возраст</th>
+                            <th>Мероприятие</th>
+                            <th>Игрок</th>
+                            <th>Статус</th>
+                            <th>Результат</th>
+                            <th>Дата регистрации</th>
+                            {isBlocked && <th>Админ меню</th>}
+                            {isEditable && <th>Организатор меню</th>}
                         </tr>
                         </thead>
                         <tbody>
                         {Array.isArray(filterThisPlayers) ? filterThisPlayers.map((participant) => (
                             <tr key={participant.id} onClick={() => this.handleClick(participant)}>
-                                <td>{participant.id}</td>
-                                <td>{participant.name}</td>
-                                <td>{participant.age}</td>
+                                <td>{participant.event}</td>
+                                <td>{participant.player}</td>
+                                <td>{participant.statusName}</td>
+                                <td>{participant.resultName}</td>
+                                <td>{participant.dateRegistration}</td>
+                                {isBlocked && <td onClick={() => this.handleBlockUserEvent(participant.id)}>Заблокировать</td>}
+                                {isEditable && <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить</td>}
                             </tr>
                         )) : "Нет участников!"}
                         </tbody>
@@ -80,8 +91,6 @@ class PlayersInTourney extends React.Component {
                 {/*<NavLink to="/../../pages/resultsTourney/resultsTourney.js">Результаты</NavLink>*/}
                 {/*<button onClick={this.handleRegistrationClick}>Зарегистрироваться на турнир</button>*/}
                 <NavLink to="/../../pages/event/event.js">Назад</NavLink>
-                {isBlocked && <button >Заблокировать</button>}
-                {isEditable && <button >Редактирование</button>}
             </div>
         );
     }

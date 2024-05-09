@@ -5,7 +5,6 @@ import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import {NavLink} from "react-router-dom";
 import AcceptEventContainer from "./AcceptEventContainer";
 import DeleteEventContainer from "./deleteEventContainer";
-import AddOnPageEventContainer from "./addOnPageEventContainer";
 
 class EventsForm extends React.Component {
     constructor(props) {

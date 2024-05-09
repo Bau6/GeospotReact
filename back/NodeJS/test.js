@@ -23,6 +23,7 @@ const {deleteEvent} = require("./deleteEvent");
 const {addOnPageEvent} = require("./addOnPageEvent");
 const {registrationUserOnTourney} = require("./registrationUserTourney");
 const {loadUsersForEvent} = require("./loadUsersForEvent");
+const {updateUserEventStatus} = require("./updateUserEventStatus");
 
 app.use(cors());
 const port = 3003;
@@ -193,6 +194,14 @@ function load_users_for_event() {
         loadUsersForEvent(eventId, res);
     });
 }
+function update_user_event_status() {
+    app.use(express.json());
+    app.post('/delete_player_from_event', (req, res) => {
+        const id = req.body.eventId;
+        updateUserEventStatus( id, res );
+    });
+}
+update_user_event_status();
 load_users_for_event();
 registration_user_on_tourney();
 add_on_page_event();

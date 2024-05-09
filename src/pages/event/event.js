@@ -48,19 +48,37 @@ class Event extends React.Component {
                                                     &nbsp;
                                                     {this.props.status === 1 ? (
                                                         <div>
-                                                            <button className={button.buttonsInfo} onClick={() => {
-                                                                this.handleRegistrationTourney()
-                                                            }}
-                                                            >Зарегистрироваться на турнир
-                                                            </button>
+                                                            {this.props.event.cntPlayersInGroup > 1 ? (
+                                                                <button className={button.buttonsInfo} onClick={() => {
+                                                                    this.handleRegistrationTourney()
+                                                                }}
+                                                                >Зарегистрироваться на турнир
+                                                                </button>) : (
+                                                                <button className={button.buttonsInfo} onClick={() => {
+                                                                    this.handleRegistrationTourney()
+                                                                }}
+                                                                >Зарегистрироваться на турнир
+                                                                </button>)}
+                                                            {this.props.event.cntPlayersInGroup > 1 ? (
+                                                                <NavLink
+                                                                    to={`/../pages/teams/teamsContainer.js`}>
+                                                                    <button onClick={() => {
+                                                                        this.props.thisUsersLoadForEvent(this.props.eventId)
+                                                                    }} className={button.buttonsInfo}>Просмотр
+                                                                        команд
+                                                                    </button>
+                                                                </NavLink>
+                                                            ) : (
+                                                                <NavLink
+                                                                    to={`/../pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js`}>
+                                                                    <button onClick={() => {
+                                                                        this.props.thisUsersLoadForEvent(this.props.eventId)
+                                                                    }} className={button.buttonsInfo}>Просмотр
+                                                                        участников
+                                                                    </button>
+                                                                </NavLink>)}
                                                             <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
                                                                 <button className={button.buttonsInfo}>Результаты
-                                                                </button>
-                                                            </NavLink>
-                                                            <NavLink
-                                                                to={`/../pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js`}>
-                                                                <button onClick={() => {this.props.thisUsersLoadForEvent(this.props.eventId)}} className={button.buttonsInfo}>Просмотр
-                                                                    участников
                                                                 </button>
                                                             </NavLink>
                                                             <NavLink to={`/../pages/events/events.js`}>
@@ -153,7 +171,8 @@ class Event extends React.Component {
                 </div>
             );
         } else {
-            return <div>Страница не найдена!</div>;
+            // window.location.href = "http://localhost:3000/pages/events/events.js"
+            return <div>Страница не найдена!</div>
         }
     }
 }

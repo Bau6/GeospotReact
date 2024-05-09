@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/updateUserEventResult.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/NodeJS/updateUserEventStatus.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/teams/teams.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/teams/teamsContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/NodeJS/loadUsersTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/loadUsersForEvent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/NodeJS/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/redux/users-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/users-reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourneyContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkingPlayersOnTourney/checkingPlayersOnTourneyContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/event/eventContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/eventContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/eventsForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +66,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "test",
-    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/src/pages/events",
+    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/back/NodeJS",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -77,9 +80,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Ampps\www\learning_react\back\NodeJS" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\events" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\checkingPlayersOnTourney" />
-      <recent name="C:\Program Files\Ampps\www\learning_react\back\NodeJS" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\first_page" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\registration" />
     </key>
@@ -139,7 +142,7 @@
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
       <workItem from="1713628857019" duration="191349000" />
-      <workItem from="1715002365747" duration="42286000" />
+      <workItem from="1715002365747" duration="50345000" />
     </task>
     <servers />
   </component>

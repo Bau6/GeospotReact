@@ -1,5 +1,4 @@
 import axios from "axios";
-import {citiesActionCreator} from "./events-reducer";
 
 const USERS = 'USERS';
 let initialState = {
@@ -34,5 +33,19 @@ export const usersLoadForEvent = (eventId) => {//load-users-for-event
             });
     }
 }
-
+export const blockUserEvent = (eventId) => {//load-users-for-event
+    return dispatch => {
+        axios.put('http://localhost:3003/block-user-event', {
+            params: {
+                eventId: eventId,
+            }
+        })
+            .then(responseUsers => {
+                dispatch(usersLoadForTourney(responseUsers.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
 export default usersReducer;
