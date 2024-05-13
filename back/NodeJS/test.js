@@ -24,6 +24,7 @@ const {addOnPageEvent} = require("./addOnPageEvent");
 const {registrationUserOnTourney} = require("./registrationUserTourney");
 const {loadUsersForEvent} = require("./loadUsersForEvent");
 const {updateUserEventStatus} = require("./updateUserEventStatus");
+const {addTeam} = require("./addTeam");
 
 app.use(cors());
 const port = 3003;
@@ -201,6 +202,14 @@ function update_user_event_status() {
         updateUserEventStatus( id, res );
     });
 }
+function add_team() {
+    app.use(express.json());
+    app.put('/new-team', (req, res) => {
+        const params = req.body.params;
+        addTeam( params, res );
+    });
+}
+add_team();
 update_user_event_status();
 load_users_for_event();
 registration_user_on_tourney();

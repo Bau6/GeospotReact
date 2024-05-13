@@ -3,8 +3,19 @@ import eventCss from "./event.module.css";
 import button from "../../assets/css/button.module.css";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import {NavLink} from "react-router-dom";
+import eventsCss from "../events/events.module.css";
 
 class Event extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false,
+            showModalCreateTeam: false,
+            showModalAddUserInTeam: false,
+            ref1: React.createRef(),
+            ref2: React.createRef(),
+        }
+    }
     componentDidMount() {
         // const urlParams = new URLSearchParams(window.location.search);
         // const id = urlParams.get(`id`);
@@ -23,15 +34,97 @@ class Event extends React.Component {
             </div>
         );
     };
-
+    handleShowModalAddUserInTeam(){
+        this.setState({ showModalAddUserInTeam: true });
+    }
+    handleShowModalCreateTeam(){
+        this.setState({ showModalCreateTeam: true });
+    }
     handleRegistrationTourney() {
         this.props.registrationTourney(this.props.eventId, this.props.userID.id);
     }
-
+    handleRegistrationTeam() {
+        this.setState({showModal: !this.state.showModal});
+    }
+    toggleModal = () => {
+        this.setState({showModal: !this.state.showModal});
+    }
+    toggleModalAddUserInTeam = () => {
+        this.setState({showModalAddUserInTeam: false});
+    }
+    toggleModalCreateTeam = () => {
+        this.setState({showModalCreateTeam: false});
+    }
+    handleNameChange = () => {
+        if (!!this.state.ref1) {
+            let newText = this.state.ref1.current.value;
+            this.props.onChangeAreaText("NAME_NEW_TEAM", newText);
+        }
+    }
+    handleAddUserInTeam(eventID, userID) {
+        if (!!this.state.ref1) {
+            let newText = this.state.ref1.current.value;
+            this.props.createTeam(eventID, userID, newText);
+        }
+    }
     render() {
         if (!!this.props.event) {
             return (
                 <div>
+                    <div>
+                        {this.state.showModal && (
+                            <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                                 style={{display: this.state.showModal ? 'block' : 'none'}}>
+                                <button className={eventsCss.closeButton} onClick={this.toggleModal}>X</button>
+                                <button className={button.buttonsInfo} onClick={() => {
+                                    this.setState({showModal: false});
+                                    this.handleShowModalAddUserInTeam();
+                                }}
+                                >Присоединиться к команде
+                                </button>
+                                <button className={button.buttonsInfo} onClick={() => {
+                                    this.setState({showModal: false});
+                                    this.handleShowModalCreateTeam();
+                                }}
+                                >Создать команду
+                                </button>
+                            </div>)}
+                        {this.state.showModal && <div className={eventsCss.overlay}></div>}
+                    </div>
+                    <div>
+                        {this.state.showModalAddUserInTeam && (
+                            <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                                 style={{display: this.state.showModalAddUserInTeam ? 'block' : 'none'}}>
+                                <button className={eventsCss.closeButton} onClick={this.toggleModalAddUserInTeam}>X
+                                </button>
+                                <div>
+                                    add
+                                </div>
+                            </div>)}
+                        {this.state.showModalAddUserInTeam && <div className={eventsCss.overlay}></div>}
+                    </div>
+                    <div>
+                        {this.state.showModalCreateTeam && (
+                            <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                                 style={{display: this.state.showModalCreateTeam ? 'block' : 'none'}}>
+                                <button className={eventsCss.closeButton} onClick={this.toggleModalCreateTeam}>X
+                                </button>
+                                <div>
+                                    <input
+                                        ref={this.state.ref1}
+                                        value={this.props.newTeam.name ? this.props.newTeam.name : ""}
+                                        className={eventsCss.modalContent} type="text"
+                                        placeholder="Название команды"
+                                        onChange={this.handleNameChange}/><br/>
+                                    <button className={button.buttonsInfo} onClick={() => {
+                                        this.handleAddUserInTeam(this.props.eventId, this.props.userID.id);
+                                    }}
+                                    >Создать команду
+                                    </button>
+                                </div>
+                            </div>)}
+                        {this.state.showModalCreateTeam && <div className={eventsCss.overlay}></div>}
+                    </div>
                     <div className={eventCss.containerEvent}>
                         <div className={eventCss.row}>
                             {/*<h1>Описание спортивного мероприятия</h1>*/}
@@ -50,7 +143,7 @@ class Event extends React.Component {
                                                         <div>
                                                             {this.props.event.cntPlayersInGroup > 1 ? (
                                                                 <button className={button.buttonsInfo} onClick={() => {
-                                                                    this.handleRegistrationTourney()
+                                                                    this.handleRegistrationTeam()
                                                                 }}
                                                                 >Зарегистрироваться на турнир
                                                                 </button>) : (
