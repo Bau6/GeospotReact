@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom";
 import eventsCss from "../events/events.module.css";
 import drop from "../../assets/css/dropDown.module.css";
 import {Dropdown} from "react-bootstrap";
+import {onChangeActionCreatorTeam} from "../../database/redux/users-reducer";
 
 class Event extends React.Component {
     constructor(props) {
@@ -69,6 +70,18 @@ class Event extends React.Component {
             this.props.createTeam(eventID, userID, newText);
         }
     }
+    handleDropdownSelect = (name, team, id) => {
+        this.props.onChangeAreaText(team, name);
+        // if (id === 1) {
+        //     this.setState({selectedValue: "Предстоящие"});
+        // }else if (id === 2) {
+        //     this.setState({selectedValue: "Прошедшие"});
+        // }else if (id === 3) {
+        //     this.setState({selectedValue: "Текущие"});
+        // }else {
+        //     this.setState({selectedValue: "Все мероприятия"});
+        // }
+    };
     render() {
         if (!!this.props.event) {
             return (
@@ -81,6 +94,7 @@ class Event extends React.Component {
                                 <button className={button.buttonsInfo} onClick={() => {
                                     this.setState({showModal: false});
                                     this.handleShowModalAddUserInTeam();
+                                    this.props.thisTeamsLoadForEvent(this.props.eventId);
                                 }}
                                 >Присоединиться к команде
                                 </button>
@@ -95,39 +109,27 @@ class Event extends React.Component {
                     </div>
                     <div>
                         {this.state.showModalAddUserInTeam && (
-                            <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                            <div className={`${eventsCss.teams} ${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
                                  style={{display: this.state.showModalAddUserInTeam ? 'block' : 'none'}}>
                                 <button className={eventsCss.closeButton} onClick={this.toggleModalAddUserInTeam}>X
                                 </button>
                                 <div>
 
 
-
-
-
-                                    <input
-                                        ref={this.state.ref1}
-                                        value={this.props.newTeam.name ? this.props.newTeam.name : ""}
-                                        className={eventsCss.modalContent} type="text"
-                                        placeholder="Название команды"
-                                        onChange={this.handleNameChange}/>
                                     <Dropdown className={`${drop.dropDownDesign}`}>
                                         <Dropdown.Toggle variant="success" id="dropdown-basic"
                                                          className={`${drop.dropdownToggle}`}>
-                                            {this.props.thisNewEvent.country ? this.props.thisNewEvent.country : 'Страна'}
+                                            {this.props.selectTeam ? this.props.selectTeam : 'Команда'}
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu className={`${drop.dropdownMenu}`}>
-                                            {Array.isArray(this.props.countries) ? this.props.countries && this.props.countries.map((item) => (
-                                                <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
-                                                               onClick={() => this.handleDropdownSelect(item.country, 'country', item.id)}>
-                                                    {item.country}
+                                            {Array.isArray(this.props.myTeams) ? this.props.myTeams && this.props.myTeams.map((item) => (
+                                                <Dropdown.Item className={`${drop.dropdownItem}`} key={item.name}
+                                                               onClick={() => this.handleDropdownSelect(item.name, 'SELECT_TEAM', item.id)}>
+                                                    {item.name}
                                                 </Dropdown.Item>
                                             )) : ""}
                                         </Dropdown.Menu>
                                     </Dropdown>
-
-
-
 
 
                                     <br/>
@@ -191,7 +193,7 @@ class Event extends React.Component {
                                                                 </button>)}
                                                             {this.props.event.cntPlayersInGroup > 1 ? (
                                                                 <NavLink
-                                                                    to={`/../pages/teams/teamsContainer.js`}>
+                                                                    to={`/../pages/teams/teams.js`}>
                                                                     <button onClick={() => {
                                                                         this.props.thisTeamsLoadForEvent(this.props.eventId)
                                                                     }} className={button.buttonsInfo}>Просмотр

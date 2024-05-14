@@ -16,10 +16,12 @@ const mapStateToProps = (state) => {
         event: state.eventsReducer.event,
         myImage: myImage,
         states: state,
+        myTeams: state.users.teams,
         eventId: state.eventsReducer.chooseEvent,
         userID: state.sessionUser.userID,
         status: state.eventsReducer.statusEvent,
         newTeam: state.users.newTeam,
+        selectTeam: state.users.selectTeam,
     }
 }
 const mapDispatchToProps = (dispatch) => {

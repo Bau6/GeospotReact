@@ -5,6 +5,7 @@ const TEAMS = 'TEAMS';
 const TEAMS_USER = 'TEAMS_USER';
 const NEW_TEAM = 'NEW_TEAM';
 const NAME_NEW_TEAM = 'NAME_NEW_TEAM';
+const SELECT_TEAM = 'SELECT_TEAM';
 let initialState = {
     usersTourney: [],
     teams: {},
@@ -21,6 +22,8 @@ const usersReducer = (state = initialState, action) => {
             return {...state, newTeam: action.text}
         case NAME_NEW_TEAM:
             return {...state, newTeam: {...state.newTeam, name: action.text}}
+        case SELECT_TEAM:
+            return {...state, selectTeam: action.text}
         default:
             return state;
     }

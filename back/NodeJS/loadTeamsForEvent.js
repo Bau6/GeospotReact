@@ -27,6 +27,16 @@ function loadTeamsForEvent(eventId, res) {
 
         let teamsInfoPromises = teamsResult.map(team => {
             let name = team.name;
+            let date = team.date;
+            let statusName = "";
+            queryDB("SELECT * FROM ?? WHERE id = ?", [STATUS, team.status])
+                .then(teamStatusResult => {
+                    if (teamStatusResult.length > 0) {
+                        statusName = teamStatusResult[0].name;
+                    } else {
+                alert('Нет данных для команды');
+            }})
+
             return new Promise((resolve, reject) => {
                 queryDB("SELECT * FROM ?? WHERE team_id = ?", [TEAM_PLAYERS, team.id])
                     .then(teamPlayersResult => {
@@ -53,7 +63,9 @@ function loadTeamsForEvent(eventId, res) {
                                 .then(playersInfo => {
                                     let teamInfo = {
                                         players: playersInfo,
-                                        name: name
+                                        name: name,
+                                        statusName: statusName,
+                                        date: date,
                                     };
                                     resolve(teamInfo);
                                 })
