@@ -18,10 +18,16 @@ function addPlayer(params, res) {
                 if (selectErr) {
                     console.log(selectErr);
                     res.json({error: 'Квалификация!'});
-                } else if (selectQuals.length > 0) {
-                    res.json({error: 'Недоступная квалификация!'});
                 } else {
-                    if ( selectQuals.sport_id === sport_id ) {
+                    let qualificationFound = false;
+
+                    selectQuals.forEach((qual) => {
+                        if (qual.sport_id === sport_id) {
+                            qualificationFound = true;
+                        }
+                    });
+
+                    if (qualificationFound) {
                     let insertQuery = "INSERT INTO ?? SET ?";
                     connection.query(insertQuery, [TEAM, teamData,], (insertErr, insertResult) => {
                         if (insertErr) {

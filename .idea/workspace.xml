@@ -7,9 +7,6 @@
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/NodeJS/addUserInTeam.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/addUserInTeam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/users-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/users-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/event/eventContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/eventContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +133,7 @@
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
       <workItem from="1713628857019" duration="191349000" />
-      <workItem from="1715002365747" duration="82213000" />
+      <workItem from="1715002365747" duration="83681000" />
     </task>
     <servers />
   </component>
