@@ -3,7 +3,12 @@ import event from "./event";
 import myImage from '../../app/images/icone.png';
 import {loadEvent} from "../../database/redux/locationUserReducer";
 import {registrationTourney} from "../../database/redux/events-reducer";
-import {createTeam, onChangeActionCreatorTeam, usersLoadForEvent} from "../../database/redux/users-reducer";
+import {
+    createTeam,
+    onChangeActionCreatorTeam,
+    teamsLoadForEvent,
+    usersLoadForEvent
+} from "../../database/redux/users-reducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -27,6 +32,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         thisUsersLoadForEvent: (eventId) => {
             dispatch(usersLoadForEvent(eventId))
+        },
+        thisTeamsLoadForEvent: (eventId) => {
+            dispatch(teamsLoadForEvent(eventId))
         },
         onChangeAreaText: (type, text) => {
             dispatch(onChangeActionCreatorTeam(type, text))

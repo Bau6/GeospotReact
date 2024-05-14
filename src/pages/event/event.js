@@ -4,6 +4,8 @@ import button from "../../assets/css/button.module.css";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import {NavLink} from "react-router-dom";
 import eventsCss from "../events/events.module.css";
+import drop from "../../assets/css/dropDown.module.css";
+import {Dropdown} from "react-bootstrap";
 
 class Event extends React.Component {
     constructor(props) {
@@ -98,7 +100,42 @@ class Event extends React.Component {
                                 <button className={eventsCss.closeButton} onClick={this.toggleModalAddUserInTeam}>X
                                 </button>
                                 <div>
-                                    add
+
+
+
+
+
+                                    <input
+                                        ref={this.state.ref1}
+                                        value={this.props.newTeam.name ? this.props.newTeam.name : ""}
+                                        className={eventsCss.modalContent} type="text"
+                                        placeholder="Название команды"
+                                        onChange={this.handleNameChange}/>
+                                    <Dropdown className={`${drop.dropDownDesign}`}>
+                                        <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                         className={`${drop.dropdownToggle}`}>
+                                            {this.props.thisNewEvent.country ? this.props.thisNewEvent.country : 'Страна'}
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                            {Array.isArray(this.props.countries) ? this.props.countries && this.props.countries.map((item) => (
+                                                <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
+                                                               onClick={() => this.handleDropdownSelect(item.country, 'country', item.id)}>
+                                                    {item.country}
+                                                </Dropdown.Item>
+                                            )) : ""}
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+
+
+
+
+
+                                    <br/>
+                                    <button className={button.buttonsInfo} onClick={() => {
+                                        this.handleAddUserInTeam(this.props.eventId, this.props.userID.id);
+                                    }}
+                                    >Присоединиться к команде
+                                    </button>
                                 </div>
                             </div>)}
                         {this.state.showModalAddUserInTeam && <div className={eventsCss.overlay}></div>}
@@ -156,7 +193,7 @@ class Event extends React.Component {
                                                                 <NavLink
                                                                     to={`/../pages/teams/teamsContainer.js`}>
                                                                     <button onClick={() => {
-                                                                        this.props.thisUsersLoadForEvent(this.props.eventId)
+                                                                        this.props.thisTeamsLoadForEvent(this.props.eventId)
                                                                     }} className={button.buttonsInfo}>Просмотр
                                                                         команд
                                                                     </button>

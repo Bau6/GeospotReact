@@ -27,6 +27,7 @@ const {updateUserEventStatus} = require("./updateUserEventStatus");
 const {addTeam} = require("./addTeam");
 const {blockUserEvent} = require("./blockUserEvent");
 const {unBlockUserEvent} = require("./unBlockUserEvent");
+const {loadTeamsForEvent} = require("./loadTeamsForEvent");
 
 app.use(cors());
 const port = 3003;
@@ -197,6 +198,12 @@ function load_users_for_event() {
         loadUsersForEvent(eventId, res);
     });
 }
+function load_teams_for_event() {
+    app.get('/load-teams-for-event', (req, res) => {
+        const { eventId } = req.query;
+        loadTeamsForEvent(eventId, res);
+    });
+}
 function update_user_event_status() {
     app.use(express.json());
     app.post('/delete_player_from_event', (req, res) => {
@@ -225,6 +232,7 @@ function un_block_user_event() {
         unBlockUserEvent( params, res );
     });
 }
+load_teams_for_event();
 block_user_event();
 un_block_user_event();
 add_team();

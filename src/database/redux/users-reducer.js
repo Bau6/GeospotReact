@@ -2,6 +2,7 @@ import axios from "axios";
 
 const USERS = 'USERS';
 const TEAMS = 'TEAMS';
+const TEAMS_USER = 'TEAMS_USER';
 const NEW_TEAM = 'NEW_TEAM';
 const NAME_NEW_TEAM = 'NAME_NEW_TEAM';
 let initialState = {
@@ -28,8 +29,12 @@ export const usersLoadForTourney = (text) => ({
     type: USERS,
     text: text,
 });
-export const addNewUserInTeam = (text) => ({
+export const teamsLoadForTourney = (text) => ({
     type: TEAMS,
+    text: text,
+});
+export const addNewUserInTeam = (text) => ({
+    type: TEAMS_USER,
     text: text,
 });
 export const onChangeActionCreatorTeam = (type, value) => ({
@@ -46,6 +51,21 @@ export const usersLoadForEvent = (eventId) => {//load-users-for-event
         })
             .then(responseUsers => {
                 dispatch(usersLoadForTourney(responseUsers.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const teamsLoadForEvent = (eventId) => {
+    return dispatch => {
+        axios.get('http://localhost:3003/load-teams-for-event', {
+            params: {
+                eventId: eventId,
+            }
+        })
+            .then(responseUsers => {
+                dispatch(teamsLoadForTourney(responseUsers.data));
             })
             .catch(error => {
                 console.log(error);
