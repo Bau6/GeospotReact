@@ -23,7 +23,7 @@ const usersReducer = (state = initialState, action) => {
         case NAME_NEW_TEAM:
             return {...state, newTeam: {...state.newTeam, name: action.text}}
         case SELECT_TEAM:
-            return {...state, selectTeam: action.text}
+            return {...state, selectTeam: action.name, selectTeamId: action.id}
         default:
             return state;
     }
@@ -43,6 +43,11 @@ export const addNewUserInTeam = (text) => ({
 export const onChangeActionCreatorTeam = (type, value) => ({
     type: type,
     text: value
+})
+export const onChangeActionCreatorTeamId = (type, name, id) => ({
+    type: type,
+    name: name,
+    id: id,
 })
 
 export const usersLoadForEvent = (eventId) => {//load-users-for-event
@@ -89,6 +94,27 @@ export const blockUserEvent = (eventId) => {//load-users-for-event
                 }
             })
             .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const addPlayers = (team_id, user_id) => {//load-users-for-event
+    return dispatch => {
+        axios.put('http://localhost:3003/add-player', {
+            params: {
+                team_id:team_id,
+                user_id:user_id,
+            }
+        })
+            .then(response => {
+                console.log(response)
+                if (response.data.message) {
+                    alert(response.data.message)
+                    window.location.href = "http://localhost:3000/pages/events/events.js"
+                }
+            })
+            .catch(error => {
+                alert(error.data.error)
                 console.log(error);
             });
     }

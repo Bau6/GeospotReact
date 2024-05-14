@@ -28,6 +28,7 @@ const {addTeam} = require("./addTeam");
 const {blockUserEvent} = require("./blockUserEvent");
 const {unBlockUserEvent} = require("./unBlockUserEvent");
 const {loadTeamsForEvent} = require("./loadTeamsForEvent");
+const {addPlayer} = require("./addUserInTeam");
 
 app.use(cors());
 const port = 3003;
@@ -232,6 +233,14 @@ function un_block_user_event() {
         unBlockUserEvent( params, res );
     });
 }
+function add_player() {
+    app.use(express.json());
+    app.put('/add-player', (req, res) => {
+        const params = req.body.params;
+        addPlayer( params, res );
+    });
+}
+add_player();
 load_teams_for_event();
 block_user_event();
 un_block_user_event();

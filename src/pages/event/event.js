@@ -64,23 +64,21 @@ class Event extends React.Component {
             this.props.onChangeAreaText("NAME_NEW_TEAM", newText);
         }
     }
-    handleAddUserInTeam(eventID, userID) {
+    handleAddUserInTeam(userID, teamID) {
+        if (teamID && userID) {
+            this.props.addPlayers(teamID, userID);
+        } else {
+            alert("Выберите команду!")
+        }
+    }
+    handleAddTeam(eventID, userID) {
         if (!!this.state.ref1) {
             let newText = this.state.ref1.current.value;
             this.props.createTeam(eventID, userID, newText);
         }
     }
     handleDropdownSelect = (name, team, id) => {
-        this.props.onChangeAreaText(team, name);
-        // if (id === 1) {
-        //     this.setState({selectedValue: "Предстоящие"});
-        // }else if (id === 2) {
-        //     this.setState({selectedValue: "Прошедшие"});
-        // }else if (id === 3) {
-        //     this.setState({selectedValue: "Текущие"});
-        // }else {
-        //     this.setState({selectedValue: "Все мероприятия"});
-        // }
+        this.props.onChangeAreaTextTeam(team, name, id);
     };
     render() {
         if (!!this.props.event) {
@@ -114,8 +112,6 @@ class Event extends React.Component {
                                 <button className={eventsCss.closeButton} onClick={this.toggleModalAddUserInTeam}>X
                                 </button>
                                 <div>
-
-
                                     <Dropdown className={`${drop.dropDownDesign}`}>
                                         <Dropdown.Toggle variant="success" id="dropdown-basic"
                                                          className={`${drop.dropdownToggle}`}>
@@ -123,18 +119,16 @@ class Event extends React.Component {
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu className={`${drop.dropdownMenu}`}>
                                             {Array.isArray(this.props.myTeams) ? this.props.myTeams && this.props.myTeams.map((item) => (
-                                                <Dropdown.Item className={`${drop.dropdownItem}`} key={item.name}
-                                                               onClick={() => this.handleDropdownSelect(item.name, 'SELECT_TEAM', item.id)}>
+                                                <Dropdown.Item className={`${drop.dropdownItem}`} key={item.team_id}
+                                                               onClick={() => this.handleDropdownSelect(item.name, 'SELECT_TEAM', item.team_id)}>
                                                     {item.name}
                                                 </Dropdown.Item>
                                             )) : ""}
                                         </Dropdown.Menu>
                                     </Dropdown>
-
-
                                     <br/>
                                     <button className={button.buttonsInfo} onClick={() => {
-                                        this.handleAddUserInTeam(this.props.eventId, this.props.userID.id);
+                                        this.handleAddUserInTeam(this.props.userID.id, this.props.selectTeamId);
                                     }}
                                     >Присоединиться к команде
                                     </button>
@@ -156,7 +150,7 @@ class Event extends React.Component {
                                         placeholder="Название команды"
                                         onChange={this.handleNameChange}/><br/>
                                     <button className={button.buttonsInfo} onClick={() => {
-                                        this.handleAddUserInTeam(this.props.eventId, this.props.userID.id);
+                                        this.handleAddTeam(this.props.eventId, this.props.userID.id);
                                     }}
                                     >Создать команду
                                     </button>

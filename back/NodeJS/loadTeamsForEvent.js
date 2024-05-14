@@ -28,6 +28,7 @@ function loadTeamsForEvent(eventId, res) {
         let teamsInfoPromises = teamsResult.map(team => {
             let name = team.name;
             let date = team.date;
+            let id = team.id;
             let statusName = "";
             queryDB("SELECT * FROM ?? WHERE id = ?", [STATUS, team.status])
                 .then(teamStatusResult => {
@@ -66,6 +67,7 @@ function loadTeamsForEvent(eventId, res) {
                                         name: name,
                                         statusName: statusName,
                                         date: date,
+                                        team_id: id,
                                     };
                                     resolve(teamInfo);
                                 })
