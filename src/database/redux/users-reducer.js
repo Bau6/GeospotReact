@@ -98,12 +98,13 @@ export const blockUserEvent = (eventId) => {//load-users-for-event
             });
     }
 }
-export const addPlayers = (team_id, user_id) => {//load-users-for-event
+export const addPlayers = (team_id, user_id, sport_id) => {//load-users-for-event
     return dispatch => {
         axios.put('http://localhost:3003/add-player', {
             params: {
                 team_id:team_id,
                 user_id:user_id,
+                sport_id: sport_id,
             }
         })
             .then(response => {
@@ -111,6 +112,8 @@ export const addPlayers = (team_id, user_id) => {//load-users-for-event
                 if (response.data.message) {
                     alert(response.data.message)
                     window.location.href = "http://localhost:3000/pages/events/events.js"
+                } if (response.data.error) {
+                    alert(response.data.error)
                 }
             })
             .catch(error => {

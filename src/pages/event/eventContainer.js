@@ -48,8 +48,8 @@ const mapDispatchToProps = (dispatch) => {
         createTeam: (eventID, userID, nameTeam) => {
             dispatch(createTeam(eventID, userID, nameTeam))
         },
-        addPlayers: (team_id, user_id) => {
-            dispatch(addPlayers(team_id, user_id))
+        addPlayers: (team_id, user_id, sport_id) => {
+            dispatch(addPlayers(team_id, user_id, sport_id))
         },
     }
 }

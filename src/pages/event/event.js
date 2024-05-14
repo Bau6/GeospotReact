@@ -66,7 +66,7 @@ class Event extends React.Component {
     }
     handleAddUserInTeam(userID, teamID) {
         if (teamID && userID) {
-            this.props.addPlayers(teamID, userID);
+            this.props.addPlayers(teamID, userID, this.props.event.sportTypeID);
         } else {
             alert("Выберите команду!")
         }
