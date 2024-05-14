@@ -25,6 +25,8 @@ const {registrationUserOnTourney} = require("./registrationUserTourney");
 const {loadUsersForEvent} = require("./loadUsersForEvent");
 const {updateUserEventStatus} = require("./updateUserEventStatus");
 const {addTeam} = require("./addTeam");
+const {blockUserEvent} = require("./blockUserEvent");
+const {unBlockUserEvent} = require("./unBlockUserEvent");
 
 app.use(cors());
 const port = 3003;
@@ -209,6 +211,22 @@ function add_team() {
         addTeam( params, res );
     });
 }
+function block_user_event() {
+    app.use(express.json());
+    app.put('/block-user-event', (req, res) => {
+        const params = req.body.params;
+        blockUserEvent( params, res );
+    });
+}
+function un_block_user_event() {
+    app.use(express.json());
+    app.put('/un-block-user-event', (req, res) => {
+        const params = req.body.params;
+        unBlockUserEvent( params, res );
+    });
+}
+block_user_event();
+un_block_user_event();
 add_team();
 update_user_event_status();
 load_users_for_event();

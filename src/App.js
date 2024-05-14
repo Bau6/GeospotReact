@@ -15,7 +15,7 @@ import CheckingPlayersOnTourneyContainer from "./pages/checkingPlayersOnTourney/
 const App = (props) => {
     return (
         <BrowserRouter>
-            <AppContent props={props}/>
+            <AppContent {...props}/>
         </BrowserRouter>
     );
 }

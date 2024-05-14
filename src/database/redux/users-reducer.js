@@ -59,8 +59,29 @@ export const blockUserEvent = (eventId) => {//load-users-for-event
                 eventId: eventId,
             }
         })
-            .then(responseUsers => {
-                dispatch(usersLoadForTourney(responseUsers.data));
+            .then(response => {
+                if (response.data.message) {
+                    alert("Запись обновлена!")
+                    window.location.href = "http://localhost:3000/pages/events/events.js"
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const unBlockUserEvent = (eventId) => {//load-users-for-event
+    return dispatch => {
+        axios.put('http://localhost:3003/un-block-user-event', {
+            params: {
+                eventId: eventId,
+            }
+        })
+            .then(response => {
+                if (response.data.message) {
+                    alert("Запись обновлена!")
+                    window.location.href = "http://localhost:3000/pages/events/events.js"
+                }
             })
             .catch(error => {
                 console.log(error);

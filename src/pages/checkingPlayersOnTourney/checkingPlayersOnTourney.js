@@ -28,6 +28,9 @@ class PlayersInTourney extends React.Component {
     handleBlockUserEvent = (id) => {
         this.props.blockUserEvent(id);
     }
+    handleUnBlockUserEvent = (id) => {
+        this.props.unBlockUserEvent(id);
+    }
     handleChangeUserEvent = (id) => {
         alert(id)
     }
@@ -80,7 +83,9 @@ class PlayersInTourney extends React.Component {
                                 <td>{participant.statusName}</td>
                                 <td>{participant.resultName}</td>
                                 <td>{participant.dateRegistration}</td>
-                                {isBlocked && <td onClick={() => this.handleBlockUserEvent(participant.id)}>Заблокировать</td>}
+                                {isBlocked && participant.status === 2 ?
+                                    <td onClick={() => this.handleBlockUserEvent(participant.id)}>Заблокировать</td> :
+                                    participant.status === 1 ? <td onClick={() => this.handleUnBlockUserEvent(participant.id)}>Разблокировать</td> : ""}
                                 {isEditable && <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить</td>}
                             </tr>
                         )) : "Нет участников!"}

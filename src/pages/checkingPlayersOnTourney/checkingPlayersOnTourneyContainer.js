@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import checkingPlayersOnTourney from "./checkingPlayersOnTourney";
-import {blockUserEvent, usersLoadForTourney} from "../../database/redux/users-reducer";
+import {blockUserEvent, unBlockUserEvent, usersLoadForTourney} from "../../database/redux/users-reducer";
 const mapStateToProps = (state) => {
     return {
         event: state.eventsReducer.event,
@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         blockUserEvent: (eventId) => {
             dispatch(blockUserEvent(eventId))
+        },
+        unBlockUserEvent: (eventId) => {
+            dispatch(unBlockUserEvent(eventId))
         },
     }
 }
