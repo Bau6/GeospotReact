@@ -13,6 +13,8 @@ import EventsContainer from "./pages/events/eventsContainer";
 import EventContainer from "./pages/event/eventContainer";
 import CheckingPlayersOnTourneyContainer from "./pages/checkingPlayersOnTourney/checkingPlayersOnTourneyContainer";
 import TeamsContainer from "./pages/teams/teamsContainer";
+import ResultsContainer from "./pages/resultsTourney/resultsContainer";
+import ResultsTeamContainer from "./pages/resultsTourney/resultsTeamContainer";
 const App = (props) => {
     return (
         <BrowserRouter>
@@ -53,6 +55,8 @@ const AppContent = (props) => {
                        element={<ProfilePageContainer
                            store={props.store}/>}/>
                 <Route path={'/pages/users/users.js'} element={<UsersContainer/>}/>
+                <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsContainer/>}/>
+                <Route path={'/pages/resultsTourney/resultsTeam.js'} element={<ResultsTeamContainer/>}/>
             </Routes>
         </div>
     );

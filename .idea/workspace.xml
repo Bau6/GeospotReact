@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTeam.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTeamContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/css/styleHeader.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/styleHeader.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/event/event.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/events/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/first_page/first_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/first_page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/first_page/first_page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/first_page/first_page.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/InfoUserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/InfoUserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfileCss.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfileCss.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfilePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfilePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/Registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/registration/RegistrationCss.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registration/RegistrationCss.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTourney.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +62,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "test",
-    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/back/NodeJS",
+    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/src/pages/resultsTourney",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -80,11 +76,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\resultsTourney" />
       <recent name="C:\Program Files\Ampps\www\learning_react\back\NodeJS" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\events" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\checkingPlayersOnTourney" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\first_page" />
-      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\registration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Program Files\Ampps\www\learning_react\src\assets\css" />
@@ -142,7 +138,7 @@
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
       <workItem from="1713628857019" duration="191349000" />
-      <workItem from="1715002365747" duration="95725000" />
+      <workItem from="1715002365747" duration="97244000" />
     </task>
     <servers />
   </component>

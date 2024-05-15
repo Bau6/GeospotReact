@@ -203,10 +203,16 @@ class Event extends React.Component {
                                                                         участников
                                                                     </button>
                                                                 </NavLink>)}
-                                                            <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
-                                                                <button className={button.buttonsInfo}>Результаты
-                                                                </button>
-                                                            </NavLink>
+                                                            {this.props.event.cntPlayersInGroup > 1 ? (
+                                                                <NavLink to={`/../pages/resultsTourney/resultsTeam.js`}>
+                                                                    <button className={button.buttonsInfo}>Результаты
+                                                                    </button>
+                                                                </NavLink>
+                                                            ) : (
+                                                                <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
+                                                                    <button className={button.buttonsInfo}>Результаты
+                                                                    </button>
+                                                                </NavLink>)}
                                                             <NavLink to={`/../pages/events/events.js`}>
                                                                 <button className={button.buttonsInfo}>Назад</button>
                                                             </NavLink></div>) : (
