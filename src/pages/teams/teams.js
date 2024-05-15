@@ -1,5 +1,6 @@
 import {NavLink} from "react-router-dom";
 import React from "react";
+import button from "../../assets/css/button.module.css";
 
 class teams extends React.Component {
     constructor(props) {
@@ -94,7 +95,7 @@ class teams extends React.Component {
                 <br/>
                 {/*<NavLink to="/../../pages/resultsTourney/resultsTourney.js">Результаты</NavLink>*/}
                 {/*<button onClick={this.handleRegistrationClick}>Зарегистрироваться на турнир</button>*/}
-                <NavLink to="/../../pages/event/event.js">Назад</NavLink>
+                <NavLink className={`${button.buttonsInfo}`} to="/../../pages/event/event.js">Назад</NavLink>
             </div>
         );
     }

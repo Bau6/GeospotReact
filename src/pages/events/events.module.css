@@ -90,6 +90,9 @@
     left: 65px;
     top: 350px;
 }
+.redBtn {
+    background-color: rosybrown;
+}
 .newWindowAddEvent {
     overflow-y: scroll;
     max-height: 600px;

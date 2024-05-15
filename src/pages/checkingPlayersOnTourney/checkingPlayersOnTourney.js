@@ -1,6 +1,8 @@
 import {NavLink} from "react-router-dom";
 import React from "react";
 import "./chekingPlayersOnTourney.css";
+import eventsCss from "../events/events.module.css";
+import button from "../../assets/css/button.module.css";
 
 class PlayersInTourney extends React.Component {
     constructor(props) {
@@ -84,8 +86,8 @@ class PlayersInTourney extends React.Component {
                                 <td>{participant.resultName}</td>
                                 <td>{participant.dateRegistration}</td>
                                 {isBlocked && participant.status === 2 ?
-                                    <td onClick={() => this.handleBlockUserEvent(participant.id)}>Заблокировать</td> :
-                                    participant.status === 1 ? <td onClick={() => this.handleUnBlockUserEvent(participant.id)}>Разблокировать</td> : ""}
+                                    <td className={`${button.buttonsInfo}`} onClick={() => this.handleBlockUserEvent(participant.id)}>Заблокировать</td> :
+                                    participant.status === 1 ? <td className={`${button.buttonsInfo}`} onClick={() => this.handleUnBlockUserEvent(participant.id)}>Разблокировать</td> : ""}
                                 {isEditable && <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить</td>}
                             </tr>
                         )) : "Нет участников!"}
@@ -95,7 +97,7 @@ class PlayersInTourney extends React.Component {
                 <br/>
                 {/*<NavLink to="/../../pages/resultsTourney/resultsTourney.js">Результаты</NavLink>*/}
                 {/*<button onClick={this.handleRegistrationClick}>Зарегистрироваться на турнир</button>*/}
-                <NavLink to="/../../pages/event/event.js">Назад</NavLink>
+                <NavLink className={`${button.buttonsInfo}`} to="/../../pages/event/event.js">Назад</NavLink>
             </div>
         );
     }

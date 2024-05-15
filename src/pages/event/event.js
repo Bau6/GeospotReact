@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 import eventsCss from "../events/events.module.css";
 import drop from "../../assets/css/dropDown.module.css";
 import {Dropdown} from "react-bootstrap";
-import {onChangeActionCreatorTeam} from "../../database/redux/users-reducer";
+import profileCss from "../profile/ProfileCss.module.css";
 
 class Event extends React.Component {
     constructor(props) {
@@ -83,7 +83,7 @@ class Event extends React.Component {
     render() {
         if (!!this.props.event) {
             return (
-                <div>
+                <div className={profileCss.containerProfile}>
                     <div>
                         {this.state.showModal && (
                             <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}

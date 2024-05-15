@@ -296,7 +296,13 @@ export const registrationTourney = (eventId, userId) => {
                 alert("Вы успешно зарегистрированы!");
             })
             .catch(error => {
-                alert(error.response.data.error)
+                if (error.response && error.response.data && error.response.data.error) {
+                    alert(error.response.data.error);
+                } else if (error.response && error.response.data && error.response.data.message) {
+                    alert(error.response.data.message);
+                } else {
+                    alert("Произошла ошибка при регистрации на турнир.");
+                }
             });
     }
 }
