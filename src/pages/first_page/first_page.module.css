@@ -54,3 +54,12 @@
     height: 50px;
     width: 600px;
 }
+.cntPages {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%; /* Ширина блока равна 100% */
+}
+.h2Css {
+    text-align: center;
+    font-family: cursive;
+}

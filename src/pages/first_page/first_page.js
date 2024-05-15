@@ -3,6 +3,7 @@ import FirstPageCss from "./first_page.module.css"
 // import axios from "axios";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import eventCss from "../event/event.module.css";
+import button from "../../assets/css/button.module.css";
 
 class FirstPage extends React.Component {
     constructor(props) {
@@ -31,6 +32,7 @@ class FirstPage extends React.Component {
                 <div className={eventCss.containerEvent}>
                     <div className={eventCss.row}>
                         <div className={eventCss.col}>
+                            <h2 className={FirstPageCss.h2Css}>Новости</h2>
                             <div className={eventCss.companyDetails}>
                                 {currentNews.map(newsItem => (
                                     <div key={newsItem.id} className={FirstPageCss.newsItem}>
@@ -66,14 +68,17 @@ class FirstPage extends React.Component {
                                 ))}
                                 <div className={FirstPageCss.pagination}>
                                     {showPreviousButton && (
-                                        <button
-                                            onClick={() => this.props.setCurrentPage(currentPage - 1)}>Страница {currentPage - 1}</button>
+                                        <button className={`${button.buttonsInfo}`}
+                                                onClick={() => this.props.setCurrentPage(currentPage - 1)}>Страница {currentPage - 1}</button>
                                     )}
                                     <span className={FirstPageCss.pageNumber}>Страница {currentPage}</span>
                                     {showNextButton && (
-                                        <button
-                                            onClick={() => this.props.setCurrentPage(currentPage + 1)}>Страница {currentPage + 1}</button>
+                                        <button className={`${button.buttonsInfo}`}
+                                                onClick={() => this.props.setCurrentPage(currentPage + 1)}>Страница {currentPage + 1}</button>
                                     )}
+                                </div>
+                                <div className={FirstPageCss.cntPages}>
+                                    <span>Всего страниц: {newsPerPage + 1}</span>
                                 </div>
                             </div>
                         </div>

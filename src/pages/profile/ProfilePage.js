@@ -6,6 +6,7 @@ import FormFields from "./InfoUserProfile";
 import profileCss from "./ProfileCss.module.css";
 import button from "../../assets/css/button.module.css";
 import eventCss from "../event/event.module.css";
+import FirstPageCss from "../first_page/first_page.module.css";
 
 class ProfilePage extends React.Component {
     constructor(props) {
@@ -56,19 +57,20 @@ class ProfilePage extends React.Component {
     render() {
         return (
             <div className={profileCss.containerProfile}>
+                <h2 className={FirstPageCss.h2Css}> Профиль </h2>
                 {this.props.isLoggedIn ? (
                     <div>
                         {this.state.editMode ? (
-                            <div >
+                            <div>
+                                <h2 className={FirstPageCss.h2Css}>
+                                    Изменение информации
+                                </h2>
                                 <div className={eventCss.containerEvent}>
                                     <div className={eventCss.row}>
                                         <div className={eventCss.col}>
                                             <div className={eventCss.companyDetails}>
                                                 <div>
                                                     <div>
-                                                        <div className={RegistrationCss.RegistrationName}>
-                                                            Изменение информации
-                                                        </div>
                                                         <div className={RegistrationCss.containerReg}>
                                                             <FormFields
                                                                 myInf={this.props.userInf}
@@ -88,7 +90,7 @@ class ProfilePage extends React.Component {
                                                                 </label>
                                                                 <input
                                                                     ref={this.reffs[8]}
-                                                                    className={RegistrationCss.nameLabelInputButtonReg}
+                                                                    className={RegistrationCss.nameLabelButtonReg}
                                                                     onChange={this.countryChange}
                                                                 />
                                                             </div>
@@ -99,7 +101,7 @@ class ProfilePage extends React.Component {
                                                                 </label>
                                                                 <input
                                                                     ref={this.reffs[9]}
-                                                                    className={RegistrationCss.nameLabelInputButtonReg}
+                                                                    className={RegistrationCss.nameLabelButtonReg}
                                                                     onChange={this.cityChange}
                                                                 />
                                                             </div>

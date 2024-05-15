@@ -103,7 +103,7 @@ class Registration extends Component {
         const inputElementData = ["Дата рождения"].map((labelData, index) => (
             <div key={index}>
                 <label className={RegistrationCss.nameLabelInputButtonReg}>{labelData}</label>
-                <input ref={this.state.refs[6]} className={RegistrationCss.nameLabelInputButtonReg} type="text"
+                <input ref={this.state.refs[6]} className={RegistrationCss.nameLabelButtonReg} type="text"
                        value={date ? date : ""} onChange={this.handleChange} placeholder="dd.mm.yyyy"/>
             </div>
         ));

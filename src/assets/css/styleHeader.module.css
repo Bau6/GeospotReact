@@ -17,9 +17,16 @@
 }
 
 header {
+    z-index: 999;
     background: #3498db; /* Blue background color */
     height: 70px;
-    padding: 10px 0;
+    padding: 10px;
+    margin-right: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    border-radius: 40px; /* Скругление углов */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Тень */
+    transform: translateY(-5px); /* Делаем элемент выпуклым и объемным */
 }
 
 /*.H1Name {*/
@@ -73,7 +80,7 @@ li {
     position: absolute;
     background: #3498db; /* Blue background color */
     min-width: 120px;
-    z-index: 1;
+    z-index: 999;
     padding: 10px;
     border-radius: 5px; /* Rounded corners */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow effect */
