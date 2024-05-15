@@ -50,13 +50,14 @@ const AppContent = (props) => {
                        element={<CheckingPlayersOnTourneyContainer store={props.store}/>}/>
                 <Route path={'/pages/teams/teams.js'}
                        element={<TeamsContainer store={props.store}/>}/>
-                <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsTourney/>}/>
                 <Route path={'/pages/profile/ProfilePage.js'}
                        element={<ProfilePageContainer
                            store={props.store}/>}/>
                 <Route path={'/pages/users/users.js'} element={<UsersContainer/>}/>
-                <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsContainer/>}/>
-                <Route path={'/pages/resultsTourney/resultsTeam.js'} element={<ResultsTeamContainer/>}/>
+                <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsContainer
+                    store={props.store}/>}/>
+                <Route path={'/pages/resultsTourney/resultsTeam.js'} element={<ResultsTeamContainer
+                    store={props.store}/>}/>
             </Routes>
         </div>
     );

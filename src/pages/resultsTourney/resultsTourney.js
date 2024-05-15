@@ -4,30 +4,30 @@ import eventCss from "../event/event.module.css";
 import React from "react";
 
 
-    class ResultsTourney extends React.Component {
+class ResultsTourney extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isBlocked: false, // состояние блокировки
-            isEditable: false, // состояние редактирования
+            isEditable: false,
         };
     }
+
     render() {
-        let { isBlocked, isEditable } = this.state;
+        let {isEditable} = this.state;
         let filterThisPlayers = {};
         if (this.props.myUsers && (this.props.role === "admin" || this.props.role === "organizer")) {
             if (this.props.role === "admin") {
                 filterThisPlayers = this.props.myUsers;
-                isBlocked = true;
                 isEditable = true;
             } else if (this.props.role === "organizer") {
                 isEditable = true;
                 filterThisPlayers = this.props.myUsers;
             }
-        } else if (this.props.myUsers && (this.props.role === "user")){
-            filterThisPlayers = this.props.myUsers;
-        } else { filterThisPlayers = {} }
-
+        } else if (this.props.myUsers && (this.props.role === "user")) {
+            filterThisPlayers = this.props.myUsers.filter(players => players.result !== 1);
+        } else {
+            filterThisPlayers = {}
+        }
         return (
             <div>
                 <div className={eventCss.containerEvent}>
@@ -40,8 +40,7 @@ import React from "react";
                                         <tr>
                                             <th>Игрок</th>
                                             <th>Результат</th>
-                                            {isBlocked && <th>Админ меню</th>}
-                                            {isEditable && <th>Организатор меню</th>}
+                                            {isEditable && <th>Меню</th>}
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -50,9 +49,11 @@ import React from "react";
                                                 <td>{participant.player}</td>
                                                 <td>{participant.resultName}</td>
                                                 {isEditable &&
-                                                    <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить результат</td>}
+                                                    <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить
+                                                        результат</td>}
                                             </tr>
                                         )) : "Нет результатов!"}
+                                        {filterThisPlayers.length ? <div></div> : "Нет результатов!"}
                                         </tbody>
                                     </table>
                                 </div>
@@ -66,4 +67,5 @@ import React from "react";
         )
     }
 }
+
 export default ResultsTourney;

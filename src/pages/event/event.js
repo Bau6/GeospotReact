@@ -46,6 +46,9 @@ class Event extends React.Component {
     handleRegistrationTourney() {
         this.props.registrationTourney(this.props.eventId, this.props.userID.id);
     }
+    thisResults(id) {
+        this.props.thisUsersLoadForEvent(id);
+    }
     handleRegistrationTeam() {
         this.setState({showModal: !this.state.showModal});
     }
@@ -210,7 +213,10 @@ class Event extends React.Component {
                                                                 </NavLink>
                                                             ) : (
                                                                 <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
-                                                                    <button className={button.buttonsInfo}>Результаты
+                                                                    <button className={button.buttonsInfo}
+                                                                            onClick={() => {
+                                                                                this.thisResults(this.props.eventId)}}
+                                                                    >Результаты
                                                                     </button>
                                                                 </NavLink>)}
                                                             <NavLink to={`/../pages/events/events.js`}>
