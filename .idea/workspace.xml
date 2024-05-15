@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/NodeJS/addTeam.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/addTeam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/NodeJS/loadTeamsForEvent.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/loadTeamsForEvent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/resultsTourney/resultsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTourney.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTeam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTeam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTeamContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resultsTourney/resultsTeamContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +137,7 @@
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
       <workItem from="1713628857019" duration="191349000" />
-      <workItem from="1715002365747" duration="98606000" />
+      <workItem from="1715002365747" duration="100487000" />
     </task>
     <servers />
   </component>

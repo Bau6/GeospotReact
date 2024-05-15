@@ -49,6 +49,9 @@ class Event extends React.Component {
     thisResults(id) {
         this.props.thisUsersLoadForEvent(id);
     }
+    thisResultsTeam(id) {
+        this.props.thisTeamsLoadForEvent(id)
+    }
     handleRegistrationTeam() {
         this.setState({showModal: !this.state.showModal});
     }
@@ -208,7 +211,10 @@ class Event extends React.Component {
                                                                 </NavLink>)}
                                                             {this.props.event.cntPlayersInGroup > 1 ? (
                                                                 <NavLink to={`/../pages/resultsTourney/resultsTeam.js`}>
-                                                                    <button className={button.buttonsInfo}>Результаты
+                                                                    <button className={button.buttonsInfo}
+                                                                            onClick={() => {
+                                                                                this.thisResultsTeam(this.props.eventId)}}
+                                                                    >Результаты
                                                                     </button>
                                                                 </NavLink>
                                                             ) : (

@@ -4,7 +4,7 @@ const TEAM = "teams";
 
 function addTeam(params, res) {
     let { name, status, event_id, userId } = params; // Деструктурируем только нужные поля из params
-    let teamData = { name, status, event_id, date: new Date() }; // Создаем новый объект с нужными полями
+    let teamData = { name, status, event_id, result: 6, date: new Date() }; // Создаем новый объект с нужными полями
 
     // Проверяем уникальность имени команды
     connection.query("SELECT * FROM ?? WHERE name = ?", [TEAM, name], (selectErr, selectResult) => {

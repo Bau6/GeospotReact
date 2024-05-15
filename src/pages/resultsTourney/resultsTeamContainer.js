@@ -7,6 +7,9 @@ import {
 import resultsTeam from "./resultsTeam";
 const mapStateToProps = (state) => {
     return {
+        event: state.eventsReducer.event,
+        myTeams: state.users.teams,
+        role: state.sessionUser.role,
     }
 }
 const mapDispatchToProps = (dispatch) => {

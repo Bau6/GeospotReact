@@ -2,6 +2,7 @@ const connection = require('./connect');
 const TEAMS = "teams";
 const USERS = 'users';
 const STATUS = 'statuses_for_team';
+const RESULT = 'results_for_team';
 const ACCESS = 'access_for_team';
 const TEAM_PLAYERS = "team_players";
 function queryDB(query, params) {
@@ -30,13 +31,19 @@ function loadTeamsForEvent(eventId, res) {
             let date = team.date;
             let id = team.id;
             let statusName = "";
+            let resultName = "";
+            let resultID = team.result;
             queryDB("SELECT * FROM ?? WHERE id = ?", [STATUS, team.status])
                 .then(teamStatusResult => {
                     if (teamStatusResult.length > 0) {
                         statusName = teamStatusResult[0].name;
-                    } else {
-                alert('Нет данных для команды');
-            }})
+                    }})
+            queryDB("SELECT * FROM ?? WHERE id = ?", [RESULT, team.result])
+                .then(teamResult => {
+                    if (teamResult.length > 0) {
+                        resultName = teamResult[0].name;
+
+                    }})
 
             return new Promise((resolve, reject) => {
                 queryDB("SELECT * FROM ?? WHERE team_id = ?", [TEAM_PLAYERS, team.id])
@@ -46,7 +53,6 @@ function loadTeamsForEvent(eventId, res) {
                                 const userID = player.user_id;
                                 const statusID = player.status_id;
                                 const accessID = player.access_id;
-
                                 return Promise.all([
                                     queryDB("SELECT name, surname, patronymic FROM ?? WHERE id = ?", [USERS, userID]),
                                     queryDB("SELECT name FROM ?? WHERE id = ?", [STATUS, statusID]),
@@ -68,6 +74,8 @@ function loadTeamsForEvent(eventId, res) {
                                         statusName: statusName,
                                         date: date,
                                         team_id: id,
+                                        result: resultName,
+                                        resultID: resultID,
                                     };
                                     resolve(teamInfo);
                                 })
