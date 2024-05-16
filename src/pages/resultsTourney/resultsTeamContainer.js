@@ -5,6 +5,7 @@ import {
     loadCountries, loadGenders, loadSports,
 } from "../../database/redux/events-reducer";
 import resultsTeam from "./resultsTeam";
+import {loadPlayersTeam, usersLoadForEvent} from "../../database/redux/users-reducer";
 const mapStateToProps = (state) => {
     return {
         event: state.eventsReducer.event,
@@ -14,6 +15,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        loadPlayersTeam: (id) => {
+            dispatch(loadPlayersTeam(id));
+        }
     }
 }
 export default connect (mapStateToProps, mapDispatchToProps)(resultsTeam);

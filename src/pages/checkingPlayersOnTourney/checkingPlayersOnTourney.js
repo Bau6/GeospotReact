@@ -13,8 +13,8 @@ class PlayersInTourney extends React.Component {
         };
     }
 
-    handleClick = (participant) => {
-        console.log(`Выбран участник ${participant.name}`);
+    handleClick = (email) => {
+        alert(email)
     };
 
     handleRegistrationClick = () => {
@@ -79,7 +79,7 @@ class PlayersInTourney extends React.Component {
                         </thead>
                         <tbody>
                         {Array.isArray(filterThisPlayers) ? filterThisPlayers.map((participant) => (
-                            <tr key={participant.id} onClick={() => this.handleClick(participant)}>
+                            <tr key={participant.id} onClick={() => this.handleClick(participant.email)}>
                                 <td>{participant.event}</td>
                                 <td>{participant.player}</td>
                                 <td>{participant.statusName}</td>
@@ -95,8 +95,6 @@ class PlayersInTourney extends React.Component {
                     </table>
                 </div>
                 <br/>
-                {/*<NavLink to="/../../pages/resultsTourney/resultsTourney.js">Результаты</NavLink>*/}
-                {/*<button onClick={this.handleRegistrationClick}>Зарегистрироваться на турнир</button>*/}
                 <NavLink className={`${button.buttonsInfo}`} to="/../../pages/event/event.js">Назад</NavLink>
             </div>
         );

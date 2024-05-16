@@ -6,6 +6,7 @@ const TEAMS_USER = 'TEAMS_USER';
 const NEW_TEAM = 'NEW_TEAM';
 const NAME_NEW_TEAM = 'NAME_NEW_TEAM';
 const SELECT_TEAM = 'SELECT_TEAM';
+const TEAM_PLAYERS = 'TEAM_PLAYERS';
 let initialState = {
     usersTourney: [],
     teams: {},
@@ -18,6 +19,8 @@ const usersReducer = (state = initialState, action) => {
             return {...state, usersTourney: action.text}
         case TEAMS:
             return {...state, teams: action.text}
+        case TEAM_PLAYERS:
+            return {...state, players: action.players}
         case NEW_TEAM:
             return {...state, newTeam: action.text}
         case NAME_NEW_TEAM:
@@ -44,10 +47,13 @@ export const onChangeActionCreatorTeam = (type, value) => ({
     type: type,
     text: value
 })
-export const onChangeActionCreatorTeamId = (type, name, id) => ({
+export const onChangeActionCreatorTeamPlayers = (type, value) => ({
     type: type,
-    name: name,
-    id: id,
+    text: value
+})
+export const onChangeActionCreatorTeamId = (value) => ({
+    type: TEAM_PLAYERS,
+    players: value,
 })
 
 export const usersLoadForEvent = (eventId) => {//load-users-for-event
@@ -92,6 +98,21 @@ export const blockUserEvent = (eventId) => {//load-users-for-event
                     alert("Запись обновлена!")
                     window.location.href = "http://localhost:3000/pages/events/events.js"
                 }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const loadPlayersTeam = (team_id) => {//load-users-for-event
+    return dispatch => {
+        axios.put('http://localhost:3003/load-team-players', {
+            params: {
+                team_id: team_id,
+            }
+        })
+            .then(response => {
+                dispatch(onChangeActionCreatorTeamPlayers(response.data));
             })
             .catch(error => {
                 console.log(error);

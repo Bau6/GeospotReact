@@ -11,7 +11,9 @@ class ResultsTourney extends React.Component {
             isEditable: false,
         };
     }
-
+    handleCheckUser(email) {
+        alert(email)
+    }
     render() {
         let {isEditable} = this.state;
         let filterThisPlayers = {};
@@ -45,11 +47,11 @@ class ResultsTourney extends React.Component {
                                         </thead>
                                         <tbody>
                                         {Array.isArray(filterThisPlayers) ? filterThisPlayers.map((participant) => (
-                                            <tr key={participant.id} onClick={() => this.handleClick(participant)}>
+                                            <tr key={participant.id} onClick={() => this.handleCheckUser(participant.email)}>
                                                 <td>{participant.player}</td>
                                                 <td>{participant.resultName}</td>
                                                 {isEditable &&
-                                                    <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить
+                                                    <td onClick={() => this.handleCheckUser(participant.email)}>Изменить
                                                         результат</td>}
                                             </tr>
                                         )) : "Нет результатов!"}

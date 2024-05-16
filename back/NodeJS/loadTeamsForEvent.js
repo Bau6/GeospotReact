@@ -54,14 +54,15 @@ function loadTeamsForEvent(eventId, res) {
                                 const statusID = player.status_id;
                                 const accessID = player.access_id;
                                 return Promise.all([
-                                    queryDB("SELECT name, surname, patronymic FROM ?? WHERE id = ?", [USERS, userID]),
+                                    queryDB("SELECT name, surname, patronymic, email FROM ?? WHERE id = ?", [USERS, userID]),
                                     queryDB("SELECT name FROM ?? WHERE id = ?", [STATUS, statusID]),
                                     queryDB("SELECT name FROM ?? WHERE id = ?", [ACCESS, accessID])
                                 ]).then(([userNameResult, statusResult, accessResult]) => {
                                     return {
                                         player: userNameResult[0].surname + " " + userNameResult[0].name + " " + userNameResult[0].patronymic,
                                         nameStatus: statusResult[0].name,
-                                        nameAccess: accessResult[0].name
+                                        nameAccess: accessResult[0].name,
+                                        email: userNameResult[0].email,
                                     };
                                 });
                             });

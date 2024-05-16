@@ -17,8 +17,9 @@ function loadUsersForEvent(eventId, res) {
                 let playerID = row.playerID;
                 let status = row.status;
                 let result = row.result;
-                let promiseUsers = queryDB("SELECT name, surname, patronymic FROM ?? WHERE id = ?", [USERS, playerID], resultPlayer => {
+                let promiseUsers = queryDB("SELECT name, surname, patronymic, email FROM ?? WHERE id = ?", [USERS, playerID], resultPlayer => {
                     row.player = resultPlayer[0].surname + " " + resultPlayer[0].name + " " + resultPlayer[0].patronymic;
+                    row.email = resultPlayer[0].email;
                 });
                 let promiseEvents = queryDB("SELECT nameEvent FROM ?? WHERE id = ?", [EVENTS, eventsID], resultEvent => {
                     row.event = resultEvent[0].nameEvent;

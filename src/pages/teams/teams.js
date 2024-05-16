@@ -1,6 +1,7 @@
 import {NavLink} from "react-router-dom";
 import React from "react";
 import button from "../../assets/css/button.module.css";
+import eventsCss from "../events/events.module.css";
 
 class teams extends React.Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class teams extends React.Component {
         this.state = {
             isBlocked: false, // состояние блокировки
             isEditable: false, // состояние редактирования
+            chooseTeam: 0,
         };
     }
 
@@ -31,8 +33,15 @@ class teams extends React.Component {
     handleUnBlockUserEvent = (id) => {
         this.props.unBlockUserEvent(id);
     }
-    handleChangeUserEvent = (id) => {
+    handleCheckUser = (id) => {
         alert(id)
+    }
+    toggleModal = (id) => {
+        const teamIndex = this.props.myTeams.findIndex(team => team.team_id === id);
+        if (teamIndex !== -1) {
+            this.setState({ chooseTeam: teamIndex });
+        }
+        this.setState({showModal: !this.state.showModal});
     }
     handleEditClick = () => {
         // обработчик нажатия на кнопку "Редактирование"
@@ -46,7 +55,7 @@ class teams extends React.Component {
 
 
     render() {
-        let { isBlocked, isEditable } = this.state;
+        let { isBlocked, isEditable, chooseTeam } = this.state;
         let filterThisPlayers = {};
         if (this.props.myTeams && (this.props.role === "admin" || this.props.role === "organizer")) {
             if (this.props.role === "admin") {
@@ -59,9 +68,37 @@ class teams extends React.Component {
         } else if (this.props.myTeams && (this.props.role === "user")){
             filterThisPlayers = this.props.myTeams;
         } else { filterThisPlayers = {} }
-        let cnt = 0;
+        let cnt = 1;
+        let cntP = 1;
         return (
             <div>
+                <div>
+                    {this.state.showModal && (
+                        <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                             style={{display: this.state.showModal ? 'block' : 'none'}}>
+                            <button className={eventsCss.closeButton} onClick={this.toggleModal}>X</button>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Номер</th>
+                                    <th>Игрок</th>
+                                    <th>Статус</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {Array.isArray(this.props.myTeams[chooseTeam].players) ? this.props.myTeams[chooseTeam].players.map((participant) => (
+                                    <tr key={cntP++}
+                                        onClick={() => this.handleCheckUser(participant.email)}>
+                                        <td>{cntP}</td>
+                                        <td>{participant.player}</td>
+                                        <td>{participant.nameStatus}</td>
+                                    </tr>
+                                )) : "Нет игроков!"}
+                                </tbody>
+                            </table>
+                        </div>)}
+                    {this.state.showModal && <div className={eventsCss.overlay}></div>}
+                </div>
                 <div className="players">
                     <table>
                         <thead>
@@ -70,23 +107,18 @@ class teams extends React.Component {
                             <th>Команда</th>
                             <th>Статус</th>
                             <th>Дата регистрации</th>
-                            {isBlocked && <th>Админ меню</th>}
-                            {isEditable && <th>Организатор меню</th>}
+                            {isEditable && <th>Меню</th>}
                         </tr>
                         </thead>
                         <tbody>
                         {Array.isArray(filterThisPlayers) ? filterThisPlayers.map((participant) => (
-                            <tr key={participant.id} onClick={() => this.handleClick(participant)}>
+                            <tr key={participant.team_id} onClick={() => this.toggleModal(participant.team_id)}>
                                 <td>{cnt++}</td>
                                 <td>{participant.name}</td>
                                 <td>{participant.statusName}</td>
                                 <td>{participant.date}</td>
-                                {isBlocked && participant.status === 2 ?
-                                    <td onClick={() => this.handleBlockUserEvent(participant.id)}>Заблокировать</td> :
-                                    participant.status === 1 ?
-                                        <td onClick={() => this.handleUnBlockUserEvent(participant.id)}>Разблокировать</td> : ""}
                                 {isEditable &&
-                                    <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить</td>}
+                                    <td onClick={() => this.handleChangeUserEvent(participant.team_id)}>Изменить</td>}
                             </tr>
                         )) : "Нет команд!"}
                         </tbody>

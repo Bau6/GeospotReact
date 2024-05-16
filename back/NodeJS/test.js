@@ -29,6 +29,7 @@ const {blockUserEvent} = require("./blockUserEvent");
 const {unBlockUserEvent} = require("./unBlockUserEvent");
 const {loadTeamsForEvent} = require("./loadTeamsForEvent");
 const {addPlayer} = require("./addUserInTeam");
+const {loadTeamPlayers} = require("./loadPlayersTeam");
 
 app.use(cors());
 const port = 3003;
@@ -240,6 +241,13 @@ function add_player() {
         addPlayer( params, res );
     });
 }
+function load_team_players() {
+    app.get('/load-team-players', (req, res) => {
+        const { params } = req.query;
+        loadTeamPlayers( params, res );
+    });
+}
+load_team_players();
 add_player();
 load_teams_for_event();
 block_user_event();
