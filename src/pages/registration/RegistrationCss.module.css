@@ -32,7 +32,8 @@
     font-size: 26px;
     font-family: 'Arial', 'Verdana', sans-serif;
     font-style: italic;
-
+    margin: 0 auto; /* Установка отступов по горизонтали на auto центрирует элемент */
+    display: block; /* Превращает кнопку в блочный элемент для центрирования */
 }
 
 .checkboxReg {
@@ -49,8 +50,6 @@
 
 .RegistrationName {
     text-align: center;
-    margin-right: 45%;
-    margin-left: 45%;
     font-size: 26px;
     font-family: 'Arial', 'Verdana', sans-serif;
     font-style: oblique;

@@ -2,9 +2,10 @@ import RegistrationCss from "./RegistrationCss.module.css"
 import DropDownMenuReg from "./DropDownMenuReg";
 import 'react-datepicker/dist/react-datepicker.css';
 import FormFields from "../profile/InfoUserProfile";
-import AvatarUpload from "../avatar/avatar";
+// import AvatarUpload from "../avatar/avatar";
 import {validationsReg} from "../../app/include/validations";
 import React, {Component} from 'react';
+import button from "../../assets/css/button.module.css";
 
 class Registration extends Component {
     constructor(props) {
@@ -153,9 +154,9 @@ class Registration extends Component {
                     </div>
                 </div>
                 <div>
-                    <AvatarUpload/>
-                    <button onClick={this.onAddData} className={RegistrationCss.nameButtonReg}>
-                        Сохранить изменения
+                    {/*<AvatarUpload/>*/}
+                    <button onClick={this.onAddData} className={`${button.buttonsInfo} ${RegistrationCss.nameButtonReg}`}>
+                        Зарегистрироваться!
                     </button>
                 </div></div>) : <div>Страница не найдена!</div>}
             </div>

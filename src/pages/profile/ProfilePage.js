@@ -115,9 +115,9 @@ class ProfilePage extends React.Component {
                                 </div>
                                 <NavLink onClick={() => {
                                 }} className={`${button.buttonsInfo}`}
-                                         to="/../../pages/profile/profile.js">Сохранить изменения</NavLink>
-                                <button className={`${button.buttonsInfo}`}>Изменить аватар</button>
-                                <button className={`${button.buttonsInfo}`} onClick={this.handleCancelClick}>Cancel
+                                         to="/../../pages/first_page/first_page.js">Сохранить изменения</NavLink>
+                                {/*<button className={`${button.buttonsInfo}`}>Изменить аватар</button>*/}
+                                <button className={`${button.buttonsInfo}`} onClick={this.handleCancelClick}>Назад
                                 </button>
                             </div>
                         ) : (
@@ -201,7 +201,7 @@ class ProfilePage extends React.Component {
                                                 {/*<p>Name: {formData.firstName} {formData.lastName} {formData.patronymic}</p>*/}
                                                 {/*<p>Password: {formData.password}</p>*/}
                                                 <button className={`${button.buttonsInfo}`}
-                                                        onClick={this.handleEditClick}>Edit Information
+                                                        onClick={this.handleEditClick}>Изменить информацию
                                                 </button>
                                             </div>
                                         </div>
