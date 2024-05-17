@@ -5,8 +5,10 @@ import {clearSessionActionCreator, setSessionActionCreator} from "../../database
 import {clearSessionUsersActionCreator} from "../../database/redux/infoUsers-reducer";
 import {clearEvents} from "../../database/redux/events-reducer";
 import {clearNews} from "../../database/redux/news-reducer";
+import myImage from "../images/Geospot.png";
 const mapStateToProps = (state) => {
     return {
+        myImage: myImage,
         role: state.sessionUser.role,
         user: state.sessionUser.userID,
         isLoggedIn: state.auth.isLoggedIn,

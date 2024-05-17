@@ -1,5 +1,7 @@
 import HeaderCss from '../../assets/css/styleHeader.module.css';
 import {NavLink} from "react-router-dom";
+import eventCss from "../../pages/event/event.module.css";
+import React from "react";
 const Header = (props) => {
     const isLoggedIn = props.isLoggedIn;
     const handleLogout = () => {
@@ -42,15 +44,16 @@ const Header = (props) => {
 
             <nav className={HeaderCss.nameCon}>
                 <ul>
-                    {/*<li>*/}
-                        <div className={HeaderCss.nameS}>
-                            <h1 className={HeaderCss.H1Name}>
-                                <NavLink onClick={handleNews} className={HeaderCss.nameMySite}
-                                         to="/../../pages/first_page/first_page.js">ГеоСпот</NavLink>
-                            </h1>
-                        </div>
+                    <div className={HeaderCss.nameS}>
+                        <img src={props.myImage} className={HeaderCss.imgFluid} alt=""/>
+                        <h1 className={HeaderCss.H1Name}>
+                            <NavLink onClick={handleNews} className={HeaderCss.nameMySite}
+                                     to="/../../pages/first_page/first_page.js">ГеоСпот</NavLink>
+                        </h1>
+                    </div>
                     {/*</li>*/}
-                    <li><NavLink onClick={handleNews} className={HeaderCss.item} to="/../../pages/first_page/first_page.js">Новости</NavLink>
+                    <li><NavLink onClick={handleNews} className={HeaderCss.item}
+                                 to="/../../pages/first_page/first_page.js">Новости</NavLink>
                     </li>
                     <li><NavLink onClick={handleEvents} className={HeaderCss.item} to="/../../pages/events/events.js">Мероприятия</NavLink></li>
                     {isLoggedIn ? (
