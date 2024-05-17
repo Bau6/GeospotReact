@@ -293,7 +293,11 @@ class Event extends React.Component {
                                                         </li>
                                                         <br/>
                                                         <li>
-                                                            <span>Организатор:&nbsp;</span>{this.props.event.orgName ? this.props.event.orgName : ""}
+                                                            <a
+                                                               style={{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}
+                                                               onClick={() => alert(this.props.event.email)}>
+                                                                <span>Организатор:&nbsp;</span>{this.props.event.orgName ? this.props.event.orgName : ""}
+                                                            </a>
                                                         </li>
                                                         <br/>
                                                         <br/>

@@ -75,7 +75,7 @@ export const axiosUsersLogin = (dispatch, email, password) => {
                     email: userData.email,
                     name: userData.surname + " " + userData.name + " " + userData.patronymic
                 }));
-                dispatch(setRoleActionCreator(userData.id));
+                // dispatch(setRoleActionCreator(userData.id));
                 getUserRole(userData.id, dispatch);
                 window.location.href = 'http://localhost:3000/pages/profile/ProfilePage.js';
             }

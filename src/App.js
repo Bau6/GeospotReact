@@ -1,7 +1,6 @@
 import './App.css';
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import ResultsTourney from "./pages/resultsTourney/resultsTourney";
 import RegistrationContainer from "./pages/registration/RegistrationContainer";
 import ProfileContainer from "./pages/profile/ProfileContainer";
 import ProfilePageContainer from "./pages/profile/ProfilePageContainer";
@@ -15,6 +14,7 @@ import CheckingPlayersOnTourneyContainer from "./pages/checkingPlayersOnTourney/
 import TeamsContainer from "./pages/teams/teamsContainer";
 import ResultsContainer from "./pages/resultsTourney/resultsContainer";
 import ResultsTeamContainer from "./pages/resultsTourney/resultsTeamContainer";
+import FooterContainer from "./app/include/FooterContainer";
 const App = (props) => {
     return (
         <BrowserRouter>
@@ -59,6 +59,9 @@ const AppContent = (props) => {
                 <Route path={'/pages/resultsTourney/resultsTeam.js'} element={<ResultsTeamContainer
                     store={props.store}/>}/>
             </Routes>
+            <FooterContainer
+                store={props.store}
+            />
         </div>
     );
 }

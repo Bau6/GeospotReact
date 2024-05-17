@@ -20,8 +20,9 @@ function loadEventFromDB(id, res) {
                 let promises = [];
 
                 promises.push(new Promise((resolve, reject) => {
-                    queryDB("SELECT name, surname, patronymic FROM ?? WHERE id = ?", ['users', orgID], resultOrgName => {
+                    queryDB("SELECT name, surname, patronymic, email FROM ?? WHERE id = ?", ['users', orgID], resultOrgName => {
                         info.orgName = resultOrgName[0].surname + " " + resultOrgName[0].name + " " + resultOrgName[0].patronymic;
+                        info.email = resultOrgName[0].email;
                         resolve();
                     });
                 }));
