@@ -25,6 +25,9 @@ class resultsTeam extends React.Component {
     handleCheckUser(email) {
         alert(email)
     }
+    handleChangeUserEvent() {
+        alert("Данный функционал еще находится в разработке!")
+    }
     handleDropdownSelect = (name, team, id, idEvent) => {
         this.props.onChangeAreaTextTeam(team, name, id, idEvent);
         console.log(this.props.myTeams);

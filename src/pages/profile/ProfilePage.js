@@ -41,7 +41,8 @@ class ProfilePage extends React.Component {
     };
 
     handleEditClick = () => {
-        this.setState({editMode: true});
+        alert("Данный функционал еще находится в разработке!")
+        // this.setState({editMode: true});
     };
 
     countryChange = () => {

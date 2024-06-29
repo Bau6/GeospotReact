@@ -21,8 +21,11 @@ class Footer extends Component {
                             <h3>Контакты</h3>
                             <p>Контакты для обратной связи с разработчиками:</p>
                             <div className="contact">
-                                <span><i className="fa fa-phone"></i> Номер телефона: &nbsp; +7(911)123-58-48 </span><br/>
-                                <span><i className="fa fa-envelope"></i> Почта: &nbsp; xojlodo4ek@mail.ru </span>
+                                <span><i
+                                    className="fa fa-phone"></i> Номер телефона: &nbsp; +7(911)123-58-48 </span><br/>
+                                <span><i className="fa fa-envelope"></i> Почта: &nbsp; xojlodo4ek@mail.ru </span><br/>
+                                <span><i></i> Компания, которой принадлежит сайт: &nbsp; <a
+                                    href="http://www.enertek.ru/" target="_blank">ЭНЕРТЕК</a> </span>
                             </div>
                         </div>
                         <div className="footer-section contact-form col-md-4 col-12">
