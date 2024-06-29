@@ -30,6 +30,10 @@ const {unBlockUserEvent} = require("./unBlockUserEvent");
 const {loadTeamsForEvent} = require("./loadTeamsForEvent");
 const {addPlayer} = require("./addUserInTeam");
 const {loadTeamPlayers} = require("./loadPlayersTeam");
+const {loadResultsTourneyBackend} = require("./loadResultsTourneyBackend");
+const {updateUserEventResult} = require("./updateUserEventResult");
+const {updateTeamEventResult} = require("./updateTeamEventResult");
+const {loadResultsTourneyTeamBackend} = require("./loadResultsTourneyTeamBackend");
 
 app.use(cors());
 const port = 3003;
@@ -247,6 +251,35 @@ function load_team_players() {
         loadTeamPlayers( params, res );
     });
 }
+function loadResultsTourneyBack() {
+    app.get('/load-results-tourney', (req, res) => {
+        loadResultsTourneyBackend(  res );
+    });
+}
+function loadResultsTourneyTeamBack() {
+    app.get('/load-results-tourney-team', (req, res) => {
+        loadResultsTourneyTeamBackend( res );
+    });
+}
+function update_user_event_result() {
+    app.use(express.json());
+    app.put('/update-result-event', (req, res) => {
+        const idE = req.body.eventId;
+        const idR = req.body.resultId;
+        updateUserEventResult( idE, idR, res );
+    });
+}
+function update_team_event_result() {
+    app.use(express.json());
+    app.put('/update-team-result-event', (req, res) => {
+        const idE = req.body.eventId;
+        const idR = req.body.resultId;
+        updateTeamEventResult( idE, idR, res );
+    });
+}
+loadResultsTourneyTeamBack();
+update_team_event_result();
+update_user_event_result();
 load_team_players();
 add_player();
 load_teams_for_event();
@@ -277,6 +310,7 @@ addData();
 selectAllDataTable();
 deleteData();
 updateData();
+loadResultsTourneyBack();
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

@@ -3,9 +3,10 @@ import event from "./event";
 import myImage from '../../app/images/icone.png';
 import {loadEvent} from "../../database/redux/locationUserReducer";
 import {registrationTourney} from "../../database/redux/events-reducer";
-import { addPlayers,
-    createTeam,
-    onChangeActionCreatorTeam, onChangeActionCreatorTeamId,
+import {
+    addPlayers,
+    createTeam, loadResultsTeamTourney, loadResultsTourney,
+    onChangeActionCreatorTeam, onChangeActionCreatorTeamDropDownMenu, onChangeActionCreatorTeamId,
     teamsLoadForEvent,
     usersLoadForEvent
 } from "../../database/redux/users-reducer";
@@ -27,6 +28,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        loadResultsTourney: () => {
+            dispatch(loadResultsTourney());
+        },
         loadEvent: (id) => {
             dispatch(loadEvent(id));
         },
@@ -43,13 +47,16 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(onChangeActionCreatorTeam(type, text))
         },
         onChangeAreaTextTeam: (type, text, id) => {
-            dispatch(onChangeActionCreatorTeamId(type, text, id))
+            dispatch(onChangeActionCreatorTeamDropDownMenu(type, text, id))
         },
         createTeam: (eventID, userID, nameTeam) => {
             dispatch(createTeam(eventID, userID, nameTeam))
         },
         addPlayers: (team_id, user_id, sport_id) => {
             dispatch(addPlayers(team_id, user_id, sport_id))
+        },
+        loadResultsTeamTourney: () => {
+            dispatch(loadResultsTeamTourney())
         },
     }
 }

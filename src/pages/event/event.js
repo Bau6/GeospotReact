@@ -22,6 +22,7 @@ class Event extends React.Component {
     componentDidMount() {
         // const urlParams = new URLSearchParams(window.location.search);
         // const id = urlParams.get(`id`);
+        this.props.loadResultsTourney();
         this.props.loadEvent(this.props.eventId);
         console.log(this.props)
     }
@@ -51,6 +52,7 @@ class Event extends React.Component {
     }
     thisResultsTeam(id) {
         this.props.thisTeamsLoadForEvent(id)
+        this.props.loadResultsTeamTourney();
     }
     handleRegistrationTeam() {
         this.setState({showModal: !this.state.showModal});

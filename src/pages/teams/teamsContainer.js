@@ -1,5 +1,10 @@
 import {connect} from "react-redux";
-import {blockUserEvent, unBlockUserEvent, usersLoadForTourney} from "../../database/redux/users-reducer";
+import {
+    blockUserEvent,
+    loadResultsTeamTourney,
+    unBlockUserEvent,
+    usersLoadForTourney
+} from "../../database/redux/users-reducer";
 import teams from "./teams";
 const mapStateToProps = (state) => {
     return {

@@ -2,6 +2,7 @@ import {NavLink} from "react-router-dom";
 import React from "react";
 import button from "../../assets/css/button.module.css";
 import eventsCss from "../events/events.module.css";
+import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 
 class teams extends React.Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class teams extends React.Component {
         this.setState({ isEditable: true });
     };
     componentDidMount() {
-        // генерация рандомных данных
+
         console.log(this.props)
     }
 
@@ -107,7 +108,7 @@ class teams extends React.Component {
                             <th>Команда</th>
                             <th>Статус</th>
                             <th>Дата регистрации</th>
-                            {isEditable && <th>Меню</th>}
+                            {/*{isEditable && <th>Меню</th>}*/}
                         </tr>
                         </thead>
                         <tbody>
@@ -116,9 +117,9 @@ class teams extends React.Component {
                                 <td>{cnt++}</td>
                                 <td>{participant.name}</td>
                                 <td>{participant.statusName}</td>
-                                <td>{participant.date}</td>
-                                {isEditable &&
-                                    <td onClick={() => this.handleChangeUserEvent(participant.team_id)}>Изменить</td>}
+                                <td>{dateStrISO(participant.date, DATE_FORMAT_DATE)}</td>
+                                {/*{isEditable &&*/}
+                                {/*    <td onClick={() => this.handleChangeUserEvent(participant.team_id)}>Изменить</td>}*/}
                             </tr>
                         )) : "Нет команд!"}
                         </tbody>

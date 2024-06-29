@@ -7,9 +7,15 @@ const NEW_TEAM = 'NEW_TEAM';
 const NAME_NEW_TEAM = 'NAME_NEW_TEAM';
 const SELECT_TEAM = 'SELECT_TEAM';
 const TEAM_PLAYERS = 'TEAM_PLAYERS';
+const DROPDOWN_TOURNEY_RESULTS = 'DROPDOWN_TOURNEY_RESULTS';
+const SELECT_DROPDOWN_TOURNEY_RESULTS = 'SELECT_DROPDOWN_TOURNEY_RESULTS';
+const SELECT_DROPDOWN_TOURNEY_RESULTS_TEAM = 'SELECT_DROPDOWN_TOURNEY_RESULTS_TEAM';
+const DROPDOWN_TOURNEY_RESULTS_TEAM = 'DROPDOWN_TOURNEY_RESULTS_TEAM';
 let initialState = {
     usersTourney: [],
     teams: {},
+    resultsTourney: {},
+    resultsTeam: {},
     newTeam: {},
 }
 
@@ -27,6 +33,18 @@ const usersReducer = (state = initialState, action) => {
             return {...state, newTeam: {...state.newTeam, name: action.text}}
         case SELECT_TEAM:
             return {...state, selectTeam: action.name, selectTeamId: action.id}
+        case DROPDOWN_TOURNEY_RESULTS:
+            return {...state, resultTourney: action.text}
+        case DROPDOWN_TOURNEY_RESULTS_TEAM:
+            return {...state, resultsTeam: action.text}
+        case SELECT_DROPDOWN_TOURNEY_RESULTS:
+            return {...state, selectResultTourney: action.name, selectResultTourneyId: action.id}
+        case SELECT_DROPDOWN_TOURNEY_RESULTS_TEAM:
+            return {...state,
+                selectResultTourneyTeam: {
+                    ...state.selectResultTourneyTeam,
+                    [action.participantId]: action.name, // Store result based on participant ID
+                    },}
         default:
             return state;
     }
@@ -55,6 +73,25 @@ export const onChangeActionCreatorTeamId = (value) => ({
     type: TEAM_PLAYERS,
     players: value,
 })
+export const onChangeActionCreatorTeamDropDownMenu = (type, text, id, participantId) => ({
+    type: type,
+    id: id,
+    name: text,
+    participantId: participantId,
+})
+export const onChangeActionCreatorTourneyDropDownMenu = (type, text, id) => ({
+    type: type,
+    id: id,
+    name: text,
+})
+export const loadResultsTourneyRedux = ( value ) => ({
+    type: DROPDOWN_TOURNEY_RESULTS,
+    text: value
+})
+export const loadResultsTourneyTeamRedux = ( value ) => ({
+    type: DROPDOWN_TOURNEY_RESULTS_TEAM,
+    text: value
+})
 
 export const usersLoadForEvent = (eventId) => {//load-users-for-event
     return dispatch => {
@@ -65,6 +102,34 @@ export const usersLoadForEvent = (eventId) => {//load-users-for-event
         })
             .then(responseUsers => {
                 dispatch(usersLoadForTourney(responseUsers.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const loadResultsTourney = () => {
+    return dispatch => {
+        axios.get('http://localhost:3003/load-results-tourney', {
+            params: {
+            }
+        })
+            .then(responseUsers => {
+                dispatch(loadResultsTourneyRedux(responseUsers.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const loadResultsTeamTourney = () => {
+    return dispatch => {
+        axios.get('http://localhost:3003/load-results-tourney-team', {
+            params: {
+            }
+        })
+            .then(responseUsers => {
+                dispatch(loadResultsTourneyTeamRedux(responseUsers.data));
             })
             .catch(error => {
                 console.log(error);
@@ -154,6 +219,38 @@ export const unBlockUserEvent = (eventId) => {//load-users-for-event
                 if (response.data.message) {
                     alert("Запись обновлена!")
                     window.location.href = "http://localhost:3000/pages/events/events.js"
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const updateResultEvent = (eventId, resultId) => {
+    return dispatch => {
+        axios.put('http://localhost:3003/update-result-event', {
+                eventId: eventId,
+                resultId: resultId,
+        })
+            .then(response => {
+                if (response.data.message) {
+                    alert("Запись обновлена!")
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+export const updateTeamResultEvent = (eventId, resultId) => {
+    return dispatch => {
+        axios.put('http://localhost:3003/update-team-result-event', {
+                eventId: eventId,
+                resultId: resultId,
+        })
+            .then(response => {
+                if (response.data.message) {
+                    alert("Запись обновлена!")
                 }
             })
             .catch(error => {

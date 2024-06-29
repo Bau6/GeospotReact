@@ -3,6 +3,8 @@ import {NavLink} from "react-router-dom";
 import button from "../../assets/css/button.module.css";
 import eventCss from "../event/event.module.css";
 import eventsCss from "../events/events.module.css";
+import drop from "../../assets/css/dropDown.module.css";
+import {Dropdown} from "react-bootstrap";
 
 class resultsTeam extends React.Component {
     constructor(props) {
@@ -23,6 +25,12 @@ class resultsTeam extends React.Component {
     handleCheckUser(email) {
         alert(email)
     }
+    handleDropdownSelect = (name, team, id, idEvent) => {
+        this.props.onChangeAreaTextTeam(team, name, id, idEvent);
+        console.log(this.props.myTeams);
+        console.log("safas")
+        this.props.updateResultEvent(idEvent, id);
+    };
     render() {
         let {isEditable, chooseTeam} = this.state;
         let filterThisPlayers = {};
@@ -84,15 +92,28 @@ class resultsTeam extends React.Component {
                                         </thead>
                                         <tbody>
                                         {Array.isArray(filterThisPlayers) ? filterThisPlayers.map((participant) => (
-                                            <tr key={participant.team_id}
-                                                onClick={() => this.toggleModal(participant.team_id)}>
-                                                <td>{participant.name}</td>
-                                                <td>{participant.result}</td>
+                                            <tr key={participant.team_id}>
+                                                <td onClick={() => this.handleChangeUserEvent(participant.team_id)}>{participant.name}</td>
+                                                <td onClick={() => this.handleChangeUserEvent(participant.team_id)}>{participant.result}</td>
                                                 {isEditable &&
-                                                    <td onClick={() => this.handleChangeUserEvent(participant.team_id)}>Изменить
-                                                        результат</td>}
+                                                    <td ><Dropdown className={`${drop.dropDownDesign}`}>
+                                                        <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                                         className={`${drop.dropdownToggle}`}>
+                                                            {this.props.selectResultTourneyTeam && this.props.selectResultTourneyTeam[participant.team_id]!=null ? this.props.selectResultTourneyTeam[participant.team_id] : 'Изменить результат'}
+                                                        </Dropdown.Toggle>
+                                                        <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                                            {Array.isArray(this.props.resultsTeam) ? this.props.resultsTeam && this.props.resultsTeam.map((item) => (
+                                                                <Dropdown.Item className={`${drop.dropdownItem}`} key={item.id}
+                                                                               onClick={() => this.handleDropdownSelect(item.name, 'SELECT_DROPDOWN_TOURNEY_RESULTS_TEAM', item.id, participant.team_id)}>
+                                                                    {item.name}
+                                                                </Dropdown.Item>
+                                                            )) : ""}
+                                                        </Dropdown.Menu>
+                                                    </Dropdown></td>}
                                             </tr>
-                                        )) : "Нет команд!"}
+                                        )) : <tr>
+                                            <td colSpan={isEditable ? 3 : 2}>Нет команд!</td>
+                                        </tr>}
                                         </tbody>
                                     </table>
                                 </div>

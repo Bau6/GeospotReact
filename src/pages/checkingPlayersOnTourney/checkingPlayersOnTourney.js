@@ -74,7 +74,7 @@ class PlayersInTourney extends React.Component {
                             <th>Результат</th>
                             <th>Дата регистрации</th>
                             {isBlocked && <th>Админ меню</th>}
-                            {isEditable && <th>Организатор меню</th>}
+                            {/*{isEditable && <th>Организатор меню</th>}*/}
                         </tr>
                         </thead>
                         <tbody>
@@ -88,7 +88,7 @@ class PlayersInTourney extends React.Component {
                                 {isBlocked && participant.status === 2 ?
                                     <td className={`${button.buttonsInfo}`} onClick={() => this.handleBlockUserEvent(participant.id)}>Заблокировать</td> :
                                     participant.status === 1 ? <td className={`${button.buttonsInfo}`} onClick={() => this.handleUnBlockUserEvent(participant.id)}>Разблокировать</td> : ""}
-                                {isEditable && <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить</td>}
+                                {/*{isEditable && <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить</td>}*/}
                             </tr>
                         )) : "Нет участников!"}
                         </tbody>

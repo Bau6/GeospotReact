@@ -19,6 +19,15 @@
     flex-direction: column;
     margin-bottom: 10px;
 }
+.nameLabelInputButtonProf {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+    display: inline-block; /* Изменяем на inline-block */
+    /*margin-left: 200px;*/
+    /* flex-direction: column; */ /* Удаляем этот стиль */
+    margin-bottom: 10px;
+}
 .nameLabelButtonReg {
     font-size: 26px;
     font-family: 'Arial', 'Verdana', sans-serif;

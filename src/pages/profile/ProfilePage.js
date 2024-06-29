@@ -127,11 +127,11 @@ class ProfilePage extends React.Component {
                                         <div className={eventCss.col}>
                                             <div className={eventCss.companyDetails}>
                                                 <div>
-                                                    <label className={RegistrationCss.nameLabelInputButtonReg}>
+                                                    <label className={RegistrationCss.nameLabelInputButtonProf}>
                                                         {this.labels[0] + ": "}
                                                     </label>
                                                     <label
-                                                        className={RegistrationCss.nameLabelInputButtonReg}
+                                                        className={RegistrationCss.nameLabelInputButtonProf}
                                                     >
                                                         {this.props.userInf &&
                                                         this.props.userInf.email ?
@@ -139,11 +139,11 @@ class ProfilePage extends React.Component {
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label className={RegistrationCss.nameLabelInputButtonReg}>
+                                                    <label className={RegistrationCss.nameLabelInputButtonProf}>
                                                         {this.labels[3] + ": "}
                                                     </label>
                                                     <label
-                                                        className={RegistrationCss.nameLabelInputButtonReg}
+                                                        className={RegistrationCss.nameLabelInputButtonProf}
                                                     >
                                                         {this.props.userInf &&
                                                         this.props.userInf.nameUser ?
@@ -151,11 +151,11 @@ class ProfilePage extends React.Component {
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label className={RegistrationCss.nameLabelInputButtonReg}>
+                                                    <label className={RegistrationCss.nameLabelInputButtonProf}>
                                                         {this.labels[4] + ": "}
                                                     </label>
                                                     <label
-                                                        className={RegistrationCss.nameLabelInputButtonReg}
+                                                        className={RegistrationCss.nameLabelInputButtonProf}
                                                     >
                                                         {this.props.userInf &&
                                                         this.props.userInf.surnameUser ?
@@ -163,11 +163,11 @@ class ProfilePage extends React.Component {
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label className={RegistrationCss.nameLabelInputButtonReg}>
+                                                    <label className={RegistrationCss.nameLabelInputButtonProf}>
                                                         {this.labels[5] + ": "}
                                                     </label>
                                                     <label
-                                                        className={RegistrationCss.nameLabelInputButtonReg}
+                                                        className={RegistrationCss.nameLabelInputButtonProf}
                                                     >
                                                         {this.props.userInf &&
                                                         this.props.userInf.patronymicUser ?
@@ -175,11 +175,11 @@ class ProfilePage extends React.Component {
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label className={RegistrationCss.nameLabelInputButtonReg}>
+                                                    <label className={RegistrationCss.nameLabelInputButtonProf}>
                                                         {this.labels[8] + ": "}
                                                     </label>
                                                     <label
-                                                        className={RegistrationCss.nameLabelInputButtonReg}
+                                                        className={RegistrationCss.nameLabelInputButtonProf}
                                                     >
                                                         {this.props.userInf &&
                                                         this.props.userInf.city ?
@@ -187,11 +187,11 @@ class ProfilePage extends React.Component {
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label className={RegistrationCss.nameLabelInputButtonReg}>
+                                                    <label className={RegistrationCss.nameLabelInputButtonProf}>
                                                         {this.labels[9] + ": "}
                                                     </label>
                                                     <label
-                                                        className={RegistrationCss.nameLabelInputButtonReg}
+                                                        className={RegistrationCss.nameLabelInputButtonProf}
                                                     >
                                                         {this.props.userInf &&
                                                         this.props.userInf.country ?
