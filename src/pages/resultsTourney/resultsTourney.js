@@ -16,9 +16,10 @@ class ResultsTourney extends React.Component {
     handleCheckUser(email) {
         alert(email)
     }
-    handleDropdownSelect = (name, team, id, idEvent) => {
-        this.props.onChangeAreaTextTeam(team, name, id);
-        this.props.updateResultEvent(this.props.myUsers[idEvent].id, id);
+    handleDropdownSelect = (name, type, id, idEvent) => {
+        console.log(idEvent)
+        this.props.onChangeAreaTextTeam(name, type, id, idEvent);
+        this.props.updateResultEvent(idEvent, id);
     };
     render() {
         let {isEditable} = this.state;
@@ -61,7 +62,7 @@ class ResultsTourney extends React.Component {
                                                         <Dropdown className={`${drop.dropDownDesign}`}>
                                                         <Dropdown.Toggle variant="success" id="dropdown-basic"
                                                                          className={`${drop.dropdownToggle}`}>
-                                                            {this.props.selectResultTourney ? this.props.selectResultTourney : 'Изменить результат'}
+                                                            {this.props.participantResults && this.props.participantResults[participant.id] ? this.props.participantResults[participant.id].name : 'Изменить результат'}
                                                         </Dropdown.Toggle>
                                                         <Dropdown.Menu className={`${drop.dropdownMenu}`}>
                                                             {Array.isArray(this.props.resultsTourney) ? this.props.resultsTourney && this.props.resultsTourney.map((item) => (

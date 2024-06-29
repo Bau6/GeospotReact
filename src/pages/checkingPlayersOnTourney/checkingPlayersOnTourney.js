@@ -57,7 +57,7 @@ class PlayersInTourney extends React.Component {
                 isEditable = true;
             } else if (this.props.role === "organizer") {
                 isEditable = true;
-                filterThisPlayers = this.props.myUsers.filter(players => players.status === 2 && players.status === 1);
+                filterThisPlayers = this.props.myUsers;
             }
         } else if (this.props.myUsers && (this.props.role === "user")){
             filterThisPlayers = this.props.myUsers.filter(players => players.status === 2);

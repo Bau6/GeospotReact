@@ -12,12 +12,13 @@ const mapStateToProps = (state) => {
         myUsers: state.users.usersTourney,
         resultsTourney: state.users.resultTourney,
         selectResultTourney: state.users.selectResultTourney,
+        participantResults: state.users.participantResults,
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        onChangeAreaTextTeam: (type, text, id) => {
-            dispatch(onChangeActionCreatorTourneyDropDownMenu(type, text, id))
+        onChangeAreaTextTeam: (text, type, id, participantId) => {
+            dispatch(onChangeActionCreatorTourneyDropDownMenu(type, text, id, participantId))
         },
         updateResultEvent: (idE, idR) => {
             dispatch(updateResultEvent(idE, idR))

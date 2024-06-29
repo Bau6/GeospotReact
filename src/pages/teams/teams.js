@@ -50,7 +50,6 @@ class teams extends React.Component {
         this.setState({ isEditable: true });
     };
     componentDidMount() {
-
         console.log(this.props)
     }
 
@@ -65,6 +64,7 @@ class teams extends React.Component {
                 isEditable = true;
             } else if (this.props.role === "organizer") {
                 isEditable = true;
+                filterThisPlayers = this.props.myTeams;
             }
         } else if (this.props.myTeams && (this.props.role === "user")){
             filterThisPlayers = this.props.myTeams;

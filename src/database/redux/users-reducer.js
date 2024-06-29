@@ -38,7 +38,14 @@ const usersReducer = (state = initialState, action) => {
         case DROPDOWN_TOURNEY_RESULTS_TEAM:
             return {...state, resultsTeam: action.text}
         case SELECT_DROPDOWN_TOURNEY_RESULTS:
-            return {...state, selectResultTourney: action.name, selectResultTourneyId: action.id}
+            return {...state,
+                participantResults: {
+                    ...state.participantResults, // Сохраняем существующие результаты
+                    [action.participantId]: {
+                        name: action.name, // Имя выбранного результата
+                        id: action.id, // ID выбранного результата
+                    }
+                },}
         case SELECT_DROPDOWN_TOURNEY_RESULTS_TEAM:
             return {...state,
                 selectResultTourneyTeam: {
@@ -79,10 +86,11 @@ export const onChangeActionCreatorTeamDropDownMenu = (type, text, id, participan
     name: text,
     participantId: participantId,
 })
-export const onChangeActionCreatorTourneyDropDownMenu = (type, text, id) => ({
+export const onChangeActionCreatorTourneyDropDownMenu = (type, text, id,participantId) => ({
     type: type,
     id: id,
     name: text,
+    participantId: participantId,
 })
 export const loadResultsTourneyRedux = ( value ) => ({
     type: DROPDOWN_TOURNEY_RESULTS,
