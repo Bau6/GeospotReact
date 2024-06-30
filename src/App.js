@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import RegistrationContainer from "./pages/registration/RegistrationContainer";
 import ProfileContainer from "./pages/profile/ProfileContainer";
 import ProfilePageContainer from "./pages/profile/ProfilePageContainer";
@@ -58,6 +58,7 @@ const AppContent = (props) => {
                     store={props.store}/>}/>
                 <Route path={'/pages/resultsTourney/resultsTeam.js'} element={<ResultsTeamContainer
                     store={props.store}/>}/>
+                <Route path="*" element={<Navigate to="/pages/first_page/first_page.js" />} />
             </Routes>
             <FooterContainer
                 store={props.store}
