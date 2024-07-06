@@ -47,7 +47,7 @@ const FormFields = ({
                 <input
                     onChange={emailChange}
                     ref={refs[0]}
-                    className={RegistrationCss.nameLabelInputButtonReg}
+                    className={RegistrationCss.nameLabelButtonReg}
                     value={myInf.email}
                 >
                 </input>
@@ -58,7 +58,7 @@ const FormFields = ({
                 </label>
                 <input
                     ref={refs[1]}
-                    className={RegistrationCss.nameLabelInputButtonReg}
+                    className={RegistrationCss.nameLabelButtonReg}
                     onChange={passChange}>
                 </input>
             </div>
@@ -68,7 +68,7 @@ const FormFields = ({
                 </label>
                 <input
                     ref={refs[2]}
-                       className={RegistrationCss.nameLabelInputButtonReg}
+                       className={RegistrationCss.nameLabelButtonReg}
                        onChange={repassChange}>
                 </input>
             </div>
@@ -78,7 +78,7 @@ const FormFields = ({
                 </label>
                 <input
                     ref={refs[3]}
-                       className={RegistrationCss.nameLabelInputButtonReg}
+                       className={RegistrationCss.nameLabelButtonReg}
                        onChange={nameChange}
                     value={myInf.nameUser}>
 
@@ -90,7 +90,7 @@ const FormFields = ({
                 </label>
                 <input
                     ref={refs[4]}
-                       className={RegistrationCss.nameLabelInputButtonReg}
+                       className={RegistrationCss.nameLabelButtonReg}
                        onChange={surnameChange}
                     value={myInf.surnameUser}>
 
@@ -102,7 +102,7 @@ const FormFields = ({
                 </label>
                 <input
                     ref={refs[5]}
-                       className={RegistrationCss.nameLabelInputButtonReg}
+                       className={RegistrationCss.nameLabelButtonReg}
                        onChange={patronymicChange}
                     value={myInf.patronymicUser}>
 

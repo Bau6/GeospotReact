@@ -54,7 +54,10 @@
     justify-content: space-between;
     align-items: flex-end;
 }
-
+.teams {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
 .overlay {
     position: fixed;
     top: 0;
@@ -87,10 +90,15 @@
     left: 65px;
     top: 350px;
 }
-.newWindowAddEvent {
-    overflow-y: scroll;
-    max-height: 600px;
+.redBtn {
+    background-color: rosybrown;
 }
+.newWindowAddEvent {
+    overflow-y: auto;
+    /*max-height: 600px;*/
+    max-height: 90vh;
+}
+
 .closeButton {
     position: absolute;
     top: 5px;

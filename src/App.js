@@ -1,7 +1,6 @@
 import './App.css';
 import React from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import ResultsTourney from "./pages/resultsTourney/resultsTourney";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import RegistrationContainer from "./pages/registration/RegistrationContainer";
 import ProfileContainer from "./pages/profile/ProfileContainer";
 import ProfilePageContainer from "./pages/profile/ProfilePageContainer";
@@ -12,10 +11,14 @@ import FirstPageContainer from "./pages/first_page/first_pageContainer";
 import EventsContainer from "./pages/events/eventsContainer";
 import EventContainer from "./pages/event/eventContainer";
 import CheckingPlayersOnTourneyContainer from "./pages/checkingPlayersOnTourney/checkingPlayersOnTourneyContainer";
+import TeamsContainer from "./pages/teams/teamsContainer";
+import ResultsContainer from "./pages/resultsTourney/resultsContainer";
+import ResultsTeamContainer from "./pages/resultsTourney/resultsTeamContainer";
+import FooterContainer from "./app/include/FooterContainer";
 const App = (props) => {
     return (
         <BrowserRouter>
-            <AppContent props={props}/>
+            <AppContent {...props}/>
         </BrowserRouter>
     );
 }
@@ -45,12 +48,21 @@ const AppContent = (props) => {
                            store={props.store}/>}/>
                 <Route path={'/pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js'}
                        element={<CheckingPlayersOnTourneyContainer store={props.store}/>}/>
-                <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsTourney/>}/>
+                <Route path={'/pages/teams/teams.js'}
+                       element={<TeamsContainer store={props.store}/>}/>
                 <Route path={'/pages/profile/ProfilePage.js'}
                        element={<ProfilePageContainer
                            store={props.store}/>}/>
                 <Route path={'/pages/users/users.js'} element={<UsersContainer/>}/>
+                <Route path={'/pages/resultsTourney/resultsTourney.js'} element={<ResultsContainer
+                    store={props.store}/>}/>
+                <Route path={'/pages/resultsTourney/resultsTeam.js'} element={<ResultsTeamContainer
+                    store={props.store}/>}/>
+                <Route path="*" element={<Navigate to="/pages/first_page/first_page.js" />} />
             </Routes>
+            <FooterContainer
+                store={props.store}
+            />
         </div>
     );
 }

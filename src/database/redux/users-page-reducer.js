@@ -5,7 +5,6 @@ let initialState = {
 }
 
 const locationUserReducer = (state = initialState, action) => {
-    // debugger
     switch (action.type) {
         case SET_USERS:
             return {

@@ -22,6 +22,18 @@ const {updateEvent} = require("./updateEvent");
 const {deleteEvent} = require("./deleteEvent");
 const {addOnPageEvent} = require("./addOnPageEvent");
 const {registrationUserOnTourney} = require("./registrationUserTourney");
+const {loadUsersForEvent} = require("./loadUsersForEvent");
+const {updateUserEventStatus} = require("./updateUserEventStatus");
+const {addTeam} = require("./addTeam");
+const {blockUserEvent} = require("./blockUserEvent");
+const {unBlockUserEvent} = require("./unBlockUserEvent");
+const {loadTeamsForEvent} = require("./loadTeamsForEvent");
+const {addPlayer} = require("./addUserInTeam");
+const {loadTeamPlayers} = require("./loadPlayersTeam");
+const {loadResultsTourneyBackend} = require("./loadResultsTourneyBackend");
+const {updateUserEventResult} = require("./updateUserEventResult");
+const {updateTeamEventResult} = require("./updateTeamEventResult");
+const {loadResultsTourneyTeamBackend} = require("./loadResultsTourneyTeamBackend");
 
 app.use(cors());
 const port = 3003;
@@ -186,6 +198,96 @@ function registration_user_on_tourney() {
         registrationUserOnTourney( params, res );
     });
 }
+function load_users_for_event() {
+    app.get('/load-users-for-event', (req, res) => {
+        const { eventId } = req.query;
+        loadUsersForEvent(eventId, res);
+    });
+}
+function load_teams_for_event() {
+    app.get('/load-teams-for-event', (req, res) => {
+        const { eventId } = req.query;
+        loadTeamsForEvent(eventId, res);
+    });
+}
+function update_user_event_status() {
+    app.use(express.json());
+    app.post('/delete_player_from_event', (req, res) => {
+        const id = req.body.eventId;
+        updateUserEventStatus( id, res );
+    });
+}
+function add_team() {
+    app.use(express.json());
+    app.put('/new-team', (req, res) => {
+        const params = req.body.params;
+        addTeam( params, res );
+    });
+}
+function block_user_event() {
+    app.use(express.json());
+    app.put('/block-user-event', (req, res) => {
+        const params = req.body.params;
+        blockUserEvent( params, res );
+    });
+}
+function un_block_user_event() {
+    app.use(express.json());
+    app.put('/un-block-user-event', (req, res) => {
+        const params = req.body.params;
+        unBlockUserEvent( params, res );
+    });
+}
+function add_player() {
+    app.use(express.json());
+    app.put('/add-player', (req, res) => {
+        const params = req.body.params;
+        addPlayer( params, res );
+    });
+}
+function load_team_players() {
+    app.get('/load-team-players', (req, res) => {
+        const { params } = req.query;
+        loadTeamPlayers( params, res );
+    });
+}
+function loadResultsTourneyBack() {
+    app.get('/load-results-tourney', (req, res) => {
+        loadResultsTourneyBackend(  res );
+    });
+}
+function loadResultsTourneyTeamBack() {
+    app.get('/load-results-tourney-team', (req, res) => {
+        loadResultsTourneyTeamBackend( res );
+    });
+}
+function update_user_event_result() {
+    app.use(express.json());
+    app.put('/update-result-event', (req, res) => {
+        const idE = req.body.eventId;
+        const idR = req.body.resultId;
+        updateUserEventResult( idE, idR, res );
+    });
+}
+function update_team_event_result() {
+    app.use(express.json());
+    app.put('/update-team-result-event', (req, res) => {
+        const idE = req.body.eventId;
+        const idR = req.body.resultId;
+        updateTeamEventResult( idE, idR, res );
+    });
+}
+loadResultsTourneyTeamBack();
+update_team_event_result();
+update_user_event_result();
+load_team_players();
+add_player();
+load_teams_for_event();
+block_user_event();
+un_block_user_event();
+add_team();
+update_user_event_status();
+load_users_for_event();
 registration_user_on_tourney();
 add_on_page_event();
 delete_event();
@@ -208,6 +310,7 @@ addData();
 selectAllDataTable();
 deleteData();
 updateData();
+loadResultsTourneyBack();
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

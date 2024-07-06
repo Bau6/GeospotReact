@@ -5,6 +5,7 @@ import DropDownMenuEventContainer from "./DropDownMenuEventContainer";
 import ChooseDataEventContainer from "./ChooseDataEventContainer";
 import AddNewEventContainer from "./AddNewEventContainer";
 import AdminOrgEventsContainer from "./AdminOrgEventsContainer";
+import FirstPageCss from "../first_page/first_page.module.css";
 
 class Events extends React.Component {
     componentDidMount() {
@@ -23,7 +24,7 @@ class Events extends React.Component {
                         <ChooseDataEventContainer/>
                     </div>
                     <div className={eventsCss.fixedEvents}>
-                        <div>Мероприятия</div>
+                        <h2 className={FirstPageCss.h2Css}>Мероприятия</h2>
                         <EventsFormContainer/>
                         {this.props.role === "admin" || this.props.role === "organizer" ? (
                             <div>

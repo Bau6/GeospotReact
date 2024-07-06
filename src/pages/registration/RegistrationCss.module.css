@@ -1,5 +1,5 @@
 .containerReg {
-    margin-top: 100px;
+    margin-top: 10px;
     display: grid;
     gap: 20px;
 
@@ -9,17 +9,42 @@
     align-items: center;
     justify-content: center;
 }
+
 .nameLabelInputButtonReg {
     font-size: 26px;
     font-family: 'Arial', 'Verdana', sans-serif;
     font-style: italic;
+    display: flex;
+    /*margin-left: 200px;*/
+    flex-direction: column;
+    margin-bottom: 10px;
 }
+.nameLabelInputButtonProf {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+    display: inline-block; /* Изменяем на inline-block */
+    /*margin-left: 200px;*/
+    /* flex-direction: column; */ /* Удаляем этот стиль */
+    margin-bottom: 10px;
+}
+.nameLabelButtonReg {
+    font-size: 26px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    font-style: italic;
+    width: 80%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
 .nameButtonReg {
     font-size: 26px;
     font-family: 'Arial', 'Verdana', sans-serif;
     font-style: italic;
-
+    margin: 0 auto; /* Установка отступов по горизонтали на auto центрирует элемент */
+    display: block; /* Превращает кнопку в блочный элемент для центрирования */
 }
+
 .checkboxReg {
     margin-top: 20px;
     display: grid;
@@ -31,10 +56,9 @@
     align-items: center;
     justify-content: center;
 }
+
 .RegistrationName {
     text-align: center;
-    margin-right: 45%;
-    margin-left: 45%;
     font-size: 26px;
     font-family: 'Arial', 'Verdana', sans-serif;
     font-style: oblique;

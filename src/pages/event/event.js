@@ -3,11 +3,26 @@ import eventCss from "./event.module.css";
 import button from "../../assets/css/button.module.css";
 import {DATE_FORMAT_DATE, dateStrISO} from "../../assets/date/formatDate";
 import {NavLink} from "react-router-dom";
+import eventsCss from "../events/events.module.css";
+import drop from "../../assets/css/dropDown.module.css";
+import {Dropdown} from "react-bootstrap";
+import profileCss from "../profile/ProfileCss.module.css";
 
 class Event extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false,
+            showModalCreateTeam: false,
+            showModalAddUserInTeam: false,
+            ref1: React.createRef(),
+            ref2: React.createRef(),
+        }
+    }
     componentDidMount() {
         // const urlParams = new URLSearchParams(window.location.search);
         // const id = urlParams.get(`id`);
+        this.props.loadResultsTourney();
         this.props.loadEvent(this.props.eventId);
         console.log(this.props)
     }
@@ -23,15 +38,134 @@ class Event extends React.Component {
             </div>
         );
     };
-
+    handleShowModalAddUserInTeam(){
+        this.setState({ showModalAddUserInTeam: true });
+    }
+    handleShowModalCreateTeam(){
+        this.setState({ showModalCreateTeam: true });
+    }
     handleRegistrationTourney() {
         this.props.registrationTourney(this.props.eventId, this.props.userID.id);
     }
-
+    thisResults(id) {
+        this.props.thisUsersLoadForEvent(id);
+    }
+    thisResultsTeam(id) {
+        this.props.thisTeamsLoadForEvent(id)
+        this.props.loadResultsTeamTourney();
+    }
+    handleRegistrationTeam() {
+        this.setState({showModal: !this.state.showModal});
+    }
+    toggleModal = () => {
+        this.setState({showModal: !this.state.showModal});
+    }
+    toggleModalAddUserInTeam = () => {
+        this.setState({showModalAddUserInTeam: false});
+    }
+    toggleModalCreateTeam = () => {
+        this.setState({showModalCreateTeam: false});
+    }
+    handleNameChange = () => {
+        if (!!this.state.ref1) {
+            let newText = this.state.ref1.current.value;
+            this.props.onChangeAreaText("NAME_NEW_TEAM", newText);
+        }
+    }
+    handleAddUserInTeam(userID, teamID) {
+        if (teamID && userID) {
+            this.props.addPlayers(teamID, userID, this.props.event.sportTypeID);
+        } else {
+            alert("Выберите команду!")
+        }
+    }
+    handleAddTeam(eventID, userID) {
+        if (!!this.state.ref1) {
+            let newText = this.state.ref1.current.value;
+            this.props.createTeam(eventID, userID, newText);
+        }
+    }
+    handleDropdownSelect = (name, team, id) => {
+        this.props.onChangeAreaTextTeam(team, name, id);
+    };
     render() {
         if (!!this.props.event) {
             return (
-                <div>
+                <div className={profileCss.containerProfile}>
+                    <div>
+                        {this.state.showModal && (
+                            <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                                 style={{display: this.state.showModal ? 'block' : 'none'}}>
+                                <button className={eventsCss.closeButton} onClick={this.toggleModal}>X</button>
+                                <button className={button.buttonsInfo} onClick={() => {
+                                    this.setState({showModal: false});
+                                    this.handleShowModalAddUserInTeam();
+                                    this.props.thisTeamsLoadForEvent(this.props.eventId);
+                                }}
+                                >Присоединиться к команде
+                                </button>
+                                <button className={button.buttonsInfo} onClick={() => {
+                                    this.setState({showModal: false});
+                                    this.handleShowModalCreateTeam();
+                                }}
+                                >Создать команду
+                                </button>
+                            </div>)}
+                        {this.state.showModal && <div className={eventsCss.overlay}></div>}
+                    </div>
+                    <div>
+                        {this.state.showModalAddUserInTeam && (
+                            <div className={`${eventsCss.teams} ${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                                 style={{display: this.state.showModalAddUserInTeam ? 'block' : 'none'}}>
+                                <button className={eventsCss.closeButton} onClick={this.toggleModalAddUserInTeam}>X
+                                </button>
+                                <div>
+                                    <Dropdown className={`${drop.dropDownDesign}`}>
+                                        <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                         className={`${drop.dropdownToggle}`}>
+                                            {this.props.selectTeam ? this.props.selectTeam : 'Команда'}
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu className={`${drop.dropdownMenu}`}>
+                                            {Array.isArray(this.props.myTeams) ? this.props.myTeams && this.props.myTeams.map((item) => (
+                                                <Dropdown.Item className={`${drop.dropdownItem}`} key={item.team_id}
+                                                               onClick={() => this.handleDropdownSelect(item.name, 'SELECT_TEAM', item.team_id)}>
+                                                    {item.name}
+                                                </Dropdown.Item>
+                                            )) : ""}
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                    <br/>
+                                    <button className={button.buttonsInfo} onClick={() => {
+                                        this.handleAddUserInTeam(this.props.userID.id, this.props.selectTeamId);
+                                    }}
+                                    >Присоединиться к команде
+                                    </button>
+                                </div>
+                            </div>)}
+                        {this.state.showModalAddUserInTeam && <div className={eventsCss.overlay}></div>}
+                    </div>
+                    <div>
+                        {this.state.showModalCreateTeam && (
+                            <div className={`${eventsCss.modal} ${eventsCss.newWindowAddEvent}`}
+                                 style={{display: this.state.showModalCreateTeam ? 'block' : 'none'}}>
+                                <button className={eventsCss.closeButton} onClick={this.toggleModalCreateTeam}>X
+                                </button>
+                                <div>
+                                    <input
+                                        ref={this.state.ref1}
+                                        value={this.props.newTeam.name ? this.props.newTeam.name : ""}
+                                        className={eventsCss.modalContent} type="text"
+                                        placeholder="Название команды"
+                                        onChange={this.handleNameChange}/><br/>
+                                    <button className={button.buttonsInfo} onClick={() => {
+                                        this.handleAddTeam(this.props.eventId, this.props.userID.id);
+                                    }}
+                                    >Создать команду
+                                    </button>
+                                </div>
+                            </div>)}
+                        {this.state.showModalCreateTeam && <div className={eventsCss.overlay}></div>}
+                    </div>
                     <div className={eventCss.containerEvent}>
                         <div className={eventCss.row}>
                             {/*<h1>Описание спортивного мероприятия</h1>*/}
@@ -48,21 +182,51 @@ class Event extends React.Component {
                                                     &nbsp;
                                                     {this.props.status === 1 ? (
                                                         <div>
-                                                            <button className={button.buttonsInfo} onClick={() => {
-                                                                this.handleRegistrationTourney()
-                                                            }}
-                                                            >Зарегистрироваться на турнир
-                                                            </button>
-                                                            <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
-                                                                <button className={button.buttonsInfo}>Результаты
-                                                                </button>
-                                                            </NavLink>
-                                                            <NavLink
-                                                                to={`/../pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js`}>
-                                                                <button className={button.buttonsInfo}>Просмотр
-                                                                    участников
-                                                                </button>
-                                                            </NavLink>
+                                                            {this.props.event.cntPlayersInGroup > 1 ? (
+                                                                <button className={button.buttonsInfo} onClick={() => {
+                                                                    this.handleRegistrationTeam()
+                                                                }}
+                                                                >Зарегистрироваться на турнир
+                                                                </button>) : (
+                                                                <button className={button.buttonsInfo} onClick={() => {
+                                                                    this.handleRegistrationTourney()
+                                                                }}
+                                                                >Зарегистрироваться на турнир
+                                                                </button>)}
+                                                            {this.props.event.cntPlayersInGroup > 1 ? (
+                                                                <NavLink
+                                                                    to={`/../pages/teams/teams.js`}>
+                                                                    <button onClick={() => {
+                                                                        this.props.thisTeamsLoadForEvent(this.props.eventId)
+                                                                    }} className={button.buttonsInfo}>Просмотр
+                                                                        команд
+                                                                    </button>
+                                                                </NavLink>
+                                                            ) : (
+                                                                <NavLink
+                                                                    to={`/../pages/checkingPlayersOnTourney/checkingPlayersOnTourney.js`}>
+                                                                    <button onClick={() => {
+                                                                        this.props.thisUsersLoadForEvent(this.props.eventId)
+                                                                    }} className={button.buttonsInfo}>Просмотр
+                                                                        участников
+                                                                    </button>
+                                                                </NavLink>)}
+                                                            {this.props.event.cntPlayersInGroup > 1 ? (
+                                                                <NavLink to={`/../pages/resultsTourney/resultsTeam.js`}>
+                                                                    <button className={button.buttonsInfo}
+                                                                            onClick={() => {
+                                                                                this.thisResultsTeam(this.props.eventId)}}
+                                                                    >Результаты
+                                                                    </button>
+                                                                </NavLink>
+                                                            ) : (
+                                                                <NavLink to={`/../pages/resultsTourney/resultsTourney.js`}>
+                                                                    <button className={button.buttonsInfo}
+                                                                            onClick={() => {
+                                                                                this.thisResults(this.props.eventId)}}
+                                                                    >Результаты
+                                                                    </button>
+                                                                </NavLink>)}
                                                             <NavLink to={`/../pages/events/events.js`}>
                                                                 <button className={button.buttonsInfo}>Назад</button>
                                                             </NavLink></div>) : (
@@ -131,7 +295,11 @@ class Event extends React.Component {
                                                         </li>
                                                         <br/>
                                                         <li>
-                                                            <span>Организатор:&nbsp;</span>{this.props.event.orgName ? this.props.event.orgName : ""}
+                                                            <a
+                                                               style={{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}
+                                                               onClick={() => alert(this.props.event.email)}>
+                                                                <span>Организатор:&nbsp;</span>{this.props.event.orgName ? this.props.event.orgName : ""}
+                                                            </a>
                                                         </li>
                                                         <br/>
                                                         <br/>
@@ -153,7 +321,8 @@ class Event extends React.Component {
                 </div>
             );
         } else {
-            return <div>Страница не найдена!</div>;
+            // window.location.href = "http://localhost:3000/pages/events/events.js"
+            return <div>Страница не найдена!</div>
         }
     }
 }

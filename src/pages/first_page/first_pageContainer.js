@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         UserLocation: (text) => {
             dispatch(UserLocation(text))
-        }
+        },
     }
 }
 

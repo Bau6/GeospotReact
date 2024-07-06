@@ -1,6 +1,8 @@
 import {NavLink} from "react-router-dom";
 import React from "react";
 import "./chekingPlayersOnTourney.css";
+import eventsCss from "../events/events.module.css";
+import button from "../../assets/css/button.module.css";
 
 class PlayersInTourney extends React.Component {
     constructor(props) {
@@ -8,12 +10,11 @@ class PlayersInTourney extends React.Component {
         this.state = {
             isBlocked: false, // состояние блокировки
             isEditable: false, // состояние редактирования
-            participants: props.participantsFromBD // список участников
         };
     }
 
-    handleClick = (participant) => {
-        console.log(`Выбран участник ${participant.name}`);
+    handleClick = (email) => {
+        alert(email)
     };
 
     handleRegistrationClick = () => {
@@ -26,7 +27,15 @@ class PlayersInTourney extends React.Component {
         // реализация функционала
         this.setState({ isBlocked: true });
     };
-
+    handleBlockUserEvent = (id) => {
+        this.props.blockUserEvent(id);
+    }
+    handleUnBlockUserEvent = (id) => {
+        this.props.unBlockUserEvent(id);
+    }
+    handleChangeUserEvent = (id) => {
+        alert(id)
+    }
     handleEditClick = () => {
         // обработчик нажатия на кнопку "Редактирование"
         // реализация функционала
@@ -35,42 +44,58 @@ class PlayersInTourney extends React.Component {
     componentDidMount() {
         // генерация рандомных данных
         console.log(this.props)
-        const participants = this.state.participants;
-        this.setState({ participants });
     }
 
 
     render() {
-        const { isBlocked, isEditable } = this.state;
-
+        let { isBlocked, isEditable } = this.state;
+        let filterThisPlayers = {};
+        if (this.props.myUsers && (this.props.role === "admin" || this.props.role === "organizer")) {
+            if (this.props.role === "admin") {
+                filterThisPlayers = this.props.myUsers;
+                isBlocked = true;
+                isEditable = true;
+            } else if (this.props.role === "organizer") {
+                isEditable = true;
+                filterThisPlayers = this.props.myUsers;
+            }
+        } else if (this.props.myUsers && (this.props.role === "user")){
+            filterThisPlayers = this.props.myUsers.filter(players => players.status === 2);
+        } else { filterThisPlayers = {} }
         return (
             <div>
                 <div className="players">
                     <table>
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Имя</th>
-                            <th>Возраст</th>
+                            <th>Мероприятие</th>
+                            <th>Игрок</th>
+                            <th>Статус</th>
+                            <th>Результат</th>
+                            <th>Дата регистрации</th>
+                            {isBlocked && <th>Админ меню</th>}
+                            {/*{isEditable && <th>Организатор меню</th>}*/}
                         </tr>
                         </thead>
                         <tbody>
-                        {this.props.myUsers.map((participant) => (
-                            <tr key={participant.id} onClick={() => this.handleClick(participant)}>
-                                <td>{participant.id}</td>
-                                <td>{participant.name}</td>
-                                <td>{participant.age}</td>
+                        {Array.isArray(filterThisPlayers) ? filterThisPlayers.map((participant) => (
+                            <tr key={participant.id} onClick={() => this.handleClick(participant.email)}>
+                                <td>{participant.event}</td>
+                                <td>{participant.player}</td>
+                                <td>{participant.statusName}</td>
+                                <td>{participant.resultName}</td>
+                                <td>{participant.dateRegistration}</td>
+                                {isBlocked ? participant.status === 2 ?
+                                    <td className={`${button.buttonsInfo}`} onClick={() => this.handleBlockUserEvent(participant.id)}>Заблокировать</td> :
+                                    participant.status === 1 ? <td className={`${button.buttonsInfo}`} onClick={() => this.handleUnBlockUserEvent(participant.id)}>Разблокировать</td> : "":""}
+                                {/*{isEditable && <td onClick={() => this.handleChangeUserEvent(participant.id)}>Изменить</td>}*/}
                             </tr>
-                        ))}
+                        )) : "Нет участников!"}
                         </tbody>
                     </table>
                 </div>
                 <br/>
-                <NavLink to="/../../pages/resultsTourney/resultsTourney.js">Результаты</NavLink>
-                <button onClick={this.handleRegistrationClick}>Зарегистрироваться на турнир</button>
-                <NavLink to="/../../pages/event/event.js">Назад</NavLink>
-                {isBlocked && <button >Заблокировать</button>}
-                {isEditable && <button >Редактирование</button>}
+                <NavLink className={`${button.buttonsInfo}`} to="/../../pages/event/event.js">Назад</NavLink>
             </div>
         );
     }

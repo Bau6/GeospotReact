@@ -16,10 +16,9 @@ function registrationUserOnTourney(params, res) {
         } else {
             if (userResult.length === 0) {
                 console.log('Пользователь с указанным ID не найден');
-                res.status(404).json({error: 'Пользователь с указанным ID не найден'});
+                res.status(500).json({error: 'Пользователь с указанным ID не найден'});
                 return;
             }
-
             connection.query(selectEventQuery, [EVENTS, params.eventId], (eventErr, eventResult) => {
                 if (eventErr) {
                     console.log(eventErr);
@@ -27,38 +26,56 @@ function registrationUserOnTourney(params, res) {
                 } else {
                     if (eventResult.length === 0) {
                         console.log('Мероприятие с указанным ID не найдено');
-                        res.status(404).json({error: 'Мероприятие с указанным ID не найдено'});
+                        res.status(500).json({error: 'Мероприятие с указанным ID не найдено'});
                         return;
                     }
-
                     connection.query(selectQualsQuery, [USER_SPORT_QUALIFICATIONS, params.userId], (qualsErr, qualsResult) => {
                         if (qualsErr) {
                             console.log(qualsErr);
                             res.status(500).json({error: 'Ошибка при поиске информации о квалификации'});
                         } else {
-                            if (qualsResult.length === 0) {
+                            if (qualsResult.length === 0 || !qualsResult) {
                                 console.log('Квалификация пользователя не найдена');
-                                res.status(404).json({error: 'Квалификация пользователя не найдена'});
+                                res.status(500).json({ error: 'Квалификация пользователя не найдена' });
                                 return;
                             }
-                            if ( qualsResult.sport_id === eventResult.sportTypeID ) {
-                                addInfoRegTourney.eventsID = params.eventId;
-                                addInfoRegTourney.playerID = params.userId;
-                                addInfoRegTourney.status = 2;
-                                addInfoRegTourney.result = 1;
-                                addInfoRegTourney.dateRegistration = new Date();
-                            // Здесь вы можете добавить логику для сравнения столбцов и выполнения дальнейших действий
 
-                            let insertQuery = "INSERT INTO ?? SET ?";
-                            connection.query(insertQuery, [EVENT, addInfoRegTourney], (insertErr, insertResult) => {
-                                if (insertErr) {
-                                    console.log(insertErr);
-                                    res.status(500).json({error: 'Ошибка при добавлении записи'});
+                            let playerID = params.userId;
+                            let eventID = params.eventId;
+// Проверка на существование записи с таким playerID и eventID
+                            connection.query("SELECT * FROM ?? WHERE playerID = ? AND eventsID = ?", [EVENT, playerID, eventID], (checkErr, checkResult) => {
+                                if (checkErr) {
+                                    console.log(checkErr);
+                                    res.status(500).json({ error: 'Ошибка при проверке существующих записей' });
                                 } else {
-                                    res.json({message: 'Запись успешно добавлена'});
+                                    if (checkResult.length > 0) {
+                                        res.status(500).json({ message: 'Вы уже зарегистрированы на данное мероприятие!' });
+                                    } else {
+                                        let qualificationFound = false;
+                                        qualsResult.forEach((qual) => {
+                                            if (qual.sport_id === eventResult[0].sportTypeID) {
+                                                qualificationFound = true;
+                                            }
+                                        });
+                                        if (qualificationFound) {
+                                            addInfoRegTourney.eventsID = eventID;
+                                            addInfoRegTourney.playerID = playerID;
+                                            addInfoRegTourney.status = 2;
+                                            addInfoRegTourney.result = 1;
+                                            addInfoRegTourney.dateRegistration = new Date();
+                                            let insertQuery = "INSERT INTO ?? SET ?";
+                                            connection.query(insertQuery, [EVENT, addInfoRegTourney], (insertErr, insertResult) => {
+                                                if (insertErr) {
+                                                    console.log(insertErr);
+                                                    res.status(500).json({ error: 'Ошибка при добавлении записи' });
+                                                } else {
+                                                    res.json({ message: 'Запись успешно добавлена' });
+                                                }
+                                            });
+                                        } else {res.status(500).json({ error: 'У вас нет необходимой квалификации!' });}
+                                    }
                                 }
                             });
-                            }
                         }
                     });
                 }

@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d69030ad-d6a4-4bb5-bb95-fdb24b8a9ece" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/NodeJS/registrationUserTourney.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/registrationUserTourney.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/NodeJS/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/NodeJS/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/redux/events-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/redux/events-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/event/event.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/events/AdminOrgEvents.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/AdminOrgEvents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/events/eventsForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/events/eventsForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,45 +47,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.back.js.executor": "Run",
-    "Node.js.delete.js.executor": "Run",
-    "Node.js.test.js.executor": "Run",
-    "Node.js.update.js.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "test",
-    "last_opened_file_path": "C:/Program Files/Ampps/www/learning_react/src/pages/events",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.6\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.back.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.delete.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.test.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.update.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Ampps/www/learning_react/back/NodeJS&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.6\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Ampps\www\learning_react\back\NodeJS" />
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\resultsTourney" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\events" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\checkingPlayersOnTourney" />
-      <recent name="C:\Program Files\Ampps\www\learning_react\back\NodeJS" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\first_page" />
-      <recent name="C:\Program Files\Ampps\www\learning_react\src\pages\registration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Ampps\www\learning_react\src\app\images" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\assets\css" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\app" />
       <recent name="C:\Program Files\Ampps\www\learning_react\src\assets\buttons" />
-      <recent name="C:\Program Files\Ampps\www\learning_react\src\database\redux" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.test.js">
+  <component name="RunManager" selected="npm.start">
     <configuration name="test.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="test.js" working-dir="$PROJECT_DIR$/back/NodeJS">
       <method v="2" />
     </configuration>
@@ -138,7 +133,10 @@
       <workItem from="1712237116445" duration="10710000" />
       <workItem from="1712251304023" duration="164082000" />
       <workItem from="1713628857019" duration="191349000" />
-      <workItem from="1715002365747" duration="33368000" />
+      <workItem from="1715002365747" duration="101273000" />
+      <workItem from="1715863954379" duration="21292000" />
+      <workItem from="1716559290039" duration="36696000" />
+      <workItem from="1719741479755" duration="302000" />
     </task>
     <servers />
   </component>

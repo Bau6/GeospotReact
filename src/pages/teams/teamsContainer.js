@@ -1,10 +1,15 @@
 import {connect} from "react-redux";
-import checkingPlayersOnTourney from "./checkingPlayersOnTourney";
-import {blockUserEvent, unBlockUserEvent, usersLoadForTourney} from "../../database/redux/users-reducer";
+import {
+    blockUserEvent,
+    loadResultsTeamTourney,
+    unBlockUserEvent,
+    usersLoadForTourney
+} from "../../database/redux/users-reducer";
+import teams from "./teams";
 const mapStateToProps = (state) => {
     return {
         event: state.eventsReducer.event,
-        myUsers: state.users.usersTourney,
+        myTeams: state.users.teams,
         role: state.sessionUser.role,
     }
 }
@@ -21,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
         },
     }
 }
-export default connect (mapStateToProps, mapDispatchToProps)(checkingPlayersOnTourney);
+export default connect (mapStateToProps, mapDispatchToProps)(teams);
